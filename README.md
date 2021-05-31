@@ -24,7 +24,7 @@
 ## 鸣谢
 
 * 登入公共数据库并获取课表数据的流程参考自[BillChen2K/ECNU-class2ics](https://github.com/BillChen2K/ECNU-class2ics)
-* 识别验证码使用了[adaptech-cz/Tesseract4Android](https://github.com/adaptech-cz/Tesseract4Android)
+* 识别验证码使用了[adaptech-cz/Tesseract4Android](https://github.com/adaptech-cz/Tesseract4Android)，这东西扔进`build.gradle`不工作，于是直接copy了一份
 * DES加密参考了[冰河的专栏-CSDN博客](https://blog.csdn.net/l1028386804/article/details/50196061)<del>，我再也不黑CSDN了</del>
 * （待补）
 * [JetBrains](https://www.jetbrains.com/) nb! [Kotlin](https://kotlinlang.org/) nb!
