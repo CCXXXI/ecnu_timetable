@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ECNU Timetable"
 include(":app")
+include(":tesseract4android")
