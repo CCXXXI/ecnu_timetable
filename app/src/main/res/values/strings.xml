@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ECNU Timetable</string>
+    <string name="import_timetable_from_ecnudb">自公共数据库导入课程表</string>
+    <string name="import_timetable_from_html">自HTML文件导入课程表</string>
+    <string name="prompt_username">学号</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_get_timetable">获取课程表</string>
+    <string name="invalid_username">学号应为11位数字</string>
+    <string name="invalid_password">密码不能为空</string>
+    <string name="invalid_captcha">验证码应为4位数字</string>
+    <string name="captcha_image">验证码图片</string>
+    <string name="captcha">验证码</string>
 </resources>
