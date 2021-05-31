@@ -1,4 +1,4 @@
-package cn.edu.ecnu.timetable
+package com.github.ccxxxi.ecnutimetable
 
 import android.util.Log
 import com.github.kittinunf.fuel.Fuel

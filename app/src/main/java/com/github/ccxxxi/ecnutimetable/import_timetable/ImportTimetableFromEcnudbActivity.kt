@@ -1,4 +1,4 @@
-package cn.edu.ecnu.timetable.ui.import_timetable
+package com.github.ccxxxi.ecnutimetable.import_timetable
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import cn.edu.ecnu.timetable.databinding.ActivityImportTimetableFromEcnudbBinding
+import com.github.ccxxxi.ecnutimetable.databinding.ActivityImportTimetableFromEcnudbBinding
 import com.googlecode.tesseract.android.Ocr
 
 class ImportTimetableFromEcnudbActivity : AppCompatActivity() {

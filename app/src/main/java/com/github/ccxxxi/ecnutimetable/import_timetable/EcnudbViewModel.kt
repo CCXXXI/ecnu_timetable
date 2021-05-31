@@ -1,12 +1,11 @@
-package cn.edu.ecnu.timetable.ui.import_timetable
+package com.github.ccxxxi.ecnutimetable.import_timetable
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.*
-import cn.edu.ecnu.timetable.R
-import cn.edu.ecnu.timetable.Session
+import com.github.ccxxxi.ecnutimetable.R
+import com.github.ccxxxi.ecnutimetable.Session
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class EcnudbViewModel : ViewModel() {
