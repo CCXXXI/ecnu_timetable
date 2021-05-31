@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECNUTimetable">
         <activity
+            android:name=".import_timetable.ImportTimetableFromEcnudbActivity"
+            android:exported="true"
+            android:label="@string/import_timetable_from_ecnudb" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
