@@ -1,7 +1,9 @@
-package com.github.ccxxxi.ecnutimetable
+package com.github.ccxxxi.ecnutimetable.ecnudb
 
 import android.util.Log
-import com.github.ccxxxi.ecnutimetable.ecnudb.Des
+import com.github.ccxxxi.ecnutimetable.html.Error
+import com.github.ccxxxi.ecnutimetable.html.Parser
+import com.github.ccxxxi.ecnutimetable.html.Success
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.Headers

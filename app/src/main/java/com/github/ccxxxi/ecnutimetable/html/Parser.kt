@@ -1,4 +1,4 @@
-package com.github.ccxxxi.ecnutimetable
+package com.github.ccxxxi.ecnutimetable.html
 
 import org.jsoup.Jsoup
 
