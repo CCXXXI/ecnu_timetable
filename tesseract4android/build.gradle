@@ -1,56 +1,56 @@
 apply plugin: 'com.android.library'
 
 android {
-	compileSdkVersion 28
-	// TODO: We can set specific NDK version we want to use, see https://developer.android.com/studio/projects/install-ndk#specific-version
-	// ndkVersion "major.minor.build"
-	defaultConfig {
-		minSdkVersion 16
-		targetSdkVersion 28
-		versionCode 6
-		versionName "3.0.0-dev"
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-		externalNativeBuild {
-			cmake {
-				// Specifies which native libraries or executables to build and package.
-				// TODO: Include eyes-two in some build flavor of the library?
-				//targets "jpeg", "png", "leptonica", "tesseract"
+    compileSdkVersion 28
+    // TODO: We can set specific NDK version we want to use, see https://developer.android.com/studio/projects/install-ndk#specific-version
+    // ndkVersion "major.minor.build"
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 6
+        versionName "3.0.0-dev"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                // Specifies which native libraries or executables to build and package.
+                // TODO: Include eyes-two in some build flavor of the library?
+                //targets "jpeg", "png", "leptonica", "tesseract"
 
-				// We can compile with OpenMP to use parallel processing in Tesseract,
-				// but it actually results in worse processing time and cpu usage.
-				//cppFlags "-fopenmp"
-				//cFlags "-fopenmp"
-			}
-		}
-		ndk {
-			// Specify the ABI configurations that Gradle should build and package.
-			// By default it compiles all available ABIs.
-			//abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
-		}
-	}
-	buildTypes {
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-		}
-	}
-	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	}
-	externalNativeBuild {
-		cmake {
-			path "src/main/cpp/CMakeLists.txt"
-		}
-	}
+                // We can compile with OpenMP to use parallel processing in Tesseract,
+                // but it actually results in worse processing time and cpu usage.
+                //cppFlags "-fopenmp"
+                //cFlags "-fopenmp"
+            }
+        }
+        ndk {
+            // Specify the ABI configurations that Gradle should build and package.
+            // By default it compiles all available ABIs.
+            //abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
 }
 
 dependencies {
-	implementation fileTree(include: ['*.jar'], dir: 'libs')
-	implementation 'androidx.annotation:annotation:1.1.0'
-	testImplementation 'junit:junit:4.13.1'
-	androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-	androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.annotation:annotation:1.1.0'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
 apply from: '../publish.gradle'
