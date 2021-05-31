@@ -18,6 +18,7 @@
 package com.googlecode.tesseract.android;
 
 import android.Manifest;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Canvas;
@@ -27,9 +28,10 @@ import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.text.Html;
 import android.util.Pair;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.googlecode.leptonica.android.Pix;
 import com.googlecode.leptonica.android.Pixa;
@@ -56,7 +58,11 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class TessBaseAPITest {
-	static final String TESSBASE_PATH = Environment.getExternalStorageDirectory().toString();
+	private static final Context context = InstrumentationRegistry.getInstrumentation().getContext();
+	@SuppressWarnings("unused")
+	private static final Ocr ocr = new Ocr(context);
+
+	static final String TESSBASE_PATH = context.getFilesDir().getPath();
 	static final String DEFAULT_LANGUAGE = "eng";
 	private static final String TESSDATA_PATH = TESSBASE_PATH + "/tessdata/";
 
@@ -64,12 +70,6 @@ public class TessBaseAPITest {
 
 	@Before
 	public void setup() {
-		// Grant permission to use external storage
-		TestUtils.grantPermissions(new String[]{
-				Manifest.permission.READ_EXTERNAL_STORAGE,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE,
-		});
-
 		// Check that the data file(s) exist.
 		for (String languageCode : DEFAULT_LANGUAGE.split("\\+")) {
 			if (!languageCode.startsWith("~")) {
