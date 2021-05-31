@@ -1,4 +1,4 @@
-package com.github.ccxxxi.ecnutimetable.import_timetable
+package com.github.ccxxxi.ecnutimetable.ecnudb
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

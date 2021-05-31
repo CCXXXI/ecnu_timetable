@@ -1,4 +1,4 @@
-package com.github.ccxxxi.ecnutimetable.import_timetable
+package com.github.ccxxxi.ecnutimetable.ecnudb
 
 import android.os.Bundle
 import android.text.Editable

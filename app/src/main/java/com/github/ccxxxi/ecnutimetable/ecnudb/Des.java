@@ -1,4 +1,4 @@
-package com.github.ccxxxi.ecnutimetable;
+package com.github.ccxxxi.ecnutimetable.ecnudb;
 
 import java.util.ArrayList;
 import java.util.List;

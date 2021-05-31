@@ -1,6 +1,7 @@
 package com.github.ccxxxi.ecnutimetable
 
 import android.util.Log
+import com.github.ccxxxi.ecnutimetable.ecnudb.Des
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.Headers
@@ -76,7 +77,8 @@ private object EcnuDB {
     }
 
     private fun getRsa(username: String, password: String) =
-        Des().strEnc(username + password, "1", "2", "3")
+        Des()
+            .strEnc(username + password, "1", "2", "3")
 
     fun login(username: String, password: String, captcha: String) {
         val data = listOf(
