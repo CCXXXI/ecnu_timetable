@@ -9,6 +9,7 @@ import org.riversun.okhttp3.OkHttp3CookieHelper
 import java.io.IOException
 import kotlin.properties.Delegates
 
+// todo: 连不上公共数据库时的处理
 private object EcnuDB {
     private const val TAG = "EcnuDB"
 
