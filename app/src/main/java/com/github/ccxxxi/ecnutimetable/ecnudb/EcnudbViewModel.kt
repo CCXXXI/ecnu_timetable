@@ -35,7 +35,11 @@ class EcnudbViewModel : ViewModel() {
     fun getTimetable(username: String, password: String, captcha: String) = viewModelScope.launch {
         // todo: disable input until login finish
         withContext(Dispatchers.IO) {
-            session.login(username, password, captcha)
+            val loginResult = session.login(username, password, captcha)
+
+            if (loginResult is Error) {
+                TODO("登陆失败后续处理")
+            }
             // todo: get timetable
         }
     }

@@ -1,9 +1,8 @@
 package com.github.ccxxxi.ecnutimetable.ecnudb
 
 import android.util.Log
-import com.github.ccxxxi.ecnutimetable.html.Error
 import com.github.ccxxxi.ecnutimetable.html.Parser
-import com.github.ccxxxi.ecnutimetable.html.Success
+import com.github.ccxxxi.ecnutimetable.html.Result
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -56,7 +55,7 @@ private object EcnuDB {
     private fun getRsa(username: String, password: String) =
         Des().strEnc(username + password, "1", "2", "3")
 
-    fun login(client: OkHttpClient, username: String, password: String, captcha: String) {
+    fun login(client: OkHttpClient, username: String, password: String, captcha: String): Result {
         val body = FormBody.Builder()
             .add("code", captcha)
             .add("rsa", getRsa(username, password))
@@ -70,10 +69,7 @@ private object EcnuDB {
         val request = Request.Builder().url(URL.PORTAL).post(body).build()
 
         client.newCall(request).execute().use {
-            when (Parser.parseLoginResult(it.body!!.string())) {
-                is Success -> TODO("登陆成功")
-                is Error -> TODO("登陆失败")
-            }
+            return Parser.parseLoginResult(it.body!!.string())
         }
     }
 }
