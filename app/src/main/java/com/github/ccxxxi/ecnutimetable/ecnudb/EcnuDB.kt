@@ -22,8 +22,6 @@ private object EcnuDB {
         const val TABLE = "$JW/eams/courseTableForStd!courseTable.action"
     }
 
-    private lateinit var cookie: String
-
     /**
      * Set cookie.
      * 这是必要的，否则之后登录时会直接返回登录页面，并且没有任何报错信息。
@@ -54,7 +52,12 @@ private object EcnuDB {
     private fun getRsa(username: String, password: String) =
         Des().strEnc(username + password, "1", "2", "3")
 
-    fun login(client: OkHttpClient, username: String, password: String, captcha: String): LoginResult {
+    fun login(
+        client: OkHttpClient,
+        username: String,
+        password: String,
+        captcha: String
+    ): LoginResult {
         val body = FormBody.Builder()
             .add("code", captcha)
             .add("rsa", getRsa(username, password))
