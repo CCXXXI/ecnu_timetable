@@ -39,6 +39,10 @@
 
   * 也尝试过[khttp](https://github.com/ascclemens/khttp)和[Fuel](https://github.com/kittinunf/fuel)，都比较坑
 
+* 使用了[riversun/okhttp3-cookie-helper](https://github.com/riversun/okhttp3-cookie-helper)来处理cookie
+
+  * 最后更新于2017年但仍然能跑起来，顺便感谢okhttp的开发者在升级到4.x时确保了兼容性
+
 * 使用了[jsoup](https://jsoup.org/)进行HTML解析
 
   * 但没有尝试它看上去就很简陋的HTTP请求有关功能
