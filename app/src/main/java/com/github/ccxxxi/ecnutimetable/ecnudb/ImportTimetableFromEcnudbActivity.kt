@@ -9,8 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.github.ccxxxi.ecnutimetable.databinding.ActivityImportTimetableFromEcnudbBinding
-import com.github.ccxxxi.ecnutimetable.html.Error
-import com.github.ccxxxi.ecnutimetable.html.Success
 import com.googlecode.tesseract.android.Ocr
 
 class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
@@ -82,7 +80,7 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
             true
         }
         getTimetable.setOnClickListener { getTimetable() }
-        
+
         ecnudbViewModel.loginResult.observe(this@ImportTimetableFromEcnudbActivity, {
             when (val r = it!!) {
                 is Error -> {

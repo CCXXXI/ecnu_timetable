@@ -1,6 +1,9 @@
 package com.github.ccxxxi.ecnutimetable.html
 
 import android.util.Log
+import com.github.ccxxxi.ecnutimetable.ecnudb.Error
+import com.github.ccxxxi.ecnutimetable.ecnudb.LoginResult
+import com.github.ccxxxi.ecnutimetable.ecnudb.Success
 import org.jsoup.Jsoup
 
 object Parser {
@@ -13,7 +16,3 @@ object Parser {
         return Error("分析不出登录结果")
     }
 }
-
-sealed class LoginResult
-data class Error(val errorMessage: String) : LoginResult()
-data class Success(val realName: String) : LoginResult()

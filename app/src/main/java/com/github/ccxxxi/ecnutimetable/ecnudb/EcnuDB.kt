@@ -2,7 +2,6 @@ package com.github.ccxxxi.ecnutimetable.ecnudb
 
 import android.util.Log
 import com.github.ccxxxi.ecnutimetable.html.Parser
-import com.github.ccxxxi.ecnutimetable.html.LoginResult
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request

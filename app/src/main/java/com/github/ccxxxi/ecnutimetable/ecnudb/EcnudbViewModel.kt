@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.*
 import com.github.ccxxxi.ecnutimetable.R
-import com.github.ccxxxi.ecnutimetable.html.LoginResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -74,3 +73,7 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T = EcnudbViewModel() as T
 }
+
+sealed class LoginResult
+data class Error(val errorMessage: String) : LoginResult()
+data class Success(val realName: String) : LoginResult()
