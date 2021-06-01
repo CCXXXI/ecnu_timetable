@@ -15,4 +15,8 @@ object Parser {
         Log.wtf("Parser", "分析不出登录结果:\n$doc")
         return Error("分析不出登录结果")
     }
+
+    fun parseIds(html: String): String =
+        Regex("""bg\.form\.addInput\(form,"ids","(.*?)"\);""")
+            .find(html)!!.groupValues.component2()
 }

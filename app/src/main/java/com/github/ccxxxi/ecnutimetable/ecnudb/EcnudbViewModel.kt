@@ -41,8 +41,7 @@ class EcnudbViewModel : ViewModel() {
             val loginResult1 = session.login(username, password, captcha)
             _loginResult.postValue(loginResult1)
 
-
-            // todo: get timetable
+            session.getTimetable()
         }
     }
 

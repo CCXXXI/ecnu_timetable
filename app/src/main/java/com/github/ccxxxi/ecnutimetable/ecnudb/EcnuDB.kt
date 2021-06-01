@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.riversun.okhttp3.OkHttp3CookieHelper
 import java.io.IOException
-import kotlin.properties.Delegates
 
 // todo: 连不上公共数据库时的处理
 private object EcnuDB {
@@ -76,6 +75,14 @@ private object EcnuDB {
             return Parser.parseLoginResult(it.body!!.string())
         }
     }
+
+    fun getIds(client: OkHttpClient): String {
+        val request = Request.Builder().url(URL.IDS).build()
+
+        client.newCall(request).execute().use {
+            return Parser.parseIds(it.body!!.string())
+        }
+    }
 }
 
 
@@ -89,9 +96,13 @@ class Session {
 
     val captchaImg = EcnuDB.getCaptchaImg(client)
 
-    private var ids by Delegates.notNull<Int>()
+    private lateinit var ids: String
 
     fun login(username: String, password: String, captcha: String) =
         EcnuDB.login(client, username, password, captcha)
-    // todo
+
+    fun getTimetable() {
+        ids = EcnuDB.getIds(client)
+        TODO()
+    }
 }
