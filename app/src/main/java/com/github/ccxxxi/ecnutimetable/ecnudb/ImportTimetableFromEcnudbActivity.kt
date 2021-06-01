@@ -5,9 +5,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.github.ccxxxi.ecnutimetable.databinding.ActivityImportTimetableFromEcnudbBinding
+import com.github.ccxxxi.ecnutimetable.html.Error
+import com.github.ccxxxi.ecnutimetable.html.Success
 import com.googlecode.tesseract.android.Ocr
 
 class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
@@ -79,6 +82,18 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
             true
         }
         getTimetable.setOnClickListener { getTimetable() }
+        
+        ecnudbViewModel.loginResult.observe(this@ImportTimetableFromEcnudbActivity, {
+            when (val r = it!!) {
+                is Error -> {
+                    Toast.makeText(this, r.errorMessage, Toast.LENGTH_LONG).show()
+                    TODO("获取失败后续处理")
+                }
+                is Success -> {
+                    Toast.makeText(this, "${r.realName}登陆成功，正在获取课表", Toast.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 }
 

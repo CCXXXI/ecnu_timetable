@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.*
 import com.github.ccxxxi.ecnutimetable.R
+import com.github.ccxxxi.ecnutimetable.html.LoginResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,14 +33,16 @@ class EcnudbViewModel : ViewModel() {
     private val _loginForm = MutableLiveData<LoginFormState>()
     val formState: LiveData<LoginFormState> = _loginForm
 
+    private val _loginResult = MutableLiveData<LoginResult>()
+    val loginResult: LiveData<LoginResult> = _loginResult
+
     fun getTimetable(username: String, password: String, captcha: String) = viewModelScope.launch {
         // todo: disable input until login finish
         withContext(Dispatchers.IO) {
-            val loginResult = session.login(username, password, captcha)
+            val result = session.login(username, password, captcha)
 
-            if (loginResult is Error) {
-                TODO("登陆失败后续处理")
-            }
+            _loginResult.postValue(result)
+
             // todo: get timetable
         }
     }

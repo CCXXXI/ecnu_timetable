@@ -2,7 +2,7 @@ package com.github.ccxxxi.ecnutimetable.ecnudb
 
 import android.util.Log
 import com.github.ccxxxi.ecnutimetable.html.Parser
-import com.github.ccxxxi.ecnutimetable.html.Result
+import com.github.ccxxxi.ecnutimetable.html.LoginResult
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -55,7 +55,7 @@ private object EcnuDB {
     private fun getRsa(username: String, password: String) =
         Des().strEnc(username + password, "1", "2", "3")
 
-    fun login(client: OkHttpClient, username: String, password: String, captcha: String): Result {
+    fun login(client: OkHttpClient, username: String, password: String, captcha: String): LoginResult {
         val body = FormBody.Builder()
             .add("code", captcha)
             .add("rsa", getRsa(username, password))
