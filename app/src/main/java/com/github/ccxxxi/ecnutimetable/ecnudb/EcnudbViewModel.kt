@@ -38,9 +38,9 @@ class EcnudbViewModel : ViewModel() {
     fun getTimetable(username: String, password: String, captcha: String) = viewModelScope.launch {
         // todo: disable input until login finish
         withContext(Dispatchers.IO) {
-            val result = session.login(username, password, captcha)
+            val loginResult1 = session.login(username, password, captcha)
+            _loginResult.postValue(loginResult1)
 
-            _loginResult.postValue(result)
 
             // todo: get timetable
         }
