@@ -19,4 +19,11 @@ object Parser {
     fun parseIds(html: String): String =
         Regex("""bg\.form\.addInput\(form,"ids","(.*?)"\);""")
             .find(html)!!.groupValues.component2()
+
+    fun parseTimetable(html: String) {
+        val doc = Jsoup.parse(html)!!
+        val jsCode = doc.select("script[language=\"JavaScript\"]")!!.last().html()
+
+        TODO("从那堆代码里提取课表数据")
+    }
 }

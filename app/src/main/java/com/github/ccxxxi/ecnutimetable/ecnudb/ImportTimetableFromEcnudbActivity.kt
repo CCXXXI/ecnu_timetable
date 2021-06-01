@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.github.ccxxxi.ecnutimetable.R
 import com.github.ccxxxi.ecnutimetable.databinding.ActivityImportTimetableFromEcnudbBinding
 import com.googlecode.tesseract.android.Ocr
 
@@ -27,6 +29,8 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
         val captchaImg = binding.captchaImg
         val getTimetable = binding.getTimetable
         val loading = binding.loading
+        val year = binding.year
+        val sem = binding.sem
 
         ecnudbViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(EcnudbViewModel::class.java)
@@ -41,6 +45,27 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
             val v = Ocr(this).rec(it)
             captchaVal.setText(v)
         })
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.year_arr,
+            android.R.layout.simple_spinner_item
+        ).also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            year.adapter = it
+        }
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.sem_arr,
+            android.R.layout.simple_spinner_item
+        ).also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            sem.adapter = it
+        }
+
+        // todo: 获取当前学年学期并设置下拉框初始值
+        // todo: 把学号密码保存到本地以便自动填写
 
         ecnudbViewModel.formState.observe(this@ImportTimetableFromEcnudbActivity, {
             val state = it!!
@@ -72,6 +97,8 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
                 username.text.toString(),
                 password.text.toString(),
                 captchaVal.text.toString(),
+                year.selectedItem.toString().slice(0..3).toInt(),
+                sem.selectedItemPosition,
             )
         }
         // todo: more listener; 验证码已自动识别，不需要把焦点挪过去

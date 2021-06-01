@@ -64,6 +64,30 @@
 
     </LinearLayout>
 
+    <!--todo: 调一下布局-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/edit_text_horizontal_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/edit_text_horizontal_margin"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/sem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!--todo: 把ProgressBar放到合适的位置-->
     <Button
         android:id="@+id/get_timetable"
         android:layout_width="wrap_content"

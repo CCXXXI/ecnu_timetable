@@ -83,6 +83,24 @@ private object EcnuDB {
             return Parser.parseIds(it.body!!.string())
         }
     }
+
+    fun getTimetable(client: OkHttpClient, year: Int, sem: Int, ids: String) {
+        val body = FormBody.Builder()
+            .add("ignoreHead", "1")
+            .add("setting.kind", "std")
+            .add("startWeek", "1")
+            .add("semester.id", getSemID(year, sem).toString())
+            .add("ids", ids)
+            .build()
+
+        val request = Request.Builder().url(URL.TABLE).post(body).build()
+
+        client.newCall(request).execute().use {
+            return Parser.parseTimetable(it.body!!.string())
+        }
+    }
+
+    private fun getSemID(year: Int, sem: Int) = year * 96 + sem * 32 - 193023
 }
 
 
@@ -101,8 +119,8 @@ class Session {
     fun login(username: String, password: String, captcha: String) =
         EcnuDB.login(client, username, password, captcha)
 
-    fun getTimetable() {
+    fun getTimetable(year: Int, sem: Int) {
         ids = EcnuDB.getIds(client)
-        TODO()
+        return EcnuDB.getTimetable(client, year, sem, ids)
     }
 }

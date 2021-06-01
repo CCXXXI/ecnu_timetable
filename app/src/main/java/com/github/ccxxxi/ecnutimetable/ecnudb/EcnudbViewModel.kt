@@ -35,15 +35,17 @@ class EcnudbViewModel : ViewModel() {
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun getTimetable(username: String, password: String, captcha: String) = viewModelScope.launch {
-        // todo: disable input until login finish
-        withContext(Dispatchers.IO) {
-            val loginResult1 = session.login(username, password, captcha)
-            _loginResult.postValue(loginResult1)
+    fun getTimetable(username: String, password: String, captcha: String, year: Int, sem: Int) =
+        viewModelScope.launch {
+            // todo: disable input until login finish
+            withContext(Dispatchers.IO) {
+                val loginResult1 = session.login(username, password, captcha)
+                _loginResult.postValue(loginResult1)
 
-            session.getTimetable()
+                session.getTimetable(year, sem)
+                // todo: show timetable
+            }
         }
-    }
 
     fun loginDataChanged(username: String, password: String, captcha: String) = when {
         username.length != 11 -> {

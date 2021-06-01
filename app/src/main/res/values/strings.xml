@@ -10,4 +10,16 @@
     <string name="invalid_captcha">验证码应为4位数字</string>
     <string name="captcha_image">验证码图片</string>
     <string name="captcha">验证码</string>
+
+    <string-array name="year_arr">
+        <item>2020–2021</item>
+        <item>2019–2020</item>
+        <item>2018–2019</item>
+    </string-array>
+
+    <string-array name="sem_arr">
+        <item>1学期</item>
+        <item>2学期</item>
+        <item>暑期学期</item>
+    </string-array>
 </resources>
