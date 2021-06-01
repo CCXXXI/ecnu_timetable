@@ -18,7 +18,13 @@ class EcnudbViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 session = Session()
-                _captchaImg.postValue(BitmapFactory.decodeFile(session.captchaImg.path))
+
+                // 验证码图片
+                // 直接用InputStream格式的图片会出错，ByteArray就没问题，magic
+                val arr = session.captchaImg
+                val img = BitmapFactory.decodeByteArray(arr, 0, arr.size)
+                    ?: TODO("拿不到验证码图片")
+                _captchaImg.postValue(img)
             }
         }
     }

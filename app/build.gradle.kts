@@ -55,10 +55,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
 
-    // todo: use okhttp instead of this bullshit
-    implementation("com.github.kittinunf.fuel:fuel:2.3.1")
-    implementation("com.github.kittinunf.fuel:fuel-android:2.3.1")
-    implementation("com.github.kittinunf.fuel:fuel-coroutines:2.3.1")
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("org.riversun:okhttp3-cookie-helper:1.0.0")
 
     implementation("org.jsoup:jsoup:1.13.1")
 }
