@@ -50,9 +50,6 @@ private object EcnuDB {
         }
     }
 
-    private fun getRsa(username: String, password: String) =
-        Des().strEnc(username + password, "1", "2", "3")
-
     fun login(
         client: OkHttpClient,
         username: String,
@@ -75,6 +72,9 @@ private object EcnuDB {
             return Parser.parseLoginResult(it.body!!.string())
         }
     }
+
+    private fun getRsa(username: String, password: String) =
+        Des().strEnc(username + password, "1", "2", "3")
 
     fun getIds(client: OkHttpClient): String {
         val request = Request.Builder().url(URL.IDS).build()
