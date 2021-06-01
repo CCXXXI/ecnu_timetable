@@ -25,6 +25,7 @@ private object EcnuDB {
 
     /**
      * Set cookie.
+     * 
      * 这是必要的，否则之后登录时会直接返回登录页面，并且没有任何报错信息。
      */
     fun initSession(client: OkHttpClient) {
