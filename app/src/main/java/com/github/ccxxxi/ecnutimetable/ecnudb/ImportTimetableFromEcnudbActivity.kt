@@ -1,5 +1,6 @@
 package com.github.ccxxxi.ecnutimetable.ecnudb
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -31,6 +32,8 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
         val loading = binding.loading
         val year = binding.year
         val sem = binding.sem
+
+        val sharedPref = getSharedPreferences("ecnudb", Context.MODE_PRIVATE)
 
         ecnudbViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(EcnudbViewModel::class.java)
@@ -65,7 +68,10 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
         }
 
         // todo: 获取当前学年学期并设置下拉框初始值
-        // todo: 把学号密码保存到本地以便自动填写
+
+        // 自动填写本地保存的学号密码
+        sharedPref.getString("username", "").also { username.setText(it) }
+        sharedPref.getString("password", "").also { password.setText(it) }
 
         ecnudbViewModel.formState.observe(this@ImportTimetableFromEcnudbActivity, {
             val state = it!!
@@ -92,6 +98,13 @@ class ImportTimetableFromEcnudbActivity : AppCompatActivity() {
             if (!getTimetable.isEnabled) return
 
             loading.visibility = View.VISIBLE
+
+            // 保存数据到本地
+            with(sharedPref.edit()) {
+                putString("username", username.text.toString())
+                putString("password", password.text.toString())
+                apply()
+            }
 
             ecnudbViewModel.getTimetable(
                 username.text.toString(),
