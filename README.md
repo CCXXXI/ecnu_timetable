@@ -4,6 +4,8 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/CCXXXI/ecnu-timetable)
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.5.10-D022B6?logo=kotlin&logoColor=D022B6)
 ![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=3DDC84)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/CCXXXI/ecnu-timetable.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CCXXXI/ecnu-timetable/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/CCXXXI/ecnu-timetable.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CCXXXI/ecnu-timetable/context:python)
 
 更美观更智能的ECNU课程表。
 
