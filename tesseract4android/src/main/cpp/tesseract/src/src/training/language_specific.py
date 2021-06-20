@@ -1080,15 +1080,15 @@ def set_lang_specific_parameters(ctx, lang):
         NUMBER_DAWG_FACTOR = 0.05
         WORD_DAWG_SIZE = 1_000_000
     elif lang in (
-            "aze_cyrl",
-            "bel",
-            "bul",
-            "kaz",
-            "mkd",
-            "srp",
-            "tgk",
-            "ukr",
-            "uzb_cyrl",
+        "aze_cyrl",
+        "bel",
+        "bul",
+        "kaz",
+        "mkd",
+        "srp",
+        "tgk",
+        "ukr",
+        "uzb_cyrl",
     ):
         MIX_LANG = f"{lang}"
         if not FONTS:
@@ -1327,44 +1327,44 @@ def set_lang_specific_parameters(ctx, lang):
         EXPOSURES = [0]
     # Set right-to-left and normalization mode.
     if lang in (
-            "ara",
-            "div",
-            "fas",
-            "pus",
-            "snd",
-            "syr",
-            "uig",
-            "urd",
-            "kur_ara",
-            "heb",
-            "yid",
+        "ara",
+        "div",
+        "fas",
+        "pus",
+        "snd",
+        "syr",
+        "uig",
+        "urd",
+        "kur_ara",
+        "heb",
+        "yid",
     ):
         LANG_IS_RTL = True
         NORM_MODE = 2
     elif lang in (
-            "asm",
-            "ben",
-            "bih",
-            "hin",
-            "mar",
-            "nep",
-            "guj",
-            "kan",
-            "mal",
-            "tam",
-            "tel",
-            "pan",
-            "dzo",
-            "sin",
-            "san",
-            "bod",
-            "ori",
-            "khm",
-            "mya",
-            "tha",
-            "lao",
-            "jav ",
-            "jav_java",
+        "asm",
+        "ben",
+        "bih",
+        "hin",
+        "mar",
+        "nep",
+        "guj",
+        "kan",
+        "mal",
+        "tam",
+        "tel",
+        "pan",
+        "dzo",
+        "sin",
+        "san",
+        "bod",
+        "ori",
+        "khm",
+        "mya",
+        "tha",
+        "lao",
+        "jav ",
+        "jav_java",
     ):
         LANG_IS_RTL = False
         NORM_MODE = 2
@@ -1373,27 +1373,27 @@ def set_lang_specific_parameters(ctx, lang):
         NORM_MODE = 1
 
     vars_to_transfer = {
-        'ambigs_filter_denominator': AMBIGS_FILTER_DENOMINATOR,
-        'bigram_dawg_factor': BIGRAM_DAWG_FACTOR,
-        'exposures': EXPOSURES,
-        'filter_arguments': FILTER_ARGUMENTS,
-        'fonts': FONTS,
-        'fragments_disabled': FRAGMENTS_DISABLED,
-        'generate_word_bigrams': GENERATE_WORD_BIGRAMS,
-        'lang_is_rtl': LANG_IS_RTL,
-        'leading': LEADING,
-        'mean_count': MEAN_COUNT,
-        'mix_lang': MIX_LANG,
-        'norm_mode': NORM_MODE,
-        'number_dawg_factor': NUMBER_DAWG_FACTOR,
-        'punc_dawg_factor': PUNC_DAWG_FACTOR,
-        'run_shape_clustering': RUN_SHAPE_CLUSTERING,
-        'text2image_extra_args': TEXT2IMAGE_EXTRA_ARGS,
-        'text_corpus': TEXT_CORPUS,
-        'training_data_arguments': TRAINING_DATA_ARGUMENTS,
-        'word_dawg_factor': WORD_DAWG_FACTOR,
-        'word_dawg_size': WORD_DAWG_SIZE,
-        'wordlist2dawg_arguments': WORDLIST2DAWG_ARGUMENTS,
+        "ambigs_filter_denominator": AMBIGS_FILTER_DENOMINATOR,
+        "bigram_dawg_factor": BIGRAM_DAWG_FACTOR,
+        "exposures": EXPOSURES,
+        "filter_arguments": FILTER_ARGUMENTS,
+        "fonts": FONTS,
+        "fragments_disabled": FRAGMENTS_DISABLED,
+        "generate_word_bigrams": GENERATE_WORD_BIGRAMS,
+        "lang_is_rtl": LANG_IS_RTL,
+        "leading": LEADING,
+        "mean_count": MEAN_COUNT,
+        "mix_lang": MIX_LANG,
+        "norm_mode": NORM_MODE,
+        "number_dawg_factor": NUMBER_DAWG_FACTOR,
+        "punc_dawg_factor": PUNC_DAWG_FACTOR,
+        "run_shape_clustering": RUN_SHAPE_CLUSTERING,
+        "text2image_extra_args": TEXT2IMAGE_EXTRA_ARGS,
+        "text_corpus": TEXT_CORPUS,
+        "training_data_arguments": TRAINING_DATA_ARGUMENTS,
+        "word_dawg_factor": WORD_DAWG_FACTOR,
+        "word_dawg_size": WORD_DAWG_SIZE,
+        "wordlist2dawg_arguments": WORDLIST2DAWG_ARGUMENTS,
     }
 
     for attr, value in vars_to_transfer.items():
@@ -1408,6 +1408,7 @@ def set_lang_specific_parameters(ctx, lang):
             setattr(ctx, attr, value)
 
     return ctx
+
 
 # =============================================================================
 # END of Language specific info

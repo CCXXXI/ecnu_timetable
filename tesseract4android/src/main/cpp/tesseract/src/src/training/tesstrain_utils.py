@@ -57,14 +57,21 @@ class TrainingArgs(argparse.Namespace):
         self.distort_image = False
 
     def __eq__(self, other):
-        return (argparse.Namespace.__eq__(self, other) and
-        self.uname == other.uname and self.lang_code == other.lang_code and
-        self.timestamp == other.timestamp and self.font_config_cache == other.font_config_cache and
-        self.fonts_dir == other.fonts_dir and self.max_pages == other.max_pages and
-        self.save_box_tiff == other.save_box_tiff and self.overwrite == other.overwrite and
-        self.linedata == other.linedata and self.run_shape_clustering == other.run_shape_clustering and
-        self.extract_font_properties == other.extract_font_properties and
-        self.distort_image == other.distort_image)
+        return (
+            argparse.Namespace.__eq__(self, other)
+            and self.uname == other.uname
+            and self.lang_code == other.lang_code
+            and self.timestamp == other.timestamp
+            and self.font_config_cache == other.font_config_cache
+            and self.fonts_dir == other.fonts_dir
+            and self.max_pages == other.max_pages
+            and self.save_box_tiff == other.save_box_tiff
+            and self.overwrite == other.overwrite
+            and self.linedata == other.linedata
+            and self.run_shape_clustering == other.run_shape_clustering
+            and self.extract_font_properties == other.extract_font_properties
+            and self.distort_image == other.distort_image
+        )
 
 
 def err_exit(msg):
@@ -172,7 +179,8 @@ parser.add_argument(
 
 inputdata_group = parser.add_argument_group(
     "inputdata",
-    "OPTIONAL flags for input data. If unspecified we will look for them in the langdata_dir directory.",
+    "OPTIONAL flags for input data. If unspecified we will look for them in the"
+    " langdata_dir directory.",
 )
 inputdata_group.add_argument(
     "--training_text", metavar="TEXTFILE", help="Text to render and use for training."
@@ -189,13 +197,13 @@ parser.add_argument(
     "--noextract_font_properties", dest="extract_font_properties", action="store_false"
 )
 
-parser.add_argument(
-    "--distort_image", dest="distort_image", action="store_true"
-)
+parser.add_argument("--distort_image", dest="distort_image", action="store_true")
 
 tessdata_group = parser.add_argument_group(
     "tessdata",
-    "OPTIONAL flag to specify location of existing traineddata files, required during feature extraction. If unspecified will use TESSDATA_PREFIX defined in the current environment.",
+    "OPTIONAL flag to specify location of existing traineddata files, required during"
+    " feature extraction. If unspecified will use TESSDATA_PREFIX defined in the"
+    " current environment.",
 )
 tessdata_group.add_argument(
     "--tessdata_dir",
@@ -240,7 +248,9 @@ def parse_flags(argv=None):
     if not ctx.tmp_dir:
         ctx.training_dir = mkdtemp(prefix=f"{ctx.lang_code}-{ctx.timestamp}")
     else:
-        ctx.training_dir = mkdtemp(prefix=f"{ctx.lang_code}-{ctx.timestamp}", dir=ctx.tmp_dir)
+        ctx.training_dir = mkdtemp(
+            prefix=f"{ctx.lang_code}-{ctx.timestamp}", dir=ctx.tmp_dir
+        )
     # Location of log file for the whole run.
     ctx.log_file = pathlib.Path(ctx.training_dir) / "tesstrain.log"
     log.info(f"Log file location: {ctx.log_file}")
@@ -257,20 +267,24 @@ def parse_flags(argv=None):
     # specified in the command-line.
     if not ctx.training_text:
         ctx.training_text = (
-                pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.training_text"
+            pathlib.Path(ctx.langdata_dir)
+            / ctx.lang_code
+            / f"{ctx.lang_code}.training_text"
         )
     if not ctx.wordlist_file:
         ctx.wordlist_file = (
-                pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.wordlist"
+            pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.wordlist"
         )
 
     ctx.word_bigrams_file = (
-            pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.word.bigrams"
+        pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.word.bigrams"
     )
     ctx.numbers_file = (
-            pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.numbers"
+        pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.numbers"
     )
-    ctx.punc_file = pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.punc"
+    ctx.punc_file = (
+        pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.punc"
+    )
     ctx.bigram_freqs_file = pathlib.Path(ctx.training_text).with_suffix(
         ".training_text.bigram_freqs"
     )
@@ -379,7 +393,11 @@ def phase_I_generate_image(ctx, par_factor=None):
             # Parse .bigram_freqs file and compose a .train_ngrams file with text
             # for tesseract to recognize during training. Take only the ngrams whose
             # combined weight accounts for 95% of all the bigrams in the language.
-            lines = pathlib.Path(ctx.bigram_freqs_file).read_text(encoding="utf-8").split("\n")
+            lines = (
+                pathlib.Path(ctx.bigram_freqs_file)
+                .read_text(encoding="utf-8")
+                .split("\n")
+            )
             records = (line.split() for line in lines)
             p = 0.99
             ngram_frac = p * sum(int(rec[1]) for rec in records if len(rec) >= 2)
@@ -394,9 +412,9 @@ def phase_I_generate_image(ctx, par_factor=None):
 
             check_file_readable(ctx.train_ngrams_file)
 
-        with tqdm(
-                total=len(ctx.fonts)
-        ) as pbar, concurrent.futures.ThreadPoolExecutor(max_workers=par_factor) as executor:
+        with tqdm(total=len(ctx.fonts)) as pbar, concurrent.futures.ThreadPoolExecutor(
+            max_workers=par_factor
+        ) as executor:
             futures = [
                 executor.submit(generate_font_image, ctx, font, exposure, char_spacing)
                 for font in ctx.fonts
@@ -530,7 +548,9 @@ def phase_E_extract_features(ctx, box_config, ext):
 
     # Use any available language-specific configs.
     config = ""
-    testconfig = pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.config"
+    testconfig = (
+        pathlib.Path(ctx.langdata_dir) / ctx.lang_code / f"{ctx.lang_code}.config"
+    )
     if testconfig.exists():
         config = testconfig
         log.info(f"Using {ctx.lang_code}.config")
@@ -541,7 +561,7 @@ def phase_E_extract_features(ctx, box_config, ext):
     log.info(f"Using TESSDATA_PREFIX={tessdata_environ['TESSDATA_PREFIX']}")
 
     with tqdm(total=len(img_files)) as pbar, concurrent.futures.ThreadPoolExecutor(
-            max_workers=2
+        max_workers=2
     ) as executor:
         futures = []
         for img_file in img_files:
@@ -700,6 +720,7 @@ def make_lstmdata(ctx):
     lstm_list = f"{ctx.output_dir}/{ctx.lang_code}.training_files.txt"
     dir_listing = (str(p) for p in path_output.glob(f"{ctx.lang_code}.*.lstmf"))
     pathlib.Path(lstm_list).write_text("\n".join(dir_listing))
+
 
 # make__traineddata() {
 #   tlog "\n=== Making final traineddata file ==="
