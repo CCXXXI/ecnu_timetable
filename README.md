@@ -1,6 +1,6 @@
 # ECNU Timetable
 
-[![GitHub](https://img.shields.io/github/license/CCXXXI/ecnu-timetable)](LICENSE)
+[![GitHub license](https://img.shields.io/github/license/CCXXXI/ecnu-timetable)](LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/CCXXXI/ecnu-timetable)](../../commits)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.5.10-D022B6?logo=kotlin&logoColor=D022B6)](https://kotlinlang.org)
 [![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=3DDC84)](https://www.android.com)
