@@ -58,5 +58,5 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("org.riversun:okhttp3-cookie-helper:1.0.1")
 
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("org.jsoup:jsoup:1.14.2")
 }
