@@ -1,16 +1,8 @@
-# ecnu_timetable
+# ECNU Timetable
 
-更美观更智能的ECNU课程表。
+[![GitHub license](https://img.shields.io/github/license/CCXXXI/ecnu_timetable)](LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/CCXXXI/ecnu_timetable)](../../commits)
+[![Dart](https://img.shields.io/badge/Dart-0175C2?logo=dart)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter)](https://flutter.dev)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+更美观更智能的 ECNU 课程表。
