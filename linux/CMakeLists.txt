@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
 set(BINARY_NAME "ecnu_timetable")
-set(APPLICATION_ID "com.github.ccxxxi.ecnu_timetable")
+set(APPLICATION_ID "io.github.ccxxxi.ecnu_timetable")
 
 cmake_policy(SET CMP0063 NEW)
 
