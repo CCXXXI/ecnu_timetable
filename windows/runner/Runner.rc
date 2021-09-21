@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.github.ccxxxi" "\0"
+            VALUE "CompanyName", "io.github.ccxxxi" "\0"
             VALUE "FileDescription", "更美观更智能的ECNU课程表。" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "ecnu_timetable" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 com.github.ccxxxi. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 io.github.ccxxxi. All rights reserved." "\0"
             VALUE "OriginalFilename", "ecnu_timetable.exe" "\0"
             VALUE "ProductName", "ecnu_timetable" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
