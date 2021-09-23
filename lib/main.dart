@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorObservers: [
+        SentryNavigatorObserver(),
+      ],
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
