@@ -1,4 +1,4 @@
-import 'package:ecnu_timetable/messages.dart';
+import 'package:ecnu_timetable/messages/messages.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
