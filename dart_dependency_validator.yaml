@@ -1,0 +1,4 @@
+# false positives
+ignore:
+  - flutter_web_plugins
+  - package_info_plus_web
