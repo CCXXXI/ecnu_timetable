@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:pangu/pangu.dart';
+
+import 'pangu.dart';
 
 var _pangu = Pangu().spacingText;
 
