@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
