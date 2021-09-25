@@ -34,9 +34,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
       title: 'ECNU Timetable'.tr,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: const Placeholder(),
     );
   }
