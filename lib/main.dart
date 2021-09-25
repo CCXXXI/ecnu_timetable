@@ -30,9 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      navigatorObservers: [
-        SentryNavigatorObserver(),
-      ],
+      navigatorObservers: [SentryNavigatorObserver()],
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
