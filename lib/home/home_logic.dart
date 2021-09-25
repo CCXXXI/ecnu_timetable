@@ -9,6 +9,10 @@ class HomeLogic extends GetxController {
 
   void onItemSelected(int idx_) {
     idx.value = idx_;
-    pageController.jumpToPage(idx_);
+    pageController.animateToPage(
+      idx_,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
   }
 }
