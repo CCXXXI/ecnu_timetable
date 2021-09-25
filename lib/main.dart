@@ -5,7 +5,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
-import 'messages.dart';
+import 'utils/messages.dart';
 
 Future<void> main() async {
   // todo: more user info
