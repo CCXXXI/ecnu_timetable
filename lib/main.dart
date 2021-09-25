@@ -38,7 +38,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
       title: 'ECNU Timetable'.tr,
-      home: const Scaffold(),
+      home: Scaffold(
+        appBar: AppBar(),
+      ),
     );
   }
 }
