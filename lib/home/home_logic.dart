@@ -5,9 +5,7 @@ class HomeLogic extends GetxController {
   final idx = 1.obs;
   final pageController = PageController(initialPage: 1);
 
-  void onPageChanged(int idx_) => idx.value = idx_;
-
-  void onItemSelected(int idx_) {
+  void _toPage(int idx_) {
     idx.value = idx_;
     pageController.animateToPage(
       idx_,
@@ -15,4 +13,8 @@ class HomeLogic extends GetxController {
       curve: Curves.ease,
     );
   }
+
+  void onItemSelected(int idx_) => _toPage(idx_);
+
+  void onDestinationSelected(int idx_) => _toPage([1, 0, 2][idx_]);
 }
