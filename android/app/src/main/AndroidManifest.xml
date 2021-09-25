@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="io.github.ccxxxi.ecnu_timetable">
     <application
-            android:label="ecnu_timetable"
+            android:label="ECNU Timetable"
             android:icon="@mipmap/ic_launcher">
         <activity
                 android:name=".MainActivity"
