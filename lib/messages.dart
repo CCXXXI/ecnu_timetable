@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 var _panGu = _PanGu().spacingText;
 
 extension PanGu on String {
-  String get tr {
-    return _panGu(Trans(this).tr);
+  String get t {
+    return _panGu(tr);
   }
 }
 
