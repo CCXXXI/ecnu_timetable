@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../messages.dart';
+import '../utils/messages.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
