@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:window_size/window_size.dart';
 
 import 'messages.dart';
 
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    setWindowTitle('ECNU Timetable'.tr);
+
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
       title: 'ECNU Timetable'.tr,
