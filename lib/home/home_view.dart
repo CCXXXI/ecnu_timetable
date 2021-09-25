@@ -15,13 +15,38 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: PageView(
-        controller: logic.pageController,
-        onPageChanged: logic.onPageChanged,
-        children: const [
-          Placeholder(),
-          Placeholder(),
-          Placeholder(),
+      body: Row(
+        children: [
+          Obx(() {
+            return NavigationRail(
+              selectedIndex: [1, 0, 2][logic.idx.value],
+              onDestinationSelected: logic.onDestinationSelected,
+              destinations: [
+                NavigationRailDestination(
+                  label: Text('Timetable'.t),
+                  icon: const Icon(Icons.calendar_view_month),
+                ),
+                NavigationRailDestination(
+                  label: Text('Toolbox'.t),
+                  icon: const FaIcon(FontAwesomeIcons.toolbox),
+                ),
+                NavigationRailDestination(
+                  label: Text('Settings'.t),
+                  icon: const Icon(Icons.settings),
+                ),
+              ],
+            );
+          }),
+          Expanded(
+            child: PageView(
+              controller: logic.pageController,
+              children: const [
+                Placeholder(),
+                Placeholder(),
+                Placeholder(),
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Obx(() {
