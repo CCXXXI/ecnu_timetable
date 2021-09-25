@@ -31,12 +31,12 @@ class HomePage extends StatelessWidget {
           onItemSelected: logic.onItemSelected,
           items: [
             BottomNavyBarItem(
-              title: Text('Timetable'.t),
-              icon: const Icon(Icons.calendar_view_month),
-            ),
-            BottomNavyBarItem(
               title: Text('Toolbox'.t),
               icon: const FaIcon(FontAwesomeIcons.toolbox),
+            ),
+            BottomNavyBarItem(
+              title: Text('Timetable'.t),
+              icon: const Icon(Icons.calendar_view_month),
             ),
             BottomNavyBarItem(
               title: Text('Settings'.t),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeLogic extends GetxController {
-  var idx = 0.obs;
-  final pageController = PageController();
+  final idx = 1.obs;
+  final pageController = PageController(initialPage: 1);
 
   void onPageChanged(int idx_) => idx.value = idx_;
 
