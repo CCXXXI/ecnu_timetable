@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'messages.dart';
+
 Future<void> main() async {
   // todo: more user info
   // todo: clear the currently set user when logout
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
-      title: 'Flutter Demo',
+      title: 'ECNU Timetable'.tr,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
