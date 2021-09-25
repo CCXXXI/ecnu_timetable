@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:window_size/window_size.dart';
 
@@ -34,7 +35,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // https://stackoverflow.com/a/66181947/13805358
-    if (GetPlatform.isDesktop) setWindowTitle('ECNU Timetable'.t);
+    if (GetPlatform.isDesktop) {
+      logger.i('The platform is desktop. Set window title.');
+      setWindowTitle('ECNU Timetable'.t);
+    }
 
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
@@ -43,3 +47,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+final logger = Logger();
