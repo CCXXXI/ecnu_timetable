@@ -1,15 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeLogic extends GetxController {
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
+  var idx = 0.obs;
+  final pageController = PageController();
 
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
+  void onPageChanged(int idx_) => idx.value = idx_;
+
+  void onItemSelected(int idx_) {
+    idx.value = idx_;
+    pageController.jumpToPage(idx_);
   }
 }
