@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../messages.dart';
@@ -31,15 +32,15 @@ class HomePage extends StatelessWidget {
           items: [
             BottomNavyBarItem(
               title: Text('Timetable'.t),
-              icon: const Icon(Icons.apps),
+              icon: const Icon(Icons.calendar_view_month),
             ),
             BottomNavyBarItem(
               title: Text('Toolbox'.t),
-              icon: const Icon(Icons.apps),
+              icon: const FaIcon(FontAwesomeIcons.toolbox),
             ),
             BottomNavyBarItem(
               title: Text('Settings'.t),
-              icon: const Icon(Icons.apps),
+              icon: const Icon(Icons.settings),
             ),
           ],
         );
