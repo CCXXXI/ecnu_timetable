@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
       title: 'ECNU Timetable'.tr,
       home: Scaffold(
         appBar: AppBar(),
+        body: const Placeholder(),
       ),
     );
   }
