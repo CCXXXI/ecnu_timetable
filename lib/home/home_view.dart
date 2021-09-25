@@ -14,22 +14,23 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: context.isPortrait ? AppBar() : null,
       body: Row(
         children: [
-          Obx(() {
-            return NavigationRail(
-              selectedIndex: idxMap[logic.idx.value],
-              onDestinationSelected: logic.onDestinationSelected,
-              destinations: [
-                for (final i in idxMap)
-                  NavigationRailDestination(
-                    label: _labelIconList[i].label,
-                    icon: _labelIconList[i].icon,
-                  ),
-              ],
-            );
-          }),
+          if (context.isLandscape)
+            Obx(() {
+              return NavigationRail(
+                selectedIndex: idxMap[logic.idx.value],
+                onDestinationSelected: logic.onDestinationSelected,
+                destinations: [
+                  for (final i in idxMap)
+                    NavigationRailDestination(
+                      label: _labelIconList[i].label,
+                      icon: _labelIconList[i].icon,
+                    ),
+                ],
+              );
+            }),
           Expanded(
             child: PageView(
               controller: logic.pageController,
@@ -43,20 +44,22 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Obx(() {
-        return BottomNavyBar(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          selectedIndex: logic.idx.value,
-          onItemSelected: logic.onItemSelected,
-          items: [
-            for (final labelIcon in _labelIconList)
-              BottomNavyBarItem(
-                title: labelIcon.label,
-                icon: labelIcon.icon,
-              ),
-          ],
-        );
-      }),
+      bottomNavigationBar: context.isPortrait
+          ? Obx(() {
+              return BottomNavyBar(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                selectedIndex: logic.idx.value,
+                onItemSelected: logic.onItemSelected,
+                items: [
+                  for (final labelIcon in _labelIconList)
+                    BottomNavyBarItem(
+                      title: labelIcon.label,
+                      icon: labelIcon.icon,
+                    ),
+                ],
+              );
+            })
+          : null,
     );
   }
 }
