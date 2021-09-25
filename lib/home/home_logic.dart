@@ -16,5 +16,9 @@ class HomeLogic extends GetxController {
 
   void onItemSelected(int idx_) => _toPage(idx_);
 
-  void onDestinationSelected(int idx_) => _toPage([1, 0, 2][idx_]);
+  void onDestinationSelected(int idx_) => _toPage(idxMap[idx_]);
 }
+
+// NavigationRail: Timetable, Toolbox, Settings
+// actual: Toolbox, Timetable, Settings
+final idxMap = [1, 0, 2];
