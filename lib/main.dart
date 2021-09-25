@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // https://stackoverflow.com/a/66181947/13805358
-    setWindowTitle('ECNU Timetable'.t);
+    if (GetPlatform.isDesktop) setWindowTitle('ECNU Timetable'.t);
 
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
