@@ -20,7 +20,7 @@ dependencies:
       ref: fd519be1e8398c6b6c2062c2447bac960a71bc02
   logger_flutter:
     git:
-      url: https://github.com/CCXXXI/logger_flutter.git
+      url: https://github.com/xaynetwork/logger_flutter.git
   get: ^4.3.8
   sentry_flutter: ^6.0.1
   bottom_navy_bar: ^6.0.0
