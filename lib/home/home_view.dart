@@ -19,21 +19,14 @@ class HomePage extends StatelessWidget {
         children: [
           Obx(() {
             return NavigationRail(
-              selectedIndex: [1, 0, 2][logic.idx.value],
+              selectedIndex: idxMap[logic.idx.value],
               onDestinationSelected: logic.onDestinationSelected,
               destinations: [
-                NavigationRailDestination(
-                  label: Text('Timetable'.t),
-                  icon: const Icon(Icons.calendar_view_month),
-                ),
-                NavigationRailDestination(
-                  label: Text('Toolbox'.t),
-                  icon: const FaIcon(FontAwesomeIcons.toolbox),
-                ),
-                NavigationRailDestination(
-                  label: Text('Settings'.t),
-                  icon: const Icon(Icons.settings),
-                ),
+                for (final i in idxMap)
+                  NavigationRailDestination(
+                    label: _labelIconList[i].label,
+                    icon: _labelIconList[i].icon,
+                  ),
               ],
             );
           }),
@@ -55,21 +48,27 @@ class HomePage extends StatelessWidget {
           selectedIndex: logic.idx.value,
           onItemSelected: logic.onItemSelected,
           items: [
-            BottomNavyBarItem(
-              title: Text('Toolbox'.t),
-              icon: const FaIcon(FontAwesomeIcons.toolbox),
-            ),
-            BottomNavyBarItem(
-              title: Text('Timetable'.t),
-              icon: const Icon(Icons.calendar_view_month),
-            ),
-            BottomNavyBarItem(
-              title: Text('Settings'.t),
-              icon: const Icon(Icons.settings),
-            ),
+            for (final labelIcon in _labelIconList)
+              BottomNavyBarItem(
+                title: labelIcon.label,
+                icon: labelIcon.icon,
+              ),
           ],
         );
       }),
     );
   }
 }
+
+class _LabelIcon {
+  final Widget label;
+  final Widget icon;
+
+  _LabelIcon(String label, this.icon) : label = Text(label.t);
+}
+
+final _labelIconList = [
+  _LabelIcon('Toolbox', const FaIcon(FontAwesomeIcons.toolbox)),
+  _LabelIcon('Timetable', const Icon(Icons.calendar_view_month)),
+  _LabelIcon('Settings', const Icon(Icons.settings)),
+];
