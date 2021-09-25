@@ -3,6 +3,7 @@ import 'package:get/get.dart' hide Trans;
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:window_size/window_size.dart';
 
+import 'home/home_view.dart';
 import 'messages.dart';
 
 Future<void> main() async {
@@ -38,10 +39,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
       title: 'ECNU Timetable'.tr,
-      home: Scaffold(
-        appBar: AppBar(),
-        body: const Placeholder(),
-      ),
+      home: HomePage(),
     );
   }
 }
