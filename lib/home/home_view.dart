@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(() {
         return BottomNavyBar(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           selectedIndex: logic.idx.value,
           onItemSelected: logic.onItemSelected,
           items: [
