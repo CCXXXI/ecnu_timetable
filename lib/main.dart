@@ -8,6 +8,8 @@ import 'home/home_view.dart';
 import 'utils/messages.dart';
 
 Future<void> main() async {
+  if (GetPlatform.isDesktop) initDesktop();
+
   // todo: more user info
   // todo: clear the currently set user when logout
   Sentry.configureScope(
@@ -29,22 +31,26 @@ Future<void> main() async {
   );
 }
 
+void initDesktop() {
+  logger.i('initDesktop...');
+
+  logger.i('ensureInitialized');
+  WidgetsFlutterBinding.ensureInitialized();
+
+  logger.i('setWindowTitle');
+  setWindowTitle('ECNU Timetable'.t);
+
+  logger.i('setWindowMinSize');
+  setWindowMinSize(const Size(300, 300));
+
+  logger.i('Done.');
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // https://stackoverflow.com/a/66181947/13805358
-    if (GetPlatform.isDesktop) {
-      logger.i('The platform is desktop.');
-
-      logger.i('Set window title.');
-      setWindowTitle('ECNU Timetable'.t);
-
-      logger.i('Set window min size.');
-      setWindowMinSize(const Size(300, 300));
-    }
-
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
       title: 'ECNU Timetable'.t,
