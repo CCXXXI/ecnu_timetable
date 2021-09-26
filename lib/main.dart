@@ -36,8 +36,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // https://stackoverflow.com/a/66181947/13805358
     if (GetPlatform.isDesktop) {
-      logger.i('The platform is desktop. Set window title.');
+      logger.i('The platform is desktop.');
+
+      logger.i('Set window title.');
       setWindowTitle('ECNU Timetable'.t);
+
+      logger.i('Set window min size.');
+      setWindowMinSize(const Size(300, 300));
     }
 
     return GetMaterialApp(
