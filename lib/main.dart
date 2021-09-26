@@ -53,4 +53,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final logger = Logger();
+final logger = Logger(printer: PrettyPrinter(lineLength: 100));
