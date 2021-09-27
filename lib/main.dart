@@ -39,7 +39,7 @@ void initDesktop() {
   WidgetsFlutterBinding.ensureInitialized();
 
   logger.i('setWindowTitle');
-  setWindowTitle('ECNU Timetable'.t);
+  setWindowTitle(appName);
 
   logger.i('setWindowMinSize');
   setWindowMinSize(const Size(300, 300));
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorObservers: [SentryNavigatorObserver()],
-      title: 'ECNU Timetable'.t,
+      title: appName,
       home: HomePage(),
     );
   }
