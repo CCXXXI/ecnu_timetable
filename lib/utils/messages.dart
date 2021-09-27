@@ -6,7 +6,7 @@ import 'pangu.dart';
 // record them manually
 const appName = 'ECNU Timetable';
 const packageName = 'io.github.ccxxxi.ecnu_timetable';
-const packageVersion = '0.1.0';
+const version = '0.1.0';
 const buildNumber = '1';
 
 extension Messages on String {
