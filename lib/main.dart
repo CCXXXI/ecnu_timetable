@@ -25,7 +25,8 @@ Future<void> main() async {
       options
         ..dsn =
             'https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191'
-        ..sendDefaultPii = true;
+        ..sendDefaultPii = true
+        ..release = '$packageName@$version+$buildNumber';
     },
     appRunner: () => runApp(const MyApp()),
   );
