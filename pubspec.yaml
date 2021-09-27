@@ -21,7 +21,6 @@ dependencies:
   bottom_navy_bar:
   font_awesome_flutter:
   logger:
-  package_info_plus:
 
 dev_dependencies:
   flutter_test:
