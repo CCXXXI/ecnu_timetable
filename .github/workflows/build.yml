@@ -28,7 +28,7 @@ jobs:
       - uses: CCXXXI/flutter-action@main
       - uses: timheuer/base64-to-file@v1
         with:
-          fileName: 'android/key.jks'
+          fileName: 'android/app/key.jks'
           encodedString: ${{ secrets.KEY_JKS }}
       - uses: timheuer/base64-to-file@v1
         with:
