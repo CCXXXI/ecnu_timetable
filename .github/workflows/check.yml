@@ -42,14 +42,7 @@ jobs:
       - run: flutter pub get
       - run: flutter test --coverage
 
-      - run: curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import
-      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
-      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
-      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
-      - run: gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
-      - run: shasum -a 256 -c codecov.SHA256SUM
-      - run: chmod +x codecov
-      - run: ./codecov
+      - uses: codecov/codecov-action@v2
 
   dependency_validator:
     runs-on: ubuntu-latest
