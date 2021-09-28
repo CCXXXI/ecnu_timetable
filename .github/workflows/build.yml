@@ -3,7 +3,7 @@ name: build
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "*.*.*"
 
 jobs:
   build-web:
@@ -60,3 +60,12 @@ jobs:
           files: |
             **/*.apk
             **/ecnu_timetable_windows.zip
+
+      - uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ccxxxi
+          SENTRY_PROJECT: ecnu_timetable
+        with:
+          environment: production
+          version: ${{ github.ref }}
