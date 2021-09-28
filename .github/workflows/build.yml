@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: CCXXXI/flutter-action@main
-      - run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/key.jks
+      - run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/app/key.jks
       - run: echo "${{ secrets.KEY_PROPERTIES }}" | base64 --decode > android/key.properties
 
       - run: flutter build apk --split-per-abi
