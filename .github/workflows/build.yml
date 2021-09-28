@@ -1,0 +1,71 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+
+      - run: flutter build web
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+
+      - run: flutter build windows
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/windows/runner/Release/
+          dest: ecnu_timetable_windows.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable_windows
+          path: ecnu_timetable_windows.zip
+
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+      - run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/app/key.jks
+      - run: echo "${{ secrets.KEY_PROPERTIES }}" | base64 --decode > android/key.properties
+
+      - run: flutter build apk --split-per-abi
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable_android
+          path: build/app/outputs/apk/release/*.apk
+
+  release:
+    needs: [ build-windows, build-android ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
+          files: |
+            **/*.apk
+            **/ecnu_timetable_windows.zip
+
+      - uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ccxxxi
+          SENTRY_PROJECT: ecnu_timetable
+        with:
+          environment: production
+          version: ${{ github.ref }}
