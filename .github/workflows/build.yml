@@ -26,10 +26,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: CCXXXI/flutter-action@main
-      - run: echo $KEY_JKS > android/key.jks && echo $KEY_PROPERTIES > android/key.properties
-        env:
-          KEY_JKS: ${{ secrets.KEY_JKS }}
-          KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
+      - uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'android/key.jks'
+          encodedString: ${{ secrets.KEY_JKS }}
+      - uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'android/key.properties'
+          encodedString: ${{ secrets.KEY_PROPERTIES }}
 
       - run: flutter build apk --split-per-abi
       # build/app/outputs/apk/release/app-armeabi-v7a-release.apk
