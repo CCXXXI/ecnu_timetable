@@ -12,7 +12,11 @@ jobs:
       - uses: CCXXXI/flutter-action@main
 
       - run: flutter build web
-      # build/web
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
 
   build-windows:
     runs-on: windows-latest
@@ -45,7 +49,7 @@ jobs:
           path: build/app/outputs/apk/release/*.apk
 
   release:
-    needs: [ build-web, build-windows, build-android ]
+    needs: [ build-windows, build-android ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
