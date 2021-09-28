@@ -44,7 +44,6 @@ jobs:
           name: ecnu_timetable_android
           path: build/app/outputs/apk/release/*.apk
 
-
   release:
     needs: [ build-web, build-windows, build-android ]
     runs-on: ubuntu-latest
