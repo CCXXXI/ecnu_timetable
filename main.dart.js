@@ -35360,7 +35360,7 @@ $S:143}
 F.a8S.prototype={
 $1(a){a.a="https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191"
 a.ry=!0
-a.db="io.github.ccxxxi.ecnu_timetable@0.1.0+1"},
+a.db="io.github.ccxxxi.ecnu_timetable@0.1.1+2"},
 $S:137}
 F.a8T.prototype={
 $0(){if($.ad==null)N.a2v()
