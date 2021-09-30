@@ -32,20 +32,30 @@ class HomePage extends StatelessWidget {
               );
             }),
           Expanded(
-            child: Obx(() {
-              return PageView(
-                controller: logic.pageController,
-                onPageChanged: logic.onPageChanged,
-                physics: logic.isAnimating | context.isLandscape
-                    ? const NeverScrollableScrollPhysics()
-                    : null,
-                children: const [
-                  Placeholder(color: Colors.red),
-                  Placeholder(color: Colors.green),
-                  Placeholder(color: Colors.blue),
-                ],
-              );
-            }),
+            child: context.isPortrait
+                ? Obx(() {
+                    return PageView(
+                      controller: logic.pageController,
+                      onPageChanged: logic.onPageChanged,
+                      physics: logic.isAnimating.isTrue
+                          ? const NeverScrollableScrollPhysics()
+                          : null,
+                      children: const [
+                        Placeholder(color: Colors.red),
+                        Placeholder(color: Colors.green),
+                        Placeholder(color: Colors.blue),
+                      ],
+                    );
+                  })
+                : PageView(
+                    controller: logic.pageController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: const [
+                      Placeholder(color: Colors.red),
+                      Placeholder(color: Colors.green),
+                      Placeholder(color: Colors.blue),
+                    ],
+                  ),
           ),
         ],
       ),
