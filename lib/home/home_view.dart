@@ -34,8 +34,10 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: PageView(
               controller: logic.pageController,
-              // todo: use a better solution
-              physics: const NeverScrollableScrollPhysics(),
+              onPageChanged: null, // todo
+              physics: context.isLandscape
+                  ? const NeverScrollableScrollPhysics()
+                  : null,
               children: const [
                 Placeholder(color: Colors.red),
                 Placeholder(color: Colors.green),
