@@ -48,9 +48,9 @@ final RegExp _ansCJK = RegExp(
 String spacingText(String text) {
   String newText = text;
 
-  newText = newText.replaceAllMapped(_cjkQuote, (Match m) => "${m[1]} ${m[2]}");
+  newText = newText.replaceAllMapped(_cjkQuote, (Match m) => '${m[1]} ${m[2]}');
 
-  newText = newText.replaceAllMapped(_quoteCJK, (Match m) => "${m[1]} ${m[2]}");
+  newText = newText.replaceAllMapped(_quoteCJK, (Match m) => '${m[1]} ${m[2]}');
 
   newText =
       newText.replaceAllMapped(_fixQuote, (Match m) => "${m[1]}${m[3]}${m[5]}");
@@ -61,27 +61,27 @@ String spacingText(String text) {
   newText = newText.replaceAllMapped(
       _hashANSCJKhash, (Match m) => "${m[1]} ${m[2]}${m[3]}${m[4]} ${m[5]}");
 
-  newText = newText.replaceAllMapped(_cjkHash, (Match m) => "${m[1]} ${m[2]}");
+  newText = newText.replaceAllMapped(_cjkHash, (Match m) => '${m[1]} ${m[2]}');
 
-  newText = newText.replaceAllMapped(_hashCJK, (Match m) => "${m[1]} ${m[3]}");
-
-  newText = newText.replaceAllMapped(
-      _cjkOperatorANS, (Match m) => "${m[1]} ${m[2]} ${m[3]}");
+  newText = newText.replaceAllMapped(_hashCJK, (Match m) => '${m[1]} ${m[3]}');
 
   newText = newText.replaceAllMapped(
-      _ansOperatorCJK, (Match m) => "${m[1]} ${m[2]} ${m[3]}");
+      _cjkOperatorANS, (Match m) => '${m[1]} ${m[2]} ${m[3]}');
+
+  newText = newText.replaceAllMapped(
+      _ansOperatorCJK, (Match m) => '${m[1]} ${m[2]} ${m[3]}');
 
   String oldText = newText;
   String tmpText = newText.replaceAllMapped(
-      _cjkBracketCJK, (Match m) => "${m[1]} ${m[2]} ${m[4]}");
+      _cjkBracketCJK, (Match m) => '${m[1]} ${m[2]} ${m[4]}');
 
   newText = tmpText;
   if (oldText == tmpText) {
     newText =
-        newText.replaceAllMapped(_cjkBracket, (Match m) => "${m[1]} ${m[2]}");
+        newText.replaceAllMapped(_cjkBracket, (Match m) => '${m[1]} ${m[2]}');
 
     newText =
-        newText.replaceAllMapped(_bracketCJK, (Match m) => "${m[1]} ${m[2]}");
+        newText.replaceAllMapped(_bracketCJK, (Match m) => '${m[1]} ${m[2]}');
   }
   newText = newText.replaceFirstMapped(
       _fixBracket, (Match m) => "${m[1]}${m[3]}${m[5]}");
@@ -89,9 +89,9 @@ String spacingText(String text) {
   newText = newText.replaceAllMapped(
       _fixSymbol, (Match m) => "${m[1]}${m[2]} ${m[3]}");
 
-  newText = newText.replaceAllMapped(_cjkANS, (Match m) => "${m[1]} ${m[2]}");
+  newText = newText.replaceAllMapped(_cjkANS, (Match m) => '${m[1]} ${m[2]}');
 
-  newText = newText.replaceAllMapped(_ansCJK, (Match m) => "${m[1]} ${m[2]}");
+  newText = newText.replaceAllMapped(_ansCJK, (Match m) => '${m[1]} ${m[2]}');
 
   return newText;
 }
