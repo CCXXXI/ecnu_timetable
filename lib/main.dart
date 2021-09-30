@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
+import 'utils/logger.dart';
 import 'utils/messages.dart';
 
 Future<void> main() async {
@@ -59,5 +59,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-final logger = Logger(printer: PrettyPrinter(lineLength: 94, printTime: true));
