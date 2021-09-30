@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
+import 'utils/desktop.dart';
 import 'utils/logger.dart';
 import 'utils/messages.dart';
 
@@ -31,21 +31,6 @@ Future<void> main() async {
     },
     appRunner: () => runApp(const MyApp()),
   );
-}
-
-void initDesktop() {
-  logger.i('initDesktop...');
-
-  logger.i('ensureInitialized');
-  WidgetsFlutterBinding.ensureInitialized();
-
-  logger.i('setWindowTitle');
-  setWindowTitle(appName);
-
-  logger.i('setWindowMinSize');
-  setWindowMinSize(const Size(300, 300));
-
-  logger.i('Done.');
 }
 
 class MyApp extends StatelessWidget {
