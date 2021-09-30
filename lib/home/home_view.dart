@@ -37,9 +37,9 @@ class HomePage extends StatelessWidget {
               // todo: use a better solution
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                Placeholder(),
-                Placeholder(),
-                Placeholder(),
+                Placeholder(color: Colors.red),
+                Placeholder(color: Colors.green),
+                Placeholder(color: Colors.blue),
               ],
             ),
           ),
