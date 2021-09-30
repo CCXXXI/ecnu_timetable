@@ -8,6 +8,7 @@ import 'utils/logger.dart';
 import 'utils/messages.dart';
 
 Future<void> main() async {
+  initLogger();
   if (GetPlatform.isDesktop) initDesktop();
 
   // todo: more user info
