@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'logger.dart';
 import 'messages.dart';
 
 Future<void> initSentry(Widget app) async {
-  // todo: more user info
-  // todo: clear the currently set user when logout
+  final id = Settings.getValue('id', null);
+  final username = Settings.getValue('username', null);
+  logger.i('id: $id, username: $username');
+
   Sentry.configureScope(
-    (scope) => scope.user = SentryUser(
-      id: null,
-      username: null,
-      ipAddress: '{{auto}}',
-    ),
+    (scope) => scope.user =
+        SentryUser(id: id, username: username, ipAddress: '{{auto}}'),
   );
 
   await SentryFlutter.init(
