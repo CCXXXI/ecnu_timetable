@@ -36465,7 +36465,7 @@ $S:137}
 U.aaL.prototype={
 $1(a){a.a="https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191"
 a.ry=!0
-a.db="io.github.ccxxxi.ecnu_timetable@0.3.0+4"},
+a.db="io.github.ccxxxi.ecnu_timetable@0.3.1+5"},
 $S:136}
 U.aaM.prototype={
 $0(){if($.ac==null)N.Ia()
