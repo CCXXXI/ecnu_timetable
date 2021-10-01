@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -10,6 +11,7 @@ import 'utils/sentry.dart';
 
 Future<void> main() async {
   initLogger();
+  await Settings.init();
   if (GetPlatform.isDesktop) initDesktop();
   await initSentry(const MyApp());
 }
