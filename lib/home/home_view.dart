@@ -28,8 +28,8 @@ class HomePage extends StatelessWidget {
                 destinations: [
                   for (final i in idxMap)
                     NavigationRailDestination(
-                      label: _labelIconList[i].label,
-                      icon: _labelIconList[i].icon,
+                      label: _labelIcons[i].label,
+                      icon: _labelIcons[i].icon,
                     ),
                 ],
               );
@@ -43,13 +43,13 @@ class HomePage extends StatelessWidget {
                       physics: logic.isAnimating.isTrue
                           ? const NeverScrollableScrollPhysics()
                           : null,
-                      children: pages,
+                      children: _pages,
                     );
                   })
                 : PageView(
                     controller: logic.pageController,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: pages,
+                    children: _pages,
                   ),
           ),
         ],
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                 selectedIndex: logic.idx.value,
                 onItemSelected: logic.onItemSelected,
                 items: [
-                  for (final labelIcon in _labelIconList)
+                  for (final labelIcon in _labelIcons)
                     BottomNavyBarItem(
                       title: labelIcon.label,
                       icon: labelIcon.icon,
@@ -81,10 +81,10 @@ class _LabelIcon {
   _LabelIcon(String label, this.icon) : label = Text(label.t);
 }
 
-final _labelIconList = [
+final _labelIcons = [
   _LabelIcon('Toolbox', const FaIcon(FontAwesomeIcons.toolbox)),
   _LabelIcon('Timetable', const Icon(Icons.calendar_view_month)),
   _LabelIcon('Settings', const Icon(Icons.settings)),
 ];
 
-final pages = [ToolboxPage(), TimetablePage(), SettingsPage()];
+final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];
