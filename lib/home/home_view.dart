@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../settings/settings_view.dart';
+import '../timetable/timetable_view.dart';
+import '../toolbox/toolbox_view.dart';
 import '../utils/messages.dart';
 import 'home_logic.dart';
 
@@ -40,20 +43,20 @@ class HomePage extends StatelessWidget {
                       physics: logic.isAnimating.isTrue
                           ? const NeverScrollableScrollPhysics()
                           : null,
-                      children: const [
-                        Placeholder(color: Colors.red),
-                        Placeholder(color: Colors.green),
-                        Placeholder(color: Colors.blue),
+                      children: [
+                        ToolboxPage(),
+                        TimetablePage(),
+                        SettingsPage(),
                       ],
                     );
                   })
                 : PageView(
                     controller: logic.pageController,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: const [
-                      Placeholder(color: Colors.red),
-                      Placeholder(color: Colors.green),
-                      Placeholder(color: Colors.blue),
+                    children: [
+                      ToolboxPage(),
+                      TimetablePage(),
+                      SettingsPage(),
                     ],
                   ),
           ),
