@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: context.isPortrait
           ? AppBar(
-              title: Text('求实创造 为人师表'.t),
+              title: Text('求实创造 为人师表'.s),
             )
           : null,
       body: Row(
@@ -82,7 +82,7 @@ class _LabelIcon {
   final Widget label;
   final Widget icon;
 
-  _LabelIcon(String label, this.icon) : label = Text(label.t);
+  _LabelIcon(String label, this.icon) : label = Text(label.s);
 }
 
 final _labelIcons = [

@@ -31,8 +31,8 @@ class SettingsPage extends StatelessWidget {
       : ListTile(
           leading: const FaIcon(FontAwesomeIcons.userSecret),
           trailing: const Icon(Icons.login),
-          title: Text('Anonymous'.t),
-          subtitle: Text('Tap to login.'.t),
+          title: Text('Anonymous'.s),
+          subtitle: Text('Tap to login.'.s),
           onTap: logic.login,
         );
 }

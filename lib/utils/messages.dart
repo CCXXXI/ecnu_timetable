@@ -8,7 +8,7 @@ const version = '0.2.0';
 const buildNumber = '3';
 
 extension Messages on String {
-  String get t {
+  String get s {
     return spacingText(this);
   }
 }
