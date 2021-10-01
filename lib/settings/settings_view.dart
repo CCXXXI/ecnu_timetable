@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../utils/messages.dart';
 import 'settings_logic.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -10,6 +12,27 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(color: Colors.blue);
+    return ListView(
+      children: [
+        user(),
+        const Divider(),
+        const Placeholder(),
+      ],
+    );
   }
+
+  Widget user() => logic.loggedIn
+      ? ListTile(
+          leading: const Icon(Icons.person),
+          trailing: const Icon(Icons.logout),
+          title: Text(logic.username!),
+          subtitle: Text(logic.id!),
+        )
+      : ListTile(
+          leading: const FaIcon(FontAwesomeIcons.userSecret),
+          trailing: const Icon(Icons.login),
+          title: Text('Anonymous'.t),
+          subtitle: Text('Tap to login.'.t),
+          onTap: logic.login,
+        );
 }
