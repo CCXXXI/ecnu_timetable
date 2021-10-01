@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import 'pangu.dart';
 
 // package_info_plus 1.0.6 cannot get real info on windows
@@ -11,6 +9,6 @@ const buildNumber = '3';
 
 extension Messages on String {
   String get t {
-    return spacingText(tr);
+    return spacingText(this);
   }
 }
