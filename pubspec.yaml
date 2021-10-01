@@ -21,7 +21,7 @@ dependencies:
   bottom_navy_bar:
   font_awesome_flutter:
   logger:
-  flutter_settings_screens:
+  flutter_settings_screens: ^0.3.2-null-safety
 
 dev_dependencies:
   flutter_test:
