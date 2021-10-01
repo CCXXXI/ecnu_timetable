@@ -5,16 +5,16 @@ import 'logger.dart';
 import 'messages.dart';
 
 void initDesktop() {
-  logger.i('initDesktop...');
+  logger.d('initDesktop begin.');
 
-  logger.i('ensureInitialized');
+  logger.d('ensureInitialized');
   WidgetsFlutterBinding.ensureInitialized();
 
-  logger.i('setWindowTitle');
+  logger.d('setWindowTitle');
   setWindowTitle(appName);
 
-  logger.i('setWindowMinSize');
+  logger.d('setWindowMinSize');
   setWindowMinSize(const Size(300, 300));
 
-  logger.i('Done.');
+  logger.i('initDesktop end.');
 }
