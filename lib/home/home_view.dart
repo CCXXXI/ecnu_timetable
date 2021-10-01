@@ -17,7 +17,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: context.isPortrait ? AppBar() : null,
+      appBar: context.isPortrait
+          ? AppBar(
+              title: Text('求实创造 为人师表'.t),
+            )
+          : null,
       body: Row(
         children: [
           if (context.isLandscape)
