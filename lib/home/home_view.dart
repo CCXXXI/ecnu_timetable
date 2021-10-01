@@ -43,21 +43,13 @@ class HomePage extends StatelessWidget {
                       physics: logic.isAnimating.isTrue
                           ? const NeverScrollableScrollPhysics()
                           : null,
-                      children: [
-                        ToolboxPage(),
-                        TimetablePage(),
-                        SettingsPage(),
-                      ],
+                      children: pages,
                     );
                   })
                 : PageView(
                     controller: logic.pageController,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      ToolboxPage(),
-                      TimetablePage(),
-                      SettingsPage(),
-                    ],
+                    children: pages,
                   ),
           ),
         ],
@@ -94,3 +86,5 @@ final _labelIconList = [
   _LabelIcon('Timetable', const Icon(Icons.calendar_view_month)),
   _LabelIcon('Settings', const Icon(Icons.settings)),
 ];
+
+final pages = [ToolboxPage(), TimetablePage(), SettingsPage()];
