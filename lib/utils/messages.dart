@@ -7,6 +7,8 @@ const packageName = 'io.github.ccxxxi.ecnu_timetable';
 const version = '0.3.1';
 const buildNumber = '5';
 
+const release = '$packageName@$version+$buildNumber';
+
 extension Messages on String {
   String get s {
     return spacingText(this);
