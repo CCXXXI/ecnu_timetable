@@ -39,32 +39,7 @@ class SettingsPage extends StatelessWidget {
           onTap: logic.login,
         );
 
-  Widget launchPage() => DropDownSettingsTile(
-        title: '启动页',
-        settingKey: 'launchPage',
-        values: const {
-          0: '工具箱',
-          1: '课程表',
-          2: '设置',
-        },
-        selected: 1,
-      );
-
-  Widget color() => SwitchSettingsTile(
-        title: '自定义',
-        settingKey: 'overrideColor',
-        onChange: logic.updateTheme,
-        childrenIfEnabled: [
-          for (final c in ['primary', 'secondary', 'surface'])
-            ColorPickerSettingsTile(
-              settingKey: 'color.$c',
-              title: c,
-              defaultValue: ecnuColor,
-              onChange: logic.updateTheme,
-            ),
-        ],
-      );
-
+// region theme
   Widget dark() => DropDownSettingsTile(
         title: '深色模式',
         settingKey: 'themeMode',
@@ -84,4 +59,35 @@ class SettingsPage extends StatelessWidget {
         selected: fontSans,
         onChange: logic.updateTheme,
       );
+
+  Widget color() => SwitchSettingsTile(
+        title: '自定义',
+        settingKey: 'overrideColor',
+        onChange: logic.updateTheme,
+        childrenIfEnabled: [
+          for (final c in ['primary', 'secondary', 'surface'])
+            ColorPickerSettingsTile(
+              settingKey: 'color.$c',
+              title: c,
+              defaultValue: ecnuColor,
+              onChange: logic.updateTheme,
+            ),
+        ],
+      );
+
+//endregion
+
+// region misc
+  Widget launchPage() => DropDownSettingsTile(
+        title: '启动页',
+        settingKey: 'launchPage',
+        values: const {
+          0: '工具箱',
+          1: '课程表',
+          2: '设置',
+        },
+        selected: 1,
+      );
+
+// endregion
 }
