@@ -21,28 +21,16 @@ jobs:
     needs: check-duplication
     if: ${{ needs.check-duplication.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        channel: [ stable, beta, dev, master ]
     steps:
       - uses: CCXXXI/flutter-action@main
-        with:
-          channel: ${{ matrix.channel }}
-
       - run: flutter analyze
 
   coverage:
     needs: check-duplication
     if: ${{ needs.check-duplication.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        channel: [ stable, beta, dev, master ]
     steps:
       - uses: CCXXXI/flutter-action@main
-        with:
-          channel: ${{ matrix.channel }}
-
       - run: flutter test --coverage
       - uses: codecov/codecov-action@v2
 
@@ -50,12 +38,6 @@ jobs:
     needs: check-duplication
     if: ${{ needs.check-duplication.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        channel: [ stable, beta, dev, master ]
     steps:
       - uses: CCXXXI/flutter-action@main
-        with:
-          channel: ${{ matrix.channel }}
-
       - run: flutter pub run dependency_validator
