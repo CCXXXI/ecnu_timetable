@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:ecnu_timetable/utils/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: context.isPortrait
           ? AppBar(
-              title: const Text('求实创造 为人师表'),
+              title: const Text(
+                '求实创造 为人师表',
+                style: TextStyle(fontFamily: fontSerif),
+              ),
             )
           : null,
       body: Row(
