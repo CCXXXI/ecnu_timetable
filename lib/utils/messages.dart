@@ -12,6 +12,6 @@ const release = '$packageName@$version+$buildNumber';
 const fontSans = 'NotoSansSC';
 const fontSerif = 'NotoSerifSC';
 
-extension Messages on String {
+extension PanGu on String {
   String get s => spacingText(this);
 }
