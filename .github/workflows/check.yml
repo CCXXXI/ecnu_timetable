@@ -34,7 +34,7 @@ jobs:
   coverage:
     needs: check-duplication
     if: ${{ needs.check-duplication.outputs.should_skip != 'true' }}
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         channel: [ stable, beta, dev, master ]
