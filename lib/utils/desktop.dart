@@ -14,7 +14,7 @@ void initDesktop() {
   setWindowTitle(appName);
 
   logger.d('setWindowMinSize');
-  setWindowMinSize(const Size(300, 300));
+  setWindowMinSize(const Size(300, 400));
 
   logger.i('initDesktop end.');
 }
