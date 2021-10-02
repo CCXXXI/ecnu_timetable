@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
                     ),
                 ],
                 selectedIconTheme: IconTheme.of(context),
+                leading: ecnuButton(),
               );
             }),
           Expanded(
