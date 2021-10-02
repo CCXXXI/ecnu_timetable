@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
-ThemeData _getTheme(ThemeData base) => base.copyWith();
+import '../utils/messages.dart';
+
+ThemeData _getTheme(ThemeData base) => base.copyWith(
+      textTheme: base.textTheme.apply(fontFamily: fontSans),
+    );
 
 ThemeMode get _themeMode => Settings.getValue('themeMode', ThemeMode.system);
 
