@@ -37,7 +37,7 @@ void updateTheme() {
     Get.snackbar(
       '主题切换目前有 bug，请手动重启以使更改生效',
       'https://github.com/jonataslaw/getx/issues/1878',
-      duration: const Duration(days: 42),
+      duration: const Duration(days: 1),
     );
   }
 }
