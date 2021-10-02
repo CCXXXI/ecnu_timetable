@@ -37,3 +37,11 @@ flutter_app_name:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: NotoSansSC
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Regular.otf
+    - family: NotoSerifSC
+      fonts:
+        - asset: NotoSerifSC-Regular.otf
