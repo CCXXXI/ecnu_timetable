@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
 void main() {
-  testWidgets('HomePage Portrait', (WidgetTester tester) async {
+  testWidgets('HomePage Portrait', (tester) async {
     tester.binding.window.physicalSizeTestValue = const Size(1080, 1920);
 
     await tester.pumpWidget(GetMaterialApp(home: HomePage()));
@@ -15,7 +15,7 @@ void main() {
     expect(find.byType(BottomNavyBar), findsOneWidget);
   });
 
-  testWidgets('HomePage Landscape', (WidgetTester tester) async {
+  testWidgets('HomePage Landscape', (tester) async {
     tester.binding.window.physicalSizeTestValue = const Size(1920, 1080);
 
     await tester.pumpWidget(GetMaterialApp(home: HomePage()));
