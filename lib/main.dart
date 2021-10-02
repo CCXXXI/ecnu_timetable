@@ -26,9 +26,7 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [SentryNavigatorObserver()],
       title: appName,
       home: HomePage(),
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: themeMode,
+      theme: theme,
     );
   }
 }
