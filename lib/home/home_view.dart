@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
                 '求实创造 为人师表',
                 style: TextStyle(fontFamily: fontSerif),
               ),
+              leading: ecnuButton(),
             )
           : null,
       body: Row(
@@ -81,6 +82,15 @@ class HomePage extends StatelessWidget {
           : null,
     );
   }
+
+  Widget ecnuButton() => GestureDetector(
+        child: IconButton(
+          iconSize: 42,
+          icon: const ImageIcon(AssetImage('assets/images/ecnu_c.png')),
+          onPressed: () {},
+        ),
+        onLongPress: logic.ecnuLongPress,
+      );
 }
 
 class _LabelIcon {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
+import '../utils/gu.dart';
 import '../utils/logger.dart';
 
 class HomeLogic extends GetxController {
@@ -44,6 +45,8 @@ class HomeLogic extends GetxController {
   void onPageChanged(int idx_) {
     if (isAnimating.isFalse) idx.value = idx_;
   }
+
+  void ecnuLongPress() => gu(); // todo
 }
 
 // NavigationRail: Timetable, Toolbox, Settings
