@@ -1,5 +1,4 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:ecnu_timetable/utils/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import '../settings/settings_view.dart';
 import '../timetable/timetable_view.dart';
 import '../toolbox/toolbox_view.dart';
+import '../utils/messages.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
