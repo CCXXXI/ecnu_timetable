@@ -32,8 +32,12 @@ ThemeData get theme => ThemeData.from(
 
 // void updateTheme() => Get.changeTheme(theme);
 // todo: wait for https://github.com/jonataslaw/getx/issues/1878
-void updateTheme() => Get.snackbar(
+void updateTheme() {
+  if (!(Get.isSnackbarOpen ?? false)) {
+    Get.snackbar(
       '主题切换目前有 bug，请手动重启以使更改生效',
       'https://github.com/jonataslaw/getx/issues/1878',
-      duration: const Duration(seconds: 10),
+      duration: const Duration(days: 42),
     );
+  }
+}
