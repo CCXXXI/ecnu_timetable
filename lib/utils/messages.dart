@@ -9,6 +9,9 @@ const buildNumber = '5';
 
 const release = '$packageName@$version+$buildNumber';
 
+const fontSans = 'NotoSansSC';
+const fontSerif = 'NotoSerifSC';
+
 extension Messages on String {
   String get s {
     return spacingText(this);
