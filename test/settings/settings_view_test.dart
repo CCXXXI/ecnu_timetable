@@ -11,7 +11,10 @@ class MockAnonymousSettingsPage extends SettingsPage {
 
   @override
   // ignore: overridden_fields
-  final logic = Get.put(MockSettingsLogic());
+  final logic = Get.put(
+    MockSettingsLogic(),
+    tag: 'anonymous',
+  );
 }
 
 class MockUserSettingsPage extends SettingsPage {
@@ -19,7 +22,10 @@ class MockUserSettingsPage extends SettingsPage {
 
   @override
   // ignore: overridden_fields
-  final logic = Get.put(MockSettingsLogic(id: mockId, username: mockUsername));
+  final logic = Get.put(
+    MockSettingsLogic(id: mockId, username: mockUsername),
+    tag: 'user',
+  );
 }
 
 Widget wrapper(Widget child) => GetMaterialApp(home: Scaffold(body: child));
