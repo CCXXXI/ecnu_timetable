@@ -1,6 +1,6 @@
 import 'pangu.dart';
 
-// package_info_plus 1.0.6 cannot get real info on windows
+// package_info_plus cannot get real info on windows
 // record them manually
 const appName = 'ECNU Timetable';
 const packageName = 'io.github.ccxxxi.ecnu_timetable';
