@@ -13,7 +13,5 @@ const fontSans = 'NotoSansSC';
 const fontSerif = 'NotoSerifSC';
 
 extension Messages on String {
-  String get s {
-    return spacingText(this);
-  }
+  String get s => spacingText(this);
 }
