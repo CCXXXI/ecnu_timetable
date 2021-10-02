@@ -13,7 +13,7 @@ import 'utils/sentry.dart';
 Future<void> main() async {
   initLogger();
   await Settings.init();
-  if (GetPlatform.isDesktop) initDesktop();
+  if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
   await initSentry(const MyApp());
 }
 
