@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 const _num = r'(0|[1-9]\d*)';
 final _semVer = RegExp('^$_num\\.$_num\\.$_num\$');
 
-Future<void> main() async {
+void main() {
   group('盘古', () {
     test('空字符串仍为空', () => expect(''.s, ''));
     test('中英之间加空格', () => expect('更美观更智能的ECNU课程表。'.s, '更美观更智能的 ECNU 课程表。'));
