@@ -45,3 +45,6 @@ flutter:
     - family: NotoSerifSC
       fonts:
         - asset: assets/fonts/NotoSerifSC-Regular.otf
+
+  assets:
+    - assets/images/
