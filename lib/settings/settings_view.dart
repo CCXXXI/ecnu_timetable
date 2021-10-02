@@ -55,12 +55,13 @@ class SettingsPage extends StatelessWidget {
         settingKey: 'overrideColor',
         onChange: logic.updateTheme,
         childrenIfEnabled: [
-          ColorPickerSettingsTile(
-            settingKey: 'color',
-            title: '主题色',
-            defaultValue: ecnuColor,
-            onChange: logic.updateTheme,
-          ),
+          for (final c in ['primary', 'secondary', 'surface'])
+            ColorPickerSettingsTile(
+              settingKey: 'color.$c',
+              title: c,
+              defaultValue: ecnuColor,
+              onChange: logic.updateTheme,
+            ),
         ],
       );
 

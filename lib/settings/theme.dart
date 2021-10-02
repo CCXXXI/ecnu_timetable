@@ -4,11 +4,8 @@ import 'package:get/get.dart';
 
 import '../utils/messages.dart';
 
-const ecnuColor = Color(0xffa41f35);
-
-Color get _color => Settings.getValue('overrideColor', false)
-    ? ConversionUtils.colorFromString(Settings.getValue('color', '#ffa41f35'))
-    : ecnuColor;
+const _ecnuColorStr = '#ffa41f35';
+final ecnuColor = ConversionUtils.colorFromString(_ecnuColorStr);
 
 ThemeMode get _themeMode =>
     ThemeMode.values[Settings.getValue('themeMode', ThemeMode.system.index)];
@@ -17,9 +14,16 @@ bool get _dark =>
     _themeMode == ThemeMode.dark ||
     _themeMode == ThemeMode.system && Get.isPlatformDarkMode;
 
+Color _c(String key) => Settings.getValue('overrideColor', false)
+    ? ConversionUtils.colorFromString(
+        Settings.getValue('color.$key', _ecnuColorStr))
+    : ecnuColor;
+
 ThemeData get theme => ThemeData.from(
       colorScheme: (_dark ? ColorScheme.dark : ColorScheme.light)(
-        primary: _color,
+        primary: _c('primary'),
+        secondary: _c('secondary'),
+        surface: _c('surface'),
       ),
       textTheme: (_dark ? ThemeData.dark : ThemeData.light)()
           .textTheme
