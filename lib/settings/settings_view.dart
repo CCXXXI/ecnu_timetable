@@ -18,10 +18,8 @@ class SettingsPage extends StatelessWidget {
       children: [
         user(),
         const Divider(),
-        launchPage(),
-        color(),
-        dark(),
-        font(),
+        SettingsGroup(title: '主题', children: [dark(), font(), color()]),
+        SettingsGroup(title: '杂项', children: [launchPage()]),
       ],
     );
   }
@@ -53,7 +51,7 @@ class SettingsPage extends StatelessWidget {
       );
 
   Widget color() => SwitchSettingsTile(
-        title: '自定主题',
+        title: '自定义',
         settingKey: 'overrideColor',
         onChange: logic.updateTheme,
         childrenIfEnabled: [
