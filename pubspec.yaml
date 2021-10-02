@@ -44,4 +44,4 @@ flutter:
         - asset: assets/fonts/NotoSansSC-Regular.otf
     - family: NotoSerifSC
       fonts:
-        - asset: NotoSerifSC-Regular.otf
+        - asset: assets/fonts/NotoSerifSC-Regular.otf
