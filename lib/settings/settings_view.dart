@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../utils/messages.dart';
 import 'settings_logic.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -31,8 +30,8 @@ class SettingsPage extends StatelessWidget {
       : ListTile(
           leading: const FaIcon(FontAwesomeIcons.userSecret),
           trailing: const Icon(Icons.login),
-          title: Text('Anonymous'.s),
-          subtitle: Text('Tap to login.'.s),
+          title: const Text('无名者'),
+          subtitle: const Text('点击以登录'),
           onTap: logic.login,
         );
 }

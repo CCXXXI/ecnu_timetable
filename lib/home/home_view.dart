@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../settings/settings_view.dart';
 import '../timetable/timetable_view.dart';
 import '../toolbox/toolbox_view.dart';
-import '../utils/messages.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +18,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: context.isPortrait
           ? AppBar(
-              title: Text('求实创造 为人师表'.s),
+              title: const Text('求实创造 为人师表'),
             )
           : null,
       body: Row(
@@ -82,13 +81,13 @@ class _LabelIcon {
   final Widget label;
   final Widget icon;
 
-  _LabelIcon(String label, this.icon) : label = Text(label.s);
+  _LabelIcon(String label, this.icon) : label = Text(label);
 }
 
 final _labelIcons = [
-  _LabelIcon('Toolbox', const FaIcon(FontAwesomeIcons.toolbox)),
-  _LabelIcon('Timetable', const Icon(Icons.calendar_view_month)),
-  _LabelIcon('Settings', const Icon(Icons.settings)),
+  _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
+  _LabelIcon('课程表', const Icon(Icons.calendar_view_month)),
+  _LabelIcon('设置', const Icon(Icons.settings)),
 ];
 
 final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];
