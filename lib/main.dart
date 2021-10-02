@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'home/home_view.dart';
+import 'settings/theme.dart';
 import 'utils/desktop.dart';
 import 'utils/logger.dart';
 import 'utils/messages.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [SentryNavigatorObserver()],
       title: appName,
       home: HomePage(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: themeMode,
     );
   }
 }
