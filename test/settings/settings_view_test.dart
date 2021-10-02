@@ -31,22 +31,24 @@ class MockUserSettingsPage extends SettingsPage {
 Widget wrapper(Widget child) => GetMaterialApp(home: Scaffold(body: child));
 
 void main() async {
-  testWidgets('SettingsPage Anonymous', (tester) async {
-    await Settings.init();
-    await tester.pumpWidget(wrapper(MockAnonymousSettingsPage()));
+  group('profile', () {
+    testWidgets('SettingsPage Anonymous', (tester) async {
+      await Settings.init();
+      await tester.pumpWidget(wrapper(MockAnonymousSettingsPage()));
 
-    expect(find.widgetWithIcon(ListTile, Icons.login), findsOneWidget);
-    expect(find.widgetWithIcon(ListTile, Icons.logout), findsNothing);
-  });
+      expect(find.widgetWithIcon(ListTile, Icons.login), findsOneWidget);
+      expect(find.widgetWithIcon(ListTile, Icons.logout), findsNothing);
+    });
 
-  testWidgets('SettingsPage User', (tester) async {
-    await Settings.init();
-    await tester.pumpWidget(wrapper(MockUserSettingsPage()));
+    testWidgets('SettingsPage User', (tester) async {
+      await Settings.init();
+      await tester.pumpWidget(wrapper(MockUserSettingsPage()));
 
-    expect(find.widgetWithIcon(ListTile, Icons.login), findsNothing);
-    expect(find.widgetWithIcon(ListTile, Icons.logout), findsOneWidget);
+      expect(find.widgetWithIcon(ListTile, Icons.login), findsNothing);
+      expect(find.widgetWithIcon(ListTile, Icons.logout), findsOneWidget);
 
-    expect(find.text(mockId), findsOneWidget);
-    expect(find.text(mockUsername), findsOneWidget);
+      expect(find.text(mockId), findsOneWidget);
+      expect(find.text(mockUsername), findsOneWidget);
+    });
   });
 }
