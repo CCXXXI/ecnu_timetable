@@ -19,7 +19,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: context.isPortrait
           ? AppBar(
-              title: Text('求实创造 为人师表'.s),
+              title: const Text(
+                '求实创造 为人师表',
+                style: TextStyle(fontFamily: fontSerif),
+              ),
             )
           : null,
       body: Row(
@@ -36,6 +39,7 @@ class HomePage extends StatelessWidget {
                       icon: _labelIcons[i].icon,
                     ),
                 ],
+                selectedIconTheme: IconTheme.of(context),
               );
             }),
           Expanded(
@@ -69,6 +73,7 @@ class HomePage extends StatelessWidget {
                     BottomNavyBarItem(
                       title: labelIcon.label,
                       icon: labelIcon.icon,
+                      activeColor: Colors.white,
                     ),
                 ],
               );
@@ -82,13 +87,13 @@ class _LabelIcon {
   final Widget label;
   final Widget icon;
 
-  _LabelIcon(String label, this.icon) : label = Text(label.s);
+  _LabelIcon(String label, this.icon) : label = Text(label);
 }
 
 final _labelIcons = [
-  _LabelIcon('Toolbox', const FaIcon(FontAwesomeIcons.toolbox)),
-  _LabelIcon('Timetable', const Icon(Icons.calendar_view_month)),
-  _LabelIcon('Settings', const Icon(Icons.settings)),
+  _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
+  _LabelIcon('课程表', const Icon(Icons.calendar_view_month)),
+  _LabelIcon('设置', const Icon(Icons.settings)),
 ];
 
 final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];

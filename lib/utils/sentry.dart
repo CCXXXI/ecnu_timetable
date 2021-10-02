@@ -9,6 +9,7 @@ Future<void> initSentry(Widget app) async {
   final id = Settings.getValue('id', null);
   final username = Settings.getValue('username', null);
   logger.i('id: $id, username: $username');
+  logger.i('release: $release');
 
   Sentry.configureScope(
     (scope) => scope.user =
@@ -21,7 +22,7 @@ Future<void> initSentry(Widget app) async {
         ..dsn =
             'https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191'
         ..sendDefaultPii = true
-        ..release = '$packageName@$version+$buildNumber';
+        ..release = release;
     },
     appRunner: () => runApp(app),
   );
