@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
                       icon: _labelIcons[i].icon,
                     ),
                 ],
+                selectedIconTheme: IconTheme.of(context),
               );
             }),
           Expanded(
