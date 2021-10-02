@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../utils/logger.dart';
 
 class HomeLogic extends GetxController {
-  final idx = 1.obs;
+  final idx = Settings.getValue('launchPage', 1).obs;
   final isAnimating = false.obs;
 
   late PageController _pageController;
