@@ -73,6 +73,7 @@ class HomePage extends StatelessWidget {
                     BottomNavyBarItem(
                       title: labelIcon.label,
                       icon: labelIcon.icon,
+                      activeColor: Colors.white,
                     ),
                 ],
               );
