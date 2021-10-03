@@ -26,6 +26,7 @@ dependencies:
   dio:
   flutter_spinkit:
   url_launcher:
+  badges:
 
 dev_dependencies:
   flutter_test:
