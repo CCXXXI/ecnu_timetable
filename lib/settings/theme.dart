@@ -3,6 +3,7 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/logger.dart';
 import '../utils/messages.dart';
 
 // region colorScheme
@@ -50,11 +51,20 @@ TextTheme get _baseTextTheme =>
 
 String get _font => Settings.getValue('font', notoSans);
 
-TextTheme get _textTheme => _localFonts.containsKey(_font)
-    ? _baseTextTheme.apply(fontFamily: _font)
-    : _googleFonts.containsKey(_font)
-        ? GoogleFonts.getTextTheme(_font, _baseTextTheme)
-        : _baseTextTheme;
+TextTheme get _textTheme {
+  if (_localFonts.containsKey(_font)) {
+    logger.i('_localFonts.containsKey($_font)');
+    return _baseTextTheme.apply(fontFamily: _font);
+  }
+
+  if (_googleFonts.containsKey(_font)) {
+    logger.i('_googleFonts.containsKey($_font)');
+    return GoogleFonts.getTextTheme(_font, _baseTextTheme);
+  }
+
+  logger.i('No font named "$_font", return _baseTextTheme.');
+  return _baseTextTheme;
+}
 // endregion
 
 ThemeData get theme =>

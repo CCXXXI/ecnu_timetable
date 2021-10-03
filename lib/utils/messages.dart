@@ -18,9 +18,9 @@ extension PanGu on String {
     final res = spacingText(this);
 
     if (res != this) {
-      logger.i('$this -> $res');
+      logger.i('"$this" -> "$res"');
     } else {
-      logger.w('Unnecessary spacingText: $this');
+      logger.w('Unnecessary spacingText: "$this"');
     }
 
     return res;
