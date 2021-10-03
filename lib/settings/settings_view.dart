@@ -16,17 +16,17 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        user(),
+        user,
         const Divider(),
-        SettingsGroup(title: '主题', children: [dark(), font(), color()]),
-        SettingsGroup(title: '杂项', children: [launchPage()]),
-        SettingsGroup(title: '关于', children: [curVer()]),
+        SettingsGroup(title: '主题', children: [dark, font, color]),
+        SettingsGroup(title: '杂项', children: [launchPage]),
+        SettingsGroup(title: '关于', children: [curVer]),
       ],
     );
   }
 
 // region user
-  Widget user() => logic.loggedIn
+  Widget get user => logic.loggedIn
       ? ListTile(
           leading: const Icon(Icons.person),
           trailing: const Icon(Icons.logout),
@@ -44,7 +44,7 @@ class SettingsPage extends StatelessWidget {
 // endregion
 
 // region theme
-  Widget dark() => DropDownSettingsTile(
+  Widget get dark => DropDownSettingsTile(
         title: '深色模式',
         settingKey: 'themeMode',
         values: {
@@ -56,7 +56,7 @@ class SettingsPage extends StatelessWidget {
         onChange: logic.updateTheme,
       );
 
-  Widget font() => DropDownSettingsTile(
+  Widget get font => DropDownSettingsTile(
         title: '字体',
         settingKey: 'font',
         values: fonts,
@@ -64,7 +64,7 @@ class SettingsPage extends StatelessWidget {
         onChange: logic.updateTheme,
       );
 
-  Widget color() => SwitchSettingsTile(
+  Widget get color => SwitchSettingsTile(
         title: '自定义',
         settingKey: 'overrideColor',
         onChange: logic.updateTheme,
@@ -82,7 +82,7 @@ class SettingsPage extends StatelessWidget {
 //endregion
 
 // region misc
-  Widget launchPage() => DropDownSettingsTile(
+  Widget get launchPage => DropDownSettingsTile(
         title: '启动页',
         settingKey: 'launchPage',
         values: const {
@@ -96,7 +96,7 @@ class SettingsPage extends StatelessWidget {
 // endregion
 
 // region about
-  Widget curVer() =>
+  Widget get curVer =>
       const ListTile(title: Text('当前版本'), trailing: Text(version));
 // endregion
 }
