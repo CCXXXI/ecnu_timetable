@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../utils/gu.dart';
+import '../utils/logger.dart';
 import 'theme.dart' as theme;
 
 class SettingsLogic extends GetxController {
@@ -14,4 +16,32 @@ class SettingsLogic extends GetxController {
   void login() => gu(); // todo
 
   void updateTheme(_) => theme.updateTheme();
+
+  /// - null: loading
+  /// - empty: failed
+  final latestVer = Rx<String?>(null);
+
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    updateVerInfo();
+  }
+
+  void updateVerInfo() async {
+    latestVer.value = null;
+    latestVer.value = await _getLatestVer() ?? '';
+  }
+
+  /// Get latest release version from GitHub.
+  Future<String?> _getLatestVer() async {
+    try {
+      final r = await Dio().get(
+        'https://api.github.com/repos/ccxxxi/ecnu_timetable/releases',
+        queryParameters: {'per_page': 1},
+      );
+      return (r.data[0]['name'] as String).substring(1);
+    } catch (e) {
+      logger.e(e);
+    }
+  }
 }

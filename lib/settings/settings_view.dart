@@ -3,6 +3,7 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../utils/loading.dart';
 import '../utils/messages.dart';
 import 'settings_logic.dart';
 import 'theme.dart';
@@ -20,7 +21,7 @@ class SettingsPage extends StatelessWidget {
         const Divider(),
         SettingsGroup(title: '主题', children: [dark, font, color]),
         SettingsGroup(title: '杂项', children: [launchPage]),
-        SettingsGroup(title: '关于', children: [curVer]),
+        SettingsGroup(title: '关于', children: [curVer, latestVer]),
       ],
     );
   }
@@ -96,7 +97,21 @@ class SettingsPage extends StatelessWidget {
 // endregion
 
 // region about
-  Widget get curVer =>
-      const ListTile(title: Text('当前版本'), trailing: Text(version));
+  Widget get curVer => const ListTile(
+        title: Text('当前版本'),
+        trailing: Text(version),
+      );
+
+  Widget get latestVer => ListTile(
+        title: const Text('最新版本'),
+        trailing: Obx(() => logic.latestVer.value == null
+            ? Loading()
+            : logic.latestVer.value!.isEmpty
+                ? IconButton(
+                    onPressed: logic.updateVerInfo,
+                    icon: const Icon(Icons.refresh),
+                  )
+                : Text(logic.latestVer.value!)),
+      );
 // endregion
 }
