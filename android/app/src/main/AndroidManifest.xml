@@ -2,6 +2,13 @@
           package="io.github.ccxxxi.ecnu_timetable">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <queries>
+        <!-- If your app opens https URLs -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
     <application
             android:label="ECNU Timetable"
             android:icon="@mipmap/ic_launcher">
