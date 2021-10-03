@@ -29,27 +29,30 @@ ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
 // endregion
 
 // region textTheme
-const _localFonts = [fontSans, fontSerif];
-const _googleFonts = [
-  'ZCOOL QingKe HuangYou',
-  'ZCOOL XiaoWei',
-  'ZCOOL KuaiLe',
-  'Ma Shan Zheng',
-  'Zhi Mang Xing',
-  'Liu Jian Mao Cao',
-  'Long Cang',
-];
+const _localFonts = {
+  notoSans: '思源黑体',
+  notoSerif: '思源宋体',
+};
+const _googleFonts = {
+  'ZCOOL QingKe HuangYou': '站酷黄油',
+  'ZCOOL XiaoWei': '站酷小薇',
+  'ZCOOL KuaiLe': '站酷快乐',
+  'Ma Shan Zheng': '钟齐善政',
+  'Zhi Mang Xing': '钟齐志莽',
+  'Liu Jian Mao Cao': '钟齐流江',
+  'Long Cang': '有字龙藏',
+};
 
-const fonts = ['-', ..._localFonts, ..._googleFonts];
+const fonts = {'': '跟随系统', ..._localFonts, ..._googleFonts};
 
 TextTheme get _baseTextTheme =>
     (_dark ? ThemeData.dark : ThemeData.light)().textTheme;
 
-String get _font => Settings.getValue('font', fontSans);
+String get _font => Settings.getValue('font', notoSans);
 
-TextTheme get _textTheme => _localFonts.contains(_font)
+TextTheme get _textTheme => _localFonts.containsKey(_font)
     ? _baseTextTheme.apply(fontFamily: _font)
-    : GoogleFonts.asMap().containsKey(_font)
+    : _googleFonts.containsKey(_font)
         ? GoogleFonts.getTextTheme(_font, _baseTextTheme)
         : _baseTextTheme;
 // endregion

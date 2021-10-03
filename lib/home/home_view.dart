@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           ? AppBar(
               title: const Text(
                 '求实创造 为人师表',
-                style: TextStyle(fontFamily: fontSerif),
+                style: TextStyle(fontFamily: notoSerif),
               ),
               leading: ecnuButton(),
             )

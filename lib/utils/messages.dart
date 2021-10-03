@@ -10,8 +10,8 @@ const buildNumber = '7';
 
 const release = '$packageName@$version+$buildNumber';
 
-const fontSans = 'NotoSansSC';
-const fontSerif = 'NotoSerifSC';
+const notoSans = 'NotoSansSC';
+const notoSerif = 'NotoSerifSC';
 
 extension PanGu on String {
   String get s {

@@ -52,11 +52,11 @@ class SettingsPage extends StatelessWidget {
         onChange: logic.updateTheme,
       );
 
-  Widget font() => SimpleDropDownSettingsTile(
+  Widget font() => DropDownSettingsTile(
         title: '字体',
         settingKey: 'font',
         values: fonts,
-        selected: fontSans,
+        selected: notoSans,
         onChange: logic.updateTheme,
       );
 
