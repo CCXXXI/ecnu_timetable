@@ -24,6 +24,7 @@ dependencies:
   flutter_settings_screens: ">0.3.0"
   google_fonts:
   dio:
+  flutter_spinkit:
 
 dev_dependencies:
   flutter_test:
