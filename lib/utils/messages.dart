@@ -1,3 +1,4 @@
+import 'logger.dart';
 import 'pangu.dart';
 
 // package_info_plus cannot get real info on windows
@@ -13,5 +14,15 @@ const fontSans = 'NotoSansSC';
 const fontSerif = 'NotoSerifSC';
 
 extension PanGu on String {
-  String get s => spacingText(this);
+  String get s {
+    final res = spacingText(this);
+
+    if (res != this) {
+      logger.i('$this -> $res');
+    } else {
+      logger.w('Unnecessary spacingText: $this');
+    }
+
+    return res;
+  }
 }
