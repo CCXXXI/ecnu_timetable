@@ -44,6 +44,7 @@ class SettingsLogic extends GetxController {
       return (r.data[0]['name'] as String).substring(1);
     } catch (e) {
       logger.e(e);
+      Get.snackbar('获取最新版本失败', e.toString());
     }
   }
 
