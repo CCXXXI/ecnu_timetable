@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import 'logger.dart';
 import 'pangu.dart';
 
@@ -26,3 +28,8 @@ extension PanGu on String {
     return res;
   }
 }
+
+late String license;
+
+Future<void> initMessages() async =>
+    license = await rootBundle.loadString('LICENSE');

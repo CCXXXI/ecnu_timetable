@@ -22,7 +22,8 @@ class SettingsPage extends StatelessWidget {
         const Divider(),
         SettingsGroup(title: '主题', children: [dark, font, color]),
         SettingsGroup(title: '杂项', children: [launchPage]),
-        SettingsGroup(title: '关于', children: [curVer, latestVer, feedback]),
+        SettingsGroup(
+            title: '关于', children: [curVer, latestVer, feedback, licenses]),
       ],
     );
   }
@@ -134,6 +135,16 @@ class SettingsPage extends StatelessWidget {
         title: const Text('反馈'),
         trailing: const FaIcon(FontAwesomeIcons.github),
         onTap: logic.feedbackOnTap,
+      );
+
+  Widget get licenses => AboutListTile(
+        applicationIcon: const Image(
+          image: AssetImage('assets/images/app_icon.png'),
+          height: 42,
+        ),
+        applicationLegalese: license,
+        applicationVersion: release,
+        child: const Text('许可协议'),
       );
 // endregion
 }
