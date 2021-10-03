@@ -60,4 +60,7 @@ class SettingsLogic extends GetxController {
 
   Future<void> latestVerOnTap() async =>
       await launch(_getVerUrl(latestVer.value!));
+
+  Future<void> feedbackOnTap() async =>
+      await launch('https://github.com/CCXXXI/ecnu_timetable/issues');
 }

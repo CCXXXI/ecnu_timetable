@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
         const Divider(),
         SettingsGroup(title: '主题', children: [dark, font, color]),
         SettingsGroup(title: '杂项', children: [launchPage]),
-        SettingsGroup(title: '关于', children: [curVer, latestVer]),
+        SettingsGroup(title: '关于', children: [curVer, latestVer, feedback]),
       ],
     );
   }
@@ -129,5 +129,11 @@ class SettingsPage extends StatelessWidget {
         onTap: logic.latestVerOnTap,
         enabled: logic.latestVer.value?.isNotEmpty ?? false,
       ));
+
+  Widget get feedback => ListTile(
+        title: const Text('反馈'),
+        trailing: const FaIcon(FontAwesomeIcons.github),
+        onTap: logic.feedbackOnTap,
+      );
 // endregion
 }
