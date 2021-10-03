@@ -48,8 +48,11 @@ class SettingsLogic extends GetxController {
     }
   }
 
-  static const _curVerUrl =
-      'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v$version';
+  static String _getVerUrl(String v) =>
+      'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v$v';
 
-  Future<void> curVerOnTap() async => await launch(_curVerUrl);
+  Future<void> curVerOnTap() async => await launch(_getVerUrl(version));
+
+  Future<void> latestVerOnTap() async =>
+      await launch(_getVerUrl(latestVer.value!));
 }

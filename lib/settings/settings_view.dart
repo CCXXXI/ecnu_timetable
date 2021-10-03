@@ -103,16 +103,18 @@ class SettingsPage extends StatelessWidget {
         onTap: logic.curVerOnTap,
       );
 
-  Widget get latestVer => ListTile(
+  Widget get latestVer => Obx(() => ListTile(
         title: const Text('最新版本'),
-        trailing: Obx(() => logic.latestVer.value == null
+        trailing: logic.latestVer.value == null
             ? Loading()
             : logic.latestVer.value!.isEmpty
                 ? IconButton(
                     onPressed: logic.updateVerInfo,
                     icon: const Icon(Icons.refresh),
                   )
-                : Text(logic.latestVer.value!)),
-      );
+                : Text(logic.latestVer.value!),
+        onTap: logic.latestVerOnTap,
+        enabled: logic.latestVer.value?.isNotEmpty ?? false,
+      ));
 // endregion
 }
