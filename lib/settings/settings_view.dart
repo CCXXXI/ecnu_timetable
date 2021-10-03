@@ -55,7 +55,7 @@ class SettingsPage extends StatelessWidget {
   Widget font() => SimpleDropDownSettingsTile(
         title: '字体',
         settingKey: 'font',
-        values: const [fontSans, fontSerif],
+        values: fonts,
         selected: fontSans,
         onChange: logic.updateTheme,
       );

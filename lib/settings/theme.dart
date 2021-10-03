@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/messages.dart';
 
@@ -28,9 +29,19 @@ ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
 // endregion
 
 // region textTheme
-TextTheme get _textTheme => (_dark ? ThemeData.dark : ThemeData.light)()
-    .textTheme
-    .apply(fontFamily: Settings.getValue('font', fontSans));
+const _localFonts = [fontSans, fontSerif];
+const fonts = ['-', ..._localFonts];
+
+TextTheme get _baseTextTheme =>
+    (_dark ? ThemeData.dark : ThemeData.light)().textTheme;
+
+String get _font => Settings.getValue('font', fontSans);
+
+TextTheme get _textTheme => _localFonts.contains(_font)
+    ? _baseTextTheme.apply(fontFamily: _font)
+    : GoogleFonts.asMap().containsKey(_font)
+        ? GoogleFonts.getTextTheme(_font, _baseTextTheme)
+        : _baseTextTheme;
 // endregion
 
 ThemeData get theme =>
