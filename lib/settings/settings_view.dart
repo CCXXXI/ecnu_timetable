@@ -20,6 +20,7 @@ class SettingsPage extends StatelessWidget {
         const Divider(),
         SettingsGroup(title: '主题', children: [dark(), font(), color()]),
         SettingsGroup(title: '杂项', children: [launchPage()]),
+        SettingsGroup(title: '关于', children: [curVer()]),
       ],
     );
   }
@@ -89,5 +90,10 @@ class SettingsPage extends StatelessWidget {
         selected: 1,
       );
 
+// endregion
+
+// region about
+  Widget curVer() =>
+      const ListTile(title: Text('当前版本'), trailing: Text(version));
 // endregion
 }
