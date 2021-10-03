@@ -14,6 +14,7 @@ Future<void> main() async {
   initLogger();
   await Settings.init();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
+  await initMessages();
   await initSentry(const MyApp());
 }
 

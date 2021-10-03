@@ -1,17 +1,35 @@
+import 'package:flutter/services.dart';
+
+import 'logger.dart';
 import 'pangu.dart';
 
 // package_info_plus cannot get real info on windows
 // record them manually
 const appName = 'ECNU Timetable';
 const packageName = 'io.github.ccxxxi.ecnu_timetable';
-const version = '0.5.0';
-const buildNumber = '7';
+const version = '0.6.0';
+const buildNumber = '8';
 
 const release = '$packageName@$version+$buildNumber';
 
-const fontSans = 'NotoSansSC';
-const fontSerif = 'NotoSerifSC';
+const notoSans = 'NotoSansSC';
+const notoSerif = 'NotoSerifSC';
 
 extension PanGu on String {
-  String get s => spacingText(this);
+  String get s {
+    final res = spacingText(this);
+
+    if (res != this) {
+      logger.i('"$this" -> "$res"');
+    } else {
+      logger.w('Unnecessary spacingText: "$this"');
+    }
+
+    return res;
+  }
 }
+
+late String license;
+
+Future<void> initMessages() async =>
+    license = await rootBundle.loadString('LICENSE');

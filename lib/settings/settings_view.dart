@@ -1,11 +1,14 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../utils/loading.dart';
 import '../utils/messages.dart';
 import 'settings_logic.dart';
 import 'theme.dart';
+import 'trivia.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -16,15 +19,20 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        user(),
+        user,
         const Divider(),
-        SettingsGroup(title: '主题', children: [dark(), font(), color()]),
-        SettingsGroup(title: '杂项', children: [launchPage()]),
+        SettingsGroup(title: '主题', children: [dark, font, color]),
+        SettingsGroup(title: '杂项', children: [launchPage]),
+        SettingsGroup(
+            title: '关于', children: [curVer, latestVer, feedback, licenses]),
+        const Divider(),
+        trivia,
       ],
     );
   }
 
-  Widget user() => logic.loggedIn
+// region user
+  Widget get user => logic.loggedIn
       ? ListTile(
           leading: const Icon(Icons.person),
           trailing: const Icon(Icons.logout),
@@ -39,8 +47,10 @@ class SettingsPage extends StatelessWidget {
           onTap: logic.login,
         );
 
+// endregion
+
 // region theme
-  Widget dark() => DropDownSettingsTile(
+  Widget get dark => DropDownSettingsTile(
         title: '深色模式',
         settingKey: 'themeMode',
         values: {
@@ -52,15 +62,15 @@ class SettingsPage extends StatelessWidget {
         onChange: logic.updateTheme,
       );
 
-  Widget font() => SimpleDropDownSettingsTile(
+  Widget get font => DropDownSettingsTile(
         title: '字体',
         settingKey: 'font',
-        values: const [fontSans, fontSerif],
-        selected: fontSans,
+        values: fonts,
+        selected: notoSans,
         onChange: logic.updateTheme,
       );
 
-  Widget color() => SwitchSettingsTile(
+  Widget get color => SwitchSettingsTile(
         title: '自定义',
         settingKey: 'overrideColor',
         onChange: logic.updateTheme,
@@ -78,7 +88,7 @@ class SettingsPage extends StatelessWidget {
 //endregion
 
 // region misc
-  Widget launchPage() => DropDownSettingsTile(
+  Widget get launchPage => DropDownSettingsTile(
         title: '启动页',
         settingKey: 'launchPage',
         values: const {
@@ -90,4 +100,60 @@ class SettingsPage extends StatelessWidget {
       );
 
 // endregion
+
+// region about
+  Widget get curVer => ListTile(
+        title: const Text('当前版本'),
+        trailing: const Text(version),
+        onTap: logic.curVerOnTap,
+      );
+
+  Widget get latestVer => Obx(() => ListTile(
+        title: const Text('最新版本'),
+        trailing: logic.latestVer.value == null
+            ? Loading()
+            : logic.latestVer.value!.isEmpty
+                ? IconButton(
+                    onPressed: logic.updateVerInfo,
+                    icon: const Icon(Icons.refresh),
+                  )
+                : Badge(
+                    child: Text(logic.latestVer.value!),
+                    badgeContent: Icon(
+                      logic.updateAvailable
+                          ? Icons.new_releases_outlined
+                          : Icons.check,
+                      size: 20,
+                    ),
+                    padding: EdgeInsets.zero,
+                    badgeColor:
+                        logic.updateAvailable ? Colors.red : Colors.green,
+                    position: BadgePosition.topEnd(top: -16, end: -16),
+                  ),
+        onTap: logic.latestVerOnTap,
+        enabled: logic.latestVer.value?.isNotEmpty ?? false,
+      ));
+
+  Widget get feedback => ListTile(
+        title: const Text('反馈'),
+        trailing: const FaIcon(FontAwesomeIcons.github),
+        onTap: logic.feedbackOnTap,
+      );
+
+  Widget get licenses => AboutListTile(
+        applicationIcon: const Image(
+          image: AssetImage('assets/images/app_icon.png'),
+          height: 42,
+        ),
+        applicationLegalese: license,
+        applicationVersion: release,
+        child: const Text('许可协议'),
+      );
+
+// endregion
+
+  Widget get trivia => ListTile(
+        leading: const Icon(Icons.lightbulb),
+        title: randomTrivia,
+      );
 }

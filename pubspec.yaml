@@ -4,7 +4,7 @@ description: 更美观更智能的ECNU课程表。
 # Prevent the package from being accidentally published to pub.dev.
 publish_to: "none"
 
-version: 0.5.0+7
+version: 0.6.0+8
 
 environment:
   sdk: ">=2.15.0-172.0.dev"
@@ -22,6 +22,12 @@ dependencies:
   font_awesome_flutter:
   logger:
   flutter_settings_screens: ">0.3.0"
+  google_fonts:
+  dio:
+  flutter_spinkit:
+  url_launcher:
+  badges:
+  flutter_markdown:
 
 dev_dependencies:
   flutter_test:
@@ -48,3 +54,4 @@ flutter:
 
   assets:
     - assets/images/
+    - LICENSE
