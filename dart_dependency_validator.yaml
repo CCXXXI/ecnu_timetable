@@ -3,3 +3,4 @@ ignore:
   - flutter_web_plugins
   - package_info_plus_web
   - shared_preferences_web
+  - url_launcher_web
