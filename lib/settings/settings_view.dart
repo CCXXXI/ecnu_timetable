@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -112,7 +113,18 @@ class SettingsPage extends StatelessWidget {
                     onPressed: logic.updateVerInfo,
                     icon: const Icon(Icons.refresh),
                   )
-                : Text(logic.latestVer.value!),
+                : Badge(
+                    child: Text(logic.latestVer.value!),
+                    badgeContent: logic.updateAvailable
+                        ? const Icon(Icons.new_label)
+                        : const Icon(
+                            Icons.check,
+                            size: 12,
+                          ),
+                    padding: EdgeInsets.zero,
+                    badgeColor:
+                        logic.updateAvailable ? Colors.red : Colors.green,
+                  ),
         onTap: logic.latestVerOnTap,
         enabled: logic.latestVer.value?.isNotEmpty ?? false,
       ));

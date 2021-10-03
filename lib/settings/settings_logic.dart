@@ -32,7 +32,12 @@ class SettingsLogic extends GetxController {
   void updateVerInfo() async {
     latestVer.value = null;
     latestVer.value = await _getLatestVer() ?? '';
+    if (updateAvailable) {
+      Get.snackbar('发现新版本', '$version -> ${latestVer.value}');
+    }
   }
+
+  bool get updateAvailable => latestVer.value != version;
 
   /// Get latest release version from GitHub.
   Future<String?> _getLatestVer() async {
