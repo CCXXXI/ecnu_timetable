@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../utils/messages.dart';
 
+// region colorScheme
 const _ecnuColorStr = '#ffa41f35';
 final ecnuColor = ConversionUtils.colorFromString(_ecnuColorStr);
 
@@ -19,16 +20,21 @@ Color _c(String key) => Settings.getValue('overrideColor', false)
         Settings.getValue('color.$key', _ecnuColorStr))
     : ecnuColor;
 
-ThemeData get theme => ThemeData.from(
-      colorScheme: (_dark ? ColorScheme.dark : ColorScheme.light)(
-        primary: _c('primary'),
-        secondary: _c('secondary'),
-        surface: _c('surface'),
-      ),
-      textTheme: (_dark ? ThemeData.dark : ThemeData.light)()
-          .textTheme
-          .apply(fontFamily: Settings.getValue('font', fontSans)),
+ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
+      primary: _c('primary'),
+      secondary: _c('secondary'),
+      surface: _c('surface'),
     );
+// endregion
+
+// region textTheme
+TextTheme get _textTheme => (_dark ? ThemeData.dark : ThemeData.light)()
+    .textTheme
+    .apply(fontFamily: Settings.getValue('font', fontSans));
+// endregion
+
+ThemeData get theme =>
+    ThemeData.from(colorScheme: _colorScheme, textTheme: _textTheme);
 
 // void updateTheme() => Get.changeTheme(theme);
 // todo: wait for https://github.com/jonataslaw/getx/issues/1878
