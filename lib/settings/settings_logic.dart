@@ -33,7 +33,7 @@ class SettingsLogic extends GetxController {
     latestVer.value = null;
     latestVer.value = await _getLatestVer() ?? '';
     if (updateAvailable) {
-      Get.snackbar('发现新版本', '$version -> ${latestVer.value}');
+      Get.snackbar('发现新版本', '$version → ${latestVer.value}');
     }
   }
 

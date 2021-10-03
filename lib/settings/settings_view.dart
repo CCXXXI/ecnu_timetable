@@ -115,15 +115,16 @@ class SettingsPage extends StatelessWidget {
                   )
                 : Badge(
                     child: Text(logic.latestVer.value!),
-                    badgeContent: logic.updateAvailable
-                        ? const Icon(Icons.new_label)
-                        : const Icon(
-                            Icons.check,
-                            size: 12,
-                          ),
+                    badgeContent: Icon(
+                      logic.updateAvailable
+                          ? Icons.new_releases_outlined
+                          : Icons.check,
+                      size: 20,
+                    ),
                     padding: EdgeInsets.zero,
                     badgeColor:
                         logic.updateAvailable ? Colors.red : Colors.green,
+                    position: BadgePosition.topEnd(top: -16, end: -16),
                   ),
         onTap: logic.latestVerOnTap,
         enabled: logic.latestVer.value?.isNotEmpty ?? false,
