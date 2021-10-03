@@ -30,7 +30,17 @@ ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
 
 // region textTheme
 const _localFonts = [fontSans, fontSerif];
-const fonts = ['-', ..._localFonts];
+const _googleFonts = [
+  'ZCOOL QingKe HuangYou',
+  'ZCOOL XiaoWei',
+  'ZCOOL KuaiLe',
+  'Ma Shan Zheng',
+  'Zhi Mang Xing',
+  'Liu Jian Mao Cao',
+  'Long Cang',
+];
+
+const fonts = ['-', ..._localFonts, ..._googleFonts];
 
 TextTheme get _baseTextTheme =>
     (_dark ? ThemeData.dark : ThemeData.light)().textTheme;
