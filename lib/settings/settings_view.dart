@@ -8,6 +8,7 @@ import '../utils/loading.dart';
 import '../utils/messages.dart';
 import 'settings_logic.dart';
 import 'theme.dart';
+import 'trivia.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -24,6 +25,8 @@ class SettingsPage extends StatelessWidget {
         SettingsGroup(title: '杂项', children: [launchPage]),
         SettingsGroup(
             title: '关于', children: [curVer, latestVer, feedback, licenses]),
+        const Divider(),
+        trivia,
       ],
     );
   }
@@ -146,5 +149,11 @@ class SettingsPage extends StatelessWidget {
         applicationVersion: release,
         child: const Text('许可协议'),
       );
+
 // endregion
+
+  Widget get trivia => ListTile(
+        leading: const Icon(Icons.lightbulb),
+        title: randomTrivia,
+      );
 }
