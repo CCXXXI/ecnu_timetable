@@ -25,6 +25,7 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
+// region user
   Widget user() => logic.loggedIn
       ? ListTile(
           leading: const Icon(Icons.person),
@@ -39,6 +40,8 @@ class SettingsPage extends StatelessWidget {
           subtitle: const Text('点击以登录'),
           onTap: logic.login,
         );
+
+// endregion
 
 // region theme
   Widget dark() => DropDownSettingsTile(
