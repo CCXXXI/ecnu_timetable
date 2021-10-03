@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/gu.dart';
 import '../utils/logger.dart';
+import '../utils/messages.dart';
 import 'theme.dart' as theme;
 
 class SettingsLogic extends GetxController {
@@ -44,4 +46,9 @@ class SettingsLogic extends GetxController {
       logger.e(e);
     }
   }
+
+  static const _curVerUrl =
+      'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v$version';
+
+  Future<void> curVerOnTap() async => await launch(_curVerUrl);
 }

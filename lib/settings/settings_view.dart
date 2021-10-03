@@ -97,9 +97,10 @@ class SettingsPage extends StatelessWidget {
 // endregion
 
 // region about
-  Widget get curVer => const ListTile(
-        title: Text('当前版本'),
-        trailing: Text(version),
+  Widget get curVer => ListTile(
+        title: const Text('当前版本'),
+        trailing: const Text(version),
+        onTap: logic.curVerOnTap,
       );
 
   Widget get latestVer => ListTile(
