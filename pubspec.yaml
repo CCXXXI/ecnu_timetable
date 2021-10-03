@@ -23,6 +23,7 @@ dependencies:
   logger:
   flutter_settings_screens: ">0.3.0"
   google_fonts:
+  dio:
 
 dev_dependencies:
   flutter_test:
