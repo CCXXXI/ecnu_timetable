@@ -27,6 +27,7 @@ dependencies:
   flutter_spinkit:
   url_launcher:
   badges:
+  flutter_markdown:
 
 dev_dependencies:
   flutter_test:
