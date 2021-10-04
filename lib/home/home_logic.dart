@@ -46,7 +46,7 @@ class HomeLogic extends GetxController {
     if (isAnimating.isFalse) idx.value = idx_;
   }
 
-  void ecnuLongPress() => Get.to(DevPage());
+  void ecnuLongPress() => Get.to(() => DevPage());
 }
 
 // NavigationRail: Timetable, Toolbox, Settings
