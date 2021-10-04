@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:ecnu_timetable/utils/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,9 @@ class ToolboxPage extends StatelessWidget {
             Tool(
               FontAwesomeIcons.dog,
               '/sucker',
-              '舔狗语录',
+              logic.sucker.value.length < 16
+                  ? logic.sucker.value
+                  : logic.sucker.value.substring(0, 16) + '……',
               onTap: logic.suckerOnTap,
             ),
           Tool(
@@ -96,7 +99,7 @@ class Tool extends StatelessWidget {
           child: ListTile(
             leading: FaIcon(leading),
             title: Text(title),
-            subtitle: Text(subtitle),
+            subtitle: subtitle.isEmpty ? Loading() : Text(subtitle),
             mouseCursor: MouseCursor.uncontrolled,
           ),
         ),
