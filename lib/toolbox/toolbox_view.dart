@@ -30,6 +30,7 @@ class ToolboxPage extends StatelessWidget {
                   ? logic.sucker.value
                   : logic.sucker.value.substring(0, 16) + '……',
               onTap: logic.suckerOnTap,
+              enabled: !GetPlatform.isWeb,
             ),
           if (logic.cheaterEnabled.isTrue)
             Tool(
@@ -91,19 +92,20 @@ class ToolboxPage extends StatelessWidget {
 
 class Tool extends StatelessWidget {
   const Tool(this.leading, this.title, this.subtitle,
-      {Key? key, this.onTap, this.onLongPress})
+      {Key? key, this.onTap, this.onLongPress, this.enabled = true})
       : super(key: key);
   final IconData leading;
   final String title;
   final String subtitle;
   final void Function()? onTap;
   final void Function()? onLongPress;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onTap,
-      onLongPress: onLongPress,
+      onPressed: enabled ? onTap : null,
+      onLongPress: enabled ? onLongPress : null,
       style: ElevatedButton.styleFrom(
         primary: context.theme.colorScheme.background,
         onPrimary: context.theme.colorScheme.onBackground,
