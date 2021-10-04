@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/logger.dart';
+import '../utils/messages.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
 
@@ -36,6 +37,8 @@ class ToolboxLogic extends GetxController {
   }
 
   Future<String?> _getSucker() async {
+    if (GetPlatform.isWeb) return 'Web端不可用'.s;
+
     final _r = Random().nextBool();
     try {
       final r = await Dio().get(
