@@ -40,7 +40,10 @@ class HomePage extends StatelessWidget {
                       icon: _labelIcons[i].icon,
                     ),
                 ],
-                selectedIconTheme: IconTheme.of(context),
+                selectedIconTheme:
+                    IconTheme.of(context).copyWith(color: Colors.white),
+                unselectedIconTheme: IconTheme.of(context)
+                    .copyWith(color: Colors.white, opacity: .5),
                 leading: ecnuButton(),
               );
             }),
@@ -88,6 +91,7 @@ class HomePage extends StatelessWidget {
         child: IconButton(
           iconSize: 42,
           icon: const ImageIcon(AssetImage('assets/images/ecnu_c.png')),
+          color: Colors.white,
           onPressed: () {},
         ),
         onLongPress: logic.ecnuLongPress,

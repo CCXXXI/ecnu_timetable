@@ -131,7 +131,7 @@ class SettingsPage extends StatelessWidget {
                       size: 16,
                     ),
                     badgeColor:
-                        logic.updateAvailable ? Colors.red : Colors.green,
+                        logic.updateAvailable ? ecnuColor : Colors.green,
                     position: BadgePosition.topStart(top: -4, start: -32),
                   ),
         onTap: logic.latestVerOnTap,
