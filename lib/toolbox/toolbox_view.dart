@@ -24,13 +24,19 @@ class ToolboxPage extends StatelessWidget {
           FontAwesomeIcons.calendarAlt,
           '校历',
           '师大还在用http'.s,
-          onTap: logic.calendarOnTap,
+          onTap: logic.l('http://www.u-office.ecnu.edu.cn/xiaoli/main.htm'),
         ),
         Tool(
           FontAwesomeIcons.scroll,
           '公告',
           '善用搜索',
-          onTap: logic.announcementsOnTap,
+          onTap: logic.l('https://www.ecnu.edu.cn/tzgg.htm'),
+        ),
+        Tool(
+          FontAwesomeIcons.bus,
+          '校车时刻表',
+          '需要连学校Wifi/VPN'.s,
+          onTap: logic.l('http://houqin.ecnu.edu.cn/28837/list.psp'),
         ),
       ],
     );
