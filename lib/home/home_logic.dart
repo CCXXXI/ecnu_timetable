@@ -16,7 +16,7 @@ class HomeLogic extends GetxController {
     return _pageController;
   }
 
-  Future<void> _toPage(int idx_, bool animate) async {
+  void _toPage(int idx_, bool animate) async {
     idx.value = idx_;
 
     if (animate) {

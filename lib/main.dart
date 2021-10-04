@@ -10,7 +10,7 @@ import 'utils/logger.dart';
 import 'utils/messages.dart';
 import 'utils/sentry.dart';
 
-Future<void> main() async {
+void main() async {
   initLogger();
   await Settings.init();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();

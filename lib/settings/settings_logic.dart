@@ -24,7 +24,7 @@ class SettingsLogic extends GetxController {
   final latestVer = Rx<String?>(null);
 
   @override
-  Future<void> onInit() async {
+  void onInit() async {
     super.onInit();
     updateVerInfo();
   }
@@ -57,11 +57,11 @@ class SettingsLogic extends GetxController {
   static String _getVerUrl(String v) =>
       'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v$v';
 
-  Future<void> curVerOnTap() async => await launch(_getVerUrl(version));
+  void curVerOnTap() async => await launch(_getVerUrl(version));
 
-  Future<void> latestVerOnTap() async =>
+  void latestVerOnTap() async =>
       await launch('https://github.com/CCXXXI/ecnu_timetable/releases/latest');
 
-  Future<void> feedbackOnTap() async =>
+  void feedbackOnTap() async =>
       await launch('https://github.com/CCXXXI/ecnu_timetable/issues');
 }
