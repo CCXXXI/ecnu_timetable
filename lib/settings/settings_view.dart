@@ -145,8 +145,10 @@ class SettingsPage extends StatelessWidget {
 
   Widget get licenses => AboutListTile(
         applicationIcon: const Image(
-          image: AssetImage('assets/images/app_icon.png'),
-          height: 42,
+          image: ResizeImage(
+            AssetImage('assets/images/app_icon.png'),
+            width: 42,
+          ),
         ),
         applicationLegalese: license,
         applicationVersion: release,
