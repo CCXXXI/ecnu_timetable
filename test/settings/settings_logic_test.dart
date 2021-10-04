@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 class MockSettingsLogic extends SettingsLogic {
   @override
   final String? id, username;
-  final String latestVer_;
+  final String? latestVer_;
 
-  MockSettingsLogic({this.id, this.username, this.latestVer_ = version});
+  MockSettingsLogic({this.id, this.username, this.latestVer_});
 
   @override
   void updateVerInfo() async => latestVer.value = latestVer_;
@@ -44,8 +44,12 @@ void main() {
     test('not available', () => expect(logic0.updateAvailable, isFalse));
     Get.delete<MockSettingsLogic>();
 
-    final logic1 = Get.put(MockSettingsLogic(latestVer_: '1024.2048.4096'));
-    test('available', () => expect(logic1.updateAvailable, isTrue));
+    final logic1 = Get.put(MockSettingsLogic(latestVer_: version));
+    test('not available', () => expect(logic1.updateAvailable, isFalse));
+    Get.delete<MockSettingsLogic>();
+
+    final logic2 = Get.put(MockSettingsLogic(latestVer_: '1024.2048.4096'));
+    test('available', () => expect(logic2.updateAvailable, isTrue));
     Get.delete<MockSettingsLogic>();
   });
 }
