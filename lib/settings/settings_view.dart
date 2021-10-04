@@ -17,17 +17,22 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        user,
-        const Divider(),
-        SettingsGroup(title: '主题', children: [dark, font, color]),
-        SettingsGroup(title: '杂项', children: [launchPage]),
-        SettingsGroup(
-            title: '关于', children: [curVer, latestVer, feedback, licenses]),
-        const Divider(),
-        trivia,
-      ],
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: ListView(
+          children: [
+            user,
+            const Divider(),
+            SettingsGroup(title: '主题', children: [dark, font, color]),
+            SettingsGroup(title: '杂项', children: [launchPage]),
+            SettingsGroup(
+                title: '关于', children: [curVer, latestVer, feedback, licenses]),
+            const Divider(),
+            trivia,
+          ],
+        ),
+      ),
     );
   }
 
