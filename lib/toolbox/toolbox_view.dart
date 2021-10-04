@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../utils/messages.dart';
 import 'toolbox_logic.dart';
 
 class ToolboxPage extends StatelessWidget {
@@ -26,5 +28,12 @@ class ToolboxPage extends StatelessWidget {
     );
   }
 
-  List<Widget> get tools => [];
+  List<Widget> get tools => [
+        ListTile(
+          leading: const FaIcon(FontAwesomeIcons.calendarAlt),
+          title: const Text('校历'),
+          subtitle: Text('师大还在用http'.s),
+          onTap: logic.calendarOnTap,
+        ),
+      ];
 }
