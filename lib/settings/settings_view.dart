@@ -123,12 +123,11 @@ class SettingsPage extends StatelessWidget {
                       logic.updateAvailable
                           ? Icons.new_releases_outlined
                           : Icons.check,
-                      size: 20,
+                      size: 16,
                     ),
-                    padding: EdgeInsets.zero,
                     badgeColor:
                         logic.updateAvailable ? Colors.red : Colors.green,
-                    position: BadgePosition.topEnd(top: -16, end: -16),
+                    position: BadgePosition.topStart(top: -4, start: -32),
                   ),
         onTap: logic.latestVerOnTap,
         enabled: logic.latestVer.value?.isNotEmpty ?? false,
