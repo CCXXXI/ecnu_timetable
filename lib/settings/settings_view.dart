@@ -18,7 +18,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 800),
         child: ListView(
           children: [
