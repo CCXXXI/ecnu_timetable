@@ -149,6 +149,7 @@ class SettingsPage extends StatelessWidget {
             AssetImage('assets/images/app_icon.png'),
             width: 42,
           ),
+          width: 42, // fix bug on web
         ),
         applicationLegalese: license,
         applicationVersion: release,
