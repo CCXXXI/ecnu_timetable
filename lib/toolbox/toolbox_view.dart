@@ -45,6 +45,12 @@ class ToolboxPage extends StatelessWidget {
           onTap: logic.l('http://houqin.ecnu.edu.cn/28837/list.psp'),
         ),
         Tool(
+          FontAwesomeIcons.cube,
+          'ECNU软件镜像站'.s,
+          '内容很少',
+          onTap: logic.l('https://mirrors.ecnu.edu.cn/'),
+        ),
+        Tool(
           Icons.vpn_key,
           '学校VPN'.s,
           '对校外网站有减速作用',
