@@ -130,7 +130,6 @@ class SettingsPage extends StatelessWidget {
                     position: BadgePosition.topStart(top: -4, start: -32),
                   ),
         onTap: logic.latestVerOnTap,
-        enabled: logic.latestVer.value?.isNotEmpty ?? false,
       ));
 
   Widget get feedback => ListTile(
