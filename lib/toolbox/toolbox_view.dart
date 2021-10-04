@@ -17,34 +17,57 @@ class ToolboxPage extends StatelessWidget {
     return GridView.extent(
       maxCrossAxisExtent: 512,
       childAspectRatio: pi,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
       children: [
-        for (final tool in tools)
-          Card(
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 256),
-                child: tool,
-              ),
-            ),
-            color: context.theme.colorScheme.background,
-            shadowColor: context.theme.colorScheme.onBackground,
-          ),
+        Tool(
+          FontAwesomeIcons.calendarAlt,
+          '校历',
+          '师大还在用http'.s,
+          onTap: logic.calendarOnTap,
+        ),
+        Tool(
+          FontAwesomeIcons.scroll,
+          '公告',
+          '善用搜索',
+          onTap: logic.announcementsOnTap,
+        ),
       ],
     );
   }
+}
 
-  List<Widget> get tools => [
-        ListTile(
-          leading: const FaIcon(FontAwesomeIcons.calendarAlt),
-          title: const Text('校历'),
-          subtitle: Text('师大还在用http'.s),
-          onTap: logic.calendarOnTap,
+class Tool extends StatelessWidget {
+  const Tool(this.leading, this.title, this.subtitle,
+      {Key? key, this.onTap, this.onLongPress})
+      : super(key: key);
+  final IconData leading;
+  final String title;
+  final String subtitle;
+  final void Function()? onTap;
+  final void Function()? onLongPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onTap,
+      onLongPress: onLongPress,
+      style: ElevatedButton.styleFrom(
+        primary: context.theme.colorScheme.background,
+        onPrimary: context.theme.colorScheme.onBackground,
+        shadowColor: context.theme.colorScheme.onBackground,
+      ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 256),
+          child: ListTile(
+            leading: FaIcon(leading),
+            title: Text(title),
+            subtitle: Text(subtitle),
+            mouseCursor: MouseCursor.uncontrolled,
+          ),
         ),
-        ListTile(
-          leading: const FaIcon(FontAwesomeIcons.scroll),
-          title: const Text('公告'),
-          subtitle: const Text('善用搜索'),
-          onTap: logic.announcementsOnTap,
-        )
-      ];
+      ),
+    );
+  }
 }
