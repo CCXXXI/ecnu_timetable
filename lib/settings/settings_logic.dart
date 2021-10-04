@@ -54,14 +54,13 @@ class SettingsLogic extends GetxController {
     }
   }
 
-  static String _getVerUrl(String v) =>
-      'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v$v';
+  static const _repoUrl = 'https://github.com/CCXXXI/ecnu_timetable';
 
-  void curVerOnTap() async => await launch(_getVerUrl(version));
+  static String _getVerUrl(String v) => '$_repoUrl/releases/tag/v$v';
 
-  void latestVerOnTap() async =>
-      await launch('https://github.com/CCXXXI/ecnu_timetable/releases/latest');
+  void curVerOnTap() => launch(_getVerUrl(version));
 
-  void feedbackOnTap() async =>
-      await launch('https://github.com/CCXXXI/ecnu_timetable/issues');
+  void latestVerOnTap() => launch('$_repoUrl/releases/latest');
+
+  void feedbackOnTap() => launch('$_repoUrl/issues');
 }
