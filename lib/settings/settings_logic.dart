@@ -24,7 +24,7 @@ class SettingsLogic extends GetxController {
   final latestVer = Rx<String?>(null);
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
     updateVerInfo();
   }
