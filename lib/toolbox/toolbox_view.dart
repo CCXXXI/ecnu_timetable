@@ -40,6 +40,13 @@ class ToolboxPage extends StatelessWidget {
                   : logic.cheater.value.substring(0, 16) + '……',
               onTap: logic.cheaterOnTap,
             ),
+          if (logic.juanEnabled.isTrue)
+            Tool(
+              FontAwesomeIcons.graduationCap,
+              '卷课意愿值估算',
+              '仅供参考',
+              onTap: logic.juanOnTap,
+            ),
           Tool(
             FontAwesomeIcons.calendarAlt,
             '校历',

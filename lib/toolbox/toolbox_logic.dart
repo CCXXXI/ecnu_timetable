@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/logger.dart';
 import 'cheater.dart';
+import 'juan/juan_view.dart';
 
 class ToolboxLogic extends GetxController {
   void Function() l(String url) => () => launch(url);
@@ -86,6 +87,20 @@ class ToolboxLogic extends GetxController {
       onConfirm: () => Clipboard.setData(ClipboardData(text: cheater.value))
           .then((_) => Get.snackbar('复制成功', cheater.value)),
       onCancel: updateCheater,
+    );
+  }
+
+// endregion
+
+// region juan
+  final juanEnabled = Settings.getValue('toolbox.juan', false).obs;
+
+  updateJuanEnabled(bool v) => juanEnabled.value = v;
+
+  void juanOnTap() {
+    Get.defaultDialog(
+      title: 'ceil(5 * (2 * a / b - 1) * log(a - b + 1))',
+      content: JuanWidget(),
     );
   }
 // endregion

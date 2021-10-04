@@ -30,6 +30,11 @@ class DevPage extends StatelessWidget {
                 settingKey: 'toolbox.cheater',
                 onChange: (v) => toolboxLogic.updateCheaterEnabled(v),
               ),
+              SwitchSettingsTile(
+                title: 'juan',
+                settingKey: 'toolbox.juan',
+                onChange: (v) => toolboxLogic.updateJuanEnabled(v),
+              ),
             ],
           ),
           SettingsGroup(
