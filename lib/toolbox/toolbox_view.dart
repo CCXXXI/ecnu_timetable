@@ -14,57 +14,59 @@ class ToolboxPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GridView.extent(
-          maxCrossAxisExtent: 512,
-          childAspectRatio: pi,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          children: [
-            if (logic.sucker.value)
-              Tool(
-                FontAwesomeIcons.dog,
-                '/sucker',
-                '舔狗语录',
-                onTap: logic.suckerOnTap,
-              ),
+    return Obx(() {
+      return GridView.extent(
+        maxCrossAxisExtent: 512,
+        childAspectRatio: pi,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        children: [
+          if (logic.sucker.value)
             Tool(
-              FontAwesomeIcons.calendarAlt,
-              '校历',
-              '师大还在用http'.s,
-              onTap: logic.l('http://www.u-office.ecnu.edu.cn/xiaoli/main.htm'),
+              FontAwesomeIcons.dog,
+              '/sucker',
+              '舔狗语录',
+              onTap: logic.suckerOnTap,
             ),
-            Tool(
-              FontAwesomeIcons.scroll,
-              '公告',
-              '善用搜索',
-              onTap: logic.l('https://www.ecnu.edu.cn/tzgg.htm'),
-            ),
-            Tool(
-              FontAwesomeIcons.mapMarked,
-              '校内地图',
-              '2D/3D',
-              onTap: logic.l('https://eoffice.ecnu.edu.cn/ecnu3d/main.psp'),
-            ),
-            Tool(
-              FontAwesomeIcons.bus,
-              '校车时刻表',
-              '需要连学校Wifi/VPN'.s,
-              onTap: logic.l('http://houqin.ecnu.edu.cn/28837/list.psp'),
-            ),
-            Tool(
-              FontAwesomeIcons.cube,
-              'ECNU软件镜像站'.s,
-              '内容很少',
-              onTap: logic.l('https://mirrors.ecnu.edu.cn/'),
-            ),
-            Tool(
-              Icons.vpn_key,
-              '学校VPN'.s,
-              '对校外网站有减速作用',
-              onTap: logic.l('http://www.lib.ecnu.edu.cn/427/list.htm'),
-            ),
-          ],
-        ));
+          Tool(
+            FontAwesomeIcons.calendarAlt,
+            '校历',
+            '师大还在用http'.s,
+            onTap: logic.l('http://www.u-office.ecnu.edu.cn/xiaoli/main.htm'),
+          ),
+          Tool(
+            FontAwesomeIcons.scroll,
+            '公告',
+            '善用搜索',
+            onTap: logic.l('https://www.ecnu.edu.cn/tzgg.htm'),
+          ),
+          Tool(
+            FontAwesomeIcons.mapMarked,
+            '校内地图',
+            '2D/3D',
+            onTap: logic.l('https://eoffice.ecnu.edu.cn/ecnu3d/main.psp'),
+          ),
+          Tool(
+            FontAwesomeIcons.bus,
+            '校车时刻表',
+            '需要连学校Wifi/VPN'.s,
+            onTap: logic.l('http://houqin.ecnu.edu.cn/28837/list.psp'),
+          ),
+          Tool(
+            FontAwesomeIcons.cube,
+            'ECNU软件镜像站'.s,
+            '内容很少',
+            onTap: logic.l('https://mirrors.ecnu.edu.cn/'),
+          ),
+          Tool(
+            Icons.vpn_key,
+            '学校VPN'.s,
+            '对校外网站有减速作用',
+            onTap: logic.l('http://www.lib.ecnu.edu.cn/427/list.htm'),
+          ),
+        ],
+      );
+    });
   }
 }
 
