@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'secret_logic.dart';
+import 'dev_logic.dart';
 
-class SecretPage extends StatelessWidget {
-  SecretPage({Key? key}) : super(key: key);
+class DevPage extends StatelessWidget {
+  DevPage({Key? key}) : super(key: key);
 
-  final logic = Get.put(SecretLogic());
+  final logic = Get.put(DevLogic());
 
   @override
   Widget build(BuildContext context) {

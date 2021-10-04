@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
-import '../secret/secret_view.dart';
+import '../dev/dev_view.dart';
 import '../utils/logger.dart';
 
 class HomeLogic extends GetxController {
@@ -46,7 +46,7 @@ class HomeLogic extends GetxController {
     if (isAnimating.isFalse) idx.value = idx_;
   }
 
-  void ecnuLongPress() => Get.to(SecretPage());
+  void ecnuLongPress() => Get.to(DevPage());
 }
 
 // NavigationRail: Timetable, Toolbox, Settings
