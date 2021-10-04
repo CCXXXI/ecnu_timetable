@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +12,19 @@ class ToolboxPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(color: Colors.red);
+    return GridView.extent(
+      maxCrossAxisExtent: 512,
+      childAspectRatio: pi,
+      children: [
+        for (final tool in tools)
+          Card(
+            child: tool,
+            color: context.theme.colorScheme.background,
+            shadowColor: context.theme.colorScheme.onBackground,
+          ),
+      ],
+    );
   }
+
+  List<Widget> get tools => [];
 }
