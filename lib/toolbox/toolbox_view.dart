@@ -20,7 +20,12 @@ class ToolboxPage extends StatelessWidget {
       children: [
         for (final tool in tools)
           Card(
-            child: tool,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 256),
+                child: tool,
+              ),
+            ),
             color: context.theme.colorScheme.background,
             shadowColor: context.theme.colorScheme.onBackground,
           ),
