@@ -8,7 +8,7 @@ import '../utils/messages.dart';
 final _trivia = [
   'GitHub的仓库名通常使用分隔符`ecnu-timetable`，但为了让Dart开心，本仓库使用了下划线`ecnu_timetable`。'.s,
   '此项目最初是受ECNU-class2ics启发的。'.s,
-  '长按校徽可以开启一些测试功能。',
+  '长按校徽可以打开开发者选项。',
   '师大各院系标志色涵盖了红、绿、蓝、橙、青，但没有院系使用品红。',
   '尽管检测到的出错会自动上报到sentry.io，遇到问题去GitHub手动开个issue总是会更可靠。'.s,
   '师大校徽的标准颜色是`#a41f35`。'.s,
