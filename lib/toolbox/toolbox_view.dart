@@ -44,6 +44,12 @@ class ToolboxPage extends StatelessWidget {
           '需要连学校Wifi/VPN'.s,
           onTap: logic.l('http://houqin.ecnu.edu.cn/28837/list.psp'),
         ),
+        Tool(
+          Icons.vpn_key,
+          '学校VPN'.s,
+          '对校外网站有减速作用',
+          onTap: logic.l('http://www.lib.ecnu.edu.cn/427/list.htm'),
+        ),
       ],
     );
   }
