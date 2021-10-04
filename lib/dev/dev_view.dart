@@ -25,6 +25,11 @@ class DevPage extends StatelessWidget {
                 settingKey: 'toolbox.sucker',
                 onChange: (v) => toolboxLogic.updateSuckerEnabled(v),
               ),
+              SwitchSettingsTile(
+                title: 'cheater',
+                settingKey: 'toolbox.cheater',
+                onChange: (v) => toolboxLogic.updateCheaterEnabled(v),
+              ),
             ],
           ),
           SettingsGroup(

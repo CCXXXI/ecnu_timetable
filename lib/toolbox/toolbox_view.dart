@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:ecnu_timetable/utils/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../utils/loading.dart';
 import '../utils/messages.dart';
 import 'toolbox_logic.dart';
 
@@ -30,6 +30,15 @@ class ToolboxPage extends StatelessWidget {
                   ? logic.sucker.value
                   : logic.sucker.value.substring(0, 16) + '……',
               onTap: logic.suckerOnTap,
+            ),
+          if (logic.cheaterEnabled.isTrue)
+            Tool(
+              FontAwesomeIcons.cat,
+              '/cheater',
+              logic.cheater.value.length < 16
+                  ? logic.cheater.value
+                  : logic.cheater.value.substring(0, 16) + '……',
+              onTap: logic.cheaterOnTap,
             ),
           Tool(
             FontAwesomeIcons.calendarAlt,

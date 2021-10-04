@@ -7,9 +7,17 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/logger.dart';
+import 'cheater.dart';
 
 class ToolboxLogic extends GetxController {
   void Function() l(String url) => () => launch(url);
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (suckerEnabled.isTrue) updateSucker();
+    if (cheaterEnabled.isTrue) updateCheater();
+  }
 
 // region sucker
   final suckerEnabled = Settings.getValue('toolbox.sucker', false).obs;
@@ -41,12 +49,6 @@ class ToolboxLogic extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    if (suckerEnabled.isTrue) updateSucker();
-  }
-
   void suckerOnTap() {
     Get.defaultDialog(
       title: '/sucker',
@@ -56,6 +58,34 @@ class ToolboxLogic extends GetxController {
       onConfirm: () => Clipboard.setData(ClipboardData(text: sucker.value))
           .then((_) => Get.snackbar('复制成功', sucker.value)),
       onCancel: updateSucker,
+    );
+  }
+
+// endregion
+
+// region cheater
+  final cheaterEnabled = Settings.getValue('toolbox.cheater', false).obs;
+
+  updateCheaterEnabled(bool v) {
+    cheaterEnabled.value = v;
+    if (v) updateCheater();
+  }
+
+  final cheater = ''.obs;
+
+  void updateCheater() {
+    cheater.value = randomCheater;
+  }
+
+  void cheaterOnTap() {
+    Get.defaultDialog(
+      title: '/cheater',
+      middleText: cheater.value,
+      textConfirm: '复制',
+      textCancel: '刷新',
+      onConfirm: () => Clipboard.setData(ClipboardData(text: cheater.value))
+          .then((_) => Get.snackbar('复制成功', cheater.value)),
+      onCancel: updateCheater,
     );
   }
 // endregion
