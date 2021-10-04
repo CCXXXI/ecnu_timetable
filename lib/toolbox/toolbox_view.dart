@@ -40,5 +40,11 @@ class ToolboxPage extends StatelessWidget {
           subtitle: Text('师大还在用http'.s),
           onTap: logic.calendarOnTap,
         ),
+        ListTile(
+          leading: const FaIcon(FontAwesomeIcons.scroll),
+          title: const Text('公告'),
+          subtitle: const Text('善用搜索'),
+          onTap: logic.announcementsOnTap,
+        )
       ];
 }
