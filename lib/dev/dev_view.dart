@@ -23,7 +23,7 @@ class DevPage extends StatelessWidget {
               SwitchSettingsTile(
                 title: 'sucker',
                 settingKey: 'toolbox.sucker',
-                onChange: (v) => toolboxLogic.updateSucker(v),
+                onChange: (v) => toolboxLogic.updateSuckerEnabled(v),
               ),
             ],
           ),

@@ -21,7 +21,7 @@ class ToolboxPage extends StatelessWidget {
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         children: [
-          if (logic.sucker.value)
+          if (logic.suckerEnabled.isTrue)
             Tool(
               FontAwesomeIcons.dog,
               '/sucker',

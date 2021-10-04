@@ -7,9 +7,10 @@ import '../utils/gu.dart';
 class ToolboxLogic extends GetxController {
   void Function() l(String url) => () => launch(url);
 
-  final sucker = Settings.getValue('toolbox.sucker', false).obs;
+  final suckerEnabled = Settings.getValue('toolbox.sucker', false).obs;
 
-  updateSucker(bool v) => sucker.value = v;
+  updateSuckerEnabled(bool v) => suckerEnabled.value = v;
+
 
   void suckerOnTap() {
     gu();
