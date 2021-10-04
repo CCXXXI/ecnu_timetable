@@ -8825,7 +8825,7 @@ p=A.d_("id",null,q)
 o=A.d_("username",null,q)
 q=$.Fh()
 q.jx(B.bR,"id: "+A.j(p)+", username: "+A.j(o),null,null)
-q.jx(B.bR,"release: io.github.ccxxxi.ecnu_timetable@0.7.1+10",null,null)
+q.jx(B.bR,"release: io.github.ccxxxi.ecnu_timetable@0.7.2+11",null,null)
 $.Dr().wI(new A.aLS(p,o))
 s=2
 return A.T(A.a4V(new A.aLT(),new A.aLU(a)),$async$aLR)
@@ -47171,7 +47171,7 @@ $0(){return B.Tr},
 $S:367}
 A.Jm.prototype={
 C(a,b){var s=this,r=null,q=t.p
-return A.S0(A.IF(r,r,!0,r,r,r,1,r,r,r,!1,r,r,r,r,r,!0,r,r,r,r,B.SQ,r,r,r,1,r),A.Qa(A.h([new A.Er("\u5de5\u5177\u7bb1",A.h([A.az0(r,new A.ajc(s),"toolbox.sucker","sucker"),A.az0(r,new A.ajd(s),"toolbox.cheater","cheater"),A.az0(r,new A.aje(s),"toolbox.juan","juan")],q),r),new A.Er("\u6742\u9879",A.h([A.Be(r,!0,!1,r,r,s.c.ganY(),!1,r,B.SU,r)],q),r)],q),r,r,r,!1),r,r,r)}}
+return A.S0(A.IF(r,r,!0,r,r,r,1,r,r,r,!1,r,r,r,r,r,!0,r,r,r,r,B.SQ,r,r,r,1,r),A.Qa(A.h([new A.Er("\u5de5\u5177\u7bb1",A.h([A.az0(r,new A.ajc(s),"toolbox.sucker","sucker"),A.az0(r,new A.ajd(s),"toolbox.cheater","cheater"),A.az0(r,new A.aje(s),"toolbox.juan","juan")],q),r),new A.Er("\u6742\u9879",A.h([A.Be(r,!0,!1,r,r,s.c.ganY(),!1,r,B.SV,r)],q),r)],q),r,r,r,!1),r,r,r)}}
 A.ajc.prototype={
 $1(a){var s=this.a.d
 s.db.sn(0,a)
@@ -47235,7 +47235,7 @@ return new A.Jm(r,s.xj(0,null,t.TQ),null)},
 $S:384}
 A.a0V.prototype={
 C(a,b){var s,r,q=this,p=null,o=t.w,n=b.U(o).f
-n=n.gkD(n)===B.dM?A.IF(p,p,!0,p,p,p,1,p,p,p,!1,p,p,p,q.gQy(),p,!0,p,p,p,p,B.ST,p,p,p,1,p):p
+n=n.gkD(n)===B.dM?A.IF(p,p,!0,p,p,p,1,p,p,p,!1,p,p,p,q.gQy(),p,!0,p,p,p,p,B.SU,p,p,p,1,p):p
 s=A.h([],t.p)
 r=b.U(o).f
 if(r.gkD(r)===B.ij)s.push(new A.Ak(new A.ao4(q,b),p))
@@ -47318,11 +47318,11 @@ s=2
 return A.T(q.vg(),$async$u4)
 case 2:p=b
 o.sn(0,p==null?"":p)
-if(q.gGH())A.FO($.aH(),"\u53d1\u73b0\u65b0\u7248\u672c","0.7.1 \u2192 "+A.j(o.gn(o)),null,t.z)
+if(q.gGH())A.FO($.aH(),"\u53d1\u73b0\u65b0\u7248\u672c","0.7.2 \u2192 "+A.j(o.gn(o)),null,t.z)
 return A.N(null,r)}})
 return A.O($async$u4,r)},
 gGH(){var s=this.db
-return s.gn(s)!=null&&!J.o(s.gn(s),"0.7.1")},
+return s.gn(s)!=null&&!J.o(s.gn(s),"0.7.2")},
 vg(){var s=0,r=A.P(t.G),q,p=2,o,n=[],m,l,k,j,i
 var $async$vg=A.K(function(a,b){if(a===1){o=b
 s=p}while(true)switch(s){case 0:p=4
@@ -47349,7 +47349,7 @@ break
 case 6:case 1:return A.N(q,r)
 case 2:return A.M(o,r)}})
 return A.O($async$vg,r)},
-ahq(){return A.NF("https://github.com/CCXXXI/ecnu_timetable/releases/tag/v0.7.1")},
+ahq(){return A.NF("https://github.com/CCXXXI/ecnu_timetable/releases/tag/v0.7.2")},
 akL(){return A.NF("https://github.com/CCXXXI/ecnu_timetable/releases/latest")},
 aiQ(){return A.NF("https://github.com/CCXXXI/ecnu_timetable/issues")}}
 A.a50.prototype={
@@ -47368,7 +47368,7 @@ p=q.gTN()
 o=t.p
 r=A.h([A.aOb(p,0,"themeMode","\u6df1\u8272\u6a21\u5f0f",A.d([0,"\u8ddf\u968f\u7cfb\u7edf",2,"\u5f00",1,"\u5173"],s,r),s),A.aOb(p,"NotoSansSC","font","\u5b57\u4f53",B.LT,r),n.gan(n)],o)
 s=A.h([A.aOb(m,1,"launchPage","\u542f\u52a8\u9875",B.M6,s)],o)
-q=A.h([A.Be(m,!0,!1,m,m,q.gahp(),!1,m,B.SV,B.SW),n.gakJ(),A.Be(m,!0,!1,m,m,q.gaiP(),!1,m,B.SR,B.Gi),new A.Yn(B.SS,"io.github.ccxxxi.ecnu_timetable@0.7.1+10",B.H8,$.bcw.bN(),m)],o)
+q=A.h([A.Be(m,!0,!1,m,m,q.gahp(),!1,m,B.SW,B.ST),n.gakJ(),A.Be(m,!0,!1,m,m,q.gaiP(),!1,m,B.SR,B.Gi),new A.Yn(B.SS,"io.github.ccxxxi.ecnu_timetable@0.7.2+11",B.H8,$.bcw.bN(),m)],o)
 p=$.bgK()
 $.aRM()
 return A.c5(new A.e4(B.ys,A.Qa(A.h([l,B.hf,new A.Er("\u4e3b\u9898",r,m),new A.Er("\u6742\u9879",s,m),new A.Er("\u5173\u4e8e",q,m),B.hf,A.Be(m,!0,!1,B.GT,m,m,!1,m,A.bdO(p.kB(23)),m)],o),m,m,m,!1),m),m,m)},
@@ -47641,7 +47641,7 @@ $S:640}
 A.aLT.prototype={
 $1(a){a.a="https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191"
 a.ry=!0
-a.db="io.github.ccxxxi.ecnu_timetable@0.7.1+10"},
+a.db="io.github.ccxxxi.ecnu_timetable@0.7.2+11"},
 $S:646}
 A.aLU.prototype={
 $0(){if($.J==null)A.aAZ()
@@ -91755,7 +91755,7 @@ B.H7=new A.JL(2,"repeatY")
 B.cK=new A.JL(3,"noRepeat")
 B.y8=new A.Fn("assets/images/app_icon.png",null,null)
 B.NC=new A.RN(B.y8,42,null)
-B.H8=new A.B3(B.NC,null,null,null,null,B.C,!1,null)
+B.H8=new A.B3(B.NC,42,null,null,null,B.C,!1,null)
 B.SX=new A.ej("\u5df2\u9009",null,null,null,null,null,null,null,null)
 B.H9=new A.Gg(null,B.SX,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,!1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,!0,null,null,null)
 B.T0=new A.ej("\u4e0a\u9650",null,null,null,null,null,null,null,null)
@@ -93754,11 +93754,11 @@ B.SP=new A.a6l(1,"longestLine")
 B.SQ=new A.ej("\u5f00\u53d1\u8005\u9009\u9879",null,null,null,null,null,null,null,null)
 B.SR=new A.ej("\u53cd\u9988",null,null,null,null,null,null,null,null)
 B.SS=new A.ej("\u8bb8\u53ef\u534f\u8bae",null,null,null,null,null,null,null,null)
+B.ST=new A.ej("0.7.2",null,null,null,null,null,null,null,null)
 B.Rv=new A.G(!0,null,null,"NotoSerifSC",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ST=new A.ej("\u6c42\u5b9e\u521b\u9020 \u4e3a\u4eba\u5e08\u8868",null,B.Rv,null,null,null,null,null,null)
-B.SU=new A.ej("Trivia",null,null,null,null,null,null,null,null)
-B.SV=new A.ej("\u5f53\u524d\u7248\u672c",null,null,null,null,null,null,null,null)
-B.SW=new A.ej("0.7.1",null,null,null,null,null,null,null,null)
+B.SU=new A.ej("\u6c42\u5b9e\u521b\u9020 \u4e3a\u4eba\u5e08\u8868",null,B.Rv,null,null,null,null,null,null)
+B.SV=new A.ej("Trivia",null,null,null,null,null,null,null,null)
+B.SW=new A.ej("\u5f53\u524d\u7248\u672c",null,null,null,null,null,null,null,null)
 B.SY=new A.ej("\u6700\u65b0\u7248\u672c",null,null,null,null,null,null,null,null)
 B.SZ=new A.ej("\u70b9\u51fb\u4ee5\u767b\u5f55",null,null,null,null,null,null,null,null)
 B.T_=new A.ej("\u65e0\u540d\u8005",null,null,null,null,null,null,null,null)
