@@ -24,7 +24,7 @@ class SettingsLogic extends GetxController {
   final latestVer = Rx<String?>(null);
 
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
     updateVerInfo();
   }
@@ -37,7 +37,8 @@ class SettingsLogic extends GetxController {
     }
   }
 
-  bool get updateAvailable => latestVer.value != version;
+  bool get updateAvailable =>
+      latestVer.value != null && latestVer.value != version;
 
   /// Get latest release version from GitHub.
   Future<String?> _getLatestVer() async {
@@ -53,14 +54,13 @@ class SettingsLogic extends GetxController {
     }
   }
 
-  static String _getVerUrl(String v) =>
-      'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v$v';
+  static const _repoUrl = 'https://github.com/CCXXXI/ecnu_timetable';
 
-  Future<void> curVerOnTap() async => await launch(_getVerUrl(version));
+  static String _getVerUrl(String v) => '$_repoUrl/releases/tag/v$v';
 
-  Future<void> latestVerOnTap() async =>
-      await launch(_getVerUrl(latestVer.value!));
+  void curVerOnTap() => launch(_getVerUrl(version));
 
-  Future<void> feedbackOnTap() async =>
-      await launch('https://github.com/CCXXXI/ecnu_timetable/issues');
+  void latestVerOnTap() => launch('$_repoUrl/releases/latest');
+
+  void feedbackOnTap() => launch('$_repoUrl/issues');
 }

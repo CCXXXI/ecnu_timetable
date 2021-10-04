@@ -17,17 +17,22 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        user,
-        const Divider(),
-        SettingsGroup(title: '主题', children: [dark, font, color]),
-        SettingsGroup(title: '杂项', children: [launchPage]),
-        SettingsGroup(
-            title: '关于', children: [curVer, latestVer, feedback, licenses]),
-        const Divider(),
-        trivia,
-      ],
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: ListView(
+          children: [
+            user,
+            const Divider(),
+            SettingsGroup(title: '主题', children: [dark, font, color]),
+            SettingsGroup(title: '杂项', children: [launchPage]),
+            SettingsGroup(
+                title: '关于', children: [curVer, latestVer, feedback, licenses]),
+            const Divider(),
+            trivia,
+          ],
+        ),
+      ),
     );
   }
 
@@ -123,15 +128,13 @@ class SettingsPage extends StatelessWidget {
                       logic.updateAvailable
                           ? Icons.new_releases_outlined
                           : Icons.check,
-                      size: 20,
+                      size: 16,
                     ),
-                    padding: EdgeInsets.zero,
                     badgeColor:
-                        logic.updateAvailable ? Colors.red : Colors.green,
-                    position: BadgePosition.topEnd(top: -16, end: -16),
+                        logic.updateAvailable ? ecnuColor : Colors.green,
+                    position: BadgePosition.topStart(top: -4, start: -32),
                   ),
         onTap: logic.latestVerOnTap,
-        enabled: logic.latestVer.value?.isNotEmpty ?? false,
       ));
 
   Widget get feedback => ListTile(
@@ -142,8 +145,10 @@ class SettingsPage extends StatelessWidget {
 
   Widget get licenses => AboutListTile(
         applicationIcon: const Image(
-          image: AssetImage('assets/images/app_icon.png'),
-          height: 42,
+          image: ResizeImage(
+            AssetImage('assets/images/app_icon.png'),
+            width: 42,
+          ),
         ),
         applicationLegalese: license,
         applicationVersion: release,

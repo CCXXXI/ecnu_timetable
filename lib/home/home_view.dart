@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
                 '求实创造 为人师表',
                 style: TextStyle(fontFamily: notoSerif),
               ),
-              leading: ecnuButton(),
+              leading: ecnuButton,
             )
           : null,
       body: Row(
@@ -40,8 +40,11 @@ class HomePage extends StatelessWidget {
                       icon: _labelIcons[i].icon,
                     ),
                 ],
-                selectedIconTheme: IconTheme.of(context),
-                leading: ecnuButton(),
+                selectedIconTheme:
+                    IconTheme.of(context).copyWith(color: Colors.white),
+                unselectedIconTheme: IconTheme.of(context)
+                    .copyWith(color: Colors.white, opacity: .5),
+                leading: ecnuButton,
               );
             }),
           Expanded(
@@ -84,10 +87,16 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget ecnuButton() => GestureDetector(
+  Widget get ecnuButton => GestureDetector(
         child: IconButton(
           iconSize: 42,
-          icon: const ImageIcon(AssetImage('assets/images/ecnu_c.png')),
+          icon: const ImageIcon(
+            ResizeImage(
+              AssetImage('assets/images/ecnu_c.png'),
+              width: 42,
+            ),
+          ),
+          color: Colors.white,
           onPressed: () {},
         ),
         onLongPress: logic.ecnuLongPress,
