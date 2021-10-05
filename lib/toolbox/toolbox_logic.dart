@@ -102,7 +102,7 @@ class ToolboxLogic extends GetxController {
 
   void juanOnTap() {
     Get.defaultDialog(
-      title: 'ceil(5 * (2 * a / b - 1) * log(a - b + 1))',
+      title: 'ceil(5*(2*a/b-1)*log(a-b+1))',
       content: JuanWidget(),
     );
   }
