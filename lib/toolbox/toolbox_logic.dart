@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../utils/dio.dart';
 import '../utils/logger.dart';
 import '../utils/messages.dart';
 import 'cheater.dart';
@@ -41,7 +41,7 @@ class ToolboxLogic extends GetxController {
 
     final _r = Random().nextBool();
     try {
-      final r = await Dio().get(
+      final r = await dio.get(
         _r
             ? 'https://api.vience.cn/api/tiangou'
             : 'http://api.ay15.cn/api/tiangou/api.php',

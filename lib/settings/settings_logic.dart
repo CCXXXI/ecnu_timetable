@@ -1,8 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../utils/dio.dart';
 import '../utils/gu.dart';
 import '../utils/logger.dart';
 import '../utils/messages.dart';
@@ -43,7 +43,7 @@ class SettingsLogic extends GetxController {
   /// Get latest release version from GitHub.
   Future<String?> _getLatestVer() async {
     try {
-      final r = await Dio().get(
+      final r = await dio.get(
         'https://api.github.com/repos/ccxxxi/ecnu_timetable/releases',
         queryParameters: {'per_page': 1},
       );
