@@ -27,7 +27,12 @@ class SettingsPage extends StatelessWidget {
             SettingsGroup(title: '主题', children: [dark, font, color]),
             SettingsGroup(title: '杂项', children: [launchPage]),
             SettingsGroup(
-                title: '关于', children: [curVer, latestVer, feedback, licenses]),
+              title: '关于',
+              children: ListTile.divideTiles(
+                context: context,
+                tiles: [curVer, latestVer, feedback, licenses],
+              ).toList(),
+            ),
             const Divider(),
             trivia,
           ],
