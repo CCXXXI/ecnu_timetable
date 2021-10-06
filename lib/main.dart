@@ -11,7 +11,7 @@ import 'utils/messages.dart';
 import 'utils/sentry.dart';
 
 void main() async {
-  Loggy.initLoggy(logPrinter: const PrettyPrinter());
+  Loggy.initLoggy(logPrinter: const PrettyPrinter(showColors: true));
   await Settings.init();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
   await initMessages();
