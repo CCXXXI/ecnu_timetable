@@ -82,7 +82,7 @@ class ToolboxPage extends StatelessWidget {
             FontAwesomeIcons.key,
             '学校VPN'.s,
             '对校外网站有减速作用',
-            onTap: logic.l('http://www.lib.ecnu.edu.cn/427/list.htm'),
+            onTap: logic.l('https://docs.ecnu.edu.cn/index/Network/vpn.html'),
           ),
         ],
       );
