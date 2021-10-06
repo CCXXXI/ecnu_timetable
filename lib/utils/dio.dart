@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
+import 'package:loggy/loggy.dart';
 
 final dio = Dio()
   ..interceptors.add(LoggyDioInterceptor(
@@ -8,4 +9,5 @@ final dio = Dio()
     responseHeader: true,
     responseBody: true,
     error: true,
+    requestLevel: LogLevel.debug,
   ));
