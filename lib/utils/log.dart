@@ -1,8 +1,9 @@
+import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:loggy/loggy.dart';
 
 void initLog() => Loggy.initLoggy(
-      logPrinter: const PrettyPrinter(showColors: true),
+      logPrinter: StreamPrinter(const PrettyPrinter(showColors: true)),
       logOptions: LogOptions(
         LogLevel.values[Settings.getValue('log.level', 0)],
         stackTraceLevel:

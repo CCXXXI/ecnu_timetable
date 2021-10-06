@@ -60,13 +60,18 @@ class DevPage extends StatelessWidget {
                 settingKey: 'log.includeCallerInfo',
                 onChange: logic.updateLog,
               ),
+              ListTile(
+                title: const Text('log'),
+                onTap: logic.logOnTap,
+              ),
+              const Divider(),
             ],
           ),
           SettingsGroup(
             title: '杂项',
             children: [
               ListTile(
-                title: const Text('Trivia'),
+                title: const Text('trivia'),
                 onTap: logic.triviaOnTap,
               ),
             ],
