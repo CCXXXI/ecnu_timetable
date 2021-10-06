@@ -31,8 +31,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void initLoggy() =>
-    Loggy.initLoggy(logPrinter: const PrettyPrinter(showColors: true));
+void initLoggy() => Loggy.initLoggy(
+      logPrinter: const PrettyPrinter(showColors: true),
+      logOptions: const LogOptions(LogLevel.info),
+    );
 
 void initDesktop() {
   logDebug('initDesktop begin.');
