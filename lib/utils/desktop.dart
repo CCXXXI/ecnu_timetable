@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:loggy/loggy.dart';
 import 'package:window_size/window_size.dart';
 
-import 'logger.dart';
 import 'messages.dart';
 
 void initDesktop() {
-  logger.d('initDesktop begin.');
+  logDebug('initDesktop begin.');
 
-  logger.d('ensureInitialized');
+  logDebug('ensureInitialized');
   WidgetsFlutterBinding.ensureInitialized();
 
-  logger.d('setWindowTitle');
+  logDebug('setWindowTitle');
   setWindowTitle(appName);
 
-  logger.d('setWindowMinSize');
+  logDebug('setWindowMinSize');
   setWindowMinSize(const Size(300, 400));
 
-  logger.i('initDesktop end.');
+  logInfo('initDesktop end.');
 }

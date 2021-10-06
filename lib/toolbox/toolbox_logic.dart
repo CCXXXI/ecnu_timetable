@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
+import 'package:loggy/loggy.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/dio.dart';
-import '../utils/logger.dart';
 import '../utils/messages.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
@@ -48,7 +48,7 @@ class ToolboxLogic extends GetxController {
       );
       return r.data;
     } catch (e) {
-      logger.e(e);
+      logError(e.toString());
       Get.snackbar('获取舔狗语录失败', e.toString());
     }
   }

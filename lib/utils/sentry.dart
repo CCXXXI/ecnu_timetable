@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
+import 'package:loggy/loggy.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'logger.dart';
 import 'messages.dart';
 
 Future<void> initSentry(Widget app) async {
   final id = Settings.getValue('id', null);
   final username = Settings.getValue('username', null);
-  logger.i('id: $id, username: $username');
-  logger.i('release: $release');
+  logInfo('id: $id, username: $username');
+  logInfo('release: $release');
 
   Sentry.configureScope(
     (scope) => scope.user =

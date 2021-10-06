@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
+import 'package:loggy/loggy.dart';
 
 import '../dev/dev_view.dart';
-import '../utils/logger.dart';
 
 class HomeLogic extends GetxController {
   final idx = Settings.getValue('launchPage', 1).obs;
@@ -20,7 +20,7 @@ class HomeLogic extends GetxController {
     idx.value = idx_;
 
     if (animate) {
-      logger.d('animateToPage $idx_ begin.');
+      logDebug('animateToPage $idx_ begin.');
       isAnimating.value = true;
 
       await _pageController.animateToPage(
@@ -30,7 +30,7 @@ class HomeLogic extends GetxController {
       );
 
       isAnimating.value = false;
-      logger.d('animateToPage $idx_ end.');
+      logDebug('animateToPage $idx_ end.');
     } else {
       _pageController.jumpToPage(idx_);
     }

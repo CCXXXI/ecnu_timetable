@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:loggy/loggy.dart';
 
-import 'logger.dart';
 import 'pangu.dart';
 
 // package_info_plus cannot get real info on windows
@@ -20,9 +20,9 @@ extension PanGu on String {
     final res = spacingText(this);
 
     if (res != this) {
-      logger.i('"$this" -> "$res"');
+      logInfo('"$this" -> "$res"');
     } else {
-      logger.w('Unnecessary spacingText: "$this"');
+      logWarning('Unnecessary spacingText: "$this"');
     }
 
     return res;
