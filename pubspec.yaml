@@ -20,7 +20,7 @@ dependencies:
   sentry_flutter:
   bottom_navy_bar:
   font_awesome_flutter:
-  logger:
+  loggy:
   flutter_settings_screens: ">0.3.0"
   google_fonts:
   dio:
