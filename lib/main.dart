@@ -7,11 +7,11 @@ import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
 import 'settings/theme.dart';
-import 'utils/loggy.dart';
+import 'utils/log.dart';
 import 'utils/messages.dart';
 
 void main() async {
-  initLoggy();
+  initLog();
   await Settings.init();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
   await initMessages();

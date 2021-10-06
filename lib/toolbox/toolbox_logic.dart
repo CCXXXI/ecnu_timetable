@@ -3,16 +3,16 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
-import 'package:loggy/loggy.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/dio.dart';
+import '../utils/log.dart';
 import '../utils/messages.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
 
-class ToolboxLogic extends GetxController {
-  void Function() l(String url) => () => launch(url);
+class ToolboxLogic extends GetxController with L {
+  void Function() url(String url) => () => launch(url);
 
   @override
   void onInit() {
@@ -48,7 +48,7 @@ class ToolboxLogic extends GetxController {
       );
       return r.data;
     } catch (e) {
-      logError(e.toString());
+      l.error(e);
       Get.snackbar('获取舔狗语录失败', e.toString());
     }
   }

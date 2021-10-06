@@ -20,7 +20,7 @@ extension PanGu on String {
     final res = spacingText(this);
 
     if (res != this) {
-      logInfo('"$this" -> "$res"');
+      logDebug('"$this" -> "$res"');
     } else {
       logWarning('Unnecessary spacingText: "$this"');
     }

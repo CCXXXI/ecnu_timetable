@@ -1,14 +1,14 @@
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
-import 'package:loggy/loggy.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/dio.dart';
 import '../utils/gu.dart';
+import '../utils/log.dart';
 import '../utils/messages.dart';
 import 'theme.dart' as theme;
 
-class SettingsLogic extends GetxController {
+class SettingsLogic extends GetxController with L {
   bool get loggedIn => id != null;
 
   String? get id => Settings.getValue('id', null);
@@ -49,7 +49,7 @@ class SettingsLogic extends GetxController {
       );
       return (r.data[0]['name'] as String).substring(1);
     } catch (e) {
-      logError(e.toString());
+      l.error(e);
       Get.snackbar('获取最新版本失败', e.toString());
     }
   }
