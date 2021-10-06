@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
+import 'package:loggy/loggy.dart';
 
 import '../toolbox/toolbox_logic.dart';
 import 'dev_logic.dart';
@@ -38,6 +39,27 @@ class DevPage extends StatelessWidget {
             ],
           ),
           SettingsGroup(
+            title: '日志',
+            children: [
+              DropDownSettingsTile(
+                title: 'level',
+                settingKey: 'log.level',
+                selected: 0,
+                values: _logLevels,
+              ),
+              DropDownSettingsTile(
+                title: 'stackTraceLevel',
+                settingKey: 'log.stackTraceLevel',
+                selected: 5,
+                values: _logLevels,
+              ),
+              SwitchSettingsTile(
+                title: 'includeCallerInfo',
+                settingKey: 'log.includeCallerInfo',
+              ),
+            ],
+          ),
+          SettingsGroup(
             title: '杂项',
             children: [
               ListTile(
@@ -51,3 +73,8 @@ class DevPage extends StatelessWidget {
     );
   }
 }
+
+final _logLevels = {
+  for (var i = 0; i != LogLevel.values.length; ++i)
+    i: LogLevel.values[i].toString(),
+};

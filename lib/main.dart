@@ -11,8 +11,8 @@ import 'utils/log.dart';
 import 'utils/messages.dart';
 
 void main() async {
-  initLog();
   await Settings.init();
+  initLog();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
   await initMessages();
   await initSentry(const MyApp());
