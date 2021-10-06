@@ -29,6 +29,7 @@ dependencies:
   flutter_markdown:
   loggy:
   flutter_loggy:
+  flutter_loggy_dio:
 
 dev_dependencies:
   flutter_test:
