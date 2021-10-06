@@ -55,10 +55,8 @@ Future<void> initSentry(Widget app) async {
   logInfo('id: $id, username: $username');
   logInfo('release: $release');
 
-  Sentry.configureScope(
-    (scope) => scope.user =
-        SentryUser(id: id, username: username, ipAddress: '{{auto}}'),
-  );
+  Sentry.configureScope((scope) => scope.user =
+      SentryUser(id: id, username: username, ipAddress: '{{auto}}'));
 
   await SentryFlutter.init(
     (options) {
