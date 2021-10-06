@@ -7,6 +7,7 @@ import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
 import 'settings/theme.dart';
+import 'utils/loggy.dart';
 import 'utils/messages.dart';
 
 void main() async {
@@ -30,11 +31,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-void initLoggy() => Loggy.initLoggy(
-      logPrinter: const PrettyPrinter(showColors: true),
-      logOptions: const LogOptions(LogLevel.info),
-    );
 
 void initDesktop() {
   logDebug('initDesktop begin.');
