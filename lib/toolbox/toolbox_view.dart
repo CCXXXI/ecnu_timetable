@@ -61,9 +61,9 @@ class ToolboxPage extends StatelessWidget {
             onTap: logic.l('https://www.ecnu.edu.cn/tzgg.htm'),
           ),
           Tool(
-            FontAwesomeIcons.mapMarked,
-            '校内地图',
-            '2D/3D',
+            FontAwesomeIcons.map,
+            '中北3D地图'.s,
+            '云萦丽娃',
             onTap: logic.l('https://3dmap.ecnu.edu.cn/'),
           ),
           Tool(
