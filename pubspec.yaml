@@ -17,7 +17,7 @@ dependencies:
       url: git://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
   get:
-  sentry_flutter:
+  sentry_flutter: ">=6.1.0-alpha.2"
   bottom_navy_bar:
   font_awesome_flutter:
   flutter_settings_screens: ">0.3.0"
