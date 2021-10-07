@@ -1,14 +1,14 @@
 import 'package:flutter/services.dart';
+import 'package:loggy/loggy.dart';
 
-import 'logger.dart';
 import 'pangu.dart';
 
 // package_info_plus cannot get real info on windows
 // record them manually
 const appName = 'ECNU Timetable';
 const packageName = 'io.github.ccxxxi.ecnu_timetable';
-const version = '0.7.2';
-const buildNumber = '11';
+const version = '0.8.0';
+const buildNumber = '12';
 
 const release = '$packageName@$version+$buildNumber';
 
@@ -20,9 +20,9 @@ extension PanGu on String {
     final res = spacingText(this);
 
     if (res != this) {
-      logger.i('"$this" -> "$res"');
+      logDebug('"$this" -> "$res"');
     } else {
-      logger.w('Unnecessary spacingText: "$this"');
+      logDebug('Unnecessary spacingText: "$this"');
     }
 
     return res;

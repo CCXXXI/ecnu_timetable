@@ -1,18 +1,18 @@
 import 'dart:math';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/logger.dart';
+import '../utils/dio.dart';
+import '../utils/log.dart';
 import '../utils/messages.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
 
-class ToolboxLogic extends GetxController {
-  void Function() l(String url) => () => launch(url);
+class ToolboxLogic extends GetxController with L {
+  void Function() url(String url) => () => launch(url);
 
   @override
   void onInit() {
@@ -41,14 +41,14 @@ class ToolboxLogic extends GetxController {
 
     final _r = Random().nextBool();
     try {
-      final r = await Dio().get(
+      final r = await dio.get(
         _r
             ? 'https://api.vience.cn/api/tiangou'
             : 'http://api.ay15.cn/api/tiangou/api.php',
       );
-      return r.data;
+      return (r.data as String).s;
     } catch (e) {
-      logger.e(e);
+      l.error(e);
       Get.snackbar('获取舔狗语录失败', e.toString());
     }
   }
@@ -102,7 +102,7 @@ class ToolboxLogic extends GetxController {
 
   void juanOnTap() {
     Get.defaultDialog(
-      title: 'ceil(5 * (2 * a / b - 1) * log(a - b + 1))',
+      title: 'ceil(5*(2*a/b-1)*log(a-b+1))',
       content: JuanWidget(),
     );
   }

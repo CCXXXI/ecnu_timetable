@@ -27,7 +27,12 @@ class SettingsPage extends StatelessWidget {
             SettingsGroup(title: '主题', children: [dark, font, color]),
             SettingsGroup(title: '杂项', children: [launchPage]),
             SettingsGroup(
-                title: '关于', children: [curVer, latestVer, feedback, licenses]),
+              title: '关于',
+              children: ListTile.divideTiles(
+                context: context,
+                tiles: [curVer, latestVer, feedback, licenses],
+              ).toList(),
+            ),
             const Divider(),
             trivia,
           ],
@@ -57,7 +62,7 @@ class SettingsPage extends StatelessWidget {
 // region theme
   Widget get dark => DropDownSettingsTile(
         title: '深色模式',
-        settingKey: 'themeMode',
+        settingKey: 'theme.mode',
         values: {
           ThemeMode.system.index: '跟随系统',
           ThemeMode.dark.index: '开',
@@ -69,7 +74,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget get font => DropDownSettingsTile(
         title: '字体',
-        settingKey: 'font',
+        settingKey: 'theme.font',
         values: fonts,
         selected: notoSans,
         onChange: logic.updateTheme,
@@ -77,12 +82,12 @@ class SettingsPage extends StatelessWidget {
 
   Widget get color => SwitchSettingsTile(
         title: '自定义',
-        settingKey: 'overrideColor',
+        settingKey: 'theme.overrideColor',
         onChange: logic.updateTheme,
         childrenIfEnabled: [
           for (final c in ['primary', 'secondary', 'surface'])
             ColorPickerSettingsTile(
-              settingKey: 'color.$c',
+              settingKey: 'theme.color.$c',
               title: c,
               defaultValue: ecnuColor,
               onChange: logic.updateTheme,

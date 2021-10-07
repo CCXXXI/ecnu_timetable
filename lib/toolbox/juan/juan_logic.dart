@@ -1,28 +1,33 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class JuanLogic extends GetxController {
-  var _a = '';
-  var _b = '';
+  final formKey = GlobalKey<FormState>();
+  final controllerA = TextEditingController();
+  final controllerB = TextEditingController();
 
-  void aOnChanged(String s) {
-    _a = s;
-    r.value = _calc().toString();
+  @override
+  void onClose() {
+    super.onClose();
+    controllerA.dispose();
+    controllerB.dispose();
   }
 
-  void bOnChanged(String s) {
-    _b = s;
-    r.value = _calc().toString();
+  final r = 0.obs;
+
+  void updateR() {
+    if (!formKey.currentState!.validate()) return;
+
+    final a = int.parse(controllerA.text);
+    final b = int.parse(controllerB.text);
+    r.value = a <= b ? 0 : (5 * (2 * a / b - 1) * log(a - b + 1)).ceil();
   }
 
-  final r = null.toString().obs;
+  String? validatorA(String? value) =>
+      int.tryParse(value ?? '') == null ? 'invalid' : null;
 
-  int? _calc() {
-    final a = int.tryParse(_a);
-    final b = int.tryParse(_b);
-    if (a != null && b != null && b > 0) {
-      return a <= b ? 0 : (5 * (2 * a / b - 1) * log(a - b + 1)).ceil();
-    }
-  }
+  String? validatorB(String? value) =>
+      [null, 0].contains(int.tryParse(value ?? '')) ? 'invalid' : null;
 }

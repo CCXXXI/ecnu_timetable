@@ -4,7 +4,7 @@ description: 更美观更智能的ECNU课程表。
 # Prevent the package from being accidentally published to pub.dev.
 publish_to: "none"
 
-version: 0.7.2+11
+version: 0.8.0+12
 
 environment:
   sdk: ">=2.15.0-172.0.dev"
@@ -17,10 +17,9 @@ dependencies:
       url: git://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
   get:
-  sentry_flutter:
+  sentry_flutter: ">=6.1.0-alpha.2"
   bottom_navy_bar:
   font_awesome_flutter:
-  logger:
   flutter_settings_screens: ">0.3.0"
   google_fonts:
   dio:
@@ -28,6 +27,9 @@ dependencies:
   url_launcher:
   badges:
   flutter_markdown:
+  loggy:
+  flutter_loggy:
+  flutter_loggy_dio:
 
 dev_dependencies:
   flutter_test:

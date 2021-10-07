@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loggy/loggy.dart';
 
-import '../utils/logger.dart';
 import '../utils/messages.dart';
 
 // region colorScheme
@@ -11,15 +11,15 @@ const _ecnuColorStr = '#ffa41f35';
 final ecnuColor = ConversionUtils.colorFromString(_ecnuColorStr);
 
 ThemeMode get _themeMode =>
-    ThemeMode.values[Settings.getValue('themeMode', ThemeMode.system.index)];
+    ThemeMode.values[Settings.getValue('theme.mode', ThemeMode.system.index)];
 
 bool get _dark =>
     _themeMode == ThemeMode.dark ||
     _themeMode == ThemeMode.system && Get.isPlatformDarkMode;
 
-Color _c(String key) => Settings.getValue('overrideColor', false)
+Color _c(String key) => Settings.getValue('theme.overrideColor', false)
     ? ConversionUtils.colorFromString(
-        Settings.getValue('color.$key', _ecnuColorStr))
+        Settings.getValue('theme.color.$key', _ecnuColorStr))
     : ecnuColor;
 
 ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
@@ -49,20 +49,20 @@ const fonts = {'': '跟随系统', ..._localFonts, ..._googleFonts};
 TextTheme get _baseTextTheme =>
     (_dark ? ThemeData.dark : ThemeData.light)().textTheme;
 
-String get _font => Settings.getValue('font', notoSans);
+String get _font => Settings.getValue('theme.font', notoSans);
 
 TextTheme get _textTheme {
   if (_localFonts.containsKey(_font)) {
-    logger.i('_localFonts.containsKey($_font)');
+    logInfo('_localFonts.containsKey($_font)');
     return _baseTextTheme.apply(fontFamily: _font);
   }
 
   if (_googleFonts.containsKey(_font)) {
-    logger.i('_googleFonts.containsKey($_font)');
+    logInfo('_googleFonts.containsKey($_font)');
     return GoogleFonts.getTextTheme(_font, _baseTextTheme);
   }
 
-  logger.i('No font named "$_font", return _baseTextTheme.');
+  logInfo('No font named "$_font", return _baseTextTheme.');
   return _baseTextTheme;
 }
 // endregion

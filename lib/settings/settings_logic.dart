@@ -1,14 +1,14 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../utils/dio.dart';
 import '../utils/gu.dart';
-import '../utils/logger.dart';
+import '../utils/log.dart';
 import '../utils/messages.dart';
 import 'theme.dart' as theme;
 
-class SettingsLogic extends GetxController {
+class SettingsLogic extends GetxController with L {
   bool get loggedIn => id != null;
 
   String? get id => Settings.getValue('id', null);
@@ -43,13 +43,13 @@ class SettingsLogic extends GetxController {
   /// Get latest release version from GitHub.
   Future<String?> _getLatestVer() async {
     try {
-      final r = await Dio().get(
+      final r = await dio.get(
         'https://api.github.com/repos/ccxxxi/ecnu_timetable/releases',
         queryParameters: {'per_page': 1},
       );
       return (r.data[0]['name'] as String).substring(1);
     } catch (e) {
-      logger.e(e);
+      l.error(e);
       Get.snackbar('获取最新版本失败', e.toString());
     }
   }
