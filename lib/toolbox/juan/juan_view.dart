@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'juan_logic.dart';
@@ -11,19 +12,31 @@ class JuanWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: logic.formKey,
+      onChanged: logic.updateR,
       child: Row(
         children: [
           Expanded(
             child: TextFormField(
-              onChanged: logic.aOnChanged,
               decoration: const InputDecoration(label: Text('已选')),
+              controller: logic.controllerA,
+              validator: logic.validatorA,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
             ),
           ),
-          Expanded(child: Center(child: Obx(() => Text(logic.r.value)))),
+          Expanded(
+            child: Center(child: Obx(() => Text(logic.r.value.toString()))),
+          ),
           Expanded(
             child: TextFormField(
-              onChanged: logic.bOnChanged,
               decoration: const InputDecoration(label: Text('上限')),
+              controller: logic.controllerB,
+              validator: logic.validatorB,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
             ),
           ),
         ],
