@@ -5,7 +5,7 @@ import 'package:loggy/loggy.dart';
 void initLog() => Loggy.initLoggy(
       logPrinter: StreamPrinter(const PrettyPrinter(showColors: true)),
       logOptions: LogOptions(
-        LogLevel.values[Settings.getValue('log.level', 0)],
+        LogLevel.values[Settings.getValue('log.level', 2)],
         stackTraceLevel:
             LogLevel.values[Settings.getValue('log.stackTraceLevel', 5)],
         includeCallerInfo: Settings.getValue('log.includeCallerInfo', false),

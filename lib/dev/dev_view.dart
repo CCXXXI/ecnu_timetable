@@ -44,7 +44,7 @@ class DevPage extends StatelessWidget {
               DropDownSettingsTile(
                 title: 'level',
                 settingKey: 'log.level',
-                selected: 0,
+                selected: 2,
                 values: _logLevels,
                 onChange: logic.updateLog,
               ),
