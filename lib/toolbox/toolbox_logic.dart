@@ -46,7 +46,7 @@ class ToolboxLogic extends GetxController with L {
             ? 'https://api.vience.cn/api/tiangou'
             : 'http://api.ay15.cn/api/tiangou/api.php',
       );
-      return r.data;
+      return (r.data as String).s;
     } catch (e) {
       l.error(e);
       Get.snackbar('获取舔狗语录失败', e.toString());

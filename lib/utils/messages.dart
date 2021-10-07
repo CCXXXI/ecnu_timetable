@@ -22,7 +22,7 @@ extension PanGu on String {
     if (res != this) {
       logDebug('"$this" -> "$res"');
     } else {
-      logWarning('Unnecessary spacingText: "$this"');
+      logDebug('Unnecessary spacingText: "$this"');
     }
 
     return res;
