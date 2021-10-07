@@ -57,13 +57,12 @@ Future<void> initSentry(Widget app) async {
       SentryUser(id: id, username: username, ipAddress: '{{auto}}'));
 
   await SentryFlutter.init(
-    (options) {
-      options
-        ..dsn =
-            'https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191'
-        ..sendDefaultPii = true
-        ..release = release;
-    },
+    (options) => options
+      ..dsn =
+          'https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191'
+      ..tracesSampleRate = 1
+      ..sendDefaultPii = true
+      ..release = release,
     appRunner: () => runApp(app),
   );
 }
