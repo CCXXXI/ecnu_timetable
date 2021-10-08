@@ -1,3 +1,9 @@
 import 'package:get/get.dart';
 
-class TimetableMenuLogic extends GetxController {}
+import '../../utils/gu.dart';
+
+class TimetableMenuLogic extends GetxController {
+  void ecnuOnTap() => gu();
+
+  void htmlOnTap() => gu();
+}
