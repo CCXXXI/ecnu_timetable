@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                   () => Visibility(
                     visible: logic.idx.value == 1,
                     child: IconButton(
-                      onPressed: logic.editTimetable,
+                      onPressed: logic.modifyTimetable,
                       icon: _labelIconsAlt[1].icon,
                     ),
                   ),

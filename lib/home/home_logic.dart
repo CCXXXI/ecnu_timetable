@@ -39,7 +39,7 @@ class HomeLogic extends GetxController with L {
 
   void onDestinationSelected(int idx_) {
     var realIdx = idxMap[idx_];
-    if (realIdx == 1 && idx.value == 1) editTimetable();
+    if (realIdx == 1 && idx.value == 1) modifyTimetable();
     _toPage(realIdx, false);
   }
 
@@ -51,7 +51,7 @@ class HomeLogic extends GetxController with L {
     if (isAnimating.isFalse) idx.value = idx_;
   }
 
-  void editTimetable() => gu(); // todo
+  void modifyTimetable() => gu(); // todo
 
   final railExtended = false.obs;
 
