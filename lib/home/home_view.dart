@@ -144,7 +144,7 @@ final _labelIcons = [
 
 final _labelIconsAlt = [
   _labelIcons.first,
-  _LabelIcon('更新课程表', const FaIcon(FontAwesomeIcons.edit)),
+  _LabelIcon('课程表菜单', const FaIcon(FontAwesomeIcons.edit)),
   _labelIcons.last,
 ];
 
