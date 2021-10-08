@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../settings/settings_view.dart';
+import '../timetable/timetable_logic.dart';
 import '../timetable/timetable_view.dart';
 import '../toolbox/toolbox_view.dart';
 import '../utils/messages.dart';
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
                   () => Visibility(
                     visible: logic.idx.value == 1,
                     child: IconButton(
-                      onPressed: logic.modifyTimetable,
+                      onPressed: TimetableLogic.openMenu,
                       icon: _labelIconsAlt[1].icon,
                     ),
                   ),
@@ -144,7 +145,7 @@ final _labelIcons = [
 
 final _labelIconsAlt = [
   _labelIcons.first,
-  _LabelIcon('课程表菜单', const FaIcon(FontAwesomeIcons.edit)),
+  _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.edit)),
   _labelIcons.last,
 ];
 

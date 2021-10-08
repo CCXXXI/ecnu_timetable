@@ -10,6 +10,11 @@ class TimetablePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(color: Colors.green);
+    if (true) {
+      return const TextButton(
+        onPressed: TimetableLogic.openMenu,
+        child: Text('NO DATA'),
+      );
+    }
   }
 }
