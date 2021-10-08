@@ -23,7 +23,9 @@ class HomePage extends StatelessWidget {
                 '求实创造 为人师表',
                 style: TextStyle(fontFamily: notoSerif),
               ),
-              leading: ecnuButton,
+              leading: ecnuButton(Get.theme.colorScheme.onPrimary),
+              backgroundColor: Get.theme.colorScheme.primary,
+              foregroundColor: Get.theme.colorScheme.onPrimary,
             )
           : null,
       body: Row(
@@ -40,11 +42,14 @@ class HomePage extends StatelessWidget {
                       icon: _labelIcons[i].icon,
                     ),
                 ],
-                selectedIconTheme:
-                    IconTheme.of(context).copyWith(color: Colors.white),
-                unselectedIconTheme: IconTheme.of(context)
-                    .copyWith(color: Colors.white, opacity: .5),
-                leading: ecnuButton,
+                selectedIconTheme: IconTheme.of(context).copyWith(
+                  color: Get.theme.colorScheme.onSurface,
+                ),
+                unselectedIconTheme: IconTheme.of(context).copyWith(
+                  color: Get.theme.colorScheme.onSurface,
+                  opacity: .5,
+                ),
+                leading: ecnuButton(Get.theme.colorScheme.onSurface),
               );
             }),
           Expanded(
@@ -78,7 +83,7 @@ class HomePage extends StatelessWidget {
                     BottomNavyBarItem(
                       title: labelIcon.label,
                       icon: labelIcon.icon,
-                      activeColor: Colors.white,
+                      activeColor: Get.theme.colorScheme.onSurface,
                     ),
                 ],
               );
@@ -87,7 +92,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget get ecnuButton => GestureDetector(
+  Widget ecnuButton(Color color) => GestureDetector(
         child: IconButton(
           iconSize: 42,
           icon: const ImageIcon(
@@ -96,7 +101,7 @@ class HomePage extends StatelessWidget {
               width: 42,
             ),
           ),
-          color: Colors.white,
+          color: color,
           onPressed: () {},
         ),
         onLongPress: logic.ecnuLongPress,

@@ -22,10 +22,16 @@ Color _c(String key) => Settings.getValue('theme.overrideColor', false)
         Settings.getValue('theme.color.$key', _ecnuColorStr))
     : ecnuColor;
 
+Color _on(Color color) =>
+    color.computeLuminance() > .5 ? Colors.black : Colors.white;
+
 ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
       primary: _c('primary'),
       secondary: _c('secondary'),
       surface: _c('surface'),
+      onPrimary: _on(_c('primary')),
+      onSecondary: _on(_c('secondary')),
+      onSurface: _on(_c('surface')),
     );
 // endregion
 
