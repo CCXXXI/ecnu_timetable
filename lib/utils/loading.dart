@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -46,17 +45,15 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: logic.onPressed,
-      icon: FittedBox(child: Obx(() => _kits[logic.i.value]())),
+      icon: FittedBox(
+        child: GetBuilder<LoadingLogic>(
+          builder: (_) => randomChoice(_kits)(),
+        ),
+      ),
     );
   }
 }
 
 class LoadingLogic extends GetxController {
-  static final _r = Random();
-
-  static int get _i => _r.nextInt(_kits.length);
-
-  final i = _i.obs;
-
-  void onPressed() => i.value = _i;
+  void onPressed() => update();
 }

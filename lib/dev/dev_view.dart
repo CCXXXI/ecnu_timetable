@@ -74,6 +74,18 @@ class DevPage extends StatelessWidget {
                 title: const Text('trivia'),
                 onTap: logic.triviaOnTap,
               ),
+              ListTile(
+                title: const Text('cheater'),
+                onTap: logic.cheaterOnTap,
+              ),
+              ListTile(
+                title: const Text('gu'),
+                onTap: logic.guOnTap,
+              ),
+              ListTile(
+                title: const Text('loading'),
+                onTap: logic.loadingOnTap,
+              ),
             ],
           ),
         ],

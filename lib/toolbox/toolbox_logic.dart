@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
@@ -36,16 +35,16 @@ class ToolboxLogic extends GetxController with L {
     sucker.value = await _getSucker() ?? '获取失败';
   }
 
+  static const _suckerApis = [
+    'https://api.vience.cn/api/tiangou',
+    'http://api.ay15.cn/api/tiangou/api.php',
+  ];
+
   Future<String?> _getSucker() async {
     if (GetPlatform.isWeb) return 'Web端不可用'.s;
 
-    final _r = Random().nextBool();
     try {
-      final r = await dio.get(
-        _r
-            ? 'https://api.vience.cn/api/tiangou'
-            : 'http://api.ay15.cn/api/tiangou/api.php',
-      );
+      final r = await dio.get(randomChoice(_suckerApis));
       return (r.data as String).s;
     } catch (e) {
       l.error(e);
@@ -100,11 +99,9 @@ class ToolboxLogic extends GetxController with L {
 
   updateJuanEnabled(bool v) => juanEnabled.value = v;
 
-  void juanOnTap() {
-    Get.defaultDialog(
-      title: 'ceil(5*(2*a/b-1)*log(a-b+1))',
-      content: JuanWidget(),
-    );
-  }
+  void juanOnTap() => Get.defaultDialog(
+        title: 'ceil(5*(2*a/b-1)*log(a-b+1))',
+        content: JuanWidget(),
+      );
 // endregion
 }
