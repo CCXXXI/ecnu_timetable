@@ -18,7 +18,8 @@ final _triviaStr = [
   '由于某人不喜欢苹果严格的审核机制，此应用没有macOS或iOS版本。'.s,
   '由于构建过程比较痛苦，此应用没有Linux版本。'.s,
   '虽然一些字体会在用到时从Google Fonts下载，但考虑到部分用户的网络环境，常用字体文件直接打包进了应用。'.s,
-  r'Windows的配置文件位于`%AppData%\io.github.ccxxxi\ecnu_timetable`。'.s,
+  r'Windows的配置文件位于`%AppData%\io.github.ccxxxi\ecnu_timetable\shared_preferences.json`。'
+      .s,
   '竖屏状态下，上方校训的字体固定为思源宋体，不会受字体设置影响。',
   '最新版本信息需要从GitHub获取，在某些网络环境下可能会失败。'.s,
   '此应用为开源项目，使用MIT许可协议。'.s,

@@ -86,6 +86,14 @@ class DevPage extends StatelessWidget {
                 title: const Text('loading'),
                 onTap: logic.loadingOnTap,
               ),
+              Obx(
+                () => ListTile(
+                  title: const Text('shared_preferences.json'),
+                  subtitle: Text(logic.jsonFile.value),
+                  enabled: logic.jsonFile.value.isNotEmpty,
+                  onTap: logic.jsonOnTap,
+                ),
+              ),
             ],
           ),
         ],
