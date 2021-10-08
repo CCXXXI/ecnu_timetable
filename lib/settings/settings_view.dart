@@ -44,14 +44,14 @@ class SettingsPage extends StatelessWidget {
 // region user
   Widget get user => logic.loggedIn
       ? ListTile(
-          leading: const Icon(Icons.person),
-          trailing: const Icon(Icons.logout),
+          leading: const FaIcon(FontAwesomeIcons.user),
+          trailing: const FaIcon(FontAwesomeIcons.signOutAlt),
           title: Text(logic.username!),
           subtitle: Text(logic.id!),
         )
       : ListTile(
           leading: const FaIcon(FontAwesomeIcons.userSecret),
-          trailing: const Icon(Icons.login),
+          trailing: const FaIcon(FontAwesomeIcons.signInAlt),
           title: const Text('无名者'),
           subtitle: const Text('点击以登录'),
           onTap: logic.login,
@@ -125,14 +125,14 @@ class SettingsPage extends StatelessWidget {
             : logic.latestVer.value!.isEmpty
                 ? IconButton(
                     onPressed: logic.updateVerInfo,
-                    icon: const Icon(Icons.refresh),
+                    icon: const FaIcon(FontAwesomeIcons.redo),
                   )
                 : Badge(
                     child: Text(logic.latestVer.value!),
-                    badgeContent: Icon(
+                    badgeContent: FaIcon(
                       logic.updateAvailable
-                          ? Icons.new_releases_outlined
-                          : Icons.check,
+                          ? FontAwesomeIcons.exclamation
+                          : FontAwesomeIcons.check,
                       size: 16,
                     ),
                     badgeColor:
@@ -164,7 +164,7 @@ class SettingsPage extends StatelessWidget {
 // endregion
 
   Widget get trivia => ListTile(
-        leading: const Icon(Icons.lightbulb),
+        leading: const FaIcon(FontAwesomeIcons.lightbulb),
         title: randomTrivia,
       );
 }

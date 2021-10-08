@@ -138,8 +138,8 @@ class _LabelIcon {
 
 final _labelIcons = [
   _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
-  _LabelIcon('课程表', const Icon(Icons.calendar_view_month)),
-  _LabelIcon('设置', const Icon(Icons.settings)),
+  _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.th)),
+  _LabelIcon('设置', const FaIcon(FontAwesomeIcons.cog)),
 ];
 
 final _labelIconsAlt = [
