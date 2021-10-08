@@ -46,9 +46,13 @@ class HomeLogic extends GetxController with L {
     if (isAnimating.isFalse) idx.value = idx_;
   }
 
+  final railExtended = false.obs;
+
   void ecnuLongPress() => Get.to(() => DevPage());
+
+  void ecnuOnPressed() => railExtended.toggle();
 }
 
-// NavigationRail: Timetable, Toolbox, Settings
 // actual: Toolbox, Timetable, Settings
+// NavigationRail: Timetable, Toolbox, Settings
 final idxMap = [1, 0, 2];

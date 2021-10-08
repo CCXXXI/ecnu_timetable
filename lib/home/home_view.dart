@@ -31,8 +31,8 @@ class HomePage extends StatelessWidget {
       body: Row(
         children: [
           if (context.isLandscape)
-            Obx(() {
-              return NavigationRail(
+            Obx(
+              () => NavigationRail(
                 selectedIndex: idxMap[logic.idx.value],
                 onDestinationSelected: logic.onDestinationSelected,
                 destinations: [
@@ -45,13 +45,16 @@ class HomePage extends StatelessWidget {
                 selectedIconTheme: IconTheme.of(context).copyWith(
                   color: Get.theme.colorScheme.onSurface,
                 ),
-                unselectedIconTheme: IconTheme.of(context).copyWith(
+                selectedLabelTextStyle: TextStyle(
                   color: Get.theme.colorScheme.onSurface,
-                  opacity: .5,
                 ),
-                leading: ecnuButton(Get.theme.colorScheme.onSurface),
-              );
-            }),
+                extended: logic.railExtended.value,
+                leading: ecnuButton(
+                  Get.theme.colorScheme.onSurface,
+                  onPressed: logic.ecnuOnPressed,
+                ),
+              ),
+            ),
           Expanded(
             child: context.isPortrait
                 ? Obx(() {
@@ -92,7 +95,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget ecnuButton(Color color) => GestureDetector(
+  Widget ecnuButton(Color color, {void Function()? onPressed}) =>
+      GestureDetector(
         child: IconButton(
           iconSize: 42,
           icon: const ImageIcon(
@@ -102,7 +106,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           color: color,
-          onPressed: () {},
+          onPressed: onPressed ?? () {},
         ),
         onLongPress: logic.ecnuLongPress,
       );
