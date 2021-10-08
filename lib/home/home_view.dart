@@ -24,6 +24,17 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontFamily: notoSerif),
               ),
               leading: ecnuButton(Get.theme.colorScheme.onPrimary),
+              actions: [
+                Obx(
+                  () => Visibility(
+                    visible: logic.idx.value == 1,
+                    child: IconButton(
+                      onPressed: logic.editTimetable,
+                      icon: _labelIconsAlt[1].icon,
+                    ),
+                  ),
+                ),
+              ],
               backgroundColor: Get.theme.colorScheme.primary,
               foregroundColor: Get.theme.colorScheme.onPrimary,
             )
@@ -38,8 +49,14 @@ class HomePage extends StatelessWidget {
                 destinations: [
                   for (final i in idxMap)
                     NavigationRailDestination(
-                      label: _labelIcons[i].label,
-                      icon: _labelIcons[i].icon,
+                      label: (logic.idx.value == 1
+                              ? _labelIconsAlt
+                              : _labelIcons)[i]
+                          .label,
+                      icon: (logic.idx.value == 1
+                              ? _labelIconsAlt
+                              : _labelIcons)[i]
+                          .icon,
                     ),
                 ],
                 selectedIconTheme: IconTheme.of(context).copyWith(
@@ -123,6 +140,12 @@ final _labelIcons = [
   _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
   _LabelIcon('课程表', const Icon(Icons.calendar_view_month)),
   _LabelIcon('设置', const Icon(Icons.settings)),
+];
+
+final _labelIconsAlt = [
+  _labelIcons.first,
+  _LabelIcon('更新课程表', const FaIcon(FontAwesomeIcons.edit)),
+  _labelIcons.last,
 ];
 
 final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];
