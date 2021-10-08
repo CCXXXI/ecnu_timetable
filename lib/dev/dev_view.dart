@@ -91,7 +91,11 @@ class DevPage extends StatelessWidget {
                 Obx(
                   () => ListTile(
                     title: const Text('shared_preferences.json'),
-                    subtitle: Text(logic.jsonFile.value),
+                    subtitle: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Text(logic.jsonFile.value),
+                    ),
                     enabled: logic.jsonFile.value.isNotEmpty,
                     onTap: logic.jsonOnTap,
                   ),
