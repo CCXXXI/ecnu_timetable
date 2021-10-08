@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../settings/settings_view.dart';
+import '../timetable/timetable_logic.dart';
 import '../timetable/timetable_view.dart';
 import '../toolbox/toolbox_view.dart';
 import '../utils/messages.dart';
@@ -23,30 +24,55 @@ class HomePage extends StatelessWidget {
                 '求实创造 为人师表',
                 style: TextStyle(fontFamily: notoSerif),
               ),
-              leading: ecnuButton,
+              leading: ecnuButton(Get.theme.colorScheme.onPrimary),
+              actions: [
+                Obx(
+                  () => Visibility(
+                    visible: logic.idx.value == 1,
+                    child: IconButton(
+                      onPressed: TimetableLogic.openMenu,
+                      icon: _labelIconsAlt[1].icon,
+                    ),
+                  ),
+                ),
+              ],
+              backgroundColor: Get.theme.colorScheme.primary,
+              foregroundColor: Get.theme.colorScheme.onPrimary,
             )
           : null,
       body: Row(
         children: [
           if (context.isLandscape)
-            Obx(() {
-              return NavigationRail(
+            Obx(
+              () => NavigationRail(
                 selectedIndex: idxMap[logic.idx.value],
                 onDestinationSelected: logic.onDestinationSelected,
                 destinations: [
                   for (final i in idxMap)
                     NavigationRailDestination(
-                      label: _labelIcons[i].label,
-                      icon: _labelIcons[i].icon,
+                      label: (logic.idx.value == 1
+                              ? _labelIconsAlt
+                              : _labelIcons)[i]
+                          .label,
+                      icon: (logic.idx.value == 1
+                              ? _labelIconsAlt
+                              : _labelIcons)[i]
+                          .icon,
                     ),
                 ],
-                selectedIconTheme:
-                    IconTheme.of(context).copyWith(color: Colors.white),
-                unselectedIconTheme: IconTheme.of(context)
-                    .copyWith(color: Colors.white, opacity: .5),
-                leading: ecnuButton,
-              );
-            }),
+                selectedIconTheme: IconTheme.of(context).copyWith(
+                  color: Get.theme.colorScheme.onSurface,
+                ),
+                selectedLabelTextStyle: TextStyle(
+                  color: Get.theme.colorScheme.onSurface,
+                ),
+                extended: logic.railExtended.value,
+                leading: ecnuButton(
+                  Get.theme.colorScheme.onSurface,
+                  onPressed: logic.ecnuOnPressed,
+                ),
+              ),
+            ),
           Expanded(
             child: context.isPortrait
                 ? Obx(() {
@@ -78,7 +104,7 @@ class HomePage extends StatelessWidget {
                     BottomNavyBarItem(
                       title: labelIcon.label,
                       icon: labelIcon.icon,
-                      activeColor: Colors.white,
+                      activeColor: Get.theme.colorScheme.onSurface,
                     ),
                 ],
               );
@@ -87,7 +113,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget get ecnuButton => GestureDetector(
+  Widget ecnuButton(Color color, {void Function()? onPressed}) =>
+      GestureDetector(
         child: IconButton(
           iconSize: 42,
           icon: const ImageIcon(
@@ -96,8 +123,8 @@ class HomePage extends StatelessWidget {
               width: 42,
             ),
           ),
-          color: Colors.white,
-          onPressed: () {},
+          color: color,
+          onPressed: onPressed ?? () {},
         ),
         onLongPress: logic.ecnuLongPress,
       );
@@ -112,8 +139,14 @@ class _LabelIcon {
 
 final _labelIcons = [
   _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
-  _LabelIcon('课程表', const Icon(Icons.calendar_view_month)),
-  _LabelIcon('设置', const Icon(Icons.settings)),
+  _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.th)),
+  _LabelIcon('设置', const FaIcon(FontAwesomeIcons.cog)),
+];
+
+final _labelIconsAlt = [
+  _labelIcons.first,
+  _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.edit)),
+  _labelIcons.last,
 ];
 
 final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];

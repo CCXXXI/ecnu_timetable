@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../settings/trivia.dart';
+import '../toolbox/cheater.dart';
 
-class TriviaPage extends StatelessWidget {
-  const TriviaPage({Key? key}) : super(key: key);
+class CheaterPage extends StatelessWidget {
+  const CheaterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class TriviaPage extends StatelessWidget {
       body: ListView(
         children: ListTile.divideTiles(
           context: context,
-          tiles: trivia,
+          tiles: cheaters.map((e) => Text(e)),
         ).toList(),
       ),
     );

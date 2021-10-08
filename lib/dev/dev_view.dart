@@ -69,12 +69,35 @@ class DevPage extends StatelessWidget {
           ),
           SettingsGroup(
             title: '杂项',
-            children: [
-              ListTile(
-                title: const Text('trivia'),
-                onTap: logic.triviaOnTap,
-              ),
-            ],
+            children: ListTile.divideTiles(
+              context: context,
+              tiles: [
+                ListTile(
+                  title: const Text('trivia'),
+                  onTap: logic.triviaOnTap,
+                ),
+                ListTile(
+                  title: const Text('cheater'),
+                  onTap: logic.cheaterOnTap,
+                ),
+                ListTile(
+                  title: const Text('gu'),
+                  onTap: logic.guOnTap,
+                ),
+                ListTile(
+                  title: const Text('loading'),
+                  onTap: logic.loadingOnTap,
+                ),
+                Obx(
+                  () => ListTile(
+                    title: const Text('shared_preferences.json'),
+                    subtitle: Text(logic.jsonFile.value),
+                    enabled: logic.jsonFile.value.isNotEmpty,
+                    onTap: logic.jsonOnTap,
+                  ),
+                ),
+              ],
+            ).toList(),
           ),
         ],
       ),

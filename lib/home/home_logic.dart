@@ -3,6 +3,7 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../dev/dev_view.dart';
+import '../timetable/timetable_logic.dart';
 import '../utils/log.dart';
 
 class HomeLogic extends GetxController with L {
@@ -36,7 +37,11 @@ class HomeLogic extends GetxController with L {
     }
   }
 
-  void onDestinationSelected(int idx_) => _toPage(idxMap[idx_], false);
+  void onDestinationSelected(int idx_) {
+    var realIdx = idxMap[idx_];
+    if (realIdx == 1 && idx.value == 1) TimetableLogic.openMenu();
+    _toPage(realIdx, false);
+  }
 
   void onItemSelected(int idx_) {
     if (isAnimating.isFalse) _toPage(idx_, true);
@@ -46,9 +51,13 @@ class HomeLogic extends GetxController with L {
     if (isAnimating.isFalse) idx.value = idx_;
   }
 
+  final railExtended = false.obs;
+
   void ecnuLongPress() => Get.to(() => DevPage());
+
+  void ecnuOnPressed() => railExtended.toggle();
 }
 
-// NavigationRail: Timetable, Toolbox, Settings
 // actual: Toolbox, Timetable, Settings
+// NavigationRail: Timetable, Toolbox, Settings
 final idxMap = [1, 0, 2];

@@ -4,7 +4,7 @@ description: 更美观更智能的ECNU课程表。
 # Prevent the package from being accidentally published to pub.dev.
 publish_to: "none"
 
-version: 0.8.0+12
+version: 0.9.0+13
 
 environment:
   sdk: ">=2.15.0-172.0.dev"
@@ -30,6 +30,9 @@ dependencies:
   loggy:
   flutter_loggy:
   flutter_loggy_dio:
+  dart_random_choice: ">=0.1.0-nullsafety.0"
+  open_file:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
