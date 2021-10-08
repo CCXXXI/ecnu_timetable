@@ -5,7 +5,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../utils/messages.dart';
 
-final _trivia = [
+final _triviaStr = [
   'GitHub的仓库名通常使用分隔符`ecnu-timetable`，但为了让Dart开心，本仓库使用了下划线`ecnu_timetable`。'.s,
   '此项目最初是受ECNU-class2ics启发的。'.s,
   '长按校徽可以打开开发者选项。',
@@ -31,11 +31,9 @@ final _trivia = [
   '由于跨域资源共享（CORS）问题，部分功能在Web端不可用。'.s,
 ];
 
+final trivia =
+    _triviaStr.map((e) => MarkdownBody(data: e)).toList(growable: false);
+
 final _r = Random();
 
-Widget getTrivia(int idx) => SizedBox(
-      height: 42 * 2,
-      child: Markdown(data: _trivia[idx % _trivia.length]),
-    );
-
-Widget get randomTrivia => getTrivia(_r.nextInt(_trivia.length));
+Widget get randomTrivia => trivia[_r.nextInt(_triviaStr.length)];

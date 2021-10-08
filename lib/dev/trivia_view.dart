@@ -9,7 +9,12 @@ class TriviaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: ListView.builder(itemBuilder: (_, idx) => getTrivia(idx)),
+      body: ListView(
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: trivia,
+        ).toList(),
+      ),
     );
   }
 }
