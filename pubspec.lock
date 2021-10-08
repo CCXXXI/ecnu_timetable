@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  dart_random_choice:
+    dependency: "direct main"
+    description:
+      name: dart_random_choice
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0-nullsafety.0"
   dependency_validator:
     dependency: "direct dev"
     description:

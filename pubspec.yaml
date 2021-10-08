@@ -30,6 +30,7 @@ dependencies:
   loggy:
   flutter_loggy:
   flutter_loggy_dio:
+  dart_random_choice: ">=0.1.0-nullsafety.0"
 
 dev_dependencies:
   flutter_test:
