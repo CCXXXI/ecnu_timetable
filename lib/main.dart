@@ -48,8 +48,8 @@ void initDesktop() {
 }
 
 Future<void> initSentry(Widget app) async {
-  final id = Settings.getValue('id', null);
-  final username = Settings.getValue('username', null);
+  final id = Settings.getValue('ecnu.id', null);
+  final username = Settings.getValue('ecnu.username', null);
   logInfo('id: $id, username: $username');
   logInfo('release: $release');
 

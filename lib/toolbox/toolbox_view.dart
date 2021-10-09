@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../utils/loading.dart';
 import '../utils/messages.dart';
+import 'calendar/calendar_logic.dart';
 import 'toolbox_logic.dart';
 
 class ToolboxPage extends StatelessWidget {
@@ -51,8 +52,9 @@ class ToolboxPage extends StatelessWidget {
           Tool(
             FontAwesomeIcons.calendarAlt,
             '校历',
-            '师大还在用http'.s,
-            onTap: logic.url('http://www.u-office.ecnu.edu.cn/xiaoli/main.htm'),
+            '长按打开网页版',
+            onTap: logic.calendarOnTap,
+            onLongPress: logic.url(CalendarLogic.url),
           ),
           Tool(
             FontAwesomeIcons.scroll,

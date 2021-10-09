@@ -22,8 +22,6 @@ class SettingsPage extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 800),
         child: ListView(
           children: [
-            user,
-            const Divider(),
             SettingsGroup(title: '主题', children: [dark, font, color]),
             SettingsGroup(title: '杂项', children: [launchPage]),
             SettingsGroup(
@@ -40,24 +38,6 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
-
-// region user
-  Widget get user => logic.loggedIn
-      ? ListTile(
-          leading: const FaIcon(FontAwesomeIcons.user),
-          trailing: const FaIcon(FontAwesomeIcons.signOutAlt),
-          title: Text(logic.username!),
-          subtitle: Text(logic.id!),
-        )
-      : ListTile(
-          leading: const FaIcon(FontAwesomeIcons.userSecret),
-          trailing: const FaIcon(FontAwesomeIcons.signInAlt),
-          title: const Text('无名者'),
-          subtitle: const Text('点击以登录'),
-          onTap: logic.login,
-        );
-
-// endregion
 
 // region theme
   Widget get dark => DropDownSettingsTile(

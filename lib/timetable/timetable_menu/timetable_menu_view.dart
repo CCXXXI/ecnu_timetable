@@ -54,13 +54,7 @@ class TimetableMenuPage extends StatelessWidget {
                   context: context,
                   tiles: [
                     ListTile(
-                      title: Text('咕' * 3),
-                      subtitle: Text('🕊' * 5),
-                      trailing: const FaIcon(FontAwesomeIcons.dove),
-                      onTap: gu,
-                    ),
-                    ListTile(
-                      title: const Text('单双周'),
+                      title: const Text('周数'),
                       subtitle: Text('🕊' * 5),
                       trailing: const FaIcon(FontAwesomeIcons.dove),
                       onTap: gu,
@@ -85,12 +79,6 @@ class TimetableMenuPage extends StatelessWidget {
                 children: ListTile.divideTiles(
                   context: context,
                   tiles: [
-                    ListTile(
-                      title: Text('咕' * 3),
-                      subtitle: Text('🕊' * 5),
-                      trailing: const FaIcon(FontAwesomeIcons.dove),
-                      onTap: gu,
-                    ),
                     ListTile(
                       title: const Text('壁纸'),
                       subtitle: Text('🕊' * 5),
