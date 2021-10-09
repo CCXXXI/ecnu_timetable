@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../utils/dio.dart';
 import '../utils/log.dart';
 import '../utils/messages.dart';
+import 'calendar/calendar_view.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
 
@@ -103,5 +104,8 @@ class ToolboxLogic extends GetxController with L {
         title: 'ceil(5*(2*a/b-1)*log(a-b+1))',
         content: JuanWidget(),
       );
+
 // endregion
+
+  void calendarOnTap() => Get.to(() => CalendarPage());
 }
