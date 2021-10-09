@@ -34,6 +34,7 @@ dependencies:
   open_file:
   path_provider:
   universal_html:
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:
