@@ -10,4 +10,5 @@ final dio = Dio()
     responseBody: true,
     error: true,
     requestLevel: LogLevel.debug,
+    responseLevel: LogLevel.debug,
   ));
