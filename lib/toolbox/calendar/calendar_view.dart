@@ -15,6 +15,7 @@ class CalendarPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('校历')),
       body: InteractiveViewer(
+        maxScale: double.infinity,
         child: Obx(
           () => Center(
             child: logic.imgUrl.isEmpty
