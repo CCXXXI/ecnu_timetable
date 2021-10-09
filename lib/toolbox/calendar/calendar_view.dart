@@ -12,20 +12,22 @@ class CalendarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        appBar: AppBar(title: const Text('校历')),
-        body: Center(
-          child: logic.imgUrl.isEmpty
-              ? Loading()
-              : CachedNetworkImage(
-                  imageUrl: logic.imgUrl.value,
-                  progressIndicatorBuilder: (_, __, downloadProgress) =>
-                      CircularProgressIndicator(
-                    value: downloadProgress.progress,
+    return Scaffold(
+      appBar: AppBar(title: const Text('校历')),
+      body: InteractiveViewer(
+        child: Obx(
+          () => Center(
+            child: logic.imgUrl.isEmpty
+                ? Loading()
+                : CachedNetworkImage(
+                    imageUrl: logic.imgUrl.value,
+                    progressIndicatorBuilder: (_, __, downloadProgress) =>
+                        CircularProgressIndicator(
+                      value: downloadProgress.progress,
+                    ),
+                    errorWidget: (_, url, error) => Text('$url\n$error'),
                   ),
-                  errorWidget: (_, url, error) => Text('$url\n$error'),
-                ),
+          ),
         ),
       ),
     );
