@@ -55,12 +55,13 @@ class SettingsLogic extends GetxController with L {
   }
 
   static const _repoUrl = 'https://github.com/CCXXXI/ecnu_timetable';
+  static const latestUrl = '$_repoUrl/releases/latest';
 
   static String _getVerUrl(String v) => '$_repoUrl/releases/tag/v$v';
 
   void curVerOnTap() => launch(_getVerUrl(version));
 
-  void latestVerOnTap() => launch('$_repoUrl/releases/latest');
+  void latestVerOnTap() => launch(latestUrl);
 
   void feedbackOnTap() => launch('$_repoUrl/issues');
 }

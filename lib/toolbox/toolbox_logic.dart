@@ -4,9 +4,11 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../settings/settings_logic.dart';
 import '../utils/dio.dart';
 import '../utils/log.dart';
 import '../utils/messages.dart';
+import 'calendar/calendar_logic.dart';
 import 'calendar/calendar_view.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
@@ -107,5 +109,18 @@ class ToolboxLogic extends GetxController with L {
 
 // endregion
 
-  void calendarOnTap() => Get.to(() => CalendarPage());
+  void calendarOnTap() {
+    if (GetPlatform.isWeb) {
+      Get.defaultDialog(
+        title: 'Web端功能受限'.s,
+        middleText: '因跨域资源共享（CORS）问题，无法获取并显示校历图片。'.s,
+        textConfirm: '跳转网页',
+        textCancel: '下载完整版',
+        onConfirm: url(CalendarLogic.url),
+        onCancel: url(SettingsLogic.latestUrl),
+      );
+    } else {
+      Get.to(() => CalendarPage());
+    }
+  }
 }
