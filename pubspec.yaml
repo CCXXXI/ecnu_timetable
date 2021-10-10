@@ -23,6 +23,7 @@ dependencies:
   flutter_settings_screens: ">0.3.0"
   google_fonts:
   dio:
+  dio_cookie_manager:
   flutter_spinkit:
   url_launcher:
   badges:
