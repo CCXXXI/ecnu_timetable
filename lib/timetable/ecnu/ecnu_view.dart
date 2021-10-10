@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../utils/messages.dart';
@@ -24,9 +25,39 @@ class EcnuPage extends StatelessWidget {
             Step(
               title: const Text('登录公共数据库'),
               subtitle: Text('密码仅用于登录，可至GitHub检查源码。'.s),
-              content: const Placeholder(
-                // todo
-                color: Colors.red,
+              content: Form(
+                key: logic.loginFormKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(label: Text('学号')),
+                      controller: logic.idController,
+                      validator: logic.idValidator,
+                      maxLength: 11,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(label: Text('密码')),
+                      controller: logic.passwordController,
+                      validator: logic.passwordValidator,
+                      maxLength: TextField.noMaxLength,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      onEditingComplete: logic.onStepContinue,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(label: Text('验证码')),
+                      controller: logic.captchaController,
+                      validator: logic.captchaValidator,
+                      maxLength: 4,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
+                      onEditingComplete: logic.onStepContinue,
+                    ),
+                  ],
+                ),
               ),
               state: logic.step.value == 0
                   ? StepState.indexed
