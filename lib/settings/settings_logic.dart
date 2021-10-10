@@ -27,8 +27,10 @@ class SettingsLogic extends GetxController with L {
     }
   }
 
-  bool get updateAvailable =>
-      latestVer.value != null && latestVer.value != version;
+  bool get updateAvailable {
+    final ver = latestVer.value;
+    return ver != null && ver.isNotEmpty && ver != version;
+  }
 
   /// Get latest release version from GitHub.
   Future<String?> _getLatestVer() async {
