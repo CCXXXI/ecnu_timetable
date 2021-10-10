@@ -4,6 +4,7 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:loggy/loggy.dart';
 
+final cookieJar = CookieJar();
 final dio = Dio()
   ..interceptors.addAll([
     LoggyDioInterceptor(
@@ -15,5 +16,5 @@ final dio = Dio()
       requestLevel: LogLevel.debug,
       responseLevel: LogLevel.debug,
     ),
-    CookieManager(CookieJar()),
+    CookieManager(cookieJar),
   ]);
