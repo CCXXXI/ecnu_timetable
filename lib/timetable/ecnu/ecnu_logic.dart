@@ -37,14 +37,26 @@ class EcnuLogic extends GetxController with L {
 
   String? captchaValidator(String? value) => value?.length == 4 ? null : '4位';
 
-  void onStepContinue() {
-    l.debug('step: ${step.value}');
+  final isLoading = false.obs;
+
+  void onStepContinue() async {
+    l.debug('step: ${step.value}, isLoading: ${isLoading.value}');
+    if (isLoading.isTrue || !loginFormKey.currentState!.validate()) return;
+
     if (step.value == 0) {
-      if (!loginFormKey.currentState!.validate()) return;
-      // todo
-      step.value++;
+      isLoading.value = true;
+      if (await login()) step.value++;
     } else {
       Get.back();
     }
+
+    isLoading.value = false;
+  }
+
+  Future<bool> login() async {
+    l.debug('login begin');
+    await Future.delayed(const Duration(seconds: 3));
+    l.debug('login end');
+    return true;
   }
 }

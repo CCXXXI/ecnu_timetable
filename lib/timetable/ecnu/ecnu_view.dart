@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../utils/loading.dart';
 import '../../utils/messages.dart';
 import 'ecnu_logic.dart';
 
@@ -80,9 +81,12 @@ class EcnuPage extends StatelessWidget {
     );
   }
 
-  Widget controlsBuilder(BuildContext context, ControlsDetails details) =>
-      ElevatedButton(
-        onPressed: details.onStepContinue,
-        child: Text(['登录', '完成'][details.stepIndex]),
+  Widget controlsBuilder(BuildContext context, ControlsDetails details) => Obx(
+        () => logic.isLoading.isTrue
+            ? Loading()
+            : ElevatedButton(
+                onPressed: details.onStepContinue,
+                child: Text(['登录', '完成'][details.stepIndex]),
+              ),
       );
 }
