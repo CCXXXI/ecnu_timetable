@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
@@ -20,7 +21,7 @@ class EcnuLogic extends GetxController with L {
   final passwordController = TextEditingController(
     text: Settings.getValue('ecnu.password', null),
   );
-  final captchaController = TextEditingController();
+  final captchaController = Rx<TextEditingController?>(null);
 
   final checkFormKey = GlobalKey<FormState>();
 
@@ -31,7 +32,7 @@ class EcnuLogic extends GetxController with L {
     super.onClose();
     idController.dispose();
     passwordController.dispose();
-    captchaController.dispose();
+    captchaController.value?.dispose();
   }
 
   String? idValidator(String? value) => value?.length == 11 ? null : '11位';
@@ -77,6 +78,31 @@ class EcnuLogic extends GetxController with L {
         options: Options(responseType: ResponseType.bytes),
       );
       captchaImage.value = img.data;
+
+      // get captcha value
+      final token = (await dio.get(
+        'https://aip.baidubce.com/oauth/2.0/token',
+        queryParameters: {
+          'grant_type': 'client_credentials',
+          'client_id': r'gIGpKT20OzkxymfIGH5L8pho',
+          'client_secret': r'9O1EO7CuixZqF0oBxYZbKmeCuqHoRlMk',
+        },
+      ))
+          .data['access_token'];
+      final value = (await dio.post(
+        'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic',
+        queryParameters: {
+          'access_token': token,
+        },
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+        ),
+        data: {
+          'image': base64Encode(img.data),
+        },
+      ))
+          .data['words_result'][0]['words'];
+      captchaController.value = TextEditingController(text: value);
 
       isLoading.value = false;
     } catch (e) {

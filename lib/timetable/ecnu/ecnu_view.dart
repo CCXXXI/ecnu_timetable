@@ -31,7 +31,9 @@ class EcnuPage extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: const InputDecoration(label: Text('学号')),
+                      decoration: const InputDecoration(
+                        label: Text('学号'),
+                      ),
                       controller: logic.idController,
                       validator: logic.idValidator,
                       maxLength: 11,
@@ -40,7 +42,9 @@ class EcnuPage extends StatelessWidget {
                       textInputAction: TextInputAction.next,
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(label: Text('密码')),
+                      decoration: const InputDecoration(
+                        label: Text('密码'),
+                      ),
                       controller: logic.passwordController,
                       validator: logic.passwordValidator,
                       maxLength: TextField.noMaxLength,
@@ -51,17 +55,22 @@ class EcnuPage extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: TextFormField(
-                            decoration:
-                                const InputDecoration(label: Text('验证码')),
-                            controller: logic.captchaController,
-                            validator: logic.captchaValidator,
-                            maxLength: 4,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            keyboardType: TextInputType.number,
-                            onEditingComplete: logic.onStepContinue,
+                          child: Obx(
+                            () => logic.captchaController.value == null
+                                ? Loading()
+                                : TextFormField(
+                                    decoration: const InputDecoration(
+                                      label: Text('验证码'),
+                                    ),
+                                    controller: logic.captchaController.value,
+                                    validator: logic.captchaValidator,
+                                    maxLength: 4,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                    keyboardType: TextInputType.number,
+                                    onEditingComplete: logic.onStepContinue,
+                                  ),
                           ),
                         ),
                         const SizedBox(width: 42),
