@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../../utils/log.dart';
@@ -9,10 +10,12 @@ class EcnuLogic extends GetxController with L {
   final step = 0.obs;
 
   final loginFormKey = GlobalKey<FormState>();
-
-  // todo: default value
-  final idController = TextEditingController();
-  final passwordController = TextEditingController();
+  final idController = TextEditingController(
+    text: Settings.getValue('ecnu.id', null),
+  );
+  final passwordController = TextEditingController(
+    text: Settings.getValue('ecnu.password', null),
+  );
   final captchaController = TextEditingController();
 
   final checkFormKey = GlobalKey<FormState>();
