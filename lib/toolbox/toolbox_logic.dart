@@ -113,7 +113,7 @@ class ToolboxLogic extends GetxController with L {
     if (GetPlatform.isWeb) {
       Get.defaultDialog(
         title: 'Web端功能受限'.s,
-        middleText: '因跨域资源共享（CORS）问题，无法获取并显示校历图片。'.s,
+        middleText: '因跨域资源共享（CORS）问题，无法获取并显示校历图片。',
         textConfirm: '跳转网页',
         textCancel: '下载完整版',
         onConfirm: url(CalendarLogic.url),
