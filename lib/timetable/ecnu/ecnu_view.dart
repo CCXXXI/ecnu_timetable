@@ -37,7 +37,9 @@ class EcnuPage extends StatelessWidget {
                       controller: logic.idController,
                       validator: logic.idValidator,
                       maxLength: 11,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                     ),
@@ -66,7 +68,7 @@ class EcnuPage extends StatelessWidget {
                                     validator: logic.captchaValidator,
                                     maxLength: 4,
                                     inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly
+                                      FilteringTextInputFormatter.digitsOnly,
                                     ],
                                     keyboardType: TextInputType.number,
                                     onEditingComplete: logic.onStepContinue,
