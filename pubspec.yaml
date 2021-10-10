@@ -24,6 +24,7 @@ dependencies:
   google_fonts:
   dio:
   dio_cookie_manager:
+  cookie_jar:
   flutter_spinkit:
   url_launcher:
   badges:
