@@ -19,8 +19,8 @@ class JuanWidget extends StatelessWidget {
           Expanded(
             child: TextFormField(
               decoration: const InputDecoration(label: Text('已选')),
-              controller: logic.controllerA,
-              validator: logic.validatorA,
+              controller: logic.aController,
+              validator: logic.aValidator,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
@@ -32,8 +32,8 @@ class JuanWidget extends StatelessWidget {
           Expanded(
             child: TextFormField(
               decoration: const InputDecoration(label: Text('上限')),
-              controller: logic.controllerB,
-              validator: logic.validatorB,
+              controller: logic.bController,
+              validator: logic.bValidator,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
