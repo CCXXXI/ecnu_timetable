@@ -1,7 +1,11 @@
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
+import '../../utils/dio.dart';
 import '../../utils/log.dart';
 
 class EcnuLogic extends GetxController with L {
@@ -37,7 +41,7 @@ class EcnuLogic extends GetxController with L {
 
   String? captchaValidator(String? value) => value?.length == 4 ? null : '4位';
 
-  final isLoading = false.obs;
+  final isLoading = true.obs;
 
   void onStepContinue() async {
     l.debug('step: ${step.value}, isLoading: ${isLoading.value}');
@@ -51,6 +55,35 @@ class EcnuLogic extends GetxController with L {
     }
 
     isLoading.value = false;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    initEcnu();
+  }
+
+  final captchaImage = Rx<Uint8List>(Uint8List.fromList([]));
+
+  void initEcnu() async {
+    try {
+      // set cookie
+      await dio.get(_Url.portal);
+      l.debug(await cookieJar.loadForRequest(Uri.parse(_Url.portal)));
+
+      // get captcha image
+      final img = await dio.get(
+        _Url.captcha,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      captchaImage.value = img.data;
+
+      isLoading.value = false;
+    } catch (e) {
+      l.error(e);
+      Get.back();
+      Get.snackbar('连接公共数据库失败', e.toString());
+    }
   }
 
   Future<bool> login() async {

@@ -48,14 +48,29 @@ class EcnuPage extends StatelessWidget {
                       obscureText: true,
                       onEditingComplete: logic.onStepContinue,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(label: Text('验证码')),
-                      controller: logic.captchaController,
-                      validator: logic.captchaValidator,
-                      maxLength: 4,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                      onEditingComplete: logic.onStepContinue,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            decoration:
+                                const InputDecoration(label: Text('验证码')),
+                            controller: logic.captchaController,
+                            validator: logic.captchaValidator,
+                            maxLength: 4,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            keyboardType: TextInputType.number,
+                            onEditingComplete: logic.onStepContinue,
+                          ),
+                        ),
+                        const SizedBox(width: 42),
+                        Obx(
+                          () => logic.captchaImage.value.isEmpty
+                              ? Loading()
+                              : Image.memory(logic.captchaImage.value),
+                        ),
+                      ],
                     ),
                   ],
                 ),
