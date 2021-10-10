@@ -60,3 +60,14 @@ class EcnuLogic extends GetxController with L {
     return true;
   }
 }
+
+class _Url {
+  static const _cas = 'https://portal1.ecnu.edu.cn/cas';
+  static const _eams = 'https://applicationnewjw.ecnu.edu.cn/eams';
+
+  static const portal =
+      '$_cas/login?service=https://portal2020-api.ecnu.edu.cn/api/v1/idc/slo';
+  static const captcha = '$_cas/code';
+  static const ids = '$_eams/courseTableForStd!index.action';
+  static const table = '$_eams/courseTableForStd!courseTable.action';
+}
