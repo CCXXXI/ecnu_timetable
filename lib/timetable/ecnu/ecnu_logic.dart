@@ -212,12 +212,18 @@ class EcnuLogic extends GetxController with L {
         contentType: Headers.formUrlEncodedContentType,
       ),
     );
-    // todo: parse data
+    final document = parseHtmlDocument(r1.data);
+    final js = document.querySelectorAll('script[language]').last.text!;
+    parseJs(js);
     table.value = r1.data;
   }
 
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
   static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
+
+  static void parseJs(String js) {
+    // todo
+  }
 }
 
 class _Url {
