@@ -7,7 +7,7 @@ import 'dart:math';
 
 dynamic strEnc(String data) {
   var len = data.length;
-  var encData = '';
+  var encData = StringBuffer();
   var firstKeyBt = [
     0,
     0,
@@ -217,9 +217,9 @@ dynamic strEnc(String data) {
     tempBt = enc(tempBt, secondKeyBt);
     tempBt = enc(tempBt, thirdKeyBt);
     encByte = tempBt;
-    encData += bt64ToHex(encByte);
+    encData.write(bt64ToHex(encByte));
   }
-  return encData;
+  return encData.toString();
 }
 
 dynamic strToBt(String str) {
@@ -318,15 +318,15 @@ dynamic bt4ToHex(binary) {
 }
 
 dynamic bt64ToHex(byteData) {
-  var hex = '';
+  var hex = StringBuffer();
   for (var i = 0; i < 16; i++) {
-    var bt = '';
+    var bt = StringBuffer();
     for (var j = 0; j < 4; j++) {
-      bt += byteData[i * 4 + j].toString();
+      bt.write(byteData[i * 4 + j].toString());
     }
-    hex += bt4ToHex(bt);
+    hex.write(bt4ToHex(bt.toString()));
   }
-  return hex;
+  return hex.toString();
 }
 
 dynamic enc(dataByte, keyByte) {
