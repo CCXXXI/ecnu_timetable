@@ -205,7 +205,7 @@ class EcnuLogic extends GetxController with L {
         'ignoreHead': 1,
         'setting.kind': 'std',
         'startWeek': 1,
-        'semester.id': _semId(2021, 0),
+        'semester.id': semId(2021, 0),
         'ids': ids,
       },
       options: Options(
@@ -216,7 +216,8 @@ class EcnuLogic extends GetxController with L {
     table.value = r1.data;
   }
 
-  int _semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
+  /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
+  static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
 }
 
 class _Url {
