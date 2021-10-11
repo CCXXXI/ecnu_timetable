@@ -93,10 +93,7 @@ class EcnuPage extends StatelessWidget {
             Step(
               title: const Text('确认课表内容'),
               subtitle: Text('有误可至GitHub反馈。'.s),
-              content: const Placeholder(
-                // todo
-                color: Colors.green,
-              ),
+              content: Text(logic.table.value),
               state: logic.step.value == 1
                   ? StepState.indexed
                   : StepState.disabled,

@@ -57,6 +57,7 @@ class EcnuLogic extends GetxController with L {
         final loginResult = await login();
         if (loginResult == null) {
           step.value++;
+          getTable();
         } else {
           Get.back();
           Get.snackbar('登录失败', loginResult);
@@ -188,6 +189,34 @@ class EcnuLogic extends GetxController with L {
 
     return '未知错误';
   }
+
+  final table = ''.obs;
+
+  void getTable() async {
+    final r0 = await dio.get(_Url.ids);
+    final ids = RegExp(r'bg\.form\.addInput\(form,"ids","(\d+)"\);')
+        .firstMatch(r0.data)!
+        .group(1)!;
+
+    final r1 = await dio.post(
+      _Url.table,
+      data: {
+        // todo: let user determines these options
+        'ignoreHead': 1,
+        'setting.kind': 'std',
+        'startWeek': 1,
+        'semester.id': _semId(2021, 0),
+        'ids': ids,
+      },
+      options: Options(
+        contentType: Headers.formUrlEncodedContentType,
+      ),
+    );
+    // todo: parse data
+    table.value = r1.data;
+  }
+
+  int _semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
 }
 
 class _Url {
