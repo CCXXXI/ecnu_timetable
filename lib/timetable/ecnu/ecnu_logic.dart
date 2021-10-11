@@ -5,9 +5,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:universal_html/parsing.dart';
 
 import '../../utils/dio.dart';
 import '../../utils/log.dart';
+import 'des.dart';
 
 class EcnuLogic extends GetxController with L {
   /// - 0: login
@@ -16,10 +19,10 @@ class EcnuLogic extends GetxController with L {
 
   final loginFormKey = GlobalKey<FormState>();
   final idController = TextEditingController(
-    text: Settings.getValue('ecnu.id', null),
+    text: Settings.getValue('ecnu.id', ''),
   );
   final passwordController = TextEditingController(
-    text: Settings.getValue('ecnu.password', null),
+    text: Settings.getValue('ecnu.password', ''),
   );
   final captchaController = Rx<TextEditingController?>(null);
 
@@ -50,7 +53,19 @@ class EcnuLogic extends GetxController with L {
 
     if (step.value == 0) {
       isLoading.value = true;
-      if (await login()) step.value++;
+      try {
+        final loginResult = await login();
+        if (loginResult == null) {
+          step.value++;
+        } else {
+          Get.back();
+          Get.snackbar('登录失败', loginResult);
+        }
+      } catch (e) {
+        l.error(e);
+        Get.back();
+        Get.snackbar('登录失败', e.toString());
+      }
     } else {
       Get.back();
     }
@@ -112,11 +127,66 @@ class EcnuLogic extends GetxController with L {
     }
   }
 
-  Future<bool> login() async {
-    l.debug('login begin');
-    await Future.delayed(const Duration(seconds: 3));
-    l.debug('login end');
-    return true;
+  /// Returns null if success.
+  Future<String?> login() async {
+    final id = idController.text;
+    final password = passwordController.text;
+    final captcha = captchaController.value!.text;
+    l.debug('id: $id, password: $password, captcha: $captcha');
+
+    var r = await dio.post(
+      _Url.portal,
+      data: {
+        'rsa': strEnc(id + password),
+        'ul': id.length,
+        'pl': password.length,
+        'code': captcha,
+        'lt': 'LT-211100-OG7kcGcBAxSpyGub3FC9LU6BtINhGg-cas',
+        'execution': 'e1s1',
+        '_eventId': 'submit',
+      },
+      options: Options(
+        contentType: Headers.formUrlEncodedContentType,
+        validateStatus: (status) => status != null && status < 400,
+      ),
+    );
+    while ([301, 302].contains(r.statusCode)) {
+      // 按规范来说post请求不应该返回302进行重定向
+      // 但是这个世界并不是很规范
+      // 手动处理一下这串连环重定向
+      // 不能直接让dio处理，dio（或者说底层的http）太规范了，在重定向过程中不会更新cookie
+      l.info('redirect');
+      r = await dio.get(
+        r.headers['location']![0],
+        options: Options(
+          followRedirects: false,
+          validateStatus: (status) => status != null && status < 400,
+        ),
+      );
+    }
+
+    final document = parseHtmlDocument(r.data);
+
+    final nameId = document.querySelector('a[title="查看登录记录"]')?.text;
+    if (nameId != null) {
+      final m = RegExp(r'(.*)\((.*)\)').firstMatch(nameId);
+      final name = m!.group(1);
+      final id_ = m.group(2);
+      assert(id_ == id);
+
+      Settings.setValue('ecnu.id', id);
+      Settings.setValue('ecnu.name', name);
+      Settings.setValue('ecnu.password', password);
+      Sentry.configureScope((scope) => scope.user =
+          SentryUser(id: id, username: name, ipAddress: '{{auto}}'));
+
+      return null;
+    }
+
+    final error = document.querySelector('#errormsg')?.text;
+    if (error != null) return error;
+
+    return '未知错误';
   }
 }
 
@@ -124,8 +194,7 @@ class _Url {
   static const _cas = 'https://portal1.ecnu.edu.cn/cas';
   static const _eams = 'https://applicationnewjw.ecnu.edu.cn/eams';
 
-  static const portal =
-      '$_cas/login?service=https://portal2020-api.ecnu.edu.cn/api/v1/idc/slo';
+  static const portal = '$_cas/login?service=$_eams/home.action';
   static const captcha = '$_cas/code';
   static const ids = '$_eams/courseTableForStd!index.action';
   static const table = '$_eams/courseTableForStd!courseTable.action';
