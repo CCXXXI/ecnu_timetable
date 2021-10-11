@@ -100,8 +100,8 @@ class EcnuLogic extends GetxController with L {
         'https://aip.baidubce.com/oauth/2.0/token',
         queryParameters: {
           'grant_type': 'client_credentials',
-          'client_id': r'gIGpKT20OzkxymfIGH5L8pho',
-          'client_secret': r'9O1EO7CuixZqF0oBxYZbKmeCuqHoRlMk',
+          'client_id': 'gIGpKT20OzkxymfIGH5L8pho',
+          'client_secret': '9O1EO7CuixZqF0oBxYZbKmeCuqHoRlMk',
         },
       ))
           .data['access_token'];
