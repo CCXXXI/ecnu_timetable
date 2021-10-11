@@ -213,8 +213,8 @@ class EcnuLogic extends GetxController with L {
       ),
     );
     final document = parseHtmlDocument(r1.data);
-    final js = document.querySelectorAll('script[language]').last.text!;
-    parseJs(js);
+    final js = document.querySelectorAll('script[language]').last.text;
+    parseJs(js!);
     table.value = r1.data;
   }
 
