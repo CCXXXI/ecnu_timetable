@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
 // 这是我近几年写过最烂的代码
 // 反正能跑，别往下看 :)
 
@@ -210,13 +208,11 @@ dynamic strEnc(String data) {
   for (var i = 0; i < iterator; i++) {
     var tempData = data.substring(i * 4, min(i * 4 + 4, len));
     var tempByte = strToBt(tempData);
-    var encByte;
-    var tempBt;
-    tempBt = tempByte;
+    var tempBt = tempByte;
     tempBt = enc(tempBt, firstKeyBt);
     tempBt = enc(tempBt, secondKeyBt);
     tempBt = enc(tempBt, thirdKeyBt);
-    encByte = tempBt;
+    var encByte = tempBt;
     encData.write(bt64ToHex(encByte));
   }
   return encData.toString();
@@ -263,7 +259,7 @@ dynamic strToBt(String str) {
 }
 
 dynamic bt4ToHex(binary) {
-  var hex;
+  late String hex;
   switch (binary) {
     case '0000':
       hex = '0';
@@ -335,13 +331,12 @@ dynamic enc(dataByte, keyByte) {
   var ipLeft = List.filled(32, 0);
   var ipRight = List.filled(32, 0);
   var tempLeft = List.filled(32, 0);
-  var i, j = 0, k, n = 0;
-  for (k = 0; k < 32; k++) {
+  for (var k = 0; k < 32; k++) {
     ipLeft[k] = ipByte[k];
     ipRight[k] = ipByte[32 + k];
   }
-  for (i = 0; i < 16; i++) {
-    for (j = 0; j < 32; j++) {
+  for (var i = 0; i < 16; i++) {
+    for (var j = 0; j < 32; j++) {
       tempLeft[j] = ipLeft[j];
       ipLeft[j] = ipRight[j];
     }
@@ -351,7 +346,7 @@ dynamic enc(dataByte, keyByte) {
     }
     var tempRight =
         xor(pPermute(sBoxPermute(xor(expandPermute(ipRight), key))), tempLeft);
-    for (n = 0; n < 32; n++) {
+    for (var n = 0; n < 32; n++) {
       ipRight[n] = tempRight[n];
     }
   }
@@ -676,8 +671,7 @@ dynamic generateKeys(keyByte) {
     }
   }
 
-  var i;
-  for (i = 0; i < 16; i++) {
+  for (var i = 0; i < 16; i++) {
     var tempLeft = 0;
     var tempRight = 0;
     for (var j = 0; j < loop[i]; j++) {
