@@ -41,7 +41,7 @@ class SettingsLogic extends GetxController with L {
   Future<String?> _getLatestVer() async {
     try {
       final r = await dio.get(
-        'https://api.github.com/repos/ccxxxi/ecnu_timetable/releases',
+        Api.releases,
         queryParameters: {'per_page': 1},
       );
       return (r.data[0]['name'] as String).substring(1);

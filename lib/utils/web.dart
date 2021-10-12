@@ -1,4 +1,5 @@
 import 'package:cookie_jar/cookie_jar.dart';
+import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
@@ -21,3 +22,16 @@ final defaultDio = Dio()
     ),
     CookieManager(cookieJar),
   ]);
+
+const _repo = 'CCXXXI/ecnu_timetable';
+
+class Api {
+  static const _suckers = [
+    'https://api.vience.cn/api/tiangou',
+    'http://api.ay15.cn/api/tiangou/api.php',
+  ];
+
+  static String get randomSucker => randomChoice(_suckers);
+
+  static const releases = 'https://api.github.com/repos/$_repo/releases';
+}

@@ -1,4 +1,3 @@
-import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
@@ -43,16 +42,11 @@ class ToolboxLogic extends GetxController with L {
     sucker.value = await _getSucker() ?? '获取失败';
   }
 
-  static const _suckerApis = [
-    'https://api.vience.cn/api/tiangou',
-    'http://api.ay15.cn/api/tiangou/api.php',
-  ];
-
   Future<String?> _getSucker() async {
     if (GetPlatform.isWeb) return 'Web端不可用'.s;
 
     try {
-      final r = await dio.get(randomChoice(_suckerApis));
+      final r = await dio.get(Api.randomSucker);
       return (r.data as String).s;
     } catch (e) {
       l.error(e);
