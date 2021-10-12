@@ -1,4 +1,5 @@
 import 'package:ecnu_timetable/utils/string.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const _num = r'(0|[1-9]\d*)';
@@ -19,5 +20,11 @@ void main() {
     test('version', () => expect(_semVer.hasMatch(version), isTrue));
     test('buildNumber',
         () => expect(RegExp('^$_num\$').hasMatch(buildNumber), isTrue));
+  });
+
+  testWidgets('license', (tester) async {
+    await tester.pumpWidget(const MaterialApp());
+    await initMessages();
+    expect(license.startsWith('MIT License'), isTrue);
   });
 }
