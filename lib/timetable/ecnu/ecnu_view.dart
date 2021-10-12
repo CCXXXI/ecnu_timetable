@@ -19,7 +19,7 @@ class EcnuPage extends StatelessWidget {
       ),
       body: Obx(
         () => Stepper(
-          currentStep: logic.step.value,
+          currentStep: logic.step.value.index,
           onStepContinue: logic.onStepContinue,
           controlsBuilder: controlsBuilder,
           steps: [
@@ -86,7 +86,7 @@ class EcnuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              state: logic.step.value == 0
+              state: logic.step.value == S.login
                   ? StepState.indexed
                   : StepState.disabled,
             ),
@@ -94,7 +94,7 @@ class EcnuPage extends StatelessWidget {
               title: const Text('确认课表内容'),
               subtitle: Text('有误可至GitHub反馈。'.s),
               content: Text(logic.table.value),
-              state: logic.step.value == 1
+              state: logic.step.value == S.check
                   ? StepState.indexed
                   : StepState.disabled,
             ),

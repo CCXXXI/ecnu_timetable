@@ -12,14 +12,14 @@ import '../../utils/log.dart';
 import '../../utils/web.dart';
 import 'des.dart';
 
+enum S { login, check }
+
 class EcnuLogic extends GetxController with L {
   final Dio dio;
 
   EcnuLogic({Dio? dio}) : dio = dio ?? defaultDio;
 
-  /// - 0: login
-  /// - 1: check
-  final step = 0.obs;
+  final step = S.login.obs;
 
   final loginFormKey = GlobalKey<FormState>();
   final idController = TextEditingController(
@@ -54,14 +54,14 @@ class EcnuLogic extends GetxController with L {
   void onStepContinue() async {
     l.debug('step: ${step.value}, isLoading: ${isLoading.value}');
     if (isLoading.isTrue ||
-        step.value == 0 && !loginFormKey.currentState!.validate()) return;
+        step.value == S.login && !loginFormKey.currentState!.validate()) return;
 
-    if (step.value == 0) {
+    if (step.value == S.login) {
       isLoading.value = true;
       try {
         final loginResult = await login();
         if (loginResult == null) {
-          step.value++;
+          step.value = S.check;
           getTable();
         } else {
           Get.back();
