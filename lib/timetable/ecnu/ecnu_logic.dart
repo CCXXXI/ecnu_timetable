@@ -89,19 +89,19 @@ class EcnuLogic extends GetxController with L {
   void initEcnu() async {
     try {
       // set cookie
-      await dio.get(_Url.portal);
-      l.debug(await cookieJar.loadForRequest(Uri.parse(_Url.portal)));
+      await dio.get(Url.portal);
+      l.debug(await cookieJar.loadForRequest(Uri.parse(Url.portal)));
 
       // get captcha image
       final img = await dio.get(
-        _Url.captcha,
+        Url.captcha,
         options: Options(responseType: ResponseType.bytes),
       );
       captchaImage.value = img.data;
 
       // get captcha value
       final token = (await dio.get(
-        'https://aip.baidubce.com/oauth/2.0/token',
+        Api.baiduToken,
         queryParameters: {
           'grant_type': 'client_credentials',
           'client_id': 'gIGpKT20OzkxymfIGH5L8pho',
@@ -110,7 +110,7 @@ class EcnuLogic extends GetxController with L {
       ))
           .data['access_token'];
       final value = (await dio.post(
-        'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic',
+        Api.baiduOcr,
         queryParameters: {
           'access_token': token,
         },
@@ -140,7 +140,7 @@ class EcnuLogic extends GetxController with L {
     l.debug('id: $id, password: $password, captcha: $captcha');
 
     var r = await dio.post(
-      _Url.portal,
+      Url.portal,
       data: {
         'rsa': strEnc(id + password),
         'ul': id.length,
@@ -197,13 +197,13 @@ class EcnuLogic extends GetxController with L {
   final table = ''.obs;
 
   void getTable() async {
-    final r0 = await dio.get(_Url.ids);
+    final r0 = await dio.get(Url.ids);
     final ids = RegExp(r'bg\.form\.addInput\(form,"ids","(\d+)"\);')
         .firstMatch(r0.data)!
         .group(1)!;
 
     final r1 = await dio.post(
-      _Url.table,
+      Url.table,
       data: {
         // todo: let user determines these options
         'ignoreHead': 1,
@@ -228,14 +228,4 @@ class EcnuLogic extends GetxController with L {
   static void parseJs(String js) {
     // todo
   }
-}
-
-class _Url {
-  static const _cas = 'https://portal1.ecnu.edu.cn/cas';
-  static const _eams = 'https://applicationnewjw.ecnu.edu.cn/eams';
-
-  static const portal = '$_cas/login?service=$_eams/home.action';
-  static const captcha = '$_cas/code';
-  static const ids = '$_eams/courseTableForStd!index.action';
-  static const table = '$_eams/courseTableForStd!courseTable.action';
 }

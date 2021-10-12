@@ -10,8 +10,6 @@ class CalendarLogic extends GetxController with L {
 
   CalendarLogic({Dio? dio}) : dio = dio ?? defaultDio;
 
-  static const url = 'http://www.u-office.ecnu.edu.cn/xiaoli/main.htm';
-
   @override
   void onInit() {
     getCalendar();
@@ -22,10 +20,10 @@ class CalendarLogic extends GetxController with L {
 
   void getCalendar() async {
     try {
-      final r = await dio.get(url);
+      final r = await dio.get(Url.calendar);
       final document = parseHtmlDocument(r.data);
       final src = document.querySelector('img')!.attributes['src'];
-      imgUrl.value = 'http://www.u-office.ecnu.edu.cn$src';
+      imgUrl.value = Url.uOffice + src!;
     } catch (e) {
       l.error(e);
       Get.snackbar('获取校历失败', e.toString());

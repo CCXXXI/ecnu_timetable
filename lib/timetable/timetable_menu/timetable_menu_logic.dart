@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../settings/settings_logic.dart';
 import '../../utils/gu.dart';
 import '../../utils/string.dart';
+import '../../utils/web.dart';
 import '../ecnu/ecnu_view.dart';
 
 class TimetableMenuLogic extends GetxController {
@@ -14,7 +13,7 @@ class TimetableMenuLogic extends GetxController {
         middleText: '因跨域资源共享（CORS）问题，无法连接公共数据库。',
         textConfirm: '下载完整版',
         textCancel: '返回',
-        onConfirm: () => launch(SettingsLogic.latestUrl),
+        onConfirm: Url.latest.launch,
       );
     } else {
       Get.to(() => EcnuPage());

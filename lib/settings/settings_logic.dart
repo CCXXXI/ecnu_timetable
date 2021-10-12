@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/log.dart';
 import '../utils/string.dart';
@@ -51,14 +50,9 @@ class SettingsLogic extends GetxController with L {
     }
   }
 
-  static const _repoUrl = 'https://github.com/CCXXXI/ecnu_timetable';
-  static const latestUrl = '$_repoUrl/releases/latest';
+  void curVerOnTap() => Url.version(version).launch();
 
-  static String _getVerUrl(String v) => '$_repoUrl/releases/tag/v$v';
+  void latestVerOnTap() => Url.latest.launch();
 
-  void curVerOnTap() => launch(_getVerUrl(version));
-
-  void latestVerOnTap() => launch(latestUrl);
-
-  void feedbackOnTap() => launch('$_repoUrl/issues');
+  void feedbackOnTap() => Url.issues.launch();
 }
