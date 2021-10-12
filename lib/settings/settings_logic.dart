@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/dio.dart';
 import '../utils/log.dart';
 import '../utils/string.dart';
+import '../utils/web.dart';
 import 'theme.dart' as theme;
 
 class SettingsLogic extends GetxController with L {

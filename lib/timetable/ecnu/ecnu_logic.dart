@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:universal_html/parsing.dart';
 
-import '../../utils/dio.dart';
 import '../../utils/log.dart';
+import '../../utils/web.dart';
 import 'des.dart';
 
 class EcnuLogic extends GetxController with L {

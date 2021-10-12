@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../settings/settings_logic.dart';
-import '../utils/dio.dart';
 import '../utils/log.dart';
 import '../utils/string.dart';
+import '../utils/web.dart';
 import 'calendar/calendar_logic.dart';
 import 'calendar/calendar_view.dart';
 import 'cheater.dart';
