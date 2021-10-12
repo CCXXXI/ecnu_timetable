@@ -259,58 +259,41 @@ List<int> _strToBt(String str) {
 }
 
 String _bt4ToHex(String binary) {
-  late String hex;
   switch (binary) {
     case '0000':
-      hex = '0';
-      break;
+      return '0';
     case '0001':
-      hex = '1';
-      break;
+      return '1';
     case '0010':
-      hex = '2';
-      break;
+      return '2';
     case '0011':
-      hex = '3';
-      break;
+      return '3';
     case '0100':
-      hex = '4';
-      break;
+      return '4';
     case '0101':
-      hex = '5';
-      break;
+      return '5';
     case '0110':
-      hex = '6';
-      break;
+      return '6';
     case '0111':
-      hex = '7';
-      break;
+      return '7';
     case '1000':
-      hex = '8';
-      break;
+      return '8';
     case '1001':
-      hex = '9';
-      break;
+      return '9';
     case '1010':
-      hex = 'A';
-      break;
+      return 'A';
     case '1011':
-      hex = 'B';
-      break;
+      return 'B';
     case '1100':
-      hex = 'C';
-      break;
+      return 'C';
     case '1101':
-      hex = 'D';
-      break;
+      return 'D';
     case '1110':
-      hex = 'E';
-      break;
+      return 'E';
     case '1111':
-      hex = 'F';
-      break;
+      return 'F';
   }
-  return hex;
+  throw AssertionError();
 }
 
 String _bt64ToHex(List<int> byteData) {
