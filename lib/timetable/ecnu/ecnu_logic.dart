@@ -53,7 +53,8 @@ class EcnuLogic extends GetxController with L {
 
   void onStepContinue() async {
     l.debug('step: ${step.value}, isLoading: ${isLoading.value}');
-    if (isLoading.isTrue || !loginFormKey.currentState!.validate()) return;
+    if (isLoading.isTrue ||
+        step.value == 0 && !loginFormKey.currentState!.validate()) return;
 
     if (step.value == 0) {
       isLoading.value = true;
