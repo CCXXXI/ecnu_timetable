@@ -3,7 +3,7 @@
 
 import 'dart:math';
 
-dynamic strEnc(String data) {
+String strEnc(String data) {
   var len = data.length;
   var encData = StringBuffer();
   var firstKeyBt = [
@@ -207,18 +207,18 @@ dynamic strEnc(String data) {
   var iterator = (len / 4);
   for (var i = 0; i < iterator; i++) {
     var tempData = data.substring(i * 4, min(i * 4 + 4, len));
-    var tempByte = strToBt(tempData);
+    var tempByte = _strToBt(tempData);
     var tempBt = tempByte;
-    tempBt = enc(tempBt, firstKeyBt);
-    tempBt = enc(tempBt, secondKeyBt);
-    tempBt = enc(tempBt, thirdKeyBt);
+    tempBt = _enc(tempBt, firstKeyBt);
+    tempBt = _enc(tempBt, secondKeyBt);
+    tempBt = _enc(tempBt, thirdKeyBt);
     var encByte = tempBt;
-    encData.write(bt64ToHex(encByte));
+    encData.write(_bt64ToHex(encByte));
   }
   return encData.toString();
 }
 
-dynamic strToBt(String str) {
+List<int> _strToBt(String str) {
   var len = str.length;
   var bt = List.filled(64, 0);
   if (len < 4) {
@@ -258,7 +258,7 @@ dynamic strToBt(String str) {
   return bt;
 }
 
-dynamic bt4ToHex(binary) {
+String _bt4ToHex(String binary) {
   late String hex;
   switch (binary) {
     case '0000':
@@ -313,21 +313,21 @@ dynamic bt4ToHex(binary) {
   return hex;
 }
 
-dynamic bt64ToHex(byteData) {
+String _bt64ToHex(List<int> byteData) {
   var hex = StringBuffer();
   for (var i = 0; i < 16; i++) {
     var bt = StringBuffer();
     for (var j = 0; j < 4; j++) {
       bt.write(byteData[i * 4 + j].toString());
     }
-    hex.write(bt4ToHex(bt.toString()));
+    hex.write(_bt4ToHex(bt.toString()));
   }
   return hex.toString();
 }
 
-dynamic enc(dataByte, keyByte) {
-  var keys = generateKeys(keyByte);
-  var ipByte = initPermute(dataByte);
+List<int> _enc(List<int> dataByte, List<int> keyByte) {
+  var keys = _generateKeys(keyByte);
+  var ipByte = _initPermute(dataByte);
   var ipLeft = List.filled(32, 0);
   var ipRight = List.filled(32, 0);
   var tempLeft = List.filled(32, 0);
@@ -344,8 +344,8 @@ dynamic enc(dataByte, keyByte) {
     for (var m = 0; m < 48; m++) {
       key[m] = keys[i][m];
     }
-    var tempRight =
-        xor(pPermute(sBoxPermute(xor(expandPermute(ipRight), key))), tempLeft);
+    var tempRight = _xor(
+        _pPermute(_sBoxPermute(_xor(_expandPermute(ipRight), key))), tempLeft);
     for (var n = 0; n < 32; n++) {
       ipRight[n] = tempRight[n];
     }
@@ -356,10 +356,10 @@ dynamic enc(dataByte, keyByte) {
     finalData[i] = ipRight[i];
     finalData[32 + i] = ipLeft[i];
   }
-  return finallyPermute(finalData);
+  return _finallyPermute(finalData);
 }
 
-dynamic initPermute(originalData) {
+List<int> _initPermute(List<int> originalData) {
   var ipByte = List.filled(64, 0);
   for (var i = 0, m = 1, n = 0; i < 4; i++, m += 2, n += 2) {
     for (var j = 7, k = 0; j >= 0; j--, k++) {
@@ -370,7 +370,7 @@ dynamic initPermute(originalData) {
   return ipByte;
 }
 
-dynamic expandPermute(rightData) {
+List<int> _expandPermute(List<int> rightData) {
   var epByte = List.filled(48, 0);
   for (var i = 0; i < 8; i++) {
     if (i == 0) {
@@ -391,7 +391,7 @@ dynamic expandPermute(rightData) {
   return epByte;
 }
 
-dynamic xor(byteOne, byteTwo) {
+List<int> _xor(List<int> byteOne, List<int> byteTwo) {
   var xorByte = List.filled(byteOne.length, 0);
   for (var i = 0; i < byteOne.length; i++) {
     xorByte[i] = byteOne[i] ^ byteTwo[i];
@@ -399,7 +399,7 @@ dynamic xor(byteOne, byteTwo) {
   return xorByte;
 }
 
-dynamic sBoxPermute(expandByte) {
+List<int> _sBoxPermute(List<int> expandByte) {
   var sBoxByte = List.filled(32, 0);
   var binary = '';
   var s1 = [
@@ -467,28 +467,28 @@ dynamic sBoxPermute(expandByte) {
         expandByte[m * 6 + 4];
     switch (m) {
       case 0:
-        binary = getBoxBinary(s1[i][j]);
+        binary = _getBoxBinary(s1[i][j]);
         break;
       case 1:
-        binary = getBoxBinary(s2[i][j]);
+        binary = _getBoxBinary(s2[i][j]);
         break;
       case 2:
-        binary = getBoxBinary(s3[i][j]);
+        binary = _getBoxBinary(s3[i][j]);
         break;
       case 3:
-        binary = getBoxBinary(s4[i][j]);
+        binary = _getBoxBinary(s4[i][j]);
         break;
       case 4:
-        binary = getBoxBinary(s5[i][j]);
+        binary = _getBoxBinary(s5[i][j]);
         break;
       case 5:
-        binary = getBoxBinary(s6[i][j]);
+        binary = _getBoxBinary(s6[i][j]);
         break;
       case 6:
-        binary = getBoxBinary(s7[i][j]);
+        binary = _getBoxBinary(s7[i][j]);
         break;
       case 7:
-        binary = getBoxBinary(s8[i][j]);
+        binary = _getBoxBinary(s8[i][j]);
         break;
     }
     sBoxByte[m * 4] = int.parse(binary.substring(0, 1));
@@ -499,7 +499,7 @@ dynamic sBoxPermute(expandByte) {
   return sBoxByte;
 }
 
-dynamic pPermute(sBoxByte) {
+List<int> _pPermute(List<int> sBoxByte) {
   var pBoxPermute = List.filled(32, 0);
   pBoxPermute[0] = sBoxByte[15];
   pBoxPermute[1] = sBoxByte[6];
@@ -536,7 +536,7 @@ dynamic pPermute(sBoxByte) {
   return pBoxPermute;
 }
 
-dynamic finallyPermute(endByte) {
+List<int> _finallyPermute(List<int> endByte) {
   var fpByte = List.filled(64, 0);
   fpByte[0] = endByte[39];
   fpByte[1] = endByte[7];
@@ -605,7 +605,7 @@ dynamic finallyPermute(endByte) {
   return fpByte;
 }
 
-dynamic getBoxBinary(i) {
+String _getBoxBinary(int i) {
   var binary = '';
   switch (i) {
     case 0:
@@ -660,7 +660,7 @@ dynamic getBoxBinary(i) {
   return binary;
 }
 
-dynamic generateKeys(keyByte) {
+List<List<int>> _generateKeys(List<int> keyByte) {
   var key = List.filled(56, 0);
   var keys = List.generate(16, (_) => List.filled(48, 0));
   var loop = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
