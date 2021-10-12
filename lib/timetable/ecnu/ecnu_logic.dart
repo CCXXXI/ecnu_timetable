@@ -13,6 +13,10 @@ import '../../utils/log.dart';
 import 'des.dart';
 
 class EcnuLogic extends GetxController with L {
+  final Dio dio;
+
+  EcnuLogic({Dio? dio}) : dio = dio ?? defaultDio;
+
   /// - 0: login
   /// - 1: check
   final step = 0.obs;

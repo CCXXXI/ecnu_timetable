@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -7,6 +8,10 @@ import '../utils/messages.dart';
 import 'theme.dart' as theme;
 
 class SettingsLogic extends GetxController with L {
+  final Dio dio;
+
+  SettingsLogic({Dio? dio}) : dio = dio ?? defaultDio;
+
   void updateTheme(_) => theme.updateTheme();
 
   /// - null: loading

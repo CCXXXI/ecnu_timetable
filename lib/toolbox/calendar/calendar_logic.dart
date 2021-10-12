@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:universal_html/parsing.dart';
 
@@ -5,6 +6,10 @@ import '../../utils/dio.dart';
 import '../../utils/log.dart';
 
 class CalendarLogic extends GetxController with L {
+  final Dio dio;
+
+  CalendarLogic({Dio? dio}) : dio = dio ?? defaultDio;
+
   static const url = 'http://www.u-office.ecnu.edu.cn/xiaoli/main.htm';
 
   @override

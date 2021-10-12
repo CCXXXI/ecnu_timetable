@@ -5,7 +5,10 @@ import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:loggy/loggy.dart';
 
 final cookieJar = CookieJar();
-final dio = Dio()
+
+/// The default Dio instance used by all production code.
+/// Test code may use a fake one.
+final defaultDio = Dio()
   ..interceptors.addAll([
     LoggyDioInterceptor(
       requestHeader: true,
