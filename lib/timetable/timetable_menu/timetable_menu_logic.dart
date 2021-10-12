@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../settings/settings_logic.dart';
 import '../../utils/gu.dart';
-import '../../utils/messages.dart';
+import '../../utils/string.dart';
 import '../ecnu/ecnu_view.dart';
 
 class TimetableMenuLogic extends GetxController {

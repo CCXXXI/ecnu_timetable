@@ -1,5 +1,5 @@
 import 'package:ecnu_timetable/settings/settings_logic.dart';
-import 'package:ecnu_timetable/utils/messages.dart';
+import 'package:ecnu_timetable/utils/string.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 

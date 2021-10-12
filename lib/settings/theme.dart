@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loggy/loggy.dart';
 
-import '../utils/messages.dart';
+import '../utils/string.dart';
 
 // region colorScheme
 const _ecnuColorStr = '#ffa41f35';

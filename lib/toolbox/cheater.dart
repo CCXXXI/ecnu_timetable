@@ -1,6 +1,6 @@
 import 'package:dart_random_choice/dart_random_choice.dart';
 
-import '../utils/messages.dart';
+import '../utils/string.dart';
 
 final cheaters = [
   '我觉得你俩在一起特别合适，真的！因为你都不知道你有多优秀呢。',

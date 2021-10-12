@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../utils/loading.dart';
-import '../utils/messages.dart';
+import '../utils/string.dart';
 import 'settings_logic.dart';
 import 'theme.dart';
 import 'trivia.dart';

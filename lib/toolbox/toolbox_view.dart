@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../utils/loading.dart';
-import '../utils/messages.dart';
+import '../utils/string.dart';
 import 'calendar/calendar_logic.dart';
 import 'toolbox_logic.dart';
 

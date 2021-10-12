@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../utils/loading.dart';
-import '../../utils/messages.dart';
+import '../../utils/string.dart';
 import 'ecnu_logic.dart';
 
 class EcnuPage extends StatelessWidget {

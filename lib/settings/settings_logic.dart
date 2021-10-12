@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/dio.dart';
 import '../utils/log.dart';
-import '../utils/messages.dart';
+import '../utils/string.dart';
 import 'theme.dart' as theme;
 
 class SettingsLogic extends GetxController with L {

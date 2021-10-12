@@ -7,7 +7,7 @@ import '../settings/settings_view.dart';
 import '../timetable/timetable_logic.dart';
 import '../timetable/timetable_view.dart';
 import '../toolbox/toolbox_view.dart';
-import '../utils/messages.dart';
+import '../utils/string.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {

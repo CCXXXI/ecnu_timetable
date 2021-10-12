@@ -8,7 +8,7 @@ import 'package:window_size/window_size.dart';
 import 'home/home_view.dart';
 import 'settings/theme.dart';
 import 'utils/log.dart';
-import 'utils/messages.dart';
+import 'utils/string.dart';
 
 void main() async {
   await Settings.init();

@@ -4,7 +4,7 @@ import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../utils/messages.dart';
+import '../utils/string.dart';
 
 final _triviaStr = [
   'GitHub的仓库名通常使用分隔符`ecnu-timetable`，但为了让Dart开心，本仓库使用了下划线`ecnu_timetable`。'.s,

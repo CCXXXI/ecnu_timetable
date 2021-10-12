@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../settings/settings_logic.dart';
 import '../utils/dio.dart';
 import '../utils/log.dart';
-import '../utils/messages.dart';
+import '../utils/string.dart';
 import 'calendar/calendar_logic.dart';
 import 'calendar/calendar_view.dart';
 import 'cheater.dart';
