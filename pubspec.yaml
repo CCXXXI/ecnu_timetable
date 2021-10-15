@@ -37,6 +37,7 @@ dependencies:
   path_provider:
   universal_html:
   cached_network_image:
+  quiver:
 
 dev_dependencies:
   flutter_test:
