@@ -69,7 +69,7 @@ void main() {
 
     expect(logic.imgUrl.value, isEmpty);
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 10));
     expect(logic.imgUrl.value, isNotEmpty);
 
     Get.delete<CalendarLogic>();
