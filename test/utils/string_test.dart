@@ -1,9 +1,10 @@
 import 'package:ecnu_timetable/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quiver/pattern.dart';
 
 const _num = r'(0|[1-9]\d*)';
-final _semVer = RegExp('^$_num\\.$_num\\.$_num\$');
+final _semVer = RegExp('$_num\\.$_num\\.$_num');
 
 void main() {
   group('盘古', () {
@@ -14,12 +15,22 @@ void main() {
   });
 
   group('package info', () {
-    test('appName', () => expect(appName, 'ECNU Timetable'));
-    test('packageName',
-        () => expect(packageName, 'io.github.ccxxxi.ecnu_timetable'));
-    test('version', () => expect(_semVer.hasMatch(version), isTrue));
-    test('buildNumber',
-        () => expect(RegExp('^$_num\$').hasMatch(buildNumber), isTrue));
+    test(
+      'appName',
+      () => expect(appName, 'ECNU Timetable'),
+    );
+    test(
+      'packageName',
+      () => expect(packageName, 'io.github.ccxxxi.ecnu_timetable'),
+    );
+    test(
+      'version',
+      () => expect(matchesFull(_semVer, version), isTrue),
+    );
+    test(
+      'buildNumber',
+      () => expect(matchesFull(RegExp(_num), buildNumber), isTrue),
+    );
   });
 
   testWidgets('license', (tester) async {
