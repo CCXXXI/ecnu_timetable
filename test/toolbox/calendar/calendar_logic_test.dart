@@ -177,4 +177,4 @@ const fakeData = '''
 </html>
  <img src="/_visitcount?siteId=285&type=1&columnId=10066" style="display:none" width="0" height="0"></image>''';
 const fakeImgUrl =
-    'http://www.u-office.ecnu.edu.cn/_upload/article/images/4f/e8/1a1c59344523a4be4cf6a90081c6/701c09f0-42a3-442f-b02c-f3308c62f4c6.jpg';
+    'http://www.u-office.ecnu.edu.cn/_upload/article/images/4f/e8/1a1c59344523a4be4cf6a90081c6/b1de9633-5f49-4511-b63d-236f44b327d5.jpg';

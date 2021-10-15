@@ -22,7 +22,7 @@ class CalendarLogic extends GetxController with L {
     try {
       final r = await dio.get(Url.calendar);
       final document = parseHtmlDocument(r.data);
-      final src = document.querySelector('img')!.attributes['src'];
+      final src = document.querySelector('img')?.parent?.attributes['href'];
       imgUrl.value = Url.uOffice + src!;
     } catch (e) {
       l.error(e);
