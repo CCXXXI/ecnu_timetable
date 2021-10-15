@@ -83,15 +83,15 @@ const fakeData = '''
                                             <td width="882">
                                                 <div frag="面板1" style="width:882px;height:100%;">
                                                     <div frag="窗口1">
-                                                        <div id="wp_news_w1"> 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table"> 
-<tr> 
-<td> 
+                                                        <div id="wp_news_w1">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
 
-                                                            <!--[InfoCycleBegin]--><a class="focus_img i1" href="/_upload/article/images/4f/e8/1a1c59344523a4be4cf6a90081c6/b1de9633-5f49-4511-b63d-236f44b327d5.jpg" target="_blank"> <img width="882" height="" src="/_upload/article/images/4f/e8/1a1c59344523a4be4cf6a90081c6/701c09f0-42a3-442f-b02c-f3308c62f4c6.jpg"/></a> 
-                                                        </td> 
-</tr> 
-</table></div> 
+                                                            <!--[InfoCycleBegin]--><a class="focus_img i1" href="/_upload/article/images/4f/e8/1a1c59344523a4be4cf6a90081c6/b1de9633-5f49-4511-b63d-236f44b327d5.jpg" target="_blank"> <img width="882" height="" src="/_upload/article/images/4f/e8/1a1c59344523a4be4cf6a90081c6/701c09f0-42a3-442f-b02c-f3308c62f4c6.jpg"/></a>
+                                                        </td>
+</tr>
+</table></div>
 <!--[InfoCycleEnd]-->
                                                     </div>
                                                 </div>
@@ -110,9 +110,9 @@ const fakeData = '''
                                             <td align="center">
                                                 <div frag="面板2" class="cont">
                                                     <div frag="窗口2">
-                                                        <div id="wp_news_w2"> 
+                                                        <div id="wp_news_w2">
 
-                                                            
+
                                                             <div class="xlxz">
                                                                 <a href='/_upload/article/files/03/15/d3c06d5a46e6a593f0b89f26fbf1/caf89983-b3a8-4ca1-88ad-b06d3d885145.rar' target='_blank' title='2021-2022学年校历[教师+学生版]'>2021-2022学年校历[教师+学生版]</a>
                                                             </div>
@@ -146,7 +146,7 @@ const fakeData = '''
                                                             <div class="xlxz">
                                                                 <a href='/_upload/article/images/be/d0/a388ba694a7a9727cfbf327770e5/9d1b8b71-0a3c-47cc-84cc-c91da660c06b.jpg' target='_blank' title='2011-2012学年校历'>2011-2012学年校历</a>
                                                             </div>
-                                                        </div> 
+                                                        </div>
 
                                                     </div>
                                                 </div>
