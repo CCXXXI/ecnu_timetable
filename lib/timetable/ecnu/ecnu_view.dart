@@ -35,7 +35,7 @@ class EcnuPage extends StatelessWidget {
                         label: Text('学号'),
                       ),
                       controller: logic.idController,
-                      validator: logic.idValidator,
+                      validator: EcnuLogic.idValidator,
                       maxLength: 11,
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
@@ -48,7 +48,7 @@ class EcnuPage extends StatelessWidget {
                         label: Text('密码'),
                       ),
                       controller: logic.passwordController,
-                      validator: logic.passwordValidator,
+                      validator: EcnuLogic.passwordValidator,
                       maxLength: TextField.noMaxLength,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
@@ -65,7 +65,7 @@ class EcnuPage extends StatelessWidget {
                                       label: Text('验证码'),
                                     ),
                                     controller: logic.captchaController.value,
-                                    validator: logic.captchaValidator,
+                                    validator: EcnuLogic.captchaValidator,
                                     maxLength: 4,
                                     inputFormatters: [
                                       FilteringTextInputFormatter.digitsOnly,

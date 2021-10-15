@@ -42,12 +42,14 @@ class EcnuLogic extends GetxController with L {
     captchaController.value?.dispose();
   }
 
-  String? idValidator(String? value) => value?.length == 11 ? null : '11位';
+  static String? idValidator(String? value) =>
+      value?.length == 11 ? null : '11位';
 
-  String? passwordValidator(String? value) =>
+  static String? passwordValidator(String? value) =>
       value?.isEmpty ?? true ? '非空' : null;
 
-  String? captchaValidator(String? value) => value?.length == 4 ? null : '4位';
+  static String? captchaValidator(String? value) =>
+      value?.length == 4 ? null : '4位';
 
   final isLoading = true.obs;
 
