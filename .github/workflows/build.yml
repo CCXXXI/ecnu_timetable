@@ -28,11 +28,11 @@ jobs:
       - uses: papeloto/action-zip@v1
         with:
           files: build/windows/runner/Release/
-          dest: ecnu_timetable_windows.zip
+          dest: windows-release.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable_windows
-          path: ecnu_timetable_windows.zip
+          name: ecnu_timetable-windows
+          path: windows-release.zip
 
   build-android:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable_android
+          name: ecnu_timetable-android
           path: build/app/outputs/apk/release/*.apk
 
   release:
@@ -59,4 +59,4 @@ jobs:
           prerelease: false
           files: |
             **/*.apk
-            **/ecnu_timetable_windows.zip
+            **/windows-release.zip
