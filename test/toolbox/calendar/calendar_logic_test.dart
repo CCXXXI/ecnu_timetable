@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/toolbox/calendar/calendar_logic.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart' hide Response;
 
@@ -21,6 +22,23 @@ class FakeDio extends Fake implements Dio {
   }
 }
 
+class FakeErrorDio extends Fake implements Dio {
+  @override
+  Future<Response<T>> get<T>(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    throw DioError(
+      requestOptions: RequestOptions(path: path),
+    );
+  }
+}
+
 void main() {
   test('fake calendar', () async {
     final logic = Get.put(CalendarLogic(dio: FakeDio()));
@@ -29,6 +47,19 @@ void main() {
 
     await Future.delayed(const Duration(milliseconds: 200));
     expect(logic.imgUrl.value, fakeImgUrl);
+
+    Get.delete<CalendarLogic>();
+  });
+
+  test('error calendar', () async {
+    runApp(const GetMaterialApp());
+
+    final logic = Get.put(CalendarLogic(dio: FakeErrorDio()));
+
+    expect(logic.imgUrl.value, isEmpty);
+
+    await Future.delayed(const Duration(milliseconds: 200));
+    expect(logic.imgUrl.value, isEmpty);
 
     Get.delete<CalendarLogic>();
   });
