@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:dart_random_choice/dart_random_choice.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../utils/string.dart';
@@ -40,4 +39,4 @@ final _triviaStr = [
 final trivia =
     _triviaStr.map((e) => MarkdownBody(data: e)).toList(growable: false);
 
-Widget get randomTrivia => randomChoice(trivia);
+MarkdownBody get randomTrivia => randomChoice(trivia);
