@@ -2,6 +2,30 @@ import 'package:ecnu_timetable/timetable/ecnu/ecnu_logic.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('idValidator', () {
+    expect(EcnuLogic.idValidator(null), isNotEmpty);
+    expect(EcnuLogic.idValidator(''), isNotEmpty);
+    expect(EcnuLogic.idValidator('123456'), isNotEmpty);
+    expect(EcnuLogic.idValidator('123456' * 10), isNotEmpty);
+    expect(EcnuLogic.idValidator('10101001000'), isNull);
+  });
+
+  test('passwordValidator', () {
+    expect(EcnuLogic.passwordValidator(null), isNotEmpty);
+    expect(EcnuLogic.passwordValidator(''), isNotEmpty);
+    expect(EcnuLogic.passwordValidator('123456'), isNull);
+    expect(EcnuLogic.passwordValidator('123456' * 10), isNull);
+    expect(EcnuLogic.passwordValidator('10101001000'), isNull);
+  });
+
+  test('captchaValidator', () {
+    expect(EcnuLogic.captchaValidator(null), isNotEmpty);
+    expect(EcnuLogic.captchaValidator(''), isNotEmpty);
+    expect(EcnuLogic.captchaValidator('1234'), isNull);
+    expect(EcnuLogic.captchaValidator('123456'), isNotEmpty);
+    expect(EcnuLogic.captchaValidator('10101001000'), isNotEmpty);
+  });
+
   test('semester.id', () {
     expect(EcnuLogic.semId(2018, 0), 705);
     expect(EcnuLogic.semId(2018, 1), 705 + 32);
