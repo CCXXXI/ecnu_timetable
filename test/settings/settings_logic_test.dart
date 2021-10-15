@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/settings/settings_logic.dart';
+import 'package:ecnu_timetable/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart' hide Response;
@@ -53,6 +54,10 @@ void main() {
     await Future.delayed(const Duration(milliseconds: 200));
     expect(logic.latestVer.value, '1024.2048.4096');
     expect(logic.updateAvailable, isTrue);
+
+    logic.latestVer.value = version;
+    expect(logic.latestVer.value, version);
+    expect(logic.updateAvailable, isFalse);
 
     Get.delete<SettingsLogic>();
   });
