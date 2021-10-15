@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../utils/loading.dart';
-import '../utils/messages.dart';
-import 'calendar/calendar_logic.dart';
+import '../utils/string.dart';
+import '../utils/web.dart';
 import 'toolbox_logic.dart';
 
 class ToolboxPage extends StatelessWidget {
@@ -54,37 +54,37 @@ class ToolboxPage extends StatelessWidget {
             '校历',
             '长按打开网页版',
             onTap: logic.calendarOnTap,
-            onLongPress: logic.url(CalendarLogic.url),
+            onLongPress: Url.calendar.launch,
           ),
           Tool(
             FontAwesomeIcons.scroll,
             '公告',
             '善用搜索',
-            onTap: logic.url('https://www.ecnu.edu.cn/tzgg.htm'),
+            onTap: Url.announcements.launch,
           ),
           Tool(
             FontAwesomeIcons.mapMarked,
             '校内地图',
             '2D/3D',
-            onTap: logic.url('https://eoffice.ecnu.edu.cn/ecnu3d/main.psp'),
+            onTap: Url.map.launch,
           ),
           Tool(
             FontAwesomeIcons.bus,
             '校车时刻表',
             '需要连学校Wifi/VPN'.s,
-            onTap: logic.url('http://houqin.ecnu.edu.cn/28837/list.psp'),
+            onTap: Url.bus.launch,
           ),
           Tool(
             FontAwesomeIcons.cube,
             'ECNU软件镜像站'.s,
             '内容很少',
-            onTap: logic.url('https://mirrors.ecnu.edu.cn/'),
+            onTap: Url.mirrors.launch,
           ),
           Tool(
             FontAwesomeIcons.key,
             '学校VPN'.s,
             '对校外网站有减速作用',
-            onTap: logic.url('https://docs.ecnu.edu.cn/index/Network/vpn.html'),
+            onTap: Url.vpn.launch,
           ),
         ],
       );

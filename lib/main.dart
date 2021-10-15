@@ -8,7 +8,7 @@ import 'package:window_size/window_size.dart';
 import 'home/home_view.dart';
 import 'settings/theme.dart';
 import 'utils/log.dart';
-import 'utils/messages.dart';
+import 'utils/string.dart';
 
 void main() async {
   await Settings.init();
@@ -48,8 +48,10 @@ void initDesktop() {
 }
 
 Future<void> initSentry(Widget app) async {
-  final id = Settings.getValue('ecnu.id', null);
-  final username = Settings.getValue('ecnu.username', null);
+  final id_ = Settings.getValue('ecnu.id', '');
+  final id = id_.isEmpty ? null : id_;
+  final username_ = Settings.getValue('ecnu.name', '');
+  final username = username_.isEmpty ? null : username_;
   logInfo('id: $id, username: $username');
   logInfo('release: $release');
 

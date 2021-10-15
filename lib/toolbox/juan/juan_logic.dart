@@ -5,29 +5,29 @@ import 'package:get/get.dart';
 
 class JuanLogic extends GetxController {
   final formKey = GlobalKey<FormState>();
-  final controllerA = TextEditingController();
-  final controllerB = TextEditingController();
+  final aController = TextEditingController();
+  final bController = TextEditingController();
 
   @override
   void onClose() {
     super.onClose();
-    controllerA.dispose();
-    controllerB.dispose();
+    aController.dispose();
+    bController.dispose();
   }
+
+  String? aValidator(String? value) =>
+      int.tryParse(value ?? '') == null ? 'invalid' : null;
+
+  String? bValidator(String? value) =>
+      [null, 0].contains(int.tryParse(value ?? '')) ? 'invalid' : null;
 
   final r = 0.obs;
 
   void updateR() {
     if (!formKey.currentState!.validate()) return;
 
-    final a = int.parse(controllerA.text);
-    final b = int.parse(controllerB.text);
+    final a = int.parse(aController.text);
+    final b = int.parse(bController.text);
     r.value = a <= b ? 0 : (5 * (2 * a / b - 1) * log(a - b + 1)).ceil();
   }
-
-  String? validatorA(String? value) =>
-      int.tryParse(value ?? '') == null ? 'invalid' : null;
-
-  String? validatorB(String? value) =>
-      [null, 0].contains(int.tryParse(value ?? '')) ? 'invalid' : null;
 }

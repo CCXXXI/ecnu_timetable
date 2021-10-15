@@ -1,20 +1,19 @@
-import 'package:dart_random_choice/dart_random_choice.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../settings/settings_logic.dart';
-import '../utils/dio.dart';
 import '../utils/log.dart';
-import '../utils/messages.dart';
-import 'calendar/calendar_logic.dart';
+import '../utils/string.dart';
+import '../utils/web.dart';
 import 'calendar/calendar_view.dart';
 import 'cheater.dart';
 import 'juan/juan_view.dart';
 
 class ToolboxLogic extends GetxController with L {
-  void Function() url(String url) => () => launch(url);
+  final Dio dio;
+
+  ToolboxLogic({Dio? dio}) : dio = dio ?? defaultDio;
 
   @override
   void onInit() {
@@ -38,16 +37,11 @@ class ToolboxLogic extends GetxController with L {
     sucker.value = await _getSucker() ?? '获取失败';
   }
 
-  static const _suckerApis = [
-    'https://api.vience.cn/api/tiangou',
-    'http://api.ay15.cn/api/tiangou/api.php',
-  ];
-
   Future<String?> _getSucker() async {
     if (GetPlatform.isWeb) return 'Web端不可用'.s;
 
     try {
-      final r = await dio.get(randomChoice(_suckerApis));
+      final r = await dio.get(Api.randomSucker);
       return (r.data as String).s;
     } catch (e) {
       l.error(e);
@@ -113,11 +107,11 @@ class ToolboxLogic extends GetxController with L {
     if (GetPlatform.isWeb) {
       Get.defaultDialog(
         title: 'Web端功能受限'.s,
-        middleText: '因跨域资源共享（CORS）问题，无法获取并显示校历图片。'.s,
+        middleText: '因跨域资源共享（CORS）问题，无法获取并显示校历图片。',
         textConfirm: '跳转网页',
         textCancel: '下载完整版',
-        onConfirm: url(CalendarLogic.url),
-        onCancel: url(SettingsLogic.latestUrl),
+        onConfirm: Url.calendar.launch,
+        onCancel: Url.latest.launch,
       );
     } else {
       Get.to(() => CalendarPage());

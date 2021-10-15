@@ -1,12 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:quiver/iterables.dart';
 
-import '../utils/dio.dart';
 import '../utils/log.dart';
-import '../utils/messages.dart';
+import '../utils/string.dart';
+import '../utils/web.dart';
 import 'theme.dart' as theme;
 
 class SettingsLogic extends GetxController with L {
+  final Dio dio;
+
+  SettingsLogic({Dio? dio}) : dio = dio ?? defaultDio;
+
   void updateTheme(_) => theme.updateTheme();
 
   /// - null: loading
@@ -27,14 +32,25 @@ class SettingsLogic extends GetxController with L {
     }
   }
 
-  bool get updateAvailable =>
-      latestVer.value != null && latestVer.value != version;
+  bool get updateAvailable {
+    final latest = latestVer.value;
+
+    if (latest == null || latest.isEmpty) return false;
+
+    final l = latest.split('.').map(int.parse);
+    final v = version.split('.').map(int.parse);
+    for (final pair in zip([l, v])) {
+      if (pair[0] > pair[1]) return true;
+    }
+
+    return false;
+  }
 
   /// Get latest release version from GitHub.
   Future<String?> _getLatestVer() async {
     try {
       final r = await dio.get(
-        'https://api.github.com/repos/ccxxxi/ecnu_timetable/releases',
+        Api.releases,
         queryParameters: {'per_page': 1},
       );
       return (r.data[0]['name'] as String).substring(1);
@@ -44,14 +60,9 @@ class SettingsLogic extends GetxController with L {
     }
   }
 
-  static const _repoUrl = 'https://github.com/CCXXXI/ecnu_timetable';
-  static const latestUrl = '$_repoUrl/releases/latest';
+  void curVerOnTap() => Url.version(version).launch();
 
-  static String _getVerUrl(String v) => '$_repoUrl/releases/tag/v$v';
+  void latestVerOnTap() => Url.latest.launch();
 
-  void curVerOnTap() => launch(_getVerUrl(version));
-
-  void latestVerOnTap() => launch(latestUrl);
-
-  void feedbackOnTap() => launch('$_repoUrl/issues');
+  void feedbackOnTap() => Url.issues.launch();
 }

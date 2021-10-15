@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../utils/gu.dart';
-import '../../utils/messages.dart';
+import '../../utils/string.dart';
 import 'timetable_menu_logic.dart';
 
 class TimetableMenuPage extends StatelessWidget {

@@ -4,7 +4,7 @@ description: 更美观更智能的ECNU课程表。
 # Prevent the package from being accidentally published to pub.dev.
 publish_to: "none"
 
-version: 0.10.0+14
+version: 0.11.0+15
 
 environment:
   sdk: ">=2.15.0-172.0.dev"
@@ -23,6 +23,8 @@ dependencies:
   flutter_settings_screens: ">0.3.0"
   google_fonts:
   dio:
+  dio_cookie_manager:
+  cookie_jar:
   flutter_spinkit:
   url_launcher:
   badges:
@@ -35,6 +37,7 @@ dependencies:
   path_provider:
   universal_html:
   cached_network_image:
+  quiver:
 
 dev_dependencies:
   flutter_test:
