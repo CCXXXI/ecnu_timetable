@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:quiver/iterables.dart';
 
 import '../utils/log.dart';
 import '../utils/string.dart';
@@ -32,8 +33,17 @@ class SettingsLogic extends GetxController with L {
   }
 
   bool get updateAvailable {
-    final ver = latestVer.value;
-    return ver != null && ver.isNotEmpty && ver != version;
+    final latest = latestVer.value;
+
+    if (latest == null || latest.isEmpty) return false;
+
+    final l = latest.split('.').map(int.parse);
+    final v = version.split('.').map(int.parse);
+    for (final pair in zip([l, v])) {
+      if (pair[0] > pair[1]) return true;
+    }
+
+    return false;
   }
 
   /// Get latest release version from GitHub.
