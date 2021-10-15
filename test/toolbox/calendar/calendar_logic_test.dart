@@ -40,6 +40,8 @@ class FakeErrorDio extends Fake implements Dio {
 }
 
 void main() {
+  runApp(const GetMaterialApp());
+
   test('fake calendar', () async {
     final logic = Get.put(CalendarLogic(dio: FakeDio()));
 
@@ -52,8 +54,6 @@ void main() {
   });
 
   test('error calendar', () async {
-    runApp(const GetMaterialApp());
-
     final logic = Get.put(CalendarLogic(dio: FakeErrorDio()));
 
     expect(logic.imgUrl.value, isEmpty);
