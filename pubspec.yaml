@@ -39,6 +39,7 @@ dependencies:
   quiver:
   hive:
   card_settings:
+  pin_code_fields:
 
 dev_dependencies:
   flutter_test:
