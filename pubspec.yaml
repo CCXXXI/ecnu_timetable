@@ -37,6 +37,7 @@ dependencies:
   universal_html:
   cached_network_image:
   quiver:
+  hive:
 
 dev_dependencies:
   flutter_test:
