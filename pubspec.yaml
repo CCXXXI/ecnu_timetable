@@ -38,6 +38,7 @@ dependencies:
   cached_network_image:
   quiver:
   hive:
+  hive_flutter:
   card_settings:
   pin_code_fields:
 
