@@ -50,6 +50,7 @@ dev_dependencies:
   flutter_launcher_icons:
   flutter_native_splash:
   flutter_app_name:
+  hive_generator:
 
 flutter_app_name:
   name: "ECNU Timetable"
