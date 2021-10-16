@@ -38,6 +38,7 @@ dependencies:
   cached_network_image:
   quiver:
   hive:
+  card_settings:
 
 dev_dependencies:
   flutter_test:
