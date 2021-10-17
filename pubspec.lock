@@ -43,20 +43,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"
-  base58check:
-    dependency: transitive
-    description:
-      name: base58check
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
-  bech32:
-    dependency: transitive
-    description:
-      name: bech32
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -148,13 +134,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.1"
-  card_settings:
-    dependency: "direct main"
-    description:
-      name: card_settings
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.0"
   characters:
     dependency: transitive
     description:
@@ -232,13 +211,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.17.1"
-  cupertino_icons:
-    dependency: transitive
-    description:
-      name: cupertino_icons
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.3"
   dart_random_choice:
     dependency: "direct main"
     description:
@@ -274,13 +246,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
-  extended_masked_text:
-    dependency: transitive
-    description:
-      name: extended_masked_text
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.3.1"
   fake_async:
     dependency: transitive
     description:
@@ -302,13 +267,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "6.1.2"
-  file_picker:
-    dependency: transitive
-    description:
-      name: file_picker
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.1.4"
   fixnum:
     dependency: transitive
     description:
@@ -342,20 +300,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.2"
-  flutter_colorpicker:
-    dependency: transitive
-    description:
-      name: flutter_colorpicker
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.6.0"
-  flutter_cupertino_settings:
-    dependency: transitive
-    description:
-      name: flutter_cupertino_settings
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.5.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -391,20 +335,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.6.7"
-  flutter_material_pickers:
-    dependency: transitive
-    description:
-      name: flutter_material_pickers
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.1.2"
-  flutter_multi_formatter:
-    dependency: transitive
-    description:
-      name: flutter_multi_formatter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.4.1"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -412,13 +342,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.4"
-  flutter_plugin_android_lifecycle:
-    dependency: transitive
-    description:
-      name: flutter_plugin_android_lifecycle
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.3"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -534,13 +457,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.8"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -716,13 +632,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.3"
-  pattern_formatter:
-    dependency: transitive
-    description:
-      name: pattern_formatter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
   pedantic:
     dependency: transitive
     description:

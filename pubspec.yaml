@@ -39,7 +39,6 @@ dependencies:
   quiver:
   hive:
   hive_flutter:
-  card_settings:
   pin_code_fields:
 
 dev_dependencies:
