@@ -409,7 +409,7 @@ packages:
     source: hosted
     version: "2.1.0"
   hive:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: hive
       url: "https://pub.flutter-io.cn"
@@ -548,13 +548,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.0+1"
-  open_file:
-    dependency: "direct main"
-    description:
-      name: open_file
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.2.1"
   package_config:
     dependency: transitive
     description:

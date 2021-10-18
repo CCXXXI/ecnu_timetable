@@ -32,12 +32,10 @@ dependencies:
   flutter_loggy:
   flutter_loggy_dio:
   dart_random_choice: ">=0.1.0-nullsafety.0"
-  open_file:
   path_provider:
   universal_html:
   cached_network_image:
   quiver:
-  hive:
   hive_flutter:
   pin_code_fields:
   flutter_settings_screens: ">0.3.0"
