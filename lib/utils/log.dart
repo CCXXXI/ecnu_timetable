@@ -1,14 +1,14 @@
 import 'package:flutter_loggy/flutter_loggy.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:loggy/loggy.dart';
+
+import 'database.dart';
 
 void initLog({LogLevel? level}) => Loggy.initLoggy(
       logPrinter: StreamPrinter(const PrettyPrinter(showColors: true)),
       logOptions: LogOptions(
-        level ?? LogLevel.values[Settings.getValue('log.level', 2)],
-        stackTraceLevel:
-            LogLevel.values[Settings.getValue('log.stackTraceLevel', 5)],
-        includeCallerInfo: Settings.getValue('log.includeCallerInfo', false),
+        level ?? log.level_,
+        stackTraceLevel: log.stackTraceLevel_,
+        includeCallerInfo: log.includeCallerInfo,
       ),
     );
 

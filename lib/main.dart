@@ -7,14 +7,18 @@ import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
 import 'settings/theme.dart';
+import 'utils/database.dart' as db;
 import 'utils/log.dart';
+import 'utils/sentry.dart';
 import 'utils/string.dart';
 
 void main() async {
-  await Settings.init();
+  await db.initDatabase();
+  Settings.init();
   initLog();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
   await initMessages();
+  updateUser();
   await initSentry(const MyApp());
 }
 
@@ -45,26 +49,4 @@ void initDesktop() {
   setWindowMinSize(const Size(512, 512));
 
   logInfo('initDesktop end.');
-}
-
-Future<void> initSentry(Widget app) async {
-  final id_ = Settings.getValue('ecnu.id', '');
-  final id = id_.isEmpty ? null : id_;
-  final username_ = Settings.getValue('ecnu.name', '');
-  final username = username_.isEmpty ? null : username_;
-  logInfo('id: $id, username: $username');
-  logInfo('release: $release');
-
-  Sentry.configureScope((scope) => scope.user =
-      SentryUser(id: id, username: username, ipAddress: '{{auto}}'));
-
-  await SentryFlutter.init(
-    (options) => options
-      ..dsn =
-          'https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191'
-      ..tracesSampleRate = 1
-      ..sendDefaultPii = true
-      ..release = release,
-    appRunner: () => runApp(app),
-  );
 }

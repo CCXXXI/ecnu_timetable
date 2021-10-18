@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
-import 'package:loggy/loggy.dart';
 
-import '../toolbox/toolbox_logic.dart';
+import '../utils/database.dart';
 import 'dev_logic.dart';
 
 class DevPage extends StatelessWidget {
   DevPage({Key? key}) : super(key: key);
 
   final logic = Get.put(DevLogic());
-  final toolboxLogic = Get.find<ToolboxLogic>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,41 +22,45 @@ class DevPage extends StatelessWidget {
               SwitchSettingsTile(
                 title: 'sucker',
                 settingKey: 'toolbox.sucker',
-                onChange: (v) => toolboxLogic.updateSuckerEnabled(v),
+                defaultValue: toolbox.sucker,
+                onChange: logic.suckerOnChanged,
               ),
               SwitchSettingsTile(
                 title: 'cheater',
                 settingKey: 'toolbox.cheater',
-                onChange: (v) => toolboxLogic.updateCheaterEnabled(v),
+                defaultValue: toolbox.cheater,
+                onChange: logic.cheaterOnChanged,
               ),
               SwitchSettingsTile(
                 title: 'juan',
                 settingKey: 'toolbox.juan',
-                onChange: (v) => toolboxLogic.updateJuanEnabled(v),
+                defaultValue: toolbox.juan,
+                onChange: logic.juanOnChanged,
               ),
             ],
           ),
           SettingsGroup(
             title: '日志',
             children: [
-              DropDownSettingsTile(
+              SimpleDropDownSettingsTile(
                 title: 'level',
                 settingKey: 'log.level',
-                selected: 2,
-                values: _logLevels,
-                onChange: logic.updateLog,
+                selected: log.level,
+                values: log.levels,
+                onChange: logic.levelOnChanged,
               ),
-              DropDownSettingsTile(
+              SimpleDropDownSettingsTile(
                 title: 'stackTraceLevel',
                 settingKey: 'log.stackTraceLevel',
-                selected: 5,
-                values: _logLevels,
-                onChange: logic.updateLog,
+                selected: log.stackTraceLevel,
+                values: log.levels,
+                onChange: logic.stackTraceLevelOnChanged,
               ),
               SwitchSettingsTile(
                 title: 'includeCallerInfo',
                 settingKey: 'log.includeCallerInfo',
-                onChange: logic.updateLog,
+                defaultValue: log.includeCallerInfo,
+                onChange: logic.includeCallerInfoOnChanged,
               ),
               ListTile(
                 title: const Text('log'),
@@ -88,14 +90,6 @@ class DevPage extends StatelessWidget {
                   title: const Text('loading'),
                   onTap: logic.loadingOnTap,
                 ),
-                Obx(
-                  () => ListTile(
-                    title: const Text('shared_preferences.json'),
-                    subtitle: Text(logic.jsonFile.value),
-                    enabled: logic.jsonFile.value.isNotEmpty,
-                    onTap: logic.jsonOnTap,
-                  ),
-                ),
               ],
             ).toList(),
           ),
@@ -104,8 +98,3 @@ class DevPage extends StatelessWidget {
     );
   }
 }
-
-final _logLevels = {
-  for (var i = 0; i != LogLevel.values.length; ++i)
-    i: LogLevel.values[i].toString(),
-};

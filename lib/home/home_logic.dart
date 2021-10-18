@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../dev/dev_view.dart';
 import '../timetable/timetable_logic.dart';
+import '../utils/database.dart';
 import '../utils/log.dart';
 
 class HomeLogic extends GetxController with L {
-  final idx = Settings.getValue('launchPage', 1).obs;
+  final idx = misc.launchPage_.obs;
   final isAnimating = false.obs;
 
   late PageController _pageController;
