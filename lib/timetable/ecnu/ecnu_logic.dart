@@ -23,7 +23,7 @@ class EcnuLogic extends GetxController with L {
   final loginFormKey = GlobalKey<FormState>();
   final idController = TextEditingController(text: user.id);
   final passwordController = TextEditingController(text: user.password);
-  final captchaController = Rx<TextEditingController?>(null);
+  final captchaController = TextEditingController();
 
   final checkFormKey = GlobalKey<FormState>();
 
@@ -34,7 +34,7 @@ class EcnuLogic extends GetxController with L {
     super.onClose();
     idController.dispose();
     passwordController.dispose();
-    captchaController.value?.dispose();
+    captchaController.dispose();
   }
 
   static String? idValidator(String? value) =>
@@ -83,6 +83,7 @@ class EcnuLogic extends GetxController with L {
   }
 
   final captchaImage = Rx<Uint8List>(Uint8List.fromList([]));
+  final captchaReady = false.obs;
 
   void initEcnu() async {
     try {
@@ -120,7 +121,8 @@ class EcnuLogic extends GetxController with L {
         },
       ))
           .data['words_result'][0]['words'];
-      captchaController.value = TextEditingController(text: value);
+      captchaController.text = value;
+      captchaReady.value = true;
 
       isLoading.value = false;
     } catch (e) {
@@ -134,7 +136,7 @@ class EcnuLogic extends GetxController with L {
   Future<String?> login() async {
     final id = idController.text;
     final password = passwordController.text;
-    final captcha = captchaController.value!.text;
+    final captcha = captchaController.text;
     l.debug('id: $id, password: $password, captcha: $captcha');
 
     var r = await dio.post(

@@ -58,21 +58,20 @@ class EcnuPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Obx(
-                            () => logic.captchaController.value == null
-                                ? Loading()
-                                : TextFormField(
-                                    decoration: const InputDecoration(
-                                      label: Text('验证码'),
-                                    ),
-                                    controller: logic.captchaController.value,
-                                    validator: EcnuLogic.captchaValidator,
-                                    maxLength: 4,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                    ],
-                                    keyboardType: TextInputType.number,
-                                    onEditingComplete: logic.onStepContinue,
-                                  ),
+                            () => TextFormField(
+                              decoration: const InputDecoration(
+                                label: Text('验证码'),
+                              ),
+                              controller: logic.captchaController,
+                              validator: EcnuLogic.captchaValidator,
+                              maxLength: 4,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              keyboardType: TextInputType.number,
+                              onEditingComplete: logic.onStepContinue,
+                              enabled: logic.captchaReady.value,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 42),
