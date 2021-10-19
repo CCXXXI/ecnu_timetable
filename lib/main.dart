@@ -7,13 +7,13 @@ import 'package:window_size/window_size.dart';
 
 import 'home/home_view.dart';
 import 'settings/theme.dart';
-import 'utils/database.dart' as db;
+import 'utils/database.dart';
 import 'utils/log.dart';
 import 'utils/sentry.dart';
 import 'utils/string.dart';
 
 void main() async {
-  await db.initDatabase();
+  await initDatabase();
   Settings.init();
   initLog();
   if (GetPlatform.isDesktop && !GetPlatform.isWeb) initDesktop();
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [SentryNavigatorObserver()],
       title: appName,
       home: HomePage(),
-      theme: theme,
+      theme: appTheme,
     );
   }
 }
