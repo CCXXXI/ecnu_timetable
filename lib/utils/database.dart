@@ -10,7 +10,7 @@ import 'string.dart';
 
 part 'database.g.dart';
 
-Future<void> initDatabase() async {
+Future<void> initDatabase({bool clear = false}) async {
   if (!GetPlatform.isWeb) {
     final dir = await getApplicationSupportDirectory();
     Hive.init(dir.path);
@@ -24,11 +24,13 @@ Future<void> initDatabase() async {
 
   _conf = await Hive.openBox('conf');
 
-  if (!_conf.containsKey('user')) _conf.put('user', _User());
-  if (!_conf.containsKey('log')) _conf.put('log', _Log());
-  if (!_conf.containsKey('toolbox')) _conf.put('toolbox', _Toolbox());
-  if (!_conf.containsKey('misc')) _conf.put('misc', _Misc());
-  if (!_conf.containsKey('theme')) _conf.put('theme', _Theme());
+  if (clear) await _conf.clear();
+
+  if (!_conf.containsKey('user')) await _conf.put('user', _User());
+  if (!_conf.containsKey('log')) await _conf.put('log', _Log());
+  if (!_conf.containsKey('toolbox')) await _conf.put('toolbox', _Toolbox());
+  if (!_conf.containsKey('misc')) await _conf.put('misc', _Misc());
+  if (!_conf.containsKey('theme')) await _conf.put('theme', _Theme());
 }
 
 late final Box _conf;

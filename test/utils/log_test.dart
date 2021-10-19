@@ -1,4 +1,3 @@
-import 'package:ecnu_timetable/utils/database.dart';
 import 'package:ecnu_timetable/utils/log.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loggy/loggy.dart';
@@ -10,8 +9,11 @@ class LogTest with L {
 }
 
 void main() async {
-  await initDatabase();
-  initLog(level: LogLevel.all);
+  initLog(
+    level: LogLevel.all,
+    stackTraceLevel: LogLevel.off,
+    includeCallerInfo: false,
+  );
 
   test('loggy', () => expect(LogTest().test, throwsUnsupportedError));
 }

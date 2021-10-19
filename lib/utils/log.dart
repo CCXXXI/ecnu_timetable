@@ -3,12 +3,17 @@ import 'package:loggy/loggy.dart';
 
 import 'database.dart';
 
-void initLog({LogLevel? level}) => Loggy.initLoggy(
+void initLog({
+  LogLevel? level,
+  LogLevel? stackTraceLevel,
+  bool? includeCallerInfo,
+}) =>
+    Loggy.initLoggy(
       logPrinter: StreamPrinter(const PrettyPrinter(showColors: true)),
       logOptions: LogOptions(
         level ?? log.level_,
-        stackTraceLevel: log.stackTraceLevel_,
-        includeCallerInfo: log.includeCallerInfo,
+        stackTraceLevel: stackTraceLevel ?? log.stackTraceLevel_,
+        includeCallerInfo: includeCallerInfo ?? log.includeCallerInfo,
       ),
     );
 
