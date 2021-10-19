@@ -533,7 +533,7 @@ packages:
       name: mime
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   nested:
     dependency: transitive
     description:
@@ -653,13 +653,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.4.0"
-  pin_code_fields:
-    dependency: "direct main"
-    description:
-      name: pin_code_fields
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "7.3.0"
   platform:
     dependency: transitive
     description:
@@ -687,7 +680,7 @@ packages:
       name: process
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.2.3"
+    version: "4.2.4"
   provider:
     dependency: transitive
     description:
@@ -729,14 +722,14 @@ packages:
       name: sentry
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.1.0-alpha.2"
+    version: "6.1.0-beta.1"
   sentry_flutter:
     dependency: "direct main"
     description:
       name: sentry_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.1.0-alpha.2"
+    version: "6.1.0-beta.1"
   shared_preferences:
     dependency: transitive
     description:
