@@ -64,16 +64,16 @@ void main() {
     Get.delete<CalendarLogic>();
   });
 
-  test('real calendar', () async {
-    final logic = Get.put(CalendarLogic());
-
-    expect(logic.imgUrl.value, isEmpty);
-
-    await Future.delayed(const Duration(seconds: 10));
-    expect(logic.imgUrl.value, isNotEmpty);
-
-    Get.delete<CalendarLogic>();
-  }, skip: 'network');
+  // test('real calendar', () async {
+  //   final logic = Get.put(CalendarLogic());
+  //
+  //   expect(logic.imgUrl.value, isEmpty);
+  //
+  //   await Future.delayed(const Duration(seconds: 10));
+  //   expect(logic.imgUrl.value, isNotEmpty);
+  //
+  //   Get.delete<CalendarLogic>();
+  // }, skip: 'network');
 }
 
 const fakeData = '''
