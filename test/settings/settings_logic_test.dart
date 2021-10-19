@@ -72,18 +72,6 @@ void main() {
     expect(logic.latestVer.value, isEmpty);
     expect(logic.updateAvailable, isFalse);
   });
-
-  // test('real version', () async {
-  //   final logic = Get.put(SettingsLogic());
-  //
-  //   expect(logic.latestVer.value, isNull);
-  //   expect(logic.updateAvailable, isFalse);
-  //
-  //   await Future.delayed(const Duration(seconds: 1));
-  //   expect(logic.latestVer.value, isNotEmpty);
-  //
-  //   Get.delete<SettingsLogic>();
-  // }, skip: 'network');
 }
 
 final fakeData = json.decode(r'''
