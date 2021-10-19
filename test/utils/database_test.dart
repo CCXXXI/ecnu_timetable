@@ -2,12 +2,19 @@ import 'package:ecnu_timetable/utils/database.dart';
 import 'package:ecnu_timetable/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loggy/loggy.dart';
 
 Future<void> main() async {
-  // This is safe because [getApplicationSupportDirectory]
-  // will return a test directory in the test environment.
-  await initDatabase(clear: true);
+  setUpAll(() async {
+    // This is safe because [getApplicationSupportDirectory]
+    // will return a test directory in the test environment.
+    await initDatabase(clear: true);
+  });
+
+  tearDownAll(() async {
+    await Hive.close();
+  });
 
   test('user', () async {
     expect(user.id, isNull);
