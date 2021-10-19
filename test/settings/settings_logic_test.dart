@@ -45,6 +45,8 @@ class FakeErrorDio extends Fake implements Dio {
 void main() {
   runApp(const GetMaterialApp());
 
+  tearDown(() => Get.delete<SettingsLogic>());
+
   test('fake version', () async {
     final logic = Get.put(SettingsLogic(dio: FakeDio()));
 
@@ -58,8 +60,6 @@ void main() {
     logic.latestVer.value = version;
     expect(logic.latestVer.value, version);
     expect(logic.updateAvailable, isFalse);
-
-    Get.delete<SettingsLogic>();
   });
 
   test('error version', () async {
@@ -71,8 +71,6 @@ void main() {
     await Future.delayed(const Duration(milliseconds: 200));
     expect(logic.latestVer.value, isEmpty);
     expect(logic.updateAvailable, isFalse);
-
-    Get.delete<SettingsLogic>();
   });
 
   // test('real version', () async {
