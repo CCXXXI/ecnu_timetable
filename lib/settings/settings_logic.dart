@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiver/iterables.dart';
 
+import '../utils/database.dart' as db;
 import '../utils/log.dart';
 import '../utils/string.dart';
 import '../utils/web.dart';
@@ -12,7 +14,53 @@ class SettingsLogic extends GetxController with L {
 
   SettingsLogic({Dio? dio}) : dio = dio ?? defaultDio;
 
-  void updateTheme(_) => theme.updateTheme();
+  void modeOnChanged(String v) {
+    db.theme
+      ..mode = v
+      ..save();
+    theme.updateTheme();
+  }
+
+  void fontOnChanged(String v) {
+    db.theme
+      ..font = v
+      ..save();
+    theme.updateTheme();
+  }
+
+  void overrideColorOnChanged(bool v) {
+    db.theme
+      ..overrideColor = v
+      ..save();
+    theme.updateTheme();
+  }
+
+  void primaryOnChanged(Color v) {
+    db.theme
+      ..primary = v
+      ..save();
+    theme.updateTheme();
+  }
+
+  void secondaryOnChanged(Color v) {
+    db.theme
+      ..secondary = v
+      ..save();
+    theme.updateTheme();
+  }
+
+  void surfaceOnChanged(Color v) {
+    db.theme
+      ..surface = v
+      ..save();
+    theme.updateTheme();
+  }
+
+  void launchPageOnChanged(String v) {
+    db.misc
+      ..launchPage = v
+      ..save();
+  }
 
   /// - null: loading
   /// - empty: failed

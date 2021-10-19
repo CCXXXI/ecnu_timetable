@@ -3,11 +3,10 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:universal_html/parsing.dart';
 
+import '../../utils/database.dart';
 import '../../utils/log.dart';
 import '../../utils/web.dart';
 import 'des.dart';
@@ -22,13 +21,9 @@ class EcnuLogic extends GetxController with L {
   final step = S.login.obs;
 
   final loginFormKey = GlobalKey<FormState>();
-  final idController = TextEditingController(
-    text: Settings.getValue('ecnu.id', ''),
-  );
-  final passwordController = TextEditingController(
-    text: Settings.getValue('ecnu.password', ''),
-  );
-  final captchaController = Rx<TextEditingController?>(null);
+  final idController = TextEditingController(text: user.id);
+  final passwordController = TextEditingController(text: user.password);
+  final captchaController = TextEditingController();
 
   final checkFormKey = GlobalKey<FormState>();
 
@@ -39,7 +34,7 @@ class EcnuLogic extends GetxController with L {
     super.onClose();
     idController.dispose();
     passwordController.dispose();
-    captchaController.value?.dispose();
+    captchaController.dispose();
   }
 
   static String? idValidator(String? value) =>
@@ -88,6 +83,7 @@ class EcnuLogic extends GetxController with L {
   }
 
   final captchaImage = Rx<Uint8List>(Uint8List.fromList([]));
+  final captchaReady = false.obs;
 
   void initEcnu() async {
     try {
@@ -125,7 +121,8 @@ class EcnuLogic extends GetxController with L {
         },
       ))
           .data['words_result'][0]['words'];
-      captchaController.value = TextEditingController(text: value);
+      captchaController.text = value;
+      captchaReady.value = true;
 
       isLoading.value = false;
     } catch (e) {
@@ -139,7 +136,7 @@ class EcnuLogic extends GetxController with L {
   Future<String?> login() async {
     final id = idController.text;
     final password = passwordController.text;
-    final captcha = captchaController.value!.text;
+    final captcha = captchaController.text;
     l.debug('id: $id, password: $password, captcha: $captcha');
 
     var r = await dio.post(
@@ -182,11 +179,11 @@ class EcnuLogic extends GetxController with L {
       final id_ = m.group(2);
       assert(id_ == id);
 
-      Settings.setValue('ecnu.id', id);
-      Settings.setValue('ecnu.name', name);
-      Settings.setValue('ecnu.password', password);
-      Sentry.configureScope((scope) => scope.user =
-          SentryUser(id: id, username: name, ipAddress: '{{auto}}'));
+      user
+        ..id = id
+        ..name = name
+        ..password = password
+        ..save();
 
       return null;
     }

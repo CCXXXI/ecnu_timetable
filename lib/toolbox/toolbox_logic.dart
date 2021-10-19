@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
+import '../utils/database.dart';
 import '../utils/log.dart';
 import '../utils/string.dart';
 import '../utils/web.dart';
@@ -23,7 +23,7 @@ class ToolboxLogic extends GetxController with L {
   }
 
 // region sucker
-  final suckerEnabled = Settings.getValue('toolbox.sucker', false).obs;
+  final suckerEnabled = toolbox.sucker.obs;
 
   updateSuckerEnabled(bool v) {
     suckerEnabled.value = v;
@@ -64,7 +64,7 @@ class ToolboxLogic extends GetxController with L {
 // endregion
 
 // region cheater
-  final cheaterEnabled = Settings.getValue('toolbox.cheater', false).obs;
+  final cheaterEnabled = toolbox.cheater.obs;
 
   updateCheaterEnabled(bool v) {
     cheaterEnabled.value = v;
@@ -92,7 +92,7 @@ class ToolboxLogic extends GetxController with L {
 // endregion
 
 // region juan
-  final juanEnabled = Settings.getValue('toolbox.juan', false).obs;
+  final juanEnabled = toolbox.juan.obs;
 
   updateJuanEnabled(bool v) => juanEnabled.value = v;
 

@@ -1,8 +1,8 @@
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
 
+import '../toolbox/toolbox_logic.dart';
+import '../utils/database.dart';
 import '../utils/gu.dart';
 import '../utils/loading.dart';
 import '../utils/log.dart';
@@ -10,7 +10,49 @@ import 'cheater_view.dart';
 import 'trivia_view.dart';
 
 class DevLogic extends GetxController with L {
-  void updateLog(_) => Get.snackbar('日志设置已更新', '重启后生效');
+  final toolboxLogic = Get.find<ToolboxLogic>();
+
+  void suckerOnChanged(bool v) {
+    toolbox
+      ..sucker = v
+      ..save();
+    toolboxLogic.updateSuckerEnabled(v);
+  }
+
+  void cheaterOnChanged(bool v) {
+    toolbox
+      ..cheater = v
+      ..save();
+    toolboxLogic.updateCheaterEnabled(v);
+  }
+
+  void juanOnChanged(bool v) {
+    toolbox
+      ..juan = v
+      ..save();
+    toolboxLogic.updateJuanEnabled(v);
+  }
+
+  void levelOnChanged(String v) {
+    log
+      ..level = v
+      ..save();
+    Get.snackbar('日志设置已更新', '重启后生效');
+  }
+
+  void stackTraceLevelOnChanged(String v) {
+    log
+      ..stackTraceLevel = v
+      ..save();
+    Get.snackbar('日志设置已更新', '重启后生效');
+  }
+
+  void includeCallerInfoOnChanged(bool v) {
+    log
+      ..includeCallerInfo = v
+      ..save();
+    Get.snackbar('日志设置已更新', '重启后生效');
+  }
 
   void logOnTap() => Get.to(() => const LoggyStreamScreen());
 
@@ -24,19 +66,4 @@ class DevLogic extends GetxController with L {
         title: 'Loading',
         content: Loading(),
       );
-
-  final jsonFile = ''.obs;
-
-  @override
-  void onInit() async {
-    if (GetPlatform.isDesktop && !GetPlatform.isWeb) {
-      final baseDir = (await getApplicationSupportDirectory()).path;
-      l.info(jsonFile.value = '$baseDir\\shared_preferences.json');
-    }
-    super.onInit();
-  }
-
-  void jsonOnTap() async {
-    l.info((await OpenFile.open(jsonFile.value)).message);
-  }
 }

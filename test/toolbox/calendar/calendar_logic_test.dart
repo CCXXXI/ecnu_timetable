@@ -73,7 +73,7 @@ void main() {
     expect(logic.imgUrl.value, isNotEmpty);
 
     Get.delete<CalendarLogic>();
-  }, skip: '网络连接不稳定');
+  }, skip: 'network');
 }
 
 const fakeData = '''

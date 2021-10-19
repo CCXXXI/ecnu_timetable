@@ -85,7 +85,7 @@ void main() {
     expect(logic.latestVer.value, isNotEmpty);
 
     Get.delete<SettingsLogic>();
-  });
+  }, skip: 'network');
 }
 
 final fakeData = json.decode(r'''
