@@ -33,7 +33,9 @@ void main() {
   });
 
   test('parseJs', () {
-    EcnuLogic.parseJs(js);
+    final r = EcnuLogic.parseJs(js);
+    expect(r, isNotEmpty);
+    // todo
   });
 }
 

@@ -218,14 +218,62 @@ class EcnuLogic extends GetxController with L {
     );
     final document = parseHtmlDocument(r1.data);
     final js = document.querySelectorAll('script[language]').last.text;
-    parseJs(js!);
+    parseJs(js!); // todo
     table.value = r1.data;
   }
 
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
   static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
 
-  static void parseJs(String js) {
-    // todo
+  static List<Course> parseJs(String js) {
+    final newCourse = RegExp(r'TaskActivity'
+        r'\('
+        r'"(?<teacherId>.*)",'
+        r'"(?<teacherName>.*)",'
+        r'"(?<courseId>\d*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
+        r'"(?<courseName>.*)\((?<courseCode2>.*)\.(?<courseNo2>.*)\)",'
+        r'"(?<roomId>\d*)",'
+        r'"(?<roomName>.*)",'
+        r'"(?<weeks>[01]{53})",'
+        r'(?<taskId>null),'
+        r'"(?<expLessonGroupId>.*)",'
+        r'"(?<expLessonGroupIndexNo>.*)",'
+        r'"(?<remark>.*)",'
+        r'"(?<specialRoom>.*)"'
+        r'\)');
+
+    final courseBuffer = <Course>[];
+
+    for (final line in js.split(';')) {
+      final n = newCourse.firstMatch(line);
+      if (n != null) {
+        assert(n.namedGroup('courseCode') == n.namedGroup('courseCode2'));
+        assert(n.namedGroup('courseNo') == n.namedGroup('courseNo2'));
+
+        courseBuffer.add(
+          Course()
+            ..teacherId = n.namedGroup('teacherId')
+            ..teacherName = n.namedGroup('teacherName')
+            ..courseId = int.tryParse(n.namedGroup('courseId') ?? '')
+            ..courseCode = n.namedGroup('courseCode')
+            ..courseNo = n.namedGroup('courseNo')
+            ..courseName = n.namedGroup('courseName')
+            ..roomId = int.tryParse(n.namedGroup('roomId') ?? '')
+            ..roomName = n.namedGroup('roomName')
+            ..weeks = n
+                .namedGroup('weeks')
+                ?.codeUnits
+                .map((e) => e == '1'.codeUnits.first)
+                .toList(growable: false)
+            ..taskId = null
+            ..expLessonGroupId = n.namedGroup('expLessonGroupId')
+            ..expLessonGroupIndexNo = n.namedGroup('expLessonGroupIndexNo')
+            ..remark = n.namedGroup('remark')
+            ..specialRoom = n.namedGroup('specialRoom'),
+        );
+      }
+    }
+
+    return courseBuffer;
   }
 }
