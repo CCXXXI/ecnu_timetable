@@ -58,4 +58,13 @@ Future<void> main() async {
     expect(theme.onSecondary, Colors.black);
     expect(theme.onSurface, Colors.black);
   });
+
+  test('reflexive', () {
+    expect(UserAdapter(), UserAdapter());
+    expect(LogAdapter(), LogAdapter());
+    expect(ToolboxAdapter(), ToolboxAdapter());
+    expect(MiscAdapter(), MiscAdapter());
+    expect(ThemeAdapter(), ThemeAdapter());
+    expect(CourseAdapter(), CourseAdapter());
+  });
 }
