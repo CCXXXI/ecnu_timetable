@@ -226,20 +226,20 @@ class EcnuLogic extends GetxController with L {
   static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
 
   static List<Course> parseJs(String js) {
-    final newCourse = RegExp(r'TaskActivity'
+    final newCourse = RegExp('TaskActivity'
         r'\('
-        r'"(?<teacherId>.*)",'
-        r'"(?<teacherName>.*)",'
+        '"(?<teacherId>.*)",'
+        '"(?<teacherName>.*)",'
         r'"(?<courseId>\d*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
         r'"(?<courseName>.*)\((?<courseCode2>.*)\.(?<courseNo2>.*)\)",'
         r'"(?<roomId>\d*)",'
-        r'"(?<roomName>.*)",'
-        r'"(?<weeks>[01]{53})",'
-        r'(?<taskId>null),'
-        r'"(?<expLessonGroupId>.*)",'
-        r'"(?<expLessonGroupIndexNo>.*)",'
-        r'"(?<remark>.*)",'
-        r'"(?<specialRoom>.*)"'
+        '"(?<roomName>.*)",'
+        '"(?<weeks>[01]{53})",'
+        '(?<taskId>null),'
+        '"(?<expLessonGroupId>.*)",'
+        '"(?<expLessonGroupIndexNo>.*)",'
+        '"(?<remark>.*)",'
+        '"(?<specialRoom>.*)"'
         r'\)');
 
     final courseBuffer = <Course>[];
