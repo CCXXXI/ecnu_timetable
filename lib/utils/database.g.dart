@@ -227,13 +227,14 @@ class CourseAdapter extends TypeAdapter<Course> {
       ..expLessonGroupId = fields[10] as String?
       ..expLessonGroupIndexNo = fields[11] as String?
       ..remark = fields[12] as String?
-      ..specialRoom = fields[13] as String?;
+      ..specialRoom = fields[13] as String?
+      ..periods = (fields[14] as List?)?.cast<Period>();
   }
 
   @override
   void write(BinaryWriter writer, Course obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.teacherId)
       ..writeByte(1)
@@ -261,7 +262,9 @@ class CourseAdapter extends TypeAdapter<Course> {
       ..writeByte(12)
       ..write(obj.remark)
       ..writeByte(13)
-      ..write(obj.specialRoom);
+      ..write(obj.specialRoom)
+      ..writeByte(14)
+      ..write(obj.periods);
   }
 
   @override
@@ -271,6 +274,42 @@ class CourseAdapter extends TypeAdapter<Course> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is CourseAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class PeriodAdapter extends TypeAdapter<Period> {
+  @override
+  final int typeId = 6;
+
+  @override
+  Period read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Period()
+      ..weekday = fields[0] as int?
+      ..unit = fields[1] as int?;
+  }
+
+  @override
+  void write(BinaryWriter writer, Period obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.weekday)
+      ..writeByte(1)
+      ..write(obj.unit);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PeriodAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -293,7 +332,10 @@ Course _$CourseFromJson(Map<String, dynamic> json) => Course()
   ..expLessonGroupId = json['expLessonGroupId'] as String?
   ..expLessonGroupIndexNo = json['expLessonGroupIndexNo'] as String?
   ..remark = json['remark'] as String?
-  ..specialRoom = json['specialRoom'] as String?;
+  ..specialRoom = json['specialRoom'] as String?
+  ..periods = (json['periods'] as List<dynamic>?)
+      ?.map((e) => Period.fromJson(e as Map<String, dynamic>))
+      .toList();
 
 Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
       'teacherId': instance.teacherId,
@@ -310,4 +352,14 @@ Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
       'expLessonGroupIndexNo': instance.expLessonGroupIndexNo,
       'remark': instance.remark,
       'specialRoom': instance.specialRoom,
+      'periods': instance.periods,
+    };
+
+Period _$PeriodFromJson(Map<String, dynamic> json) => Period()
+  ..weekday = json['weekday'] as int?
+  ..unit = json['unit'] as int?;
+
+Map<String, dynamic> _$PeriodToJson(Period instance) => <String, dynamic>{
+      'weekday': instance.weekday,
+      'unit': instance.unit,
     };

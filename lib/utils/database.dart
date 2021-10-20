@@ -34,6 +34,7 @@ Future<void> initDatabase({bool clear = false}) async {
   if (!_conf.containsKey('theme')) await _conf.put('theme', _Theme());
 
   Hive.registerAdapter(CourseAdapter());
+  Hive.registerAdapter(PeriodAdapter());
   courses = await Hive.openBox('courses');
   if (clear) await courses.clear();
 }
@@ -241,6 +242,9 @@ class Course extends HiveObject {
   @HiveField(13)
   String? specialRoom;
 
+  @HiveField(14)
+  List<Period>? periods;
+
   Course();
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
@@ -252,3 +256,24 @@ class Course extends HiveObject {
 }
 
 late final Box<Course> courses;
+
+@JsonSerializable()
+@HiveType(typeId: 6)
+class Period extends HiveObject {
+  /// 0..6
+  @HiveField(0)
+  int? weekday;
+
+  /// 0..12
+  @HiveField(1)
+  int? unit;
+
+  Period();
+
+  factory Period.fromJson(Map<String, dynamic> json) => _$PeriodFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PeriodToJson(this);
+
+  @override
+  String toString() => toJson().toString();
+}
