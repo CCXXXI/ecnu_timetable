@@ -352,7 +352,7 @@ Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
       'expLessonGroupIndexNo': instance.expLessonGroupIndexNo,
       'remark': instance.remark,
       'specialRoom': instance.specialRoom,
-      'periods': instance.periods,
+      'periods': Course._periodsToJson(instance.periods),
     };
 
 Period _$PeriodFromJson(Map<String, dynamic> json) => Period()

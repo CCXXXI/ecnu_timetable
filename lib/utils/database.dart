@@ -242,8 +242,12 @@ class Course extends HiveObject {
   @HiveField(13)
   String? specialRoom;
 
+  @JsonKey(toJson: _periodsToJson)
   @HiveField(14)
   List<Period>? periods;
+
+  static _periodsToJson(List<Period>? periods) =>
+      periods?.map((e) => e.toJson()).toList(growable: false);
 
   Course();
 
