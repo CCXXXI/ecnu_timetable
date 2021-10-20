@@ -50,8 +50,6 @@ void main() {
       Course.fromJson(courses.getAt(0)!.toJson()).toJson(),
       r.first.toJson(),
     );
-
-    // todo
   });
 }
 

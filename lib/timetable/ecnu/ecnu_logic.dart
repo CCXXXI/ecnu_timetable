@@ -218,8 +218,10 @@ class EcnuLogic extends GetxController with L {
     );
     final document = parseHtmlDocument(r1.data);
     final js = document.querySelectorAll('script[language]').last.text;
-    parseJs(js!); // todo
-    table.value = r1.data;
+    courses
+      ..clear()
+      ..addAll(parseJs(js!));
+    table.value = courses.toMap().toString();
   }
 
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
