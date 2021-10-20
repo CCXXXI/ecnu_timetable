@@ -1,4 +1,5 @@
 import 'package:ecnu_timetable/timetable/ecnu/ecnu_logic.dart';
+import 'package:ecnu_timetable/utils/database.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -34,7 +35,10 @@ void main() {
 
   test('parseJs', () {
     final r = EcnuLogic.parseJs(js);
-    expect(r, isNotEmpty);
+    courses.clear();
+    courses.addAll(r);
+    expect(courses, isNotEmpty);
+
     // todo
   });
 }
