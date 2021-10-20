@@ -222,7 +222,7 @@ class Course extends HiveObject {
   String? roomName;
 
   @HiveField(8)
-  var weeks = List.filled(53, false);
+  List<bool>? weeks;
 
   @HiveField(9)
   String? taskId;

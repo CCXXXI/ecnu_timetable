@@ -222,7 +222,7 @@ class CourseAdapter extends TypeAdapter<Course> {
       ..courseName = fields[5] as String?
       ..roomId = fields[6] as int?
       ..roomName = fields[7] as String?
-      ..weeks = (fields[8] as List).cast<bool>()
+      ..weeks = (fields[8] as List?)?.cast<bool>()
       ..taskId = fields[9] as String?
       ..expLessonGroupId = fields[10] as String?
       ..expLessonGroupIndexNo = fields[11] as String?
@@ -288,7 +288,7 @@ Course _$CourseFromJson(Map<String, dynamic> json) => Course()
   ..courseName = json['courseName'] as String?
   ..roomId = json['roomId'] as int?
   ..roomName = json['roomName'] as String?
-  ..weeks = (json['weeks'] as List<dynamic>).map((e) => e as bool).toList()
+  ..weeks = (json['weeks'] as List<dynamic>?)?.map((e) => e as bool).toList()
   ..taskId = json['taskId'] as String?
   ..expLessonGroupId = json['expLessonGroupId'] as String?
   ..expLessonGroupIndexNo = json['expLessonGroupIndexNo'] as String?
