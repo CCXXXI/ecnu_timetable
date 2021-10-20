@@ -249,6 +249,14 @@ class Course extends HiveObject {
 
   @override
   String toString() => toJson().toString();
+
+  @override
+  bool operator ==(Object other) {
+    return toString() == other.toString();
+  }
+
+  @override
+  int get hashCode => toString().hashCode;
 }
 
 late final Box<Course> courses;

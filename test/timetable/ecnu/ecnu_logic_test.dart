@@ -46,6 +46,7 @@ void main() {
     final r = EcnuLogic.parseJs(js);
     courses.addAll(r);
     expect(courses, isNotEmpty);
+    expect(Course.fromJson(courses.getAt(0)!.toJson()), r.first);
 
     // todo
   });
