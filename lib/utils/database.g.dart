@@ -202,3 +202,112 @@ class ThemeAdapter extends TypeAdapter<_Theme> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class CourseAdapter extends TypeAdapter<Course> {
+  @override
+  final int typeId = 5;
+
+  @override
+  Course read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Course()
+      ..teacherId = fields[0] as String?
+      ..teacherName = fields[1] as String?
+      ..courseId = fields[2] as int?
+      ..courseCode = fields[3] as String?
+      ..courseNo = fields[4] as String?
+      ..courseName = fields[5] as String?
+      ..roomId = fields[6] as int?
+      ..roomName = fields[7] as String?
+      ..weeks = (fields[8] as List).cast<bool>()
+      ..taskId = fields[9] as String?
+      ..expLessonGroupId = fields[10] as String?
+      ..expLessonGroupIndexNo = fields[11] as String?
+      ..remark = fields[12] as String?
+      ..specialRoom = fields[13] as String?;
+  }
+
+  @override
+  void write(BinaryWriter writer, Course obj) {
+    writer
+      ..writeByte(14)
+      ..writeByte(0)
+      ..write(obj.teacherId)
+      ..writeByte(1)
+      ..write(obj.teacherName)
+      ..writeByte(2)
+      ..write(obj.courseId)
+      ..writeByte(3)
+      ..write(obj.courseCode)
+      ..writeByte(4)
+      ..write(obj.courseNo)
+      ..writeByte(5)
+      ..write(obj.courseName)
+      ..writeByte(6)
+      ..write(obj.roomId)
+      ..writeByte(7)
+      ..write(obj.roomName)
+      ..writeByte(8)
+      ..write(obj.weeks)
+      ..writeByte(9)
+      ..write(obj.taskId)
+      ..writeByte(10)
+      ..write(obj.expLessonGroupId)
+      ..writeByte(11)
+      ..write(obj.expLessonGroupIndexNo)
+      ..writeByte(12)
+      ..write(obj.remark)
+      ..writeByte(13)
+      ..write(obj.specialRoom);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CourseAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Course _$CourseFromJson(Map<String, dynamic> json) => Course()
+  ..teacherId = json['teacherId'] as String?
+  ..teacherName = json['teacherName'] as String?
+  ..courseId = json['courseId'] as int?
+  ..courseCode = json['courseCode'] as String?
+  ..courseNo = json['courseNo'] as String?
+  ..courseName = json['courseName'] as String?
+  ..roomId = json['roomId'] as int?
+  ..roomName = json['roomName'] as String?
+  ..weeks = (json['weeks'] as List<dynamic>).map((e) => e as bool).toList()
+  ..taskId = json['taskId'] as String?
+  ..expLessonGroupId = json['expLessonGroupId'] as String?
+  ..expLessonGroupIndexNo = json['expLessonGroupIndexNo'] as String?
+  ..remark = json['remark'] as String?
+  ..specialRoom = json['specialRoom'] as String?;
+
+Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
+      'teacherId': instance.teacherId,
+      'teacherName': instance.teacherName,
+      'courseId': instance.courseId,
+      'courseCode': instance.courseCode,
+      'courseNo': instance.courseNo,
+      'courseName': instance.courseName,
+      'roomId': instance.roomId,
+      'roomName': instance.roomName,
+      'weeks': instance.weeks,
+      'taskId': instance.taskId,
+      'expLessonGroupId': instance.expLessonGroupId,
+      'expLessonGroupIndexNo': instance.expLessonGroupIndexNo,
+      'remark': instance.remark,
+      'specialRoom': instance.specialRoom,
+    };

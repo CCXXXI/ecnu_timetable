@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:loggy/loggy.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -31,6 +32,8 @@ Future<void> initDatabase({bool clear = false}) async {
   if (!_conf.containsKey('toolbox')) await _conf.put('toolbox', _Toolbox());
   if (!_conf.containsKey('misc')) await _conf.put('misc', _Misc());
   if (!_conf.containsKey('theme')) await _conf.put('theme', _Theme());
+
+  courses = await Hive.openBox('courses');
 }
 
 late final Box _conf;
@@ -186,3 +189,64 @@ class _Theme extends HiveObject {
 }
 
 final _Theme theme = _conf.get('theme');
+
+@JsonSerializable()
+@HiveType(typeId: 5)
+class Course extends HiveObject {
+  /// 数字，但可能有"21473957,77336"这种多教师共同授课的情况
+  @HiveField(0)
+  String? teacherId;
+
+  @HiveField(1)
+  String? teacherName;
+
+  /// e.g. 334873
+  @HiveField(2)
+  int? courseId;
+
+  /// e.g. SOFT0031132231
+  @HiveField(3)
+  String? courseCode;
+
+  /// e.g. 01
+  @HiveField(4)
+  String? courseNo;
+
+  @HiveField(5)
+  String? courseName;
+
+  @HiveField(6)
+  int? roomId;
+
+  @HiveField(7)
+  String? roomName;
+
+  @HiveField(8)
+  var weeks = List.filled(53, false);
+
+  @HiveField(9)
+  String? taskId;
+
+  @HiveField(10)
+  String? expLessonGroupId;
+
+  @HiveField(11)
+  String? expLessonGroupIndexNo;
+
+  @HiveField(12)
+  String? remark;
+
+  @HiveField(13)
+  String? specialRoom;
+
+  Course();
+
+  factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CourseToJson(this);
+
+  @override
+  String toString() => toJson().toString();
+}
+
+late final Box<Course> courses;
