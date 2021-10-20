@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utils/database.dart' as db;
+import '../utils/database.dart';
 import '../utils/string.dart';
 
 // region colorScheme
 bool get _dark =>
-    db.theme.mode_ == ThemeMode.dark ||
-    db.theme.mode_ == ThemeMode.system && Get.isPlatformDarkMode;
+    theme.mode_ == ThemeMode.dark ||
+    theme.mode_ == ThemeMode.system && Get.isPlatformDarkMode;
 
 ColorScheme get _colorScheme => (_dark ? ColorScheme.dark : ColorScheme.light)(
-      primary: db.theme.primary,
-      onPrimary: db.theme.onPrimary,
-      secondary: db.theme.secondary,
-      onSecondary: db.theme.onSecondary,
-      surface: db.theme.surface,
-      onSurface: db.theme.onSurface,
+      primary: theme.primary,
+      onPrimary: theme.onPrimary,
+      secondary: theme.secondary,
+      onSecondary: theme.onSecondary,
+      surface: theme.surface,
+      onSurface: theme.onSurface,
     );
 // endregion
 
-ThemeData get theme => ThemeData.from(
+ThemeData get appTheme => ThemeData.from(
       colorScheme: _colorScheme,
       textTheme:
-          db.theme.applyFont(_dark ? Typography().white : Typography().black),
+          theme.applyFont(_dark ? Typography().white : Typography().black),
     );
 
 // void updateTheme() => Get.changeTheme(theme);

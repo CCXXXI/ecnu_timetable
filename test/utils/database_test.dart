@@ -2,12 +2,19 @@ import 'package:ecnu_timetable/utils/database.dart';
 import 'package:ecnu_timetable/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loggy/loggy.dart';
 
 Future<void> main() async {
-  // This is safe because [getApplicationSupportDirectory]
-  // will return a test directory in the test environment.
-  await initDatabase(clear: true);
+  setUpAll(() async {
+    // This is safe because [getApplicationSupportDirectory]
+    // will return a test directory in the test environment.
+    await initDatabase(clear: true);
+  });
+
+  tearDownAll(() async {
+    await Hive.close();
+  });
 
   test('user', () async {
     expect(user.id, isNull);
@@ -50,5 +57,23 @@ Future<void> main() async {
     expect(theme.onPrimary, Colors.black);
     expect(theme.onSecondary, Colors.black);
     expect(theme.onSurface, Colors.black);
+  });
+
+  test('reflexive', () {
+    expect(UserAdapter(), UserAdapter());
+    expect(LogAdapter(), LogAdapter());
+    expect(ToolboxAdapter(), ToolboxAdapter());
+    expect(MiscAdapter(), MiscAdapter());
+    expect(ThemeAdapter(), ThemeAdapter());
+    expect(CourseAdapter(), CourseAdapter());
+    expect(PeriodAdapter(), PeriodAdapter());
+
+    expect(UserAdapter().hashCode, UserAdapter().hashCode);
+    expect(LogAdapter().hashCode, LogAdapter().hashCode);
+    expect(ToolboxAdapter().hashCode, ToolboxAdapter().hashCode);
+    expect(MiscAdapter().hashCode, MiscAdapter().hashCode);
+    expect(ThemeAdapter().hashCode, ThemeAdapter().hashCode);
+    expect(CourseAdapter().hashCode, CourseAdapter().hashCode);
+    expect(PeriodAdapter().hashCode, PeriodAdapter().hashCode);
   });
 }

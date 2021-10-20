@@ -38,6 +38,7 @@ dependencies:
   quiver:
   hive_flutter:
   flutter_settings_screens: ">0.3.0"
+  json_annotation: ">=4.3.0"
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,7 @@ dev_dependencies:
   flutter_app_name:
   hive_generator:
   build_runner:
+  json_serializable:
 
 flutter_app_name:
   name: "ECNU Timetable"

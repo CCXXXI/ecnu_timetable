@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/settings/settings_logic.dart';
+import 'package:ecnu_timetable/utils/database.dart';
 import 'package:ecnu_timetable/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:hive_flutter/hive_flutter.dart';
 
 class FakeDio extends Fake implements Dio {
   @override
@@ -45,6 +47,48 @@ class FakeErrorDio extends Fake implements Dio {
 void main() {
   runApp(const GetMaterialApp());
 
+  setUpAll(() async {
+    await initDatabase(clear: true);
+    runApp(const GetMaterialApp());
+  });
+
+  tearDownAll(() async {
+    await Hive.close();
+  });
+
+  tearDown(() => Get.delete<SettingsLogic>());
+
+  test('settings', () {
+    // 这么简单的东西没必要测
+    // 但是测了能让覆盖率好看一点 :)
+    final logic = Get.put(SettingsLogic(dio: FakeDio()));
+
+    expect(theme.mode, '跟随系统');
+    logic.modeOnChanged('开');
+    expect(theme.mode, '开');
+
+    expect(theme.font, '思源黑体');
+    logic.fontOnChanged('思源宋体');
+    expect(theme.font, '思源宋体');
+
+    expect(theme.overrideColor, false);
+    logic.overrideColorOnChanged(true);
+    expect(theme.overrideColor, true);
+
+    logic.primaryOnChanged(Colors.red);
+    expect(theme.primary.value, Colors.red.value);
+
+    logic.secondaryOnChanged(Colors.green);
+    expect(theme.secondary.value, Colors.green.value);
+
+    logic.surfaceOnChanged(Colors.blue);
+    expect(theme.surface.value, Colors.blue.value);
+
+    expect(misc.launchPage_, 1);
+    logic.launchPageOnChanged('工具箱');
+    expect(misc.launchPage_, 0);
+  });
+
   test('fake version', () async {
     final logic = Get.put(SettingsLogic(dio: FakeDio()));
 
@@ -58,8 +102,6 @@ void main() {
     logic.latestVer.value = version;
     expect(logic.latestVer.value, version);
     expect(logic.updateAvailable, isFalse);
-
-    Get.delete<SettingsLogic>();
   });
 
   test('error version', () async {
@@ -71,21 +113,7 @@ void main() {
     await Future.delayed(const Duration(milliseconds: 200));
     expect(logic.latestVer.value, isEmpty);
     expect(logic.updateAvailable, isFalse);
-
-    Get.delete<SettingsLogic>();
   });
-
-  test('real version', () async {
-    final logic = Get.put(SettingsLogic());
-
-    expect(logic.latestVer.value, isNull);
-    expect(logic.updateAvailable, isFalse);
-
-    await Future.delayed(const Duration(seconds: 1));
-    expect(logic.latestVer.value, isNotEmpty);
-
-    Get.delete<SettingsLogic>();
-  }, skip: 'network');
 }
 
 final fakeData = json.decode(r'''
