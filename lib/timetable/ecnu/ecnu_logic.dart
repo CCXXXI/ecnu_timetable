@@ -241,6 +241,7 @@ class EcnuLogic extends GetxController with L {
         '"(?<remark>.*)",'
         '"(?<specialRoom>.*)"'
         r'\)');
+    final period = RegExp(r'(?<weekday>\d+)\*unitCount\+(?<unit>\d+)');
 
     final courseBuffer = <Course>[];
 
@@ -269,7 +270,19 @@ class EcnuLogic extends GetxController with L {
             ..expLessonGroupId = n.namedGroup('expLessonGroupId')
             ..expLessonGroupIndexNo = n.namedGroup('expLessonGroupIndexNo')
             ..remark = n.namedGroup('remark')
-            ..specialRoom = n.namedGroup('specialRoom'),
+            ..specialRoom = n.namedGroup('specialRoom')
+            ..periods = [],
+        );
+
+        continue;
+      }
+
+      final p = period.firstMatch(line);
+      if (p != null) {
+        courseBuffer.last.periods!.add(
+          Period()
+            ..weekday = int.tryParse(p.namedGroup('weekday') ?? '')
+            ..unit = int.tryParse(p.namedGroup('unit') ?? ''),
         );
       }
     }
