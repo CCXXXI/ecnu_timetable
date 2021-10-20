@@ -75,7 +75,7 @@ const js = '''
 			table0.activities[index][table0.activities[index].length]=activity;
 			index =0*unitCount+8;
 			table0.activities[index][table0.activities[index].length]=activity;
-			activity = new TaskActivity("76663","孙海英","331020(SOFT0031132228.01)","软件测试和验证(SOFT0031132228.01)","2609","理科大楼B226","01111111111111111100000000000000000000000000000000000",null,"","","","");
+			activity = new TaskActivity("76663","孙海英","331020(SOFT0031132228.01)","软件测试和验证(SOFT0031132228.01)","2609","理科大楼B226","01111110111111111100000000000000000000000000000000000",null,"","","","");
 			index =1*unitCount+2;
 			table0.activities[index][table0.activities[index].length]=activity;
 			index =1*unitCount+3;
@@ -84,6 +84,11 @@ const js = '''
 			index =3*unitCount+5;
 			table0.activities[index][table0.activities[index].length]=activity;
 			index =3*unitCount+6;
+			table0.activities[index][table0.activities[index].length]=activity;
+			activity = new TaskActivity("76663","孙海英","331020(SOFT0031132228.01)","软件测试和验证(SOFT0031132228.01)","","","00000000100000000000000000000000000000000000000000000",null,"","","","理科楼B226");
+			index =0*unitCount+0;
+			table0.activities[index][table0.activities[index].length]=activity;
+			index =0*unitCount+1;
 			table0.activities[index][table0.activities[index].length]=activity;
 	table0.marshalTable(2,1,18);
 	fillTable(table0,7,14,0);
