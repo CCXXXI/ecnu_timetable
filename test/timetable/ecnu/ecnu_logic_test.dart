@@ -5,7 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 
 void main() {
   setUpAll(() async {
-    await initDatabase();
+    await initDatabase(clear: true);
   });
 
   tearDownAll(() async {
