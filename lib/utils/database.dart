@@ -33,6 +33,7 @@ Future<void> initDatabase({bool clear = false}) async {
   if (!_conf.containsKey('misc')) await _conf.put('misc', _Misc());
   if (!_conf.containsKey('theme')) await _conf.put('theme', _Theme());
 
+  Hive.registerAdapter(CourseAdapter());
   courses = await Hive.openBox('courses');
 }
 
