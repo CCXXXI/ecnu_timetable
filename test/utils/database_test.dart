@@ -67,5 +67,13 @@ Future<void> main() async {
     expect(ThemeAdapter(), ThemeAdapter());
     expect(CourseAdapter(), CourseAdapter());
     expect(PeriodAdapter(), PeriodAdapter());
+
+    expect(UserAdapter().hashCode, UserAdapter().hashCode);
+    expect(LogAdapter().hashCode, LogAdapter().hashCode);
+    expect(ToolboxAdapter().hashCode, ToolboxAdapter().hashCode);
+    expect(MiscAdapter().hashCode, MiscAdapter().hashCode);
+    expect(ThemeAdapter().hashCode, ThemeAdapter().hashCode);
+    expect(CourseAdapter().hashCode, CourseAdapter().hashCode);
+    expect(PeriodAdapter().hashCode, PeriodAdapter().hashCode);
   });
 }
