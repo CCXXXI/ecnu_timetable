@@ -986,7 +986,7 @@ packages:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.9"
+    version: "2.2.10"
   window_size:
     dependency: "direct main"
     description:
