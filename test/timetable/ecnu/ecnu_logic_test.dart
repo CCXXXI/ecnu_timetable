@@ -1,8 +1,17 @@
 import 'package:ecnu_timetable/timetable/ecnu/ecnu_logic.dart';
 import 'package:ecnu_timetable/utils/database.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive_flutter/adapters.dart';
 
 void main() {
+  setUpAll(() async {
+    await initDatabase();
+  });
+
+  tearDownAll(() async {
+    await Hive.close();
+  });
+
   test('idValidator', () {
     expect(EcnuLogic.idValidator(null), isNotEmpty);
     expect(EcnuLogic.idValidator(''), isNotEmpty);
@@ -35,7 +44,6 @@ void main() {
 
   test('parseJs', () {
     final r = EcnuLogic.parseJs(js);
-    courses.clear();
     courses.addAll(r);
     expect(courses, isNotEmpty);
 

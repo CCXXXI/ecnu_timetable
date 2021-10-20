@@ -35,6 +35,7 @@ Future<void> initDatabase({bool clear = false}) async {
 
   Hive.registerAdapter(CourseAdapter());
   courses = await Hive.openBox('courses');
+  if (clear) await courses.clear();
 }
 
 late final Box _conf;
