@@ -39,6 +39,7 @@ dependencies:
   hive_flutter:
   flutter_settings_screens: ">0.3.0"
   json_annotation: ">=4.3.0"
+  flutter_layout_grid:
 
 dev_dependencies:
   flutter_test:
