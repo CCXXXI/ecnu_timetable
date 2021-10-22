@@ -34,6 +34,22 @@ jobs:
           name: ecnu_timetable-windows
           path: windows-release.zip
 
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+
+      - run: flutter build macos
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/macos/Build/Products/Release/
+          dest: macos-release.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable-macos
+          path: macos-release.zip
+
   build-android:
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +81,7 @@ jobs:
           path: ios-release.zip
 
   release:
-    needs: [ build-windows, build-android, build-ios ]
+    needs: [ build-windows, build-macos, build-android, build-ios ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -77,3 +93,4 @@ jobs:
             **/*.apk
             **/windows-release.zip
             **/ios-release.zip
+            **/macos-release.zip
