@@ -10,6 +10,9 @@ jobs:
       - uses: CCXXXI/flutter-action@main
 
       - run: flutter build --help
+      - run: flutter build ios --help
+      - run: flutter build ipa --help
+      - run: flutter build macos --help
 #
 #      - uses: papeloto/action-zip@v1
 #        with:
