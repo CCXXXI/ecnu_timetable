@@ -98,7 +98,7 @@ jobs:
           path: ios-release.zip
 
   release:
-    needs: [ build-windows, build-macos, build-android, build-ios ]
+    needs: [ build-windows, build-linux, build-macos, build-android, build-ios ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -106,8 +106,4 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
-          files: |
-            **/*.apk
-            **/windows-release.zip
-            **/ios-release.zip
-            **/macos-release.zip
+          files: '**/*release*'
