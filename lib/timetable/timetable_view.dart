@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:get/get.dart';
 
+import '../utils/database.dart';
 import 'timetable_logic.dart';
 
 class TimetablePage extends StatelessWidget {
@@ -10,11 +12,13 @@ class TimetablePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (true) {
+    if (courses.isEmpty) {
       return const TextButton(
         onPressed: TimetableLogic.openMenu,
         child: Text('NO DATA'),
       );
+    } else {
+      return LayoutGrid(columnSizes: const [auto], rowSizes: const [auto]);
     }
   }
 }
