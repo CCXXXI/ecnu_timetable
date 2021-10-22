@@ -4,19 +4,19 @@ on:
   push:
 
 jobs:
-  build-ios:
-    runs-on: macos-latest
+  build-linux:
+    runs-on: ubuntu-latest
     steps:
       - uses: CCXXXI/flutter-action@main
+      - run: sudo snap install flutter --classic
 
-      - run: flutter build ios --no-codesign
-      - run: flutter build macos
+      - run: flutter build linux
 
       - uses: papeloto/action-zip@v1
         with:
           files: build/
-          dest: macos-build-test.zip
+          dest: linux-build-test.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: macos-build-test
-          path: macos-build-test.zip
+          name: linux-build-test
+          path: linux-build-test.zip
