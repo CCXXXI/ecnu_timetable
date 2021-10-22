@@ -34,6 +34,23 @@ jobs:
           name: ecnu_timetable-windows
           path: windows-release.zip
 
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+      - run: sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev
+
+      - run: flutter build linux
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/linux/x64/release/bundle/
+          dest: linux-release.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable-linux
+          path: linux-release.zip
+
   build-macos:
     runs-on: macos-latest
     steps:
