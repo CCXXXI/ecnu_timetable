@@ -34,6 +34,13 @@ jobs:
           name: ecnu_timetable-windows
           path: windows-release.zip
 
+      - run: flutter pub run msix:create
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable-msix
+          path: build/windows/runner/Release/ecnu_timetable.msix
+
   build-linux:
     runs-on: ubuntu-latest
     steps:
@@ -106,4 +113,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
-          files: '**/*release*'
+          files: |
+            **/*.zip
+            **/*.msix
+            **/*.apk
