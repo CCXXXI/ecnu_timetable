@@ -9,16 +9,15 @@ jobs:
     steps:
       - uses: CCXXXI/flutter-action@main
 
-      - run: flutter build --help
-      - run: flutter build ios --help
-      - run: flutter build ipa --help
-      - run: flutter build macos --help
-#
-#      - uses: papeloto/action-zip@v1
-#        with:
-#          files: build/windows/runner/Release/
-#          dest: windows-release.zip
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: ecnu_timetable-windows
-#          path: windows-release.zip
+      - run: flutter build ios --no-codesign
+      - run: flutter build ipa
+      - run: flutter build macos
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/
+          dest: macos-build-test.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macos-build-test
+          path: macos-build-test.zip
