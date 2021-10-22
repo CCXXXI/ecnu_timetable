@@ -4,7 +4,7 @@ description: 更美观更智能的ECNU课程表。
 # Prevent the package from being accidentally published to pub.dev.
 publish_to: "none"
 
-version: 0.13.0+17
+version: 0.14.0+18
 
 environment:
   sdk: ">=2.15.0-172.0.dev"
@@ -39,6 +39,7 @@ dependencies:
   hive_flutter:
   flutter_settings_screens: ">0.3.0"
   json_annotation: ">=4.3.0"
+  flutter_layout_grid:
 
 dev_dependencies:
   flutter_test:
@@ -51,9 +52,17 @@ dev_dependencies:
   hive_generator:
   build_runner:
   json_serializable:
+  msix:
 
 flutter_app_name:
   name: "ECNU Timetable"
+
+msix_config:
+  display_name: "ECNU Timetable"
+  publisher_display_name: "CCXXXI"
+  identity_name: "io.github.ccxxxi.ecnu-timetable"
+  msix_version: 0.14.0.18
+  logo_path: "assets/images/app_icon.png"
 
 flutter:
   uses-material-design: true
