@@ -1,0 +1,21 @@
+name: build
+
+on:
+  push:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+
+      - run: flutter build --help
+#
+#      - uses: papeloto/action-zip@v1
+#        with:
+#          files: build/windows/runner/Release/
+#          dest: windows-release.zip
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: ecnu_timetable-windows
+#          path: windows-release.zip
