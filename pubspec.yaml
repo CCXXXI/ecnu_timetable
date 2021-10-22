@@ -62,7 +62,7 @@ msix_config:
   publisher_display_name: "CCXXXI"
   identity_name: "io.github.ccxxxi.ecnu-timetable"
   msix_version: 0.13.0.17
-  logo_path: 'assets/images/app_icon.png'
+  logo_path: "assets/images/app_icon.png"
 
 flutter:
   uses-material-design: true
