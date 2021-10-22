@@ -52,6 +52,7 @@ dev_dependencies:
   hive_generator:
   build_runner:
   json_serializable:
+  msix:
 
 flutter_app_name:
   name: "ECNU Timetable"
