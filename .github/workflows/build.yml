@@ -34,6 +34,39 @@ jobs:
           name: ecnu_timetable-windows
           path: windows-release.zip
 
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+      - run: sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev
+
+      - run: flutter build linux
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/linux/x64/release/bundle/
+          dest: linux-release.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable-linux
+          path: linux-release.zip
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+
+      - run: flutter build macos
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/macos/Build/Products/Release/
+          dest: macos-release.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable-macos
+          path: macos-release.zip
+
   build-android:
     runs-on: ubuntu-latest
     steps:
@@ -48,8 +81,24 @@ jobs:
           name: ecnu_timetable-android
           path: build/app/outputs/apk/release/*.apk
 
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: CCXXXI/flutter-action@main
+
+      - run: flutter build ios --no-codesign
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build/ios/Release-iphoneos/Runner.app/
+          dest: ios-release.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ecnu_timetable-ios
+          path: ios-release.zip
+
   release:
-    needs: [ build-windows, build-android ]
+    needs: [ build-windows, build-linux, build-macos, build-android, build-ios ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -57,6 +106,4 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
-          files: |
-            **/*.apk
-            **/windows-release.zip
+          files: '**/*release*'
