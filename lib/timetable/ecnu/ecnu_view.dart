@@ -92,8 +92,8 @@ class EcnuPage extends StatelessWidget {
                   : StepState.disabled,
             ),
             Step(
-              title: const Text('确认课表内容'),
-              subtitle: Text('有误可至GitHub反馈。'.s),
+              title: const Text('选择学年学期'),
+              subtitle: const Text('并确认课表内容无误。'),
               content: Column(
                 children: [
                   Row(
