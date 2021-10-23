@@ -25,10 +25,6 @@ class EcnuLogic extends GetxController with L {
   final passwordController = TextEditingController(text: user.password);
   final captchaController = TextEditingController();
 
-  final checkFormKey = GlobalKey<FormState>();
-
-  // todo: controllers
-
   @override
   void onClose() {
     super.onClose();
@@ -54,12 +50,11 @@ class EcnuLogic extends GetxController with L {
         step.value == S.login && !loginFormKey.currentState!.validate()) return;
 
     if (step.value == S.login) {
-      isLoading.value = true;
       try {
         final loginResult = await login();
         if (loginResult == null) {
           step.value = S.check;
-          getTable();
+          getTimetable();
         } else {
           Get.back();
           Get.snackbar('登录失败', loginResult);
@@ -71,9 +66,8 @@ class EcnuLogic extends GetxController with L {
       }
     } else {
       Get.back();
+      Get.back();
     }
-
-    isLoading.value = false;
   }
 
   @override
@@ -88,6 +82,7 @@ class EcnuLogic extends GetxController with L {
   void initEcnu() async {
     try {
       // set cookie
+      await cookieJar.deleteAll();
       await dio.get(Url.portal);
       l.debug(await cookieJar.loadForRequest(Uri.parse(Url.portal)));
 
@@ -134,6 +129,8 @@ class EcnuLogic extends GetxController with L {
 
   /// Returns null if success.
   Future<String?> login() async {
+    isLoading.value = true;
+
     final id = idController.text;
     final password = passwordController.text;
     final captcha = captchaController.text;
@@ -194,47 +191,91 @@ class EcnuLogic extends GetxController with L {
     return '未知错误';
   }
 
-  final table = ''.obs;
+  final year = guessYear(DateTime.now()).obs;
+  final semester = guessSemester(DateTime.now()).obs;
+  final coursesPreview = ''.obs;
 
-  void getTable() async {
-    final r0 = await dio.get(Url.ids);
-    final ids = RegExp(r'bg\.form\.addInput\(form,"ids","(\d+)"\);')
-        .firstMatch(r0.data)!
-        .group(1)!;
+  static int guessYear(DateTime date) =>
+      date.month >= 8 ? date.year : date.year - 1;
 
-    final r1 = await dio.post(
-      Url.table,
-      data: {
-        // todo: let user determines these options
-        'ignoreHead': 1,
-        'setting.kind': 'std',
-        'startWeek': 1,
-        'semester.id': semId(2021, 0),
-        'ids': ids,
-      },
-      options: Options(
-        contentType: Headers.formUrlEncodedContentType,
-      ),
-    );
-    final document = parseHtmlDocument(r1.data);
-    final js = document.querySelectorAll('script[language]').last.text;
-    courses
-      ..clear()
-      ..addAll(parseJs(js!));
-    table.value = courses.toMap().toString();
+  static int guessSemester(DateTime date) => date.month >= 8 || date.month <= 1
+      ? 0
+      : date.month == 7
+          ? 2
+          : 1;
+
+  Map<int, String> get years => {
+        for (var y = year.value - 2; y <= year.value + 2; y++)
+          y: '$y - ${y + 1}',
+      };
+
+  final semesters = {
+    0: '第一学期',
+    1: '第二学期',
+    2: '暑期学期',
+  };
+
+  void yearOnChanged(int value) {
+    year.value = value;
+    getTimetable();
   }
 
-  /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
-  static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
+  void semesterOnChanged(int value) {
+    semester.value = value;
+    getTimetable();
+  }
 
-  static List<Course> parseJs(String js) {
+  void getTimetable() async {
+    isLoading.value = true;
+
+    try {
+      final r0 = await dio.get(Url.ids);
+      final ids = getIds(r0.data);
+
+      final r1 = await dio.post(
+        Url.table,
+        data: {
+          'ignoreHead': 1,
+          'setting.kind': 'std',
+          'startWeek': 1,
+          'semester.id': semesterId(year.value, semester.value),
+          'ids': ids,
+        },
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+        ),
+      );
+      final document = parseHtmlDocument(r1.data);
+      final coursesJs = document.querySelectorAll('script[language]').last.text;
+
+      await courses.clear();
+      await courses.addAll(getCourses(coursesJs!));
+      coursesPreview.value =
+          courses.values.map((e) => e.courseName).toSet().join('\n');
+    } catch (e) {
+      coursesPreview.value = '获取失败';
+    }
+
+    isLoading.value = false;
+  }
+
+  static String getIds(String data) =>
+      RegExp(r'bg\.form\.addInput\(form,"ids","(.*)"\);')
+          .firstMatch(data)!
+          .group(1)!;
+
+  /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
+  static int semesterId(int year, int semester) =>
+      705 + (year - 2018) * 96 + semester * 32;
+
+  static List<Course> getCourses(String coursesJs) {
     final newCourse = RegExp('TaskActivity'
         r'\('
         '"(?<teacherId>.*)",'
         '"(?<teacherName>.*)",'
-        r'"(?<courseId>\d*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
+        r'"(?<courseId>.*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
         r'"(?<courseName>.*)\((?<courseCode2>.*)\.(?<courseNo2>.*)\)",'
-        r'"(?<roomId>\d*)",'
+        '"(?<roomId>.*)",'
         '"(?<roomName>.*)",'
         '"(?<weeks>[01]{53})",'
         '(?<taskId>null),'
@@ -247,7 +288,7 @@ class EcnuLogic extends GetxController with L {
 
     final courseBuffer = <Course>[];
 
-    for (final line in js.split(';')) {
+    for (final line in coursesJs.split(';')) {
       final n = newCourse.firstMatch(line);
       if (n != null) {
         assert(n.namedGroup('courseCode') == n.namedGroup('courseCode2'));
@@ -257,11 +298,11 @@ class EcnuLogic extends GetxController with L {
           Course()
             ..teacherId = n.namedGroup('teacherId')
             ..teacherName = n.namedGroup('teacherName')
-            ..courseId = int.tryParse(n.namedGroup('courseId') ?? '')
+            ..courseId = n.namedGroup('courseId')
             ..courseCode = n.namedGroup('courseCode')
             ..courseNo = n.namedGroup('courseNo')
             ..courseName = n.namedGroup('courseName')
-            ..roomId = int.tryParse(n.namedGroup('roomId') ?? '')
+            ..roomId = n.namedGroup('roomId')
             ..roomName = n.namedGroup('roomName')
             ..weeks = n
                 .namedGroup('weeks')
@@ -283,8 +324,8 @@ class EcnuLogic extends GetxController with L {
       if (p != null) {
         courseBuffer.last.periods!.add(
           Period()
-            ..weekday = int.tryParse(p.namedGroup('weekday') ?? '')
-            ..unit = int.tryParse(p.namedGroup('unit') ?? ''),
+            ..weekday = int.parse(p.namedGroup('weekday')!)
+            ..unit = int.parse(p.namedGroup('unit')!),
         );
       }
     }

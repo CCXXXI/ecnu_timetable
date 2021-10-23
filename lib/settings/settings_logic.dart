@@ -89,6 +89,7 @@ class SettingsLogic extends GetxController with L {
     final v = version.split('.').map(int.parse);
     for (final pair in zip([l, v])) {
       if (pair[0] > pair[1]) return true;
+      if (pair[0] < pair[1]) return false;
     }
 
     return false;

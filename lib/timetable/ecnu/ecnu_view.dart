@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../../utils/loading.dart';
@@ -21,7 +22,12 @@ class EcnuPage extends StatelessWidget {
         () => Stepper(
           currentStep: logic.step.value.index,
           onStepContinue: logic.onStepContinue,
-          controlsBuilder: controlsBuilder,
+          controlsBuilder: logic.isLoading.isTrue
+              ? (_, __) => Loading()
+              : (_, details) => ElevatedButton(
+                    onPressed: details.onStepContinue,
+                    child: Text(['登录', '完成'][details.stepIndex]),
+                  ),
           steps: [
             Step(
               title: const Text('登录公共数据库'),
@@ -57,29 +63,25 @@ class EcnuPage extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Obx(
-                            () => TextFormField(
-                              decoration: const InputDecoration(
-                                label: Text('验证码'),
-                              ),
-                              controller: logic.captchaController,
-                              validator: EcnuLogic.captchaValidator,
-                              maxLength: 4,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                              ],
-                              keyboardType: TextInputType.number,
-                              onEditingComplete: logic.onStepContinue,
-                              enabled: logic.captchaReady.value,
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              label: Text('验证码'),
                             ),
+                            controller: logic.captchaController,
+                            validator: EcnuLogic.captchaValidator,
+                            maxLength: 4,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            keyboardType: TextInputType.number,
+                            onEditingComplete: logic.onStepContinue,
+                            enabled: logic.captchaReady.value,
                           ),
                         ),
                         const SizedBox(width: 42),
-                        Obx(
-                          () => logic.captchaImage.value.isEmpty
-                              ? Loading()
-                              : Image.memory(logic.captchaImage.value),
-                        ),
+                        logic.captchaImage.value.isEmpty
+                            ? Loading()
+                            : Image.memory(logic.captchaImage.value),
                       ],
                     ),
                   ],
@@ -90,9 +92,44 @@ class EcnuPage extends StatelessWidget {
                   : StepState.disabled,
             ),
             Step(
-              title: const Text('确认课表内容'),
-              subtitle: Text('有误可至GitHub反馈。'.s),
-              content: Text(logic.table.value),
+              title: const Text('选择学年学期'),
+              subtitle: const Text('并确认课表内容无误。'),
+              content: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: DropDownSettingsTile(
+                          title: '学年',
+                          settingKey: 'timetable.year.$hashCode',
+                          selected: logic.year.value,
+                          values: logic.years,
+                          enabled: logic.isLoading.isFalse,
+                          onChange: logic.yearOnChanged,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        child: DropDownSettingsTile(
+                          title: '学期',
+                          settingKey: 'timetable.semester.$hashCode',
+                          selected: logic.semester.value,
+                          values: logic.semesters,
+                          enabled: logic.isLoading.isFalse,
+                          onChange: logic.semesterOnChanged,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    logic.coursesPreview.value,
+                    textAlign: TextAlign.center,
+                  ),
+                  const Divider(),
+                ],
+              ),
               state: logic.step.value == S.check
                   ? StepState.indexed
                   : StepState.disabled,
@@ -102,13 +139,4 @@ class EcnuPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget controlsBuilder(BuildContext context, ControlsDetails details) => Obx(
-        () => logic.isLoading.isTrue
-            ? Loading()
-            : ElevatedButton(
-                onPressed: details.onStepContinue,
-                child: Text(['登录', '完成'][details.stepIndex]),
-              ),
-      );
 }

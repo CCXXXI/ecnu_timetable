@@ -216,11 +216,11 @@ class CourseAdapter extends TypeAdapter<Course> {
     return Course()
       ..teacherId = fields[0] as String?
       ..teacherName = fields[1] as String?
-      ..courseId = fields[2] as int?
+      ..courseId = fields[2] as String?
       ..courseCode = fields[3] as String?
       ..courseNo = fields[4] as String?
       ..courseName = fields[5] as String?
-      ..roomId = fields[6] as int?
+      ..roomId = fields[6] as String?
       ..roomName = fields[7] as String?
       ..weeks = (fields[8] as List?)?.cast<bool>()
       ..taskId = fields[9] as String?
@@ -321,11 +321,11 @@ class PeriodAdapter extends TypeAdapter<Period> {
 Course _$CourseFromJson(Map<String, dynamic> json) => Course()
   ..teacherId = json['teacherId'] as String?
   ..teacherName = json['teacherName'] as String?
-  ..courseId = json['courseId'] as int?
+  ..courseId = json['courseId'] as String?
   ..courseCode = json['courseCode'] as String?
   ..courseNo = json['courseNo'] as String?
   ..courseName = json['courseName'] as String?
-  ..roomId = json['roomId'] as int?
+  ..roomId = json['roomId'] as String?
   ..roomName = json['roomName'] as String?
   ..weeks = (json['weeks'] as List<dynamic>?)?.map((e) => e as bool).toList()
   ..taskId = json['taskId'] as String?
