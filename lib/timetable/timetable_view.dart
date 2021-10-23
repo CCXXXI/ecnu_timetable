@@ -64,11 +64,9 @@ class TimetablePage extends StatelessWidget {
               for (final course in courses.values)
                 for (final period in course.periods!)
                   Center(
-                    child: FittedBox(
-                      child: Text(
-                        course.courseName!,
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      course.courseName!,
+                      textAlign: TextAlign.center,
                     ),
                   ).inGridArea(
                     '${period.weekday}-${period.unit}',
