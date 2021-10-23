@@ -59,7 +59,7 @@ class EcnuLogic extends GetxController with L {
         final loginResult = await login();
         if (loginResult == null) {
           step.value = S.check;
-          getTable();
+          getTimetable();
         } else {
           Get.back();
           Get.snackbar('登录失败', loginResult);
@@ -194,9 +194,9 @@ class EcnuLogic extends GetxController with L {
     return '未知错误';
   }
 
-  final table = ''.obs;
+  final coursesPreview = ''.obs;
 
-  void getTable() async {
+  void getTimetable() async {
     final r0 = await dio.get(Url.ids);
     final ids = getIds(r0.data);
 
@@ -219,7 +219,7 @@ class EcnuLogic extends GetxController with L {
     courses
       ..clear()
       ..addAll(getCourses(js!));
-    table.value = courses.toMap().toString();
+    coursesPreview.value = courses.toMap().toString();
   }
 
   static String getIds(String data) =>
