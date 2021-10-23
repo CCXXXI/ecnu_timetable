@@ -205,7 +205,7 @@ class Course extends HiveObject {
 
   /// e.g. 334873
   @HiveField(2)
-  int? courseId;
+  String? courseId;
 
   /// e.g. SOFT0031132231
   @HiveField(3)
@@ -219,7 +219,7 @@ class Course extends HiveObject {
   String? courseName;
 
   @HiveField(6)
-  int? roomId;
+  String? roomId;
 
   @HiveField(7)
   String? roomName;

@@ -198,7 +198,7 @@ class EcnuLogic extends GetxController with L {
 
   void getTable() async {
     final r0 = await dio.get(Url.ids);
-    final ids = RegExp(r'bg\.form\.addInput\(form,"ids","(\d+)"\);')
+    final ids = RegExp(r'bg\.form\.addInput\(form,"ids","(.*)"\);')
         .firstMatch(r0.data)!
         .group(1)!;
 
@@ -232,9 +232,9 @@ class EcnuLogic extends GetxController with L {
         r'\('
         '"(?<teacherId>.*)",'
         '"(?<teacherName>.*)",'
-        r'"(?<courseId>\d*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
+        r'"(?<courseId>.*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
         r'"(?<courseName>.*)\((?<courseCode2>.*)\.(?<courseNo2>.*)\)",'
-        r'"(?<roomId>\d*)",'
+        r'"(?<roomId>.*)",'
         '"(?<roomName>.*)",'
         '"(?<weeks>[01]{53})",'
         '(?<taskId>null),'
@@ -257,11 +257,11 @@ class EcnuLogic extends GetxController with L {
           Course()
             ..teacherId = n.namedGroup('teacherId')
             ..teacherName = n.namedGroup('teacherName')
-            ..courseId = int.tryParse(n.namedGroup('courseId') ?? '')
+            ..courseId = n.namedGroup('courseId')
             ..courseCode = n.namedGroup('courseCode')
             ..courseNo = n.namedGroup('courseNo')
             ..courseName = n.namedGroup('courseName')
-            ..roomId = int.tryParse(n.namedGroup('roomId') ?? '')
+            ..roomId = n.namedGroup('roomId')
             ..roomName = n.namedGroup('roomName')
             ..weeks = n
                 .namedGroup('weeks')
