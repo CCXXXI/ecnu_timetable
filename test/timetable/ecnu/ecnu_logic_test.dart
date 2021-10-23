@@ -43,7 +43,7 @@ void main() {
   });
 
   test('parseJs', () {
-    final r = EcnuLogic.parseJs(js);
+    final r = EcnuLogic.parseCourses(js);
     courses.addAll(r);
     expect(courses, isNotEmpty);
     expect(

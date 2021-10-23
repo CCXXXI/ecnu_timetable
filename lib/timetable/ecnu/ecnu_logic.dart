@@ -220,14 +220,14 @@ class EcnuLogic extends GetxController with L {
     final js = document.querySelectorAll('script[language]').last.text;
     courses
       ..clear()
-      ..addAll(parseJs(js!));
+      ..addAll(parseCourses(js!));
     table.value = courses.toMap().toString();
   }
 
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
   static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
 
-  static List<Course> parseJs(String js) {
+  static List<Course> parseCourses(String js) {
     final newCourse = RegExp('TaskActivity'
         r'\('
         '"(?<teacherId>.*)",'
