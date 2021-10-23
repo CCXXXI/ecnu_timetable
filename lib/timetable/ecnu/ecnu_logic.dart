@@ -50,7 +50,6 @@ class EcnuLogic extends GetxController with L {
         step.value == S.login && !loginFormKey.currentState!.validate()) return;
 
     if (step.value == S.login) {
-      isLoading.value = true;
       try {
         final loginResult = await login();
         if (loginResult == null) {
@@ -129,6 +128,8 @@ class EcnuLogic extends GetxController with L {
 
   /// Returns null if success.
   Future<String?> login() async {
+    isLoading.value = true;
+
     final id = idController.text;
     final password = passwordController.text;
     final captcha = captchaController.text;
@@ -202,31 +203,58 @@ class EcnuLogic extends GetxController with L {
           ? 2
           : 1;
 
+  Map<int, String> get years => {
+        for (var y = year.value - 2; y <= year.value + 2; y++)
+          y: '$y - ${y + 1}',
+      };
+
+  final semesters = {
+    0: '第一学期',
+    1: '第二学期',
+    2: '暑期学期',
+  };
+
+  void yearOnChanged(int y) {
+    year.value = y;
+    getTimetable();
+  }
+
+  void semOnChanged(int s) {
+    sem.value = s;
+    getTimetable();
+  }
+
   void getTimetable() async {
-    final r0 = await dio.get(Url.ids);
-    final ids = getIds(r0.data);
+    isLoading.value = true;
 
-    final r1 = await dio.post(
-      Url.table,
-      data: {
-        'ignoreHead': 1,
-        'setting.kind': 'std',
-        'startWeek': 1,
-        'semester.id': semId(year.value, sem.value),
-        'ids': ids,
-      },
-      options: Options(
-        contentType: Headers.formUrlEncodedContentType,
-      ),
-    );
-    final document = parseHtmlDocument(r1.data);
-    final coursesJs = document.querySelectorAll('script[language]').last.text;
+    try {
+      final r0 = await dio.get(Url.ids);
+      final ids = getIds(r0.data);
 
-    courses
-      ..clear()
-      ..addAll(getCourses(coursesJs!));
-    coursesPreview.value =
-        courses.values.map((e) => e.courseName).toSet().join('\n');
+      final r1 = await dio.post(
+        Url.table,
+        data: {
+          'ignoreHead': 1,
+          'setting.kind': 'std',
+          'startWeek': 1,
+          'semester.id': semId(year.value, sem.value),
+          'ids': ids,
+        },
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+        ),
+      );
+      final document = parseHtmlDocument(r1.data);
+      final coursesJs = document.querySelectorAll('script[language]').last.text;
+
+      courses
+        ..clear()
+        ..addAll(getCourses(coursesJs!));
+      coursesPreview.value =
+          courses.values.map((e) => e.courseName).toSet().join('\n');
+    } catch (e) {
+      coursesPreview.value = '获取失败';
+    }
 
     isLoading.value = false;
   }

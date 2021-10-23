@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:get/get.dart';
 
 import '../../utils/loading.dart';
@@ -95,6 +96,33 @@ class EcnuPage extends StatelessWidget {
               subtitle: Text('有误可至GitHub反馈。'.s),
               content: Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: DropDownSettingsTile(
+                          title: '学年',
+                          settingKey: 'timetable.year.$hashCode',
+                          selected: logic.year.value,
+                          values: logic.years,
+                          enabled: logic.isLoading.isFalse,
+                          onChange: logic.yearOnChanged,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        child: DropDownSettingsTile(
+                          title: '学期',
+                          settingKey: 'timetable.sem.$hashCode',
+                          selected: logic.sem.value,
+                          values: logic.semesters,
+                          enabled: logic.isLoading.isFalse,
+                          onChange: logic.semOnChanged,
+                        ),
+                      ),
+                    ],
+                  ),
                   Text(
                     logic.coursesPreview.value,
                     textAlign: TextAlign.center,
