@@ -66,6 +66,7 @@ class EcnuLogic extends GetxController with L {
       }
     } else {
       Get.back();
+      Get.back();
     }
   }
 
