@@ -189,7 +189,18 @@ class EcnuLogic extends GetxController with L {
     return '未知错误';
   }
 
+  final year = guessYear(DateTime.now()).obs;
+  final sem = guessSem(DateTime.now()).obs;
   final coursesPreview = ''.obs;
+
+  static int guessYear(DateTime date) =>
+      date.month >= 8 ? date.year : date.year - 1;
+
+  static int guessSem(DateTime date) => date.month >= 8 || date.month <= 1
+      ? 0
+      : date.month == 7
+          ? 2
+          : 1;
 
   void getTimetable() async {
     final r0 = await dio.get(Url.ids);
@@ -201,7 +212,7 @@ class EcnuLogic extends GetxController with L {
         'ignoreHead': 1,
         'setting.kind': 'std',
         'startWeek': 1,
-        'semester.id': semId(2021, 0),
+        'semester.id': semId(year.value, sem.value),
         'ids': ids,
       },
       options: Options(

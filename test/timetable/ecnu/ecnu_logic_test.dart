@@ -36,6 +36,17 @@ void main() {
     expect(EcnuLogic.captchaValidator('10101001000'), isNotEmpty);
   });
 
+  test('guess year & sem', () {
+    expect(EcnuLogic.guessYear(DateTime(2021, 10)), 2021);
+    expect(EcnuLogic.guessSem(DateTime(2021, 10)), 0);
+
+    expect(EcnuLogic.guessYear(DateTime(2022, 4)), 2021);
+    expect(EcnuLogic.guessSem(DateTime(2022, 4)), 1);
+
+    expect(EcnuLogic.guessYear(DateTime(2022, 7)), 2021);
+    expect(EcnuLogic.guessSem(DateTime(2022, 7)), 2);
+  });
+
   test('semester.id', () {
     expect(EcnuLogic.semId(2018, 0), 705);
     expect(EcnuLogic.semId(2018, 1), 705 + 32);
