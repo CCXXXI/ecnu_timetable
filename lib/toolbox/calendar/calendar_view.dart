@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,14 +19,7 @@ class CalendarPage extends StatelessWidget {
           () => Center(
             child: logic.imgUrl.isEmpty
                 ? Loading()
-                : CachedNetworkImage(
-                    imageUrl: logic.imgUrl.value,
-                    progressIndicatorBuilder: (_, __, downloadProgress) =>
-                        CircularProgressIndicator(
-                      value: downloadProgress.progress,
-                    ),
-                    errorWidget: (_, url, error) => Text('$url\n$error'),
-                  ),
+                : Image.network(logic.imgUrl.value),
           ),
         ),
       ),
