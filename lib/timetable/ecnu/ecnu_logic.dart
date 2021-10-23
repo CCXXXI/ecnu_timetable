@@ -191,13 +191,13 @@ class EcnuLogic extends GetxController with L {
   }
 
   final year = guessYear(DateTime.now()).obs;
-  final sem = guessSem(DateTime.now()).obs;
+  final semester = guessSemester(DateTime.now()).obs;
   final coursesPreview = ''.obs;
 
   static int guessYear(DateTime date) =>
       date.month >= 8 ? date.year : date.year - 1;
 
-  static int guessSem(DateTime date) => date.month >= 8 || date.month <= 1
+  static int guessSemester(DateTime date) => date.month >= 8 || date.month <= 1
       ? 0
       : date.month == 7
           ? 2
@@ -214,13 +214,13 @@ class EcnuLogic extends GetxController with L {
     2: '暑期学期',
   };
 
-  void yearOnChanged(int y) {
-    year.value = y;
+  void yearOnChanged(int value) {
+    year.value = value;
     getTimetable();
   }
 
-  void semOnChanged(int s) {
-    sem.value = s;
+  void semesterOnChanged(int value) {
+    semester.value = value;
     getTimetable();
   }
 
@@ -237,7 +237,7 @@ class EcnuLogic extends GetxController with L {
           'ignoreHead': 1,
           'setting.kind': 'std',
           'startWeek': 1,
-          'semester.id': semId(year.value, sem.value),
+          'semester.id': semesterId(year.value, semester.value),
           'ids': ids,
         },
         options: Options(
@@ -265,7 +265,8 @@ class EcnuLogic extends GetxController with L {
           .group(1)!;
 
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
-  static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
+  static int semesterId(int year, int semester) =>
+      705 + (year - 2018) * 96 + semester * 32;
 
   static List<Course> getCourses(String coursesJs) {
     final newCourse = RegExp('TaskActivity'
