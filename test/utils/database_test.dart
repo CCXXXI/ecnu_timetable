@@ -29,9 +29,9 @@ Future<void> main() async {
     expect(log.levels, LogLevel.values.map((e) => e.name));
   });
 
-  test('toolbox', () {
-    expect(toolbox.sucker, false);
-  });
+  // test('toolbox', () {
+  //   expect(toolbox.sucker, false);
+  // });
 
   test('misc', () {
     expect(misc.launchPage_, 1);

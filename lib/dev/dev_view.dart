@@ -17,29 +17,6 @@ class DevPage extends StatelessWidget {
       body: ListView(
         children: [
           SettingsGroup(
-            title: '工具箱',
-            children: [
-              SwitchSettingsTile(
-                title: 'sucker',
-                settingKey: 'toolbox.sucker',
-                defaultValue: toolbox.sucker,
-                onChange: logic.suckerOnChanged,
-              ),
-              SwitchSettingsTile(
-                title: 'cheater',
-                settingKey: 'toolbox.cheater',
-                defaultValue: toolbox.cheater,
-                onChange: logic.cheaterOnChanged,
-              ),
-              SwitchSettingsTile(
-                title: 'juan',
-                settingKey: 'toolbox.juan',
-                defaultValue: toolbox.juan,
-                onChange: logic.juanOnChanged,
-              ),
-            ],
-          ),
-          SettingsGroup(
             title: '日志',
             children: [
               SimpleDropDownSettingsTile(

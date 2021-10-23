@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../utils/database.dart';
 import '../utils/log.dart';
 import '../utils/string.dart';
 import '../utils/web.dart';
@@ -18,18 +17,11 @@ class ToolboxLogic extends GetxController with L {
   @override
   void onInit() {
     super.onInit();
-    if (suckerEnabled.isTrue) updateSucker();
-    if (cheaterEnabled.isTrue) updateCheater();
+    updateSucker();
+    updateCheater();
   }
 
 // region sucker
-  final suckerEnabled = toolbox.sucker.obs;
-
-  updateSuckerEnabled(bool v) {
-    suckerEnabled.value = v;
-    if (v) updateSucker();
-  }
-
   final sucker = ''.obs;
 
   void updateSucker() async {
@@ -64,13 +56,6 @@ class ToolboxLogic extends GetxController with L {
 // endregion
 
 // region cheater
-  final cheaterEnabled = toolbox.cheater.obs;
-
-  updateCheaterEnabled(bool v) {
-    cheaterEnabled.value = v;
-    if (v) updateCheater();
-  }
-
   final cheater = ''.obs;
 
   void updateCheater() {
@@ -91,17 +76,10 @@ class ToolboxLogic extends GetxController with L {
 
 // endregion
 
-// region juan
-  final juanEnabled = toolbox.juan.obs;
-
-  updateJuanEnabled(bool v) => juanEnabled.value = v;
-
   void juanOnTap() => Get.defaultDialog(
         title: 'ceil(5*(2*a/b-1)*log(a-b+1))',
         content: JuanWidget(),
       );
-
-// endregion
 
   void calendarOnTap() {
     if (GetPlatform.isWeb) {
