@@ -72,8 +72,6 @@ class EcnuLogic extends GetxController with L {
     } else {
       Get.back();
     }
-
-    isLoading.value = false;
   }
 
   @override
@@ -222,6 +220,8 @@ class EcnuLogic extends GetxController with L {
       ..addAll(getCourses(js!));
     coursesPreview.value =
         courses.values.map((e) => e.courseName).toSet().join('\n');
+
+    isLoading.value = false;
   }
 
   static String getIds(String data) =>
