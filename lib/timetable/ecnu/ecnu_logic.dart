@@ -234,7 +234,7 @@ class EcnuLogic extends GetxController with L {
         '"(?<teacherName>.*)",'
         r'"(?<courseId>.*)\((?<courseCode>.*)\.(?<courseNo>.*)\)",'
         r'"(?<courseName>.*)\((?<courseCode2>.*)\.(?<courseNo2>.*)\)",'
-        r'"(?<roomId>.*)",'
+        '"(?<roomId>.*)",'
         '"(?<roomName>.*)",'
         '"(?<weeks>[01]{53})",'
         '(?<taskId>null),'
