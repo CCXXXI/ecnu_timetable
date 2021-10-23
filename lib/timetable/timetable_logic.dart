@@ -52,12 +52,17 @@ class TimetableLogic extends GetxController {
 
     for (final weekday in ['x', ...weekdays]) {
       r.add([]);
-      for (final unit in ['x', ...units]) {
+      for (final z in zip([
+        ['x', ...units],
+        ['', 'x', ...units],
+      ])) {
+        final unit = z.first;
+        final pre = z.last;
         if (weekday == 'x' ||
             unit == 'x' ||
             unit == 0 ||
             _weekdayUnit[weekday as int][unit as int].toString() !=
-                _weekdayUnit[weekday][unit - 1].toString()) {
+                _weekdayUnit[weekday][pre as int].toString()) {
           r.last.add('$weekday-$unit');
         } else {
           r.last.add(r.last.last);
