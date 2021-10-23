@@ -7,7 +7,7 @@ import 'timetable_menu/timetable_menu_view.dart';
 class TimetableLogic extends GetxController {
   static void openMenu() => Get.to(() => TimetableMenuPage());
 
-  static List<List<List<Course>>> get weekdayUnit {
+  static List<List<List<Course>>> get _weekdayUnit {
     final r = List.generate(
       7,
       (weekday) => List.generate(
@@ -27,11 +27,11 @@ class TimetableLogic extends GetxController {
     return r;
   }
 
-  static List<List<List<Course>>> get unitWeekday => List.generate(
+  static List<List<List<Course>>> get _unitWeekday => List.generate(
         13,
         (unit) => List.generate(
           7,
-          (weekday) => weekdayUnit[weekday][unit],
+          (weekday) => _weekdayUnit[weekday][unit],
           growable: false,
         ),
         growable: false,
@@ -39,12 +39,12 @@ class TimetableLogic extends GetxController {
 
   static List<int> get weekdays => range(7)
       .cast<int>()
-      .where((weekday) => weekdayUnit[weekday].expand((l) => l).isNotEmpty)
+      .where((weekday) => _weekdayUnit[weekday].expand((l) => l).isNotEmpty)
       .toList();
 
   static List<int> get units => range(13)
       .cast<int>()
-      .where((unit) => unitWeekday[unit].expand((l) => l).isNotEmpty)
+      .where((unit) => _unitWeekday[unit].expand((l) => l).isNotEmpty)
       .toList();
 
   static String get areas {
