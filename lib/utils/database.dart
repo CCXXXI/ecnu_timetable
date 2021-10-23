@@ -12,9 +12,11 @@ import 'string.dart';
 part 'database.g.dart';
 
 Future<void> initDatabase({bool clear = false}) async {
-  if (!GetPlatform.isWeb) {
+  if (!GetPlatform.isWeb && GetPlatform.isDesktop) {
     final dir = await getApplicationSupportDirectory();
     Hive.init(dir.path);
+  } else {
+    await Hive.initFlutter();
   }
 
   Hive.registerAdapter(UserAdapter());
