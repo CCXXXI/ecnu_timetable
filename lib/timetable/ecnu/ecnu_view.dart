@@ -21,7 +21,12 @@ class EcnuPage extends StatelessWidget {
         () => Stepper(
           currentStep: logic.step.value.index,
           onStepContinue: logic.onStepContinue,
-          controlsBuilder: controlsBuilder,
+          controlsBuilder: logic.isLoading.isTrue
+              ? (_, __) => Loading()
+              : (_, details) => ElevatedButton(
+                    onPressed: details.onStepContinue,
+                    child: Text(['登录', '完成'][details.stepIndex]),
+                  ),
           steps: [
             Step(
               title: const Text('登录公共数据库'),
@@ -57,29 +62,25 @@ class EcnuPage extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Obx(
-                            () => TextFormField(
-                              decoration: const InputDecoration(
-                                label: Text('验证码'),
-                              ),
-                              controller: logic.captchaController,
-                              validator: EcnuLogic.captchaValidator,
-                              maxLength: 4,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                              ],
-                              keyboardType: TextInputType.number,
-                              onEditingComplete: logic.onStepContinue,
-                              enabled: logic.captchaReady.value,
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              label: Text('验证码'),
                             ),
+                            controller: logic.captchaController,
+                            validator: EcnuLogic.captchaValidator,
+                            maxLength: 4,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            keyboardType: TextInputType.number,
+                            onEditingComplete: logic.onStepContinue,
+                            enabled: logic.captchaReady.value,
                           ),
                         ),
                         const SizedBox(width: 42),
-                        Obx(
-                          () => logic.captchaImage.value.isEmpty
-                              ? Loading()
-                              : Image.memory(logic.captchaImage.value),
-                        ),
+                        logic.captchaImage.value.isEmpty
+                            ? Loading()
+                            : Image.memory(logic.captchaImage.value),
                       ],
                     ),
                   ],
@@ -102,13 +103,4 @@ class EcnuPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget controlsBuilder(BuildContext context, ControlsDetails details) => Obx(
-        () => logic.isLoading.isTrue
-            ? Loading()
-            : ElevatedButton(
-                onPressed: details.onStepContinue,
-                child: Text(['登录', '完成'][details.stepIndex]),
-              ),
-      );
 }
