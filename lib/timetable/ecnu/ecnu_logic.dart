@@ -25,10 +25,6 @@ class EcnuLogic extends GetxController with L {
   final passwordController = TextEditingController(text: user.password);
   final captchaController = TextEditingController();
 
-  final checkFormKey = GlobalKey<FormState>();
-
-  // todo: controllers
-
   @override
   void onClose() {
     super.onClose();
@@ -202,7 +198,6 @@ class EcnuLogic extends GetxController with L {
     final r1 = await dio.post(
       Url.table,
       data: {
-        // todo: let user determines these options
         'ignoreHead': 1,
         'setting.kind': 'std',
         'startWeek': 1,
@@ -214,10 +209,11 @@ class EcnuLogic extends GetxController with L {
       ),
     );
     final document = parseHtmlDocument(r1.data);
-    final js = document.querySelectorAll('script[language]').last.text;
+    final coursesJs = document.querySelectorAll('script[language]').last.text;
+
     courses
       ..clear()
-      ..addAll(getCourses(js!));
+      ..addAll(getCourses(coursesJs!));
     coursesPreview.value =
         courses.values.map((e) => e.courseName).toSet().join('\n');
 
@@ -232,7 +228,7 @@ class EcnuLogic extends GetxController with L {
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
   static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
 
-  static List<Course> getCourses(String js) {
+  static List<Course> getCourses(String coursesJs) {
     final newCourse = RegExp('TaskActivity'
         r'\('
         '"(?<teacherId>.*)",'
@@ -252,7 +248,7 @@ class EcnuLogic extends GetxController with L {
 
     final courseBuffer = <Course>[];
 
-    for (final line in js.split(';')) {
+    for (final line in coursesJs.split(';')) {
       final n = newCourse.firstMatch(line);
       if (n != null) {
         assert(n.namedGroup('courseCode') == n.namedGroup('courseCode2'));
