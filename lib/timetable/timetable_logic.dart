@@ -47,12 +47,33 @@ class TimetableLogic extends GetxController {
       .where((unit) => _unitWeekday[unit].expand((l) => l).isNotEmpty)
       .toList();
 
+  static List<List<String>> get areasRaw {
+    final r = <List<String>>[];
+
+    for (final weekday in ['x', ...weekdays]) {
+      r.add([]);
+      for (final unit in ['x', ...units]) {
+        if (weekday == 'x' ||
+            unit == 'x' ||
+            unit == 0 ||
+            _weekdayUnit[weekday as int][unit as int].toString() !=
+                _weekdayUnit[weekday][unit - 1].toString()) {
+          r.last.add('$weekday-$unit');
+        } else {
+          r.last.add(r.last.last);
+        }
+      }
+    }
+
+    return r;
+  }
+
   static String get areas {
     final r = StringBuffer();
 
-    for (final unit in ['x', ...units]) {
-      for (final weekday in ['x', ...weekdays]) {
-        r.write('$weekday-$unit ');
+    for (var unitIdx = 0; unitIdx <= units.length; unitIdx++) {
+      for (var weekdayIdx = 0; weekdayIdx <= weekdays.length; weekdayIdx++) {
+        r.write(areasRaw[weekdayIdx][unitIdx] + ' ');
       }
       r.writeln();
     }
