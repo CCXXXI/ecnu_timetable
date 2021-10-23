@@ -88,6 +88,7 @@ class EcnuLogic extends GetxController with L {
   void initEcnu() async {
     try {
       // set cookie
+      await cookieJar.deleteAll();
       await dio.get(Url.portal);
       l.debug(await cookieJar.loadForRequest(Uri.parse(Url.portal)));
 
