@@ -23,32 +23,29 @@ class ToolboxPage extends StatelessWidget {
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         children: [
-          if (logic.suckerEnabled.isTrue)
-            Tool(
-              FontAwesomeIcons.dog,
-              '/sucker',
-              logic.sucker.value.length < 16
-                  ? logic.sucker.value
-                  : logic.sucker.value.substring(0, 16) + '……',
-              onTap: logic.suckerOnTap,
-              enabled: !GetPlatform.isWeb,
-            ),
-          if (logic.cheaterEnabled.isTrue)
-            Tool(
-              FontAwesomeIcons.cat,
-              '/cheater',
-              logic.cheater.value.length < 16
-                  ? logic.cheater.value
-                  : logic.cheater.value.substring(0, 16) + '……',
-              onTap: logic.cheaterOnTap,
-            ),
-          if (logic.juanEnabled.isTrue)
-            Tool(
-              FontAwesomeIcons.graduationCap,
-              '卷课意愿值估算',
-              '仅供参考',
-              onTap: logic.juanOnTap,
-            ),
+          Tool(
+            FontAwesomeIcons.dog,
+            '/sucker',
+            logic.sucker.value.length < 16
+                ? logic.sucker.value
+                : logic.sucker.value.substring(0, 16) + '……',
+            onTap: logic.suckerOnTap,
+            enabled: !GetPlatform.isWeb,
+          ),
+          Tool(
+            FontAwesomeIcons.cat,
+            '/cheater',
+            logic.cheater.value.length < 16
+                ? logic.cheater.value
+                : logic.cheater.value.substring(0, 16) + '……',
+            onTap: logic.cheaterOnTap,
+          ),
+          Tool(
+            FontAwesomeIcons.graduationCap,
+            '卷课意愿值估算',
+            '仅供参考',
+            onTap: logic.juanOnTap,
+          ),
           Tool(
             FontAwesomeIcons.calendarAlt,
             '校历',

@@ -1,7 +1,6 @@
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:get/get.dart';
 
-import '../toolbox/toolbox_logic.dart';
 import '../utils/database.dart';
 import '../utils/gu.dart';
 import '../utils/loading.dart';
@@ -10,29 +9,6 @@ import 'cheater_view.dart';
 import 'trivia_view.dart';
 
 class DevLogic extends GetxController with L {
-  final toolboxLogic = Get.find<ToolboxLogic>();
-
-  void suckerOnChanged(bool v) {
-    toolbox
-      ..sucker = v
-      ..save();
-    toolboxLogic.updateSuckerEnabled(v);
-  }
-
-  void cheaterOnChanged(bool v) {
-    toolbox
-      ..cheater = v
-      ..save();
-    toolboxLogic.updateCheaterEnabled(v);
-  }
-
-  void juanOnChanged(bool v) {
-    toolbox
-      ..juan = v
-      ..save();
-    toolboxLogic.updateJuanEnabled(v);
-  }
-
   void levelOnChanged(String v) {
     log
       ..level = v
