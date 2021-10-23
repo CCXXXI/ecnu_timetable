@@ -52,7 +52,7 @@ class TimetableLogic extends GetxController {
 
     for (final unit in ['x', ...units]) {
       for (final weekday in ['x', ...weekdays]) {
-        r.write('$weekday.$unit ');
+        r.write('$weekday-$unit ');
       }
       r.writeln();
     }
