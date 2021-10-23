@@ -65,8 +65,10 @@ class TimetablePage extends StatelessWidget {
                 for (final period in course.periods!)
                   Center(
                     child: Text(
-                      '${course.courseName}\n'
-                      '${course.roomName! + course.specialRoom!}',
+                      '${course.courseName!.length <= 12 ? course.courseName : course.courseName!.substring(0, 11) + '...'}\n'
+                      '${course.roomName! + course.specialRoom!}\n'
+                      '${course.weeks!.sublist(1, 10).map((e) => e ? 'o' : 'x').join()}\n'
+                      '${course.weeks!.sublist(10, 19).map((e) => e ? 'o' : 'x').join()}',
                       textAlign: TextAlign.center,
                     ),
                   ).inGridArea(
