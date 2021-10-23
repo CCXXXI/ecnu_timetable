@@ -220,7 +220,8 @@ class EcnuLogic extends GetxController with L {
     courses
       ..clear()
       ..addAll(getCourses(js!));
-    coursesPreview.value = courses.toMap().toString();
+    coursesPreview.value =
+        courses.values.map((e) => e.courseName).toSet().join('\n');
   }
 
   static String getIds(String data) =>
