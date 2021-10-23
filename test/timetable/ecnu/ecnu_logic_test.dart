@@ -42,8 +42,23 @@ void main() {
     expect(EcnuLogic.semId(2017, 2), 705 - 32);
   });
 
-  test('parseJs', () {
-    final r = EcnuLogic.parseCourses(js);
+  test('parseIds', () {
+    expect(
+      EcnuLogic.parseIds('''
+     	function searchTable(){
+   		if(jQuery("#courseTableType").val()=="std"){
+   			bg.form.addInput(form,"ids","123456");
+   		}else{
+   			bg.form.addInput(form,"ids","7890");
+   		}
+       	bg.form.submit(form,"courseTableForStd!courseTable.action","contentDiv");
+   	}'''),
+      '123456',
+    );
+  });
+
+  test('parseCourses', () {
+    final r = EcnuLogic.parseCourses(coursesJs);
     courses.addAll(r);
     expect(courses, isNotEmpty);
     expect(
@@ -54,7 +69,7 @@ void main() {
   });
 }
 
-const js = '''
+const coursesJs = '''
 	// function CourseTable in TaskActivity.js
 	var table0 = new CourseTable(2021,98);
 	var unitCount = 14;

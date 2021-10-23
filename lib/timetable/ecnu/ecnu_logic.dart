@@ -198,9 +198,7 @@ class EcnuLogic extends GetxController with L {
 
   void getTable() async {
     final r0 = await dio.get(Url.ids);
-    final ids = RegExp(r'bg\.form\.addInput\(form,"ids","(.*)"\);')
-        .firstMatch(r0.data)!
-        .group(1)!;
+    final ids = parseIds(r0.data);
 
     final r1 = await dio.post(
       Url.table,
@@ -223,6 +221,11 @@ class EcnuLogic extends GetxController with L {
       ..addAll(parseCourses(js!));
     table.value = courses.toMap().toString();
   }
+
+  static String parseIds(String data) =>
+      RegExp(r'bg\.form\.addInput\(form,"ids","(.*)"\);')
+          .firstMatch(data)!
+          .group(1)!;
 
   /// 2018-2019学年度上学期为705，每向前/向后一个学期就增加/减少32
   static int semId(int year, int sem) => 705 + (year - 2018) * 96 + sem * 32;
