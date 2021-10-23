@@ -247,9 +247,8 @@ class EcnuLogic extends GetxController with L {
       final document = parseHtmlDocument(r1.data);
       final coursesJs = document.querySelectorAll('script[language]').last.text;
 
-      courses
-        ..clear()
-        ..addAll(getCourses(coursesJs!));
+      await courses.clear();
+      await courses.addAll(getCourses(coursesJs!));
       coursesPreview.value =
           courses.values.map((e) => e.courseName).toSet().join('\n');
     } catch (e) {
