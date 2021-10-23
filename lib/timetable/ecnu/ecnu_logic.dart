@@ -283,8 +283,8 @@ class EcnuLogic extends GetxController with L {
       if (p != null) {
         courseBuffer.last.periods!.add(
           Period()
-            ..weekday = int.tryParse(p.namedGroup('weekday') ?? '')
-            ..unit = int.tryParse(p.namedGroup('unit') ?? ''),
+            ..weekday = int.parse(p.namedGroup('weekday')!)
+            ..unit = int.parse(p.namedGroup('unit')!),
         );
       }
     }
