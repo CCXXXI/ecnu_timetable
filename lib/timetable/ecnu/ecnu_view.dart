@@ -96,32 +96,34 @@ class EcnuPage extends StatelessWidget {
               subtitle: const Text('并确认课表内容无误。'),
               content: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: 200,
-                        child: DropDownSettingsTile(
-                          title: '学年',
-                          settingKey: 'timetable.year.$hashCode',
-                          selected: logic.year.value,
-                          values: logic.years,
-                          enabled: logic.isLoading.isFalse,
-                          onChange: logic.yearOnChanged,
+                  FittedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          child: DropDownSettingsTile(
+                            title: '学年',
+                            settingKey: 'timetable.year.$hashCode',
+                            selected: logic.year.value,
+                            values: logic.years,
+                            enabled: logic.isLoading.isFalse,
+                            onChange: logic.yearOnChanged,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 200,
-                        child: DropDownSettingsTile(
-                          title: '学期',
-                          settingKey: 'timetable.semester.$hashCode',
-                          selected: logic.semester.value,
-                          values: logic.semesters,
-                          enabled: logic.isLoading.isFalse,
-                          onChange: logic.semesterOnChanged,
+                        SizedBox(
+                          width: 200,
+                          child: DropDownSettingsTile(
+                            title: '学期',
+                            settingKey: 'timetable.semester.$hashCode',
+                            selected: logic.semester.value,
+                            values: logic.semesters,
+                            enabled: logic.isLoading.isFalse,
+                            onChange: logic.semesterOnChanged,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Text(
                     logic.coursesPreview.value,
