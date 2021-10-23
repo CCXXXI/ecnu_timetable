@@ -1,7 +1,26 @@
+import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/timetable/ecnu/ecnu_logic.dart';
 import 'package:ecnu_timetable/utils/database.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:hive_flutter/adapters.dart';
+
+class FakeDio extends Fake implements Dio {
+  @override
+  Future<Response<T>> get<T>(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    await Future.delayed(const Duration(days: 1));
+
+    throw DioError(
+      requestOptions: RequestOptions(path: path),
+    );
+  }
+}
 
 void main() {
   setUpAll(() async {
@@ -77,6 +96,21 @@ void main() {
       r.first.toJson(),
     );
     expect(courses.toMap().toString(), coursesResult);
+  });
+
+  test('years', () {
+    final logic = Get.put(EcnuLogic(dio: FakeDio()));
+
+    logic.year.value = 2021;
+    expect(logic.years, {
+      2019: '2019 - 2020',
+      2020: '2020 - 2021',
+      2021: '2021 - 2022',
+      2022: '2022 - 2023',
+      2023: '2023 - 2024',
+    });
+
+    Get.delete<EcnuLogic>();
   });
 }
 
