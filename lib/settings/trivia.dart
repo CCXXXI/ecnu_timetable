@@ -32,6 +32,7 @@ final _triviaStr = [
   '字体与图标颜色会随背景色自动调整。',
   '横屏状态下，点击校徽可以展开/收起侧栏。'.s,
   '校历图片的放大倍数上限是`double.infinity`。'.s,
+  '此应用基于Flutter的master渠道构建，这保证了最新特性可用，同时也带来了一些不稳定性。'.s,
 ];
 
 final trivia =
