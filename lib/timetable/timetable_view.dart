@@ -65,7 +65,8 @@ class TimetablePage extends StatelessWidget {
                 for (final period in course.periods!)
                   Center(
                     child: Text(
-                      course.courseName!,
+                      '${course.courseName}\n'
+                      '${course.roomName! + course.specialRoom!}',
                       textAlign: TextAlign.center,
                     ),
                   ).inGridArea(
