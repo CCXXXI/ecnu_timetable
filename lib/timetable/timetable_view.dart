@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../utils/database.dart';
 import 'timetable_logic.dart';
+import 'timetable_menu/timetable_menu_view.dart';
 
 class TimetablePage extends StatelessWidget {
   TimetablePage({Key? key}) : super(key: key);
@@ -17,9 +18,9 @@ class TimetablePage extends StatelessWidget {
       valueListenable: courses.listenable(),
       builder: (_, __, ___) {
         if (courses.isEmpty) {
-          return const TextButton(
-            onPressed: TimetableLogic.openMenu,
-            child: Text('NO DATA'),
+          return TextButton(
+            onPressed: () => Get.to(() => TimetableMenuPage()),
+            child: const Text('NO DATA'),
           );
         } else {
           final areas_ = TimetableLogic.areas;

@@ -2,11 +2,8 @@ import 'package:get/get.dart';
 import 'package:quiver/iterables.dart';
 
 import '../utils/database.dart';
-import 'timetable_menu/timetable_menu_view.dart';
 
 class TimetableLogic extends GetxController {
-  static void openMenu() => Get.to(() => TimetableMenuPage());
-
   static List<List<List<Course>>> get _weekdayUnit {
     final r = List.generate(
       7,
