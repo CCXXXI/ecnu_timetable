@@ -3,6 +3,22 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test(
+    'dio',
+    () => expect(
+      defaultDio.interceptors,
+      isNotEmpty,
+    ),
+  );
+
+  test(
+    'sucker',
+    () => expect(
+      Api.randomSucker,
+      isNotEmpty,
+    ),
+  );
+
+  test(
     'version url',
     () => expect(
       Url.version('0.1.0'),

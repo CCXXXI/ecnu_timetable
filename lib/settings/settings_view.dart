@@ -4,9 +4,12 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../timetable/timetable_menu/timetable_menu_view.dart';
+import '../toolbox/toolbox_menu/toolbox_menu_view.dart';
 import '../utils/database.dart';
 import '../utils/loading.dart';
 import '../utils/string.dart';
+import '../utils/web.dart';
 import 'settings_logic.dart';
 import 'trivia.dart';
 
@@ -22,6 +25,18 @@ class SettingsPage extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 800),
         child: ListView(
           children: [
+            ListTile(
+              leading: const FaIcon(FontAwesomeIcons.th),
+              title: const Text('课程表'),
+              subtitle: Text('导入/修改/导出'.s),
+              onTap: () => Get.to(() => TimetableMenuPage()),
+            ),
+            ListTile(
+              leading: const FaIcon(FontAwesomeIcons.toolbox),
+              title: const Text('工具箱'),
+              subtitle: const Text('调整排序'),
+              onTap: () => Get.to(() => ToolboxMenuPage()),
+            ),
             SettingsGroup(
               title: '主题',
               children: [
@@ -86,7 +101,7 @@ class SettingsPage extends StatelessWidget {
                     ListTile(
                       title: const Text('当前版本'),
                       trailing: const Text(version),
-                      onTap: logic.curVerOnTap,
+                      onTap: Url.version(version).launch,
                     ),
                     Obx(() => ListTile(
                           title: const Text('最新版本'),
@@ -111,12 +126,12 @@ class SettingsPage extends StatelessWidget {
                                       position: BadgePosition.topStart(
                                           top: -4, start: -32),
                                     ),
-                          onTap: logic.latestVerOnTap,
+                          onTap: Url.latest.launch,
                         )),
                     ListTile(
                       title: const Text('反馈'),
                       trailing: const FaIcon(FontAwesomeIcons.github),
-                      onTap: logic.feedbackOnTap,
+                      onTap: Url.issues.launch,
                     ),
                     AboutListTile(
                       applicationIcon: const Image(

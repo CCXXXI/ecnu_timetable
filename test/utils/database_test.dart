@@ -29,9 +29,21 @@ Future<void> main() async {
     expect(log.levels, LogLevel.values.map((e) => e.name));
   });
 
-  // test('toolbox', () {
-  //   expect(toolbox.sucker, false);
-  // });
+  test('toolbox', () {
+    expect(toolbox.order[0], 0);
+    expect(toolbox.order[1], 1);
+    expect(toolbox.order[2], 2);
+
+    toolbox.reorder(0, 2);
+    expect(toolbox.order[0], 1);
+    expect(toolbox.order[1], 0);
+    expect(toolbox.order[2], 2);
+
+    toolbox.reorder(1, 0);
+    expect(toolbox.order[0], 0);
+    expect(toolbox.order[1], 1);
+    expect(toolbox.order[2], 2);
+  });
 
   test('misc', () {
     expect(misc.launchPage_, 1);
@@ -62,7 +74,7 @@ Future<void> main() async {
   test('reflexive', () {
     expect(UserAdapter(), UserAdapter());
     expect(LogAdapter(), LogAdapter());
-    // expect(ToolboxAdapter(), ToolboxAdapter());
+    expect(ToolboxAdapter(), ToolboxAdapter());
     expect(MiscAdapter(), MiscAdapter());
     expect(ThemeAdapter(), ThemeAdapter());
     expect(CourseAdapter(), CourseAdapter());
@@ -70,7 +82,7 @@ Future<void> main() async {
 
     expect(UserAdapter().hashCode, UserAdapter().hashCode);
     expect(LogAdapter().hashCode, LogAdapter().hashCode);
-    // expect(ToolboxAdapter().hashCode, ToolboxAdapter().hashCode);
+    expect(ToolboxAdapter().hashCode, ToolboxAdapter().hashCode);
     expect(MiscAdapter().hashCode, MiscAdapter().hashCode);
     expect(ThemeAdapter().hashCode, ThemeAdapter().hashCode);
     expect(CourseAdapter().hashCode, CourseAdapter().hashCode);

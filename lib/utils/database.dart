@@ -21,19 +21,19 @@ Future<void> initDatabase({bool clear = false}) async {
 
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(LogAdapter());
-  // Hive.registerAdapter(ToolboxAdapter());
+  Hive.registerAdapter(ToolboxAdapter());
   Hive.registerAdapter(MiscAdapter());
   Hive.registerAdapter(ThemeAdapter());
 
-  _conf = await Hive.openBox('conf');
+  conf = await Hive.openBox('conf');
 
-  if (clear) await _conf.clear();
+  if (clear) await conf.clear();
 
-  if (!_conf.containsKey('user')) await _conf.put('user', _User());
-  if (!_conf.containsKey('log')) await _conf.put('log', _Log());
-  // if (!_conf.containsKey('toolbox')) await _conf.put('toolbox', _Toolbox());
-  if (!_conf.containsKey('misc')) await _conf.put('misc', _Misc());
-  if (!_conf.containsKey('theme')) await _conf.put('theme', _Theme());
+  if (!conf.containsKey('user')) await conf.put('user', _User());
+  if (!conf.containsKey('log')) await conf.put('log', _Log());
+  if (!conf.containsKey('toolbox')) await conf.put('toolbox', _Toolbox());
+  if (!conf.containsKey('misc')) await conf.put('misc', _Misc());
+  if (!conf.containsKey('theme')) await conf.put('theme', _Theme());
 
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(PeriodAdapter());
@@ -41,7 +41,7 @@ Future<void> initDatabase({bool clear = false}) async {
   if (clear) await courses.clear();
 }
 
-late final Box _conf;
+late final Box conf;
 
 @HiveType(typeId: 0)
 class _User extends HiveObject {
@@ -61,7 +61,7 @@ class _User extends HiveObject {
   }
 }
 
-final _User user = _conf.get('user');
+final _User user = conf.get('user');
 
 @HiveType(typeId: 1)
 class _Log extends HiveObject {
@@ -82,21 +82,25 @@ class _Log extends HiveObject {
   bool includeCallerInfo = false;
 }
 
-final _Log log = _conf.get('log');
+final _Log log = conf.get('log');
 
-// @HiveType(typeId: 2)
-// class _Toolbox extends HiveObject {
-//   @HiveField(0)
-//   bool sucker = false;
-//
-//   @HiveField(1)
-//   bool cheater = false;
-//
-//   @HiveField(2)
-//   bool juan = false;
-// }
+@HiveType(typeId: 2)
+class _Toolbox extends HiveObject {
+  @HiveField(0)
+  List<int> order = List.generate(42, (i) => i);
 
-// final _Toolbox toolbox = _conf.get('toolbox');
+  /// The meaning of [newIdx] is a bit weird.
+  /// See <https://github.com/flutter/flutter/issues/24786>.
+  void reorder(int oldIdx, int newIdx) {
+    final i = order.removeAt(oldIdx);
+    if (oldIdx < newIdx) newIdx--;
+    order.insert(newIdx, i);
+
+    save();
+  }
+}
+
+final _Toolbox toolbox = conf.get('toolbox');
 
 @HiveType(typeId: 3)
 class _Misc extends HiveObject {
@@ -113,7 +117,7 @@ class _Misc extends HiveObject {
   List<String> get pages => _pageMap.keys.toList();
 }
 
-final _Misc misc = _conf.get('misc');
+final _Misc misc = conf.get('misc');
 
 @HiveType(typeId: 4)
 class _Theme extends HiveObject {
@@ -193,7 +197,7 @@ class _Theme extends HiveObject {
   Color get onSurface => _on(surface);
 }
 
-final _Theme theme = _conf.get('theme');
+final _Theme theme = conf.get('theme');
 
 @JsonSerializable()
 @HiveType(typeId: 5)

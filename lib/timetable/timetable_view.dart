@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../utils/database.dart';
 import 'timetable_logic.dart';
+import 'timetable_menu/timetable_menu_view.dart';
 
 class TimetablePage extends StatelessWidget {
   TimetablePage({Key? key}) : super(key: key);
@@ -17,17 +20,21 @@ class TimetablePage extends StatelessWidget {
       valueListenable: courses.listenable(),
       builder: (_, __, ___) {
         if (courses.isEmpty) {
-          return const TextButton(
-            onPressed: TimetableLogic.openMenu,
-            child: Text('NO DATA'),
+          return TextButton(
+            onPressed: () => Get.to(() => TimetableMenuPage()),
+            child: const Text('NO DATA'),
           );
         } else {
+          final areas_ = TimetableLogic.areas;
+          final weekdays_ = TimetableLogic.weekdays;
+          final units_ = TimetableLogic.units;
+
           return LayoutGrid(
-            areas: TimetableLogic.areas,
-            columnSizes: [auto, ...TimetableLogic.weekdays.map((i) => 1.fr)],
-            rowSizes: [auto, ...TimetableLogic.units.map((i) => 1.fr)],
+            areas: areas_,
+            columnSizes: [auto, ...weekdays_.map((i) => 1.fr)],
+            rowSizes: [auto, ...units_.map((i) => 1.fr)],
             children: [
-              ...TimetableLogic.weekdays.map(
+              ...weekdays_.map(
                 (i) => Center(
                   child: FittedBox(
                     child: Text(
@@ -37,7 +44,7 @@ class TimetablePage extends StatelessWidget {
                   ),
                 ).inGridArea('$i-x'),
               ),
-              ...TimetableLogic.units.map(
+              ...units_.map(
                 (i) => Center(
                   child: FittedBox(
                     child: Text(
@@ -61,19 +68,32 @@ class TimetablePage extends StatelessWidget {
                   ),
                 ).inGridArea('x-$i'),
               ),
-              for (final course in courses.values)
-                for (final period in course.periods!)
-                  Center(
+              for (final c in TimetableLogic.sortedCourses)
+                ConstrainedBox(
+                  constraints: const BoxConstraints.expand(),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                    ),
+                    onPressed: () => Get.defaultDialog(
+                      title: c.course.courseName!,
+                      middleText: const JsonEncoder.withIndent('').convert(
+                        c.course.toJson()
+                          ..remove('weeks')
+                          ..remove('periods'),
+                      ),
+                    ),
                     child: Text(
-                      '${course.courseName!.length <= 12 ? course.courseName : course.courseName!.substring(0, 11) + '...'}\n'
-                      '${course.roomName! + course.specialRoom!}\n'
-                      '${course.weeks!.sublist(1, 10).map((e) => e ? 'o' : 'x').join()}\n'
-                      '${course.weeks!.sublist(10, 19).map((e) => e ? 'o' : 'x').join()}',
+                      '${c.course.courseName!.length <= 12 ? c.course.courseName : c.course.courseName!.substring(0, 11) + '...'}\n'
+                      '${c.course.roomName! + c.course.specialRoom!}\n'
+                      '${c.course.weeks!.sublist(1, 10).map((e) => e ? 'o' : 'x').join()}\n'
+                      '${c.course.weeks!.sublist(10, 19).map((e) => e ? 'o' : 'x').join()}',
                       textAlign: TextAlign.center,
                     ),
-                  ).inGridArea(
-                    '${period.weekday}-${period.unit}',
                   ),
+                ).inGridArea(
+                  '${c.period.weekday}-${c.period.unit}',
+                ),
             ],
           );
         }

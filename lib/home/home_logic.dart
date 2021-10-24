@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../dev/dev_view.dart';
-import '../timetable/timetable_logic.dart';
+import '../timetable/timetable_menu/timetable_menu_view.dart';
+import '../toolbox/toolbox_menu/toolbox_menu_view.dart';
 import '../utils/database.dart';
 import '../utils/log.dart';
 
@@ -39,7 +39,8 @@ class HomeLogic extends GetxController with L {
 
   void onDestinationSelected(int idx_) {
     var realIdx = idxMap[idx_];
-    if (realIdx == 1 && idx.value == 1) TimetableLogic.openMenu();
+    if (realIdx == 0 && idx.value == 0) Get.to(() => ToolboxMenuPage());
+    if (realIdx == 1 && idx.value == 1) Get.to(() => TimetableMenuPage());
     _toPage(realIdx, false);
   }
 
@@ -52,8 +53,6 @@ class HomeLogic extends GetxController with L {
   }
 
   final railExtended = false.obs;
-
-  void ecnuLongPress() => Get.to(() => DevPage());
 
   void ecnuOnPressed() => railExtended.toggle();
 }

@@ -84,6 +84,38 @@ class LogAdapter extends TypeAdapter<_Log> {
           typeId == other.typeId;
 }
 
+class ToolboxAdapter extends TypeAdapter<_Toolbox> {
+  @override
+  final int typeId = 2;
+
+  @override
+  _Toolbox read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _Toolbox()..order = (fields[0] as List).cast<int>();
+  }
+
+  @override
+  void write(BinaryWriter writer, _Toolbox obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.order);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ToolboxAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
 class MiscAdapter extends TypeAdapter<_Misc> {
   @override
   final int typeId = 3;

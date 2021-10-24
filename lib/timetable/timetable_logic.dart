@@ -2,11 +2,8 @@ import 'package:get/get.dart';
 import 'package:quiver/iterables.dart';
 
 import '../utils/database.dart';
-import 'timetable_menu/timetable_menu_view.dart';
 
 class TimetableLogic extends GetxController {
-  static void openMenu() => Get.to(() => TimetableMenuPage());
-
   static List<List<List<Course>>> get _weekdayUnit {
     final r = List.generate(
       7,
@@ -27,42 +24,58 @@ class TimetableLogic extends GetxController {
     return r;
   }
 
-  static List<List<List<Course>>> get _unitWeekday => List.generate(
-        13,
-        (unit) => List.generate(
-          7,
-          (weekday) => _weekdayUnit[weekday][unit],
-          growable: false,
-        ),
+  static List<List<List<Course>>> get _unitWeekday {
+    final weekdayUnit_ = _weekdayUnit;
+
+    return List.generate(
+      13,
+      (unit) => List.generate(
+        7,
+        (weekday) => weekdayUnit_[weekday][unit],
         growable: false,
-      );
+      ),
+      growable: false,
+    );
+  }
 
-  static List<int> get weekdays => range(7)
-      .cast<int>()
-      .where((weekday) => _weekdayUnit[weekday].expand((l) => l).isNotEmpty)
-      .toList();
+  static List<int> get weekdays {
+    final weekdayUnit_ = _weekdayUnit;
 
-  static List<int> get units => range(13)
-      .cast<int>()
-      .where((unit) => _unitWeekday[unit].expand((l) => l).isNotEmpty)
-      .toList();
+    return range(7)
+        .cast<int>()
+        .where((weekday) => weekdayUnit_[weekday].expand((l) => l).isNotEmpty)
+        .toList();
+  }
 
-  static List<List<String>> get areasRaw {
+  static List<int> get units {
+    final unitWeekday_ = _unitWeekday;
+
+    return range(13)
+        .cast<int>()
+        .where((unit) => unitWeekday_[unit].expand((l) => l).isNotEmpty)
+        .toList();
+  }
+
+  static List<List<String>> get _areasRaw {
+    final weekdays_ = weekdays;
+    final units_ = units;
+    final weekdayUnit_ = _weekdayUnit;
+
     final r = <List<String>>[];
 
-    for (final weekday in ['x', ...weekdays]) {
+    for (final weekday in ['x', ...weekdays_]) {
       r.add([]);
       for (final z in zip([
-        ['x', ...units],
-        ['', 'x', ...units],
+        ['x', ...units_],
+        ['', 'x', ...units_],
       ])) {
         final unit = z.first;
         final pre = z.last;
         if (weekday == 'x' ||
             unit == 'x' ||
             unit == 0 ||
-            _weekdayUnit[weekday as int][unit as int].toString() !=
-                _weekdayUnit[weekday][pre as int].toString()) {
+            weekdayUnit_[weekday as int][unit as int].toString() !=
+                weekdayUnit_[weekday][pre as int].toString()) {
           r.last.add('$weekday-$unit');
         } else {
           r.last.add(r.last.last);
@@ -74,15 +87,49 @@ class TimetableLogic extends GetxController {
   }
 
   static String get areas {
+    final weekdays_ = weekdays;
+    final units_ = units;
+    final areasRaw_ = _areasRaw;
+
     final r = StringBuffer();
 
-    for (var unitIdx = 0; unitIdx <= units.length; unitIdx++) {
-      for (var weekdayIdx = 0; weekdayIdx <= weekdays.length; weekdayIdx++) {
-        r.write(areasRaw[weekdayIdx][unitIdx] + ' ');
+    for (var unitIdx = 0; unitIdx <= units_.length; unitIdx++) {
+      for (var weekdayIdx = 0; weekdayIdx <= weekdays_.length; weekdayIdx++) {
+        r.write(areasRaw_[weekdayIdx][unitIdx] + ' ');
       }
       r.writeln();
     }
 
     return r.toString();
   }
+
+  static List<_CoursePeriod> get sortedCourses {
+    final areasList = _areasRaw.expand((e) => e).toList();
+
+    final r = <_CoursePeriod>[];
+
+    for (final course in courses.values) {
+      for (final period in course.periods!) {
+        if (areasList.contains('${period.weekday}-${period.unit}')) {
+          r.add(_CoursePeriod(course, period));
+        }
+      }
+    }
+
+    // 第一节课最后绘制，在最上层，这样 ElevatedButton 邻接时的视觉效果是上覆盖下、左覆盖右
+    r.sort(
+      (a, b) =>
+          (b.period.weekday! * 42 + b.period.unit!) -
+          (a.period.weekday! * 42 + a.period.unit!),
+    );
+
+    return r;
+  }
+}
+
+class _CoursePeriod {
+  Course course;
+  Period period;
+
+  _CoursePeriod(this.course, this.period);
 }
