@@ -33,7 +33,6 @@ const _repo = 'CCXXXI/ecnu_timetable';
 class Api {
   static const _suckers = [
     'https://api.vience.cn/api/tiangou',
-    'http://api.ay15.cn/api/tiangou/api.php',
   ];
 
   static String get randomSucker => randomChoice(_suckers);
