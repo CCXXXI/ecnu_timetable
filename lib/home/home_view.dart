@@ -7,6 +7,7 @@ import '../dev/dev_view.dart';
 import '../settings/settings_view.dart';
 import '../timetable/timetable_menu/timetable_menu_view.dart';
 import '../timetable/timetable_view.dart';
+import '../toolbox/toolbox_menu/toolbox_menu_view.dart';
 import '../toolbox/toolbox_view.dart';
 import '../utils/string.dart';
 import 'home_logic.dart';
@@ -29,10 +30,12 @@ class HomePage extends StatelessWidget {
               actions: [
                 Obx(
                   () => Visibility(
-                    visible: logic.idx.value == 1,
+                    visible: logic.idx.value != 2,
                     child: IconButton(
-                      onPressed: () => Get.to(() => TimetableMenuPage()),
-                      icon: _labelIconsAlt[1].icon,
+                      onPressed: logic.idx.value == 0
+                          ? () => Get.to(() => ToolboxMenuPage())
+                          : () => Get.to(() => TimetableMenuPage()),
+                      icon: const FaIcon(FontAwesomeIcons.edit),
                     ),
                   ),
                 ),
@@ -51,14 +54,10 @@ class HomePage extends StatelessWidget {
                 destinations: [
                   for (final i in idxMap)
                     NavigationRailDestination(
-                      label: (logic.idx.value == 1
-                              ? _labelIconsAlt
-                              : _labelIcons)[i]
-                          .label,
-                      icon: (logic.idx.value == 1
-                              ? _labelIconsAlt
-                              : _labelIcons)[i]
-                          .icon,
+                      label: _labelIcons[i].label,
+                      icon: logic.idx.value != 2 && logic.idx.value == i
+                          ? const FaIcon(FontAwesomeIcons.edit)
+                          : _labelIcons[i].icon,
                     ),
                 ],
                 selectedIconTheme: IconTheme.of(context).copyWith(
@@ -142,12 +141,6 @@ final _labelIcons = [
   _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
   _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.th)),
   _LabelIcon('设置', const FaIcon(FontAwesomeIcons.cog)),
-];
-
-final _labelIconsAlt = [
-  _labelIcons.first,
-  _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.edit)),
-  _labelIcons.last,
 ];
 
 final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];

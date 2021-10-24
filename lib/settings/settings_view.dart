@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../timetable/timetable_menu/timetable_menu_view.dart';
+import '../toolbox/toolbox_menu/toolbox_menu_view.dart';
 import '../utils/database.dart';
-import '../utils/gu.dart';
 import '../utils/loading.dart';
 import '../utils/string.dart';
 import '../utils/web.dart';
@@ -35,7 +35,7 @@ class SettingsPage extends StatelessWidget {
               leading: const FaIcon(FontAwesomeIcons.toolbox),
               title: const Text('工具箱'),
               subtitle: const Text('调整排序'),
-              onTap: () => gu(),
+              onTap: () => Get.to(() => ToolboxMenuPage()),
             ),
             SettingsGroup(
               title: '主题',
