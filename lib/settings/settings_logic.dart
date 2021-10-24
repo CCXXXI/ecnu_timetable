@@ -108,10 +108,4 @@ class SettingsLogic extends GetxController with L {
       Get.snackbar('获取最新版本失败', e.toString());
     }
   }
-
-  void curVerOnTap() => Url.version(version).launch();
-
-  void latestVerOnTap() => Url.latest.launch();
-
-  void feedbackOnTap() => Url.issues.launch();
 }

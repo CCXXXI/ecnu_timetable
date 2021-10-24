@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../utils/database.dart';
 import '../utils/loading.dart';
 import '../utils/string.dart';
+import '../utils/web.dart';
 import 'settings_logic.dart';
 import 'trivia.dart';
 
@@ -86,7 +87,7 @@ class SettingsPage extends StatelessWidget {
                     ListTile(
                       title: const Text('当前版本'),
                       trailing: const Text(version),
-                      onTap: logic.curVerOnTap,
+                      onTap: () => Url.version(version).launch(),
                     ),
                     Obx(() => ListTile(
                           title: const Text('最新版本'),
@@ -111,12 +112,12 @@ class SettingsPage extends StatelessWidget {
                                       position: BadgePosition.topStart(
                                           top: -4, start: -32),
                                     ),
-                          onTap: logic.latestVerOnTap,
+                          onTap: () => Url.latest.launch(),
                         )),
                     ListTile(
                       title: const Text('反馈'),
                       trailing: const FaIcon(FontAwesomeIcons.github),
-                      onTap: logic.feedbackOnTap,
+                      onTap: () => Url.issues.launch(),
                     ),
                     AboutListTile(
                       applicationIcon: const Image(
