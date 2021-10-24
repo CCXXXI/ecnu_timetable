@@ -4,7 +4,9 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../timetable/timetable_menu/timetable_menu_view.dart';
 import '../utils/database.dart';
+import '../utils/gu.dart';
 import '../utils/loading.dart';
 import '../utils/string.dart';
 import '../utils/web.dart';
@@ -23,6 +25,18 @@ class SettingsPage extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 800),
         child: ListView(
           children: [
+            ListTile(
+              leading: const FaIcon(FontAwesomeIcons.th),
+              title: const Text('课程表'),
+              subtitle: Text('导入/修改/导出'.s),
+              onTap: () => Get.to(() => TimetableMenuPage()),
+            ),
+            ListTile(
+              leading: const FaIcon(FontAwesomeIcons.toolbox),
+              title: const Text('工具箱'),
+              subtitle: const Text('调整排序'),
+              onTap: () => gu(),
+            ),
             SettingsGroup(
               title: '主题',
               children: [
