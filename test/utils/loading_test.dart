@@ -8,8 +8,10 @@ void main() {
 
     expect(find.byType(IconButton), findsOneWidget);
 
-    await tester.tap(find.byType(IconButton));
-    await tester.pump();
-    expect(find.byType(IconButton), findsOneWidget);
+    for (int i = 0; i != 1024; ++i) {
+      await tester.tap(find.byType(IconButton));
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.byType(IconButton), findsOneWidget);
+    }
   });
 }
