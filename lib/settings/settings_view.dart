@@ -101,7 +101,7 @@ class SettingsPage extends StatelessWidget {
                     ListTile(
                       title: const Text('当前版本'),
                       trailing: const Text(version),
-                      onTap: () => Url.version(version).launch(),
+                      onTap: Url.version(version).launch,
                     ),
                     Obx(() => ListTile(
                           title: const Text('最新版本'),
@@ -126,12 +126,12 @@ class SettingsPage extends StatelessWidget {
                                       position: BadgePosition.topStart(
                                           top: -4, start: -32),
                                     ),
-                          onTap: () => Url.latest.launch(),
+                          onTap: Url.latest.launch,
                         )),
                     ListTile(
                       title: const Text('反馈'),
                       trailing: const FaIcon(FontAwesomeIcons.github),
-                      onTap: () => Url.issues.launch(),
+                      onTap: Url.issues.launch,
                     ),
                     AboutListTile(
                       applicationIcon: const Image(
