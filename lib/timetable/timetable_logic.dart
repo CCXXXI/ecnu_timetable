@@ -116,7 +116,7 @@ class TimetableLogic extends GetxController {
       }
     }
 
-    // 第一天的第一节课排在最后，这样 ElevatedButton 邻接时的视觉效果是上覆盖下、左覆盖右
+    // 第一节课最后绘制，在最上层，这样 ElevatedButton 邻接时的视觉效果是上覆盖下、左覆盖右
     r.sort(
       (a, b) =>
           (b.period.weekday! * 42 + b.period.unit!) -
