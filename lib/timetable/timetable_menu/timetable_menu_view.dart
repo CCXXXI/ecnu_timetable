@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 import '../../utils/gu.dart';
 import '../../utils/string.dart';
+import '../../utils/web.dart';
+import '../ecnu/ecnu_view.dart';
 import 'timetable_menu_logic.dart';
 
 class TimetableMenuPage extends StatelessWidget {
@@ -37,13 +39,21 @@ class TimetableMenuPage extends StatelessWidget {
                           width: 42,
                         ),
                       ),
-                      onTap: logic.ecnuOnTap,
+                      onTap: GetPlatform.isWeb
+                          ? () => Get.defaultDialog(
+                                title: 'Web端功能受限'.s,
+                                middleText: '因跨域资源共享（CORS）问题，无法连接公共数据库。',
+                                textConfirm: '下载完整版',
+                                textCancel: '返回',
+                                onConfirm: Url.latest.launch,
+                              )
+                          : () => Get.to(() => EcnuPage()),
                     ),
                     ListTile(
                       title: Text('HTML文件'.s),
                       subtitle: const Text('离线可用，需手动下载保存课表网页'),
                       trailing: const FaIcon(FontAwesomeIcons.fileImport),
-                      onTap: logic.htmlOnTap,
+                      onTap: () => gu(),
                     ),
                   ],
                 ).toList(),
