@@ -27,42 +27,58 @@ class TimetableLogic extends GetxController {
     return r;
   }
 
-  static List<List<List<Course>>> get _unitWeekday => List.generate(
-        13,
-        (unit) => List.generate(
-          7,
-          (weekday) => _weekdayUnit[weekday][unit],
-          growable: false,
-        ),
+  static List<List<List<Course>>> get _unitWeekday {
+    final weekdayUnit_ = _weekdayUnit;
+
+    return List.generate(
+      13,
+      (unit) => List.generate(
+        7,
+        (weekday) => weekdayUnit_[weekday][unit],
         growable: false,
-      );
+      ),
+      growable: false,
+    );
+  }
 
-  static List<int> get weekdays => range(7)
-      .cast<int>()
-      .where((weekday) => _weekdayUnit[weekday].expand((l) => l).isNotEmpty)
-      .toList();
+  static List<int> get weekdays {
+    final weekdayUnit_ = _weekdayUnit;
 
-  static List<int> get units => range(13)
-      .cast<int>()
-      .where((unit) => _unitWeekday[unit].expand((l) => l).isNotEmpty)
-      .toList();
+    return range(7)
+        .cast<int>()
+        .where((weekday) => weekdayUnit_[weekday].expand((l) => l).isNotEmpty)
+        .toList();
+  }
+
+  static List<int> get units {
+    final unitWeekday_ = _unitWeekday;
+
+    return range(13)
+        .cast<int>()
+        .where((unit) => unitWeekday_[unit].expand((l) => l).isNotEmpty)
+        .toList();
+  }
 
   static List<List<String>> get areasRaw {
+    final weekdays_ = weekdays;
+    final units_ = units;
+    final weekdayUnit_ = _weekdayUnit;
+
     final r = <List<String>>[];
 
-    for (final weekday in ['x', ...weekdays]) {
+    for (final weekday in ['x', ...weekdays_]) {
       r.add([]);
       for (final z in zip([
-        ['x', ...units],
-        ['', 'x', ...units],
+        ['x', ...units_],
+        ['', 'x', ...units_],
       ])) {
         final unit = z.first;
         final pre = z.last;
         if (weekday == 'x' ||
             unit == 'x' ||
             unit == 0 ||
-            _weekdayUnit[weekday as int][unit as int].toString() !=
-                _weekdayUnit[weekday][pre as int].toString()) {
+            weekdayUnit_[weekday as int][unit as int].toString() !=
+                weekdayUnit_[weekday][pre as int].toString()) {
           r.last.add('$weekday-$unit');
         } else {
           r.last.add(r.last.last);
@@ -74,11 +90,15 @@ class TimetableLogic extends GetxController {
   }
 
   static String get areas {
+    final weekdays_ = weekdays;
+    final units_ = units;
+    final areasRaw_ = areasRaw;
+
     final r = StringBuffer();
 
-    for (var unitIdx = 0; unitIdx <= units.length; unitIdx++) {
-      for (var weekdayIdx = 0; weekdayIdx <= weekdays.length; weekdayIdx++) {
-        r.write(areasRaw[weekdayIdx][unitIdx] + ' ');
+    for (var unitIdx = 0; unitIdx <= units_.length; unitIdx++) {
+      for (var weekdayIdx = 0; weekdayIdx <= weekdays_.length; weekdayIdx++) {
+        r.write(areasRaw_[weekdayIdx][unitIdx] + ' ');
       }
       r.writeln();
     }

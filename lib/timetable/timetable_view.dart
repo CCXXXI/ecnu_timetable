@@ -22,12 +22,17 @@ class TimetablePage extends StatelessWidget {
             child: Text('NO DATA'),
           );
         } else {
+          final areas_ = TimetableLogic.areas;
+          final weekdays_ = TimetableLogic.weekdays;
+          final units_ = TimetableLogic.units;
+          final areasList = TimetableLogic.areasRaw.expand((e) => e).toList();
+
           return LayoutGrid(
-            areas: TimetableLogic.areas,
-            columnSizes: [auto, ...TimetableLogic.weekdays.map((i) => 1.fr)],
-            rowSizes: [auto, ...TimetableLogic.units.map((i) => 1.fr)],
+            areas: areas_,
+            columnSizes: [auto, ...weekdays_.map((i) => 1.fr)],
+            rowSizes: [auto, ...units_.map((i) => 1.fr)],
             children: [
-              ...TimetableLogic.weekdays.map(
+              ...weekdays_.map(
                 (i) => Center(
                   child: FittedBox(
                     child: Text(
@@ -37,7 +42,7 @@ class TimetablePage extends StatelessWidget {
                   ),
                 ).inGridArea('$i-x'),
               ),
-              ...TimetableLogic.units.map(
+              ...units_.map(
                 (i) => Center(
                   child: FittedBox(
                     child: Text(
@@ -63,9 +68,7 @@ class TimetablePage extends StatelessWidget {
               ),
               for (final course in courses.values)
                 for (final period in course.periods!)
-                  if (TimetableLogic.areasRaw
-                      .expand((e) => e)
-                      .contains('${period.weekday}-${period.unit}'))
+                  if (areasList.contains('${period.weekday}-${period.unit}'))
                     Center(
                       child: Text(
                         '${course.courseName!.length <= 12 ? course.courseName : course.courseName!.substring(0, 11) + '...'}\n'
