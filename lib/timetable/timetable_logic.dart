@@ -56,7 +56,7 @@ class TimetableLogic extends GetxController {
         .toList();
   }
 
-  static List<List<String>> get areasRaw {
+  static List<List<String>> get _areasRaw {
     final weekdays_ = weekdays;
     final units_ = units;
     final weekdayUnit_ = _weekdayUnit;
@@ -89,7 +89,7 @@ class TimetableLogic extends GetxController {
   static String get areas {
     final weekdays_ = weekdays;
     final units_ = units;
-    final areasRaw_ = areasRaw;
+    final areasRaw_ = _areasRaw;
 
     final r = StringBuffer();
 
@@ -103,15 +103,15 @@ class TimetableLogic extends GetxController {
     return r.toString();
   }
 
-  static List<CoursePeriod> get sortedCourses {
-    final areasList = areasRaw.expand((e) => e).toList();
+  static List<_CoursePeriod> get sortedCourses {
+    final areasList = _areasRaw.expand((e) => e).toList();
 
-    final r = <CoursePeriod>[];
+    final r = <_CoursePeriod>[];
 
     for (final course in courses.values) {
       for (final period in course.periods!) {
         if (areasList.contains('${period.weekday}-${period.unit}')) {
-          r.add(CoursePeriod(course, period));
+          r.add(_CoursePeriod(course, period));
         }
       }
     }
@@ -126,9 +126,9 @@ class TimetableLogic extends GetxController {
   }
 }
 
-class CoursePeriod {
+class _CoursePeriod {
   Course course;
   Period period;
 
-  CoursePeriod(this.course, this.period);
+  _CoursePeriod(this.course, this.period);
 }
