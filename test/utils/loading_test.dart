@@ -7,5 +7,9 @@ void main() {
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: Loading())));
 
     expect(find.byType(IconButton), findsOneWidget);
+
+    await tester.tap(find.byType(IconButton));
+    await tester.pumpAndSettle();
+    expect(find.byType(IconButton), findsOneWidget);
   });
 }
