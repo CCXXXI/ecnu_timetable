@@ -88,6 +88,16 @@ final _Log log = _conf.get('log');
 class _Toolbox extends HiveObject {
   @HiveField(0)
   List<int> order = List.generate(42, (i) => i);
+
+  /// The meaning of [newIdx] is a bit weird.
+  /// See <https://github.com/flutter/flutter/issues/24786>.
+  void reorder(int oldIdx, int newIdx) {
+    final i = order.removeAt(oldIdx);
+    if (oldIdx < newIdx) newIdx--;
+    order.insert(newIdx, i);
+
+    save();
+  }
 }
 
 final _Toolbox toolbox = _conf.get('toolbox');

@@ -30,7 +30,19 @@ Future<void> main() async {
   });
 
   test('toolbox', () {
-    expect(toolbox.order.first, 0);
+    expect(toolbox.order[0], 0);
+    expect(toolbox.order[1], 1);
+    expect(toolbox.order[2], 2);
+
+    toolbox.reorder(0, 2);
+    expect(toolbox.order[0], 1);
+    expect(toolbox.order[1], 0);
+    expect(toolbox.order[2], 2);
+
+    toolbox.reorder(1, 0);
+    expect(toolbox.order[0], 0);
+    expect(toolbox.order[1], 1);
+    expect(toolbox.order[2], 2);
   });
 
   test('misc', () {
