@@ -20,8 +20,6 @@ class ToolboxPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tools_ = tools(logic);
-
     return ValueListenableBuilder(
       valueListenable: conf.listenable(keys: ['toolbox']),
       builder: (_, __, ___) => GridView.extent(
@@ -29,95 +27,95 @@ class ToolboxPage extends StatelessWidget {
         childAspectRatio: pi,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        children: range(tools_.length)
-            .cast<int>()
-            .map((i) => tools_[toolbox.order[i]].toCard())
-            .toList(),
+        children: tools.map((e) => e.toCard()).toList(),
       ),
     );
   }
 }
 
-List<Tool> tools([ToolboxLogic? logic]) => [
-      Tool(
-        FontAwesomeIcons.dog,
-        '/sucker',
-        '',
-        subtitleWidget: logic == null
-            ? null
-            : Obx(
-                () => logic.sucker.isEmpty
-                    ? Loading()
-                    : Text(
-                        logic.sucker.value.length < 16
-                            ? logic.sucker.value
-                            : logic.sucker.value.substring(0, 16) + '……',
-                      ),
+List<Tool> get tools {
+  final logic = Get.find<ToolboxLogic>();
+
+  final tools_ = [
+    Tool(
+      FontAwesomeIcons.dog,
+      '/sucker',
+      Obx(
+        () => logic.sucker.isEmpty
+            ? Loading()
+            : Text(
+                logic.sucker.value.length < 16
+                    ? logic.sucker.value
+                    : logic.sucker.value.substring(0, 16) + '……',
               ),
-        onTap: logic?.suckerOnTap,
-        enabled: !GetPlatform.isWeb,
       ),
-      Tool(
-        FontAwesomeIcons.cat,
-        '/cheater',
-        '',
-        subtitleWidget: logic == null
-            ? null
-            : Obx(
-                () => logic.cheater.isEmpty
-                    ? Loading()
-                    : Text(
-                        logic.cheater.value.length < 16
-                            ? logic.cheater.value
-                            : logic.cheater.value.substring(0, 16) + '……',
-                      ),
+      onTap: logic.suckerOnTap,
+      enabled: !GetPlatform.isWeb,
+    ),
+    Tool(
+      FontAwesomeIcons.cat,
+      '/cheater',
+      Obx(
+        () => logic.cheater.isEmpty
+            ? Loading()
+            : Text(
+                logic.cheater.value.length < 16
+                    ? logic.cheater.value
+                    : logic.cheater.value.substring(0, 16) + '……',
               ),
-        onTap: logic?.cheaterOnTap,
       ),
-      Tool(
-        FontAwesomeIcons.graduationCap,
-        '卷课意愿值估算',
-        '仅供参考',
-        onTap: logic?.juanOnTap,
-      ),
-      Tool(
-        FontAwesomeIcons.calendarAlt,
-        '校历',
-        '长按打开网页版',
-        onTap: logic?.calendarOnTap,
-        onLongPress: Url.calendar.launch,
-      ),
-      Tool(
-        FontAwesomeIcons.scroll,
-        '公告',
-        '善用搜索',
-        onTap: Url.announcements.launch,
-      ),
-      Tool(
-        FontAwesomeIcons.mapMarked,
-        '校内地图',
-        '2D/3D',
-        onTap: Url.map.launch,
-      ),
-      Tool(
-        FontAwesomeIcons.bus,
-        '校车时刻表',
-        '需要连学校Wifi/VPN'.s,
-        onTap: Url.bus.launch,
-      ),
-      Tool(
-        FontAwesomeIcons.cube,
-        'ECNU软件镜像站'.s,
-        '内容很少',
-        onTap: Url.mirrors.launch,
-      ),
-      Tool(
-        FontAwesomeIcons.key,
-        '学校VPN'.s,
-        '对校外网站有减速作用',
-        onTap: Url.vpn.launch,
-      ),
-    ];
+      onTap: logic.cheaterOnTap,
+    ),
+    Tool(
+      FontAwesomeIcons.graduationCap,
+      '卷课意愿值估算',
+      const Text('仅供参考'),
+      onTap: logic.juanOnTap,
+    ),
+    Tool(
+      FontAwesomeIcons.calendarAlt,
+      '校历',
+      const Text('长按打开网页版'),
+      onTap: logic.calendarOnTap,
+      onLongPress: Url.calendar.launch,
+    ),
+    Tool(
+      FontAwesomeIcons.scroll,
+      '公告',
+      const Text('善用搜索'),
+      onTap: Url.announcements.launch,
+    ),
+    Tool(
+      FontAwesomeIcons.mapMarked,
+      '校内地图',
+      const Text('2D/3D'),
+      onTap: Url.map.launch,
+    ),
+    Tool(
+      FontAwesomeIcons.bus,
+      '校车时刻表',
+      Text('需要连学校Wifi/VPN'.s),
+      onTap: Url.bus.launch,
+    ),
+    Tool(
+      FontAwesomeIcons.cube,
+      'ECNU软件镜像站'.s,
+      const Text('内容很少'),
+      onTap: Url.mirrors.launch,
+    ),
+    Tool(
+      FontAwesomeIcons.key,
+      '学校VPN'.s,
+      const Text('对校外网站有减速作用'),
+      onTap: Url.vpn.launch,
+    ),
+  ];
+
+  return range(tools_.length)
+      .cast<int>()
+      .map((i) => tools_[toolbox.order[i]])
+      .toList(growable: false);
+}
 
 class Tool {
   const Tool(
@@ -127,13 +125,11 @@ class Tool {
     this.onTap,
     this.onLongPress,
     this.enabled = true,
-    this.subtitleWidget,
   });
 
   final IconData leading;
   final String title;
-  final String subtitle;
-  final Widget? subtitleWidget;
+  final Widget subtitle;
   final void Function()? onTap;
   final void Function()? onLongPress;
   final bool enabled;
@@ -145,7 +141,6 @@ class Tool {
         onTap: onTap,
         onLongPress: onLongPress,
         enabled: enabled,
-        subtitleWidget: subtitleWidget,
       );
 
   ToolTile toTile() => ToolTile(
@@ -164,13 +159,11 @@ class ToolCard extends StatelessWidget {
     this.onTap,
     this.onLongPress,
     this.enabled = true,
-    this.subtitleWidget,
   }) : super(key: key);
 
   final IconData leading;
   final String title;
-  final String subtitle;
-  final Widget? subtitleWidget;
+  final Widget subtitle;
   final void Function()? onTap;
   final void Function()? onLongPress;
   final bool enabled;
@@ -191,7 +184,7 @@ class ToolCard extends StatelessWidget {
           child: ListTile(
             leading: FaIcon(leading),
             title: Text(title),
-            subtitle: subtitleWidget ?? Text(subtitle),
+            subtitle: subtitle,
             mouseCursor: MouseCursor.uncontrolled,
           ),
         ),
