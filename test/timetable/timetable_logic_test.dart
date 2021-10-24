@@ -38,4 +38,12 @@ x-12 0-10 1-7 3-7 4-5
 ''',
     ),
   );
+
+  test(
+    'sortedCourses',
+    () => expect(
+      TimetableLogic.sortedCourses.last.course.courseName,
+      '软件测试和验证',
+    ),
+  );
 }

@@ -102,4 +102,33 @@ class TimetableLogic extends GetxController {
 
     return r.toString();
   }
+
+  static List<CoursePeriod> get sortedCourses {
+    final areasList = areasRaw.expand((e) => e).toList();
+
+    final r = <CoursePeriod>[];
+
+    for (final course in courses.values) {
+      for (final period in course.periods!) {
+        if (areasList.contains('${period.weekday}-${period.unit}')) {
+          r.add(CoursePeriod(course, period));
+        }
+      }
+    }
+
+    r.sort(
+      (a, b) =>
+          (b.period.weekday! * 42 + b.period.unit!) -
+          (a.period.weekday! * 42 + a.period.unit!),
+    );
+
+    return r;
+  }
+}
+
+class CoursePeriod {
+  Course course;
+  Period period;
+
+  CoursePeriod(this.course, this.period);
 }

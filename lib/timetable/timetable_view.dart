@@ -26,7 +26,6 @@ class TimetablePage extends StatelessWidget {
           final areas_ = TimetableLogic.areas;
           final weekdays_ = TimetableLogic.weekdays;
           final units_ = TimetableLogic.units;
-          final areasList = TimetableLogic.areasRaw.expand((e) => e).toList();
 
           return LayoutGrid(
             areas: areas_,
@@ -67,20 +66,25 @@ class TimetablePage extends StatelessWidget {
                   ),
                 ).inGridArea('x-$i'),
               ),
-              for (final course in courses.values)
-                for (final period in course.periods!)
-                  if (areasList.contains('${period.weekday}-${period.unit}'))
-                    Center(
-                      child: Text(
-                        '${course.courseName!.length <= 12 ? course.courseName : course.courseName!.substring(0, 11) + '...'}\n'
-                        '${course.roomName! + course.specialRoom!}\n'
-                        '${course.weeks!.sublist(1, 10).map((e) => e ? 'o' : 'x').join()}\n'
-                        '${course.weeks!.sublist(10, 19).map((e) => e ? 'o' : 'x').join()}',
-                        textAlign: TextAlign.center,
-                      ),
-                    ).inGridArea(
-                      '${period.weekday}-${period.unit}',
+              for (final c in TimetableLogic.sortedCourses)
+                ConstrainedBox(
+                  constraints: const BoxConstraints.expand(),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
                     ),
+                    onPressed: () {},
+                    child: Text(
+                      '${c.course.courseName!.length <= 12 ? c.course.courseName : c.course.courseName!.substring(0, 11) + '...'}\n'
+                      '${c.course.roomName! + c.course.specialRoom!}\n'
+                      '${c.course.weeks!.sublist(1, 10).map((e) => e ? 'o' : 'x').join()}\n'
+                      '${c.course.weeks!.sublist(10, 19).map((e) => e ? 'o' : 'x').join()}',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ).inGridArea(
+                  '${c.period.weekday}-${c.period.unit}',
+                ),
             ],
           );
         }
