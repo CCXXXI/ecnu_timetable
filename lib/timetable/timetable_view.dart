@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:get/get.dart';
@@ -73,7 +75,14 @@ class TimetablePage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.zero,
                     ),
-                    onPressed: () {},
+                    onPressed: () => Get.defaultDialog(
+                      title: c.course.courseName!,
+                      middleText: const JsonEncoder.withIndent('').convert(
+                        c.course.toJson()
+                          ..remove('weeks')
+                          ..remove('periods'),
+                      ),
+                    ),
                     child: Text(
                       '${c.course.courseName!.length <= 12 ? c.course.courseName : c.course.courseName!.substring(0, 11) + '...'}\n'
                       '${c.course.roomName! + c.course.specialRoom!}\n'
