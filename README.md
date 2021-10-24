@@ -7,7 +7,6 @@
 [![codebeat badge](https://codebeat.co/badges/9fb75308-75b3-4745-88a3-71df46b05d16)](https://codebeat.co/projects/github-com-ccxxxi-ecnu-timetable-main)
 [![CodeFactor](https://www.codefactor.io/repository/github/ccxxxi/ecnu_timetable/badge)](https://www.codefactor.io/repository/github/ccxxxi/ecnu_timetable)
 [![codecov](https://codecov.io/gh/CCXXXI/ecnu_timetable/branch/main/graph/badge.svg?token=OB3RX3I4TD)](https://codecov.io/gh/CCXXXI/ecnu_timetable)
-[![GitHub branch checks state](https://img.shields.io/github/checks-status/CCXXXI/ecnu_timetable/main?logo=github)](../../actions)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/CCXXXI/ecnu_timetable?sort=semver)](../../releases/latest)
 
 更美观更智能的 ECNU 课程表。
