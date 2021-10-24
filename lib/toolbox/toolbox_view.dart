@@ -22,77 +22,113 @@ class ToolboxPage extends StatelessWidget {
         childAspectRatio: pi,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        children: [
-          Tool(
-            FontAwesomeIcons.dog,
-            '/sucker',
-            logic.sucker.value.length < 16
-                ? logic.sucker.value
-                : logic.sucker.value.substring(0, 16) + '……',
-            onTap: logic.suckerOnTap,
-            enabled: !GetPlatform.isWeb,
-          ),
-          Tool(
-            FontAwesomeIcons.cat,
-            '/cheater',
-            logic.cheater.value.length < 16
-                ? logic.cheater.value
-                : logic.cheater.value.substring(0, 16) + '……',
-            onTap: logic.cheaterOnTap,
-          ),
-          Tool(
-            FontAwesomeIcons.graduationCap,
-            '卷课意愿值估算',
-            '仅供参考',
-            onTap: logic.juanOnTap,
-          ),
-          Tool(
-            FontAwesomeIcons.calendarAlt,
-            '校历',
-            '长按打开网页版',
-            onTap: logic.calendarOnTap,
-            onLongPress: Url.calendar.launch,
-          ),
-          Tool(
-            FontAwesomeIcons.scroll,
-            '公告',
-            '善用搜索',
-            onTap: Url.announcements.launch,
-          ),
-          Tool(
-            FontAwesomeIcons.mapMarked,
-            '校内地图',
-            '2D/3D',
-            onTap: Url.map.launch,
-          ),
-          Tool(
-            FontAwesomeIcons.bus,
-            '校车时刻表',
-            '需要连学校Wifi/VPN'.s,
-            onTap: Url.bus.launch,
-          ),
-          Tool(
-            FontAwesomeIcons.cube,
-            'ECNU软件镜像站'.s,
-            '内容很少',
-            onTap: Url.mirrors.launch,
-          ),
-          Tool(
-            FontAwesomeIcons.key,
-            '学校VPN'.s,
-            '对校外网站有减速作用',
-            onTap: Url.vpn.launch,
-          ),
-        ],
+        children: tools.map((e) => e.toCard()).toList(),
       );
     });
   }
+
+  List<Tool> get tools => [
+        Tool(
+          FontAwesomeIcons.dog,
+          '/sucker',
+          logic.sucker.value.length < 16
+              ? logic.sucker.value
+              : logic.sucker.value.substring(0, 16) + '……',
+          onTap: logic.suckerOnTap,
+          enabled: !GetPlatform.isWeb,
+        ),
+        Tool(
+          FontAwesomeIcons.cat,
+          '/cheater',
+          logic.cheater.value.length < 16
+              ? logic.cheater.value
+              : logic.cheater.value.substring(0, 16) + '……',
+          onTap: logic.cheaterOnTap,
+        ),
+        Tool(
+          FontAwesomeIcons.graduationCap,
+          '卷课意愿值估算',
+          '仅供参考',
+          onTap: logic.juanOnTap,
+        ),
+        Tool(
+          FontAwesomeIcons.calendarAlt,
+          '校历',
+          '长按打开网页版',
+          onTap: logic.calendarOnTap,
+          onLongPress: Url.calendar.launch,
+        ),
+        Tool(
+          FontAwesomeIcons.scroll,
+          '公告',
+          '善用搜索',
+          onTap: Url.announcements.launch,
+        ),
+        Tool(
+          FontAwesomeIcons.mapMarked,
+          '校内地图',
+          '2D/3D',
+          onTap: Url.map.launch,
+        ),
+        Tool(
+          FontAwesomeIcons.bus,
+          '校车时刻表',
+          '需要连学校Wifi/VPN'.s,
+          onTap: Url.bus.launch,
+        ),
+        Tool(
+          FontAwesomeIcons.cube,
+          'ECNU软件镜像站'.s,
+          '内容很少',
+          onTap: Url.mirrors.launch,
+        ),
+        Tool(
+          FontAwesomeIcons.key,
+          '学校VPN'.s,
+          '对校外网站有减速作用',
+          onTap: Url.vpn.launch,
+        ),
+      ];
 }
 
-class Tool extends StatelessWidget {
-  const Tool(this.leading, this.title, this.subtitle,
-      {Key? key, this.onTap, this.onLongPress, this.enabled = true})
-      : super(key: key);
+class Tool {
+  const Tool(
+    this.leading,
+    this.title,
+    this.subtitle, {
+    this.onTap,
+    this.onLongPress,
+    this.enabled = true,
+  });
+
+  final IconData leading;
+  final String title;
+  final String subtitle;
+  final void Function()? onTap;
+  final void Function()? onLongPress;
+  final bool enabled;
+
+  ToolCard toCard() => ToolCard(
+        leading,
+        title,
+        subtitle,
+        onTap: onTap,
+        onLongPress: onLongPress,
+        enabled: enabled,
+      );
+}
+
+class ToolCard extends StatelessWidget {
+  const ToolCard(
+    this.leading,
+    this.title,
+    this.subtitle, {
+    Key? key,
+    this.onTap,
+    this.onLongPress,
+    this.enabled = true,
+  }) : super(key: key);
+
   final IconData leading;
   final String title;
   final String subtitle;
