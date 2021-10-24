@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../dev/dev_view.dart';
 import '../settings/settings_view.dart';
 import '../timetable/timetable_menu/timetable_menu_view.dart';
 import '../timetable/timetable_view.dart';
@@ -126,7 +127,7 @@ class HomePage extends StatelessWidget {
           color: color,
           onPressed: onPressed ?? () {},
         ),
-        onLongPress: logic.ecnuLongPress,
+        onLongPress: () => Get.to(() => DevPage()),
       );
 }
 
