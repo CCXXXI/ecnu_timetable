@@ -9,7 +9,7 @@ void main() {
     expect(find.byType(IconButton), findsOneWidget);
 
     await tester.tap(find.byType(IconButton));
-    await tester.pumpAndSettle();
+    await tester.pump();
     expect(find.byType(IconButton), findsOneWidget);
   });
 }
