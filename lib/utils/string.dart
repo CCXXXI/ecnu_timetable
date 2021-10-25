@@ -7,8 +7,8 @@ import 'pangu.dart';
 // record them manually
 const appName = 'ECNU Timetable';
 const packageName = 'io.github.ccxxxi.ecnu_timetable';
-const version = '1.2.0';
-const buildNumber = '21';
+const version = '1.3.0';
+const buildNumber = '22';
 
 const release = '$packageName@$version+$buildNumber';
 

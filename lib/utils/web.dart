@@ -77,5 +77,10 @@ class Url {
   static const captcha = '$_cas/code';
   static const ids = '$_eams/courseTableForStd!index.action';
   static const table = '$_eams/courseTableForStd!courseTable.action';
+
 // endregion
+
+  static String ics(String id, String password, int year, int semester) =>
+      'http://application.jjaychen.me/ecnu-service/course-calendar'
+      '?username=$id&password=$password&year=$year&semesterIndex=${semester + 1}';
 }

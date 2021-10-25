@@ -3,9 +3,11 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../../utils/database.dart';
 import '../../utils/gu.dart';
 import '../../utils/string.dart';
 import '../../utils/web.dart';
+import '../ecnu/ecnu_logic.dart';
 import '../ecnu/ecnu_view.dart';
 import 'timetable_menu_logic.dart';
 
@@ -90,13 +92,20 @@ class TimetableMenuPage extends StatelessWidget {
                   context: context,
                   tiles: [
                     ListTile(
-                      title: const Text('壁纸'),
-                      subtitle: Text('🕊' * 5),
-                      trailing: const FaIcon(FontAwesomeIcons.dove),
-                      onTap: gu,
+                      title: Text('ICS文件'.s),
+                      subtitle:
+                          user.id == null ? const Text('需先登录公共数据库') : null,
+                      enabled: user.id != null,
+                      trailing: const FaIcon(FontAwesomeIcons.fileExport),
+                      onTap: Url.ics(
+                        user.id!,
+                        user.password!,
+                        EcnuLogic.guessYear(DateTime.now()),
+                        EcnuLogic.guessSemester(DateTime.now()),
+                      ).launch,
                     ),
                     ListTile(
-                      title: const Text('ics'),
+                      title: const Text('壁纸'),
                       subtitle: Text('🕊' * 5),
                       trailing: const FaIcon(FontAwesomeIcons.dove),
                       onTap: gu,

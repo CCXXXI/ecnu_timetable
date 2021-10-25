@@ -25,4 +25,13 @@ void main() {
       'https://github.com/CCXXXI/ecnu_timetable/releases/tag/v0.1.0',
     ),
   );
+
+  test(
+    'ics',
+    () => expect(
+      Url.ics('10101001000', 'abc', 2021, 0),
+      'http://application.jjaychen.me/ecnu-service/course-calendar'
+      '?username=10101001000&password=abc&year=2021&semesterIndex=1',
+    ),
+  );
 }
