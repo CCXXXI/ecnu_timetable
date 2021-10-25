@@ -9273,7 +9273,7 @@ $.ap()
 s=$.eM
 if(s==null)s=$.eM=new A.jb()
 r=s.yD(0,p,t.TQ)
-q=A.f([new A.eW(B.HG,"/sucker",new A.iA(new A.aTy(r),p),r.gZ4(),p,!1),new A.eW(B.HI,"/cheater",new A.iA(new A.aTz(r),p),r.gFj(),p,!0),new A.eW(B.HU,"\u5377\u8bfe\u610f\u613f\u503c\u4f30\u7b97",B.V5,r.gapi(),p,!0),new A.eW(B.HE,"\u6821\u5386",B.UO,r.gakj(),A.A8("http://www.u-office.ecnu.edu.cn/xiaoli"),!0),new A.eW(B.HO,"\u516c\u544a",B.UK,A.A8("https://www.ecnu.edu.cn/tzgg.htm"),p,!0),new A.eW(B.HM,"\u6821\u5185\u5730\u56fe",B.V2,A.A8("https://eoffice.ecnu.edu.cn/ecnu3d/main.psp"),p,!0),new A.eW(B.HH,"\u6821\u8f66\u65f6\u523b\u8868",A.b7(A.cB("\u9700\u8981\u8fde\u5b66\u6821Wifi/VPN"),p,p,p,p,p,p),A.A8("http://houqin.ecnu.edu.cn/28837/list.psp"),p,!0),new A.eW(B.HV,A.cB("ECNU\u8f6f\u4ef6\u955c\u50cf\u7ad9"),B.UR,A.A8("https://mirrors.ecnu.edu.cn"),p,!0),new A.eW(B.HJ,A.cB("\u5b66\u6821VPN"),B.V1,A.A8("https://docs.ecnu.edu.cn/index/Network/vpn.html"),p,!0)],t.PN)
+q=A.f([new A.eW(B.HG,"/sucker",new A.iA(new A.aTy(r),p),r.gZ4(),p,!1),new A.eW(B.HI,"/cheater",new A.iA(new A.aTz(r),p),r.gFj(),p,!0),new A.eW(B.HU,"\u5377\u8bfe\u610f\u613f\u503c\u4f30\u7b97",B.V5,r.gapi(),p,!0),new A.eW(B.HE,"\u6821\u5386",B.UN,r.gakj(),A.A8("http://www.u-office.ecnu.edu.cn/xiaoli"),!0),new A.eW(B.HO,"\u516c\u544a",B.UK,A.A8("https://www.ecnu.edu.cn/tzgg.htm"),p,!0),new A.eW(B.HM,"\u6821\u5185\u5730\u56fe",B.V2,A.A8("https://eoffice.ecnu.edu.cn/ecnu3d/main.psp"),p,!0),new A.eW(B.HH,"\u6821\u8f66\u65f6\u523b\u8868",A.b7(A.cB("\u9700\u8981\u8fde\u5b66\u6821Wifi/VPN"),p,p,p,p,p,p),A.A8("http://houqin.ecnu.edu.cn/28837/list.psp"),p,!0),new A.eW(B.HV,A.cB("ECNU\u8f6f\u4ef6\u955c\u50cf\u7ad9"),B.UQ,A.A8("https://mirrors.ecnu.edu.cn"),p,!0),new A.eW(B.HJ,A.cB("\u5b66\u6821VPN"),B.V1,A.A8("https://docs.ecnu.edu.cn/index/Network/vpn.html"),p,!0)],t.PN)
 s=A.aT3(9)
 s=A.hH(s,s.$ti.h("v.E"),t.S)
 s=A.hg(s,new A.aTA(q),A.r(s).h("v.E"),t.ww)
@@ -9490,7 +9490,7 @@ A.AX("Global Loggy",t.N9).ld(B.cB,s,null,null)
 $.Eo().y7(new A.aTE())},
 aSy(a){var s=0,r=A.O(t.H)
 var $async$aSy=A.K(function(b,c){if(b===1)return A.L(c,r)
-while(true)switch(s){case 0:A.AX("Global Loggy",t.N9).ld(B.cB,"release: io.github.ccxxxi.ecnu_timetable@1.3.0+22",null,null)
+while(true)switch(s){case 0:A.AX("Global Loggy",t.N9).ld(B.cB,"release: io.github.ccxxxi.ecnu_timetable@1.3.1+23",null,null)
 s=2
 return A.Q(A.a83(new A.aSz(),new A.aSA(a)),$async$aSy)
 case 2:return A.M(null,r)}})
@@ -50100,8 +50100,8 @@ m=A.a8g(l.gapv(),o,"log.level","level",A.af(m,!0,A.r(m).h("v.E")))
 o=p.e
 n=n.gas(n)
 s=t.p
-p=A.f([m,A.a8g(l.gYS(),o,"log.stackTraceLevel","stackTraceLevel",A.af(n,!0,A.r(n).h("v.E"))),A.biJ(r,p.f,l.gaoJ(),"log.includeCallerInfo","includeCallerInfo"),A.e0(r,!0,!1,r,r,l.gapM(),!1,r,B.UU,r),B.hO],s)
-l=A.HI(b,A.f([A.e0(r,!0,!1,r,r,l.gatl(),!1,r,B.UT,r),A.e0(r,!0,!1,r,r,l.gFj(),!1,r,B.UY,r),A.e0(r,!0,!1,r,r,l.gXQ(),!1,r,B.Va,r),A.e0(r,!0,!1,r,r,l.gapH(),!1,r,B.UW,r)],s))
+p=A.f([m,A.a8g(l.gYS(),o,"log.stackTraceLevel","stackTraceLevel",A.af(n,!0,A.r(n).h("v.E"))),A.biJ(r,p.f,l.gaoJ(),"log.includeCallerInfo","includeCallerInfo"),A.e0(r,!0,!1,r,r,l.gapM(),!1,r,B.UT,r),B.hO],s)
+l=A.HI(b,A.f([A.e0(r,!0,!1,r,r,l.gatl(),!1,r,B.US,r),A.e0(r,!0,!1,r,r,l.gFj(),!1,r,B.UX,r),A.e0(r,!0,!1,r,r,l.gXQ(),!1,r,B.Va,r),A.e0(r,!0,!1,r,r,l.gapH(),!1,r,B.UV,r)],s))
 return A.DE(q,A.F0(A.f([new A.Bh("\u65e5\u5fd7",p,r),new A.Bh("\u6742\u9879",A.af(l,!0,A.r(l).h("v.E")),r)],s),r,r,!1,!1),r,r,r)}}
 A.Nw.prototype={
 D(a,b){var s=null,r=A.BC(s,s,!0,s,s,s,1,s,s,s,!1,s,s,s,s,s,!0,s,s,s,s,s,s,s,s,1,s),q=A.HI(b,$.aZb())
@@ -50158,7 +50158,7 @@ A.a3W.prototype={
 D(a,b){var s,r,q=this,p=null,o=t.w,n=b.W(o).f
 if(n.glj(n)===B.e7){n=$.ap()
 s=q.amM(A.bZ(n).t.x)
-s=A.BC(A.f([new A.iA(new A.ase(q),p)],t.p),p,!0,A.bZ(n).t.a,p,p,1,p,p,p,!1,p,A.bZ(n).t.x,p,s,p,!0,p,p,p,p,B.UV,p,p,p,1,p)
+s=A.BC(A.f([new A.iA(new A.ase(q),p)],t.p),p,!0,A.bZ(n).t.a,p,p,1,p,p,p,!1,p,A.bZ(n).t.x,p,s,p,!0,p,p,p,p,B.UU,p,p,p,1,p)
 n=s}else n=p
 s=A.f([],t.p)
 r=b.W(o).f
@@ -50315,14 +50315,14 @@ s=2
 return A.Q(q.wu(),$async$vf)
 case 2:p=b
 o.sn(0,p==null?"":p)
-if(q.gIJ())A.fn($.ap(),"\u53d1\u73b0\u65b0\u7248\u672c","1.3.0 \u2192 "+A.j(o.gn(o)),t.z)
+if(q.gIJ())A.fn($.ap(),"\u53d1\u73b0\u65b0\u7248\u672c","1.3.1 \u2192 "+A.j(o.gn(o)),t.z)
 return A.M(null,r)}})
 return A.N($async$vf,r)},
 gIJ(){var s,r,q=this.dx,p=q.gn(q)
 if(p==null||p.length===0)return!1
 q=t.s
 s=t.SS
-for(q=A.aTH(A.f([new A.W(A.f(p.split("."),q),A.bls(),s),new A.W(A.f("1.3.0".split("."),q),A.bls(),s)],t.hX),t.S),q=new A.cx(q.a(),A.r(q).h("cx<1>"));q.q();){s=q.gB(q)
+for(q=A.aTH(A.f([new A.W(A.f(p.split("."),q),A.bls(),s),new A.W(A.f("1.3.1".split("."),q),A.bls(),s)],t.hX),t.S),q=new A.cx(q.a(),A.r(q).h("cx<1>"));q.q();){s=q.gB(q)
 r=J.at(s)
 if(r.i(s,0)>r.i(s,1))return!0
 if(r.i(s,0)<r.i(s,1))return!1}return!1},
@@ -50370,7 +50370,7 @@ p=$.aU5()
 q=$.aXm.gas($.aXm)
 q=A.af(q,!0,A.r(q).h("v.E"))
 q=A.f([A.a8g(h.gapo(),p.d,"misc.launchPage","\u542f\u52a8\u9875",q)],o)
-p=A.HI(b,A.f([A.e0(n,!0,!1,n,n,A.A8("https://github.com/CCXXXI/ecnu_timetable/releases/tag/v1.3.0"),!1,n,B.V0,B.UN),new A.iA(new A.aBC(this),n),A.e0(n,!0,!1,n,n,A.A8("https://github.com/CCXXXI/ecnu_timetable/issues"),!1,n,B.UP,B.Hr),new A.a0h(B.US,"io.github.ccxxxi.ecnu_timetable@1.3.0+22",B.Ii,$.bki.aY(),n)],o))
+p=A.HI(b,A.f([A.e0(n,!0,!1,n,n,A.A8("https://github.com/CCXXXI/ecnu_timetable/releases/tag/v1.3.1"),!1,n,B.V0,B.UZ),new A.iA(new A.aBC(this),n),A.e0(n,!0,!1,n,n,A.A8("https://github.com/CCXXXI/ecnu_timetable/issues"),!1,n,B.UO,B.Hr),new A.a0h(B.UR,"io.github.ccxxxi.ecnu_timetable@1.3.1+23",B.Ii,$.bki.aY(),n)],o))
 return A.bM(new A.dL(B.zo,A.F0(A.f([l,k,new A.Bh("\u4e3b\u9898",j,n),new A.Bh("\u6742\u9879",q,n),new A.Bh("\u5173\u4e8e",A.af(p,!0,A.r(p).h("v.E")),n),B.hO,A.e0(n,!0,!1,B.Hu,n,n,!1,n,A.aYs($.aZb()),n)],o),n,n,!1,!1),n),n,n)}}
 A.aBA.prototype={
 $0(){return A.BN($.ap(),new A.aBz(),t.z)},
@@ -50438,19 +50438,20 @@ A.VG.prototype={}
 A.Nr.prototype={
 D(a,b){var s,r,q,p,o,n,m,l,k=null,j="\ud83d\udd4a",i=A.BC(k,k,!0,k,k,k,1,k,k,k,!1,k,k,k,k,k,!0,k,k,k,k,B.yp,k,k,k,1,k),h=t.p,g=A.HI(b,A.f([A.e0(k,!0,!1,k,k,new A.aFv(),!1,B.UL,B.V_,B.lK),A.e0(k,!0,!1,k,k,new A.aFw(),!1,B.UI,A.b7(A.cB("HTML\u6587\u4ef6"),k,k,k,k,k,k),B.Ht)],h))
 g=A.af(g,!0,A.r(g).h("v.E"))
-s=A.HI(b,A.f([A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.UZ,B.eZ),A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.V6,B.eZ),A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.V7,B.eZ)],h))
+s=A.HI(b,A.f([A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.UY,B.eZ),A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.V6,B.eZ),A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.V7,B.eZ)],h))
 s=A.af(s,!0,A.r(s).h("v.E"))
 r=A.b7(A.cB("ICS\u6587\u4ef6"),k,k,k,k,k,k)
 q=$.aU7()
 p=q.d
 o=p==null
-n=o?B.UX:k
-p.toString
-q=q.f
+n=o?B.UW:k
+if(o)q=k
+else{q=q.f
 q.toString
 m=A.buq(new A.cU(Date.now(),!1))
 l=A.bup(new A.cU(Date.now(),!1))
-r=A.HI(b,A.f([A.e0(k,!o,!1,k,k,A.A8("http://application.jjaychen.me/ecnu-service/course-calendar?username="+p+"&password="+q+"&year="+m+"&semesterIndex="+(l+1)),!1,n,r,B.Hv),A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.V9,B.eZ)],h))
+l=A.A8("http://application.jjaychen.me/ecnu-service/course-calendar?username="+p+"&password="+q+"&year="+m+"&semesterIndex="+(l+1))
+q=l}r=A.HI(b,A.f([A.e0(k,!o,!1,k,k,q,!1,n,r,B.Hv),A.e0(k,!0,!1,k,k,A.aSp(),!1,A.b7(B.e.a5(j,5),k,k,k,k,k,k),B.V9,B.eZ)],h))
 return A.DE(i,A.bM(new A.dL(B.kn,A.F0(A.f([new A.Bh("\u5bfc\u5165\u81ea",g,k),new A.Bh("\u4fee\u6539",s,k),new A.Bh("\u5bfc\u51fa",A.af(r,!0,A.r(r).h("v.E")),k)],h),k,k,!1,!1),k),k,k),k,k,k)}}
 A.aFv.prototype={
 $0(){var s=$.ap(),r=A.cB("Web\u7aef\u529f\u80fd\u53d7\u9650")
@@ -50464,7 +50465,7 @@ A.a9z.prototype={
 D(a,b){return A.VX(new A.aFG(),A.aUM($.aj2.aY(),null,t.QJ),t.yX)}}
 A.aFG.prototype={
 $3(a,b,c){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null,d=$.aj2.aY()
-if(A.c(d.e,"keystore").c.e===0)return A.a9i(B.UQ,new A.aFy(),e)
+if(A.c(d.e,"keystore").c.e===0)return A.a9i(B.UP,new A.aFy(),e)
 else{s=A.by6()
 r=A.aX1()
 q=A.aX0()
@@ -51146,7 +51147,7 @@ A.aSz.prototype={
 $1(a){a.a="https://ca1d394e0da94a11a1c32d650b781ea0@o996799.ingest.sentry.io/5975191"
 a.y1=1
 a.ry=!0
-a.db="io.github.ccxxxi.ecnu_timetable@1.3.0+22"
+a.db="io.github.ccxxxi.ecnu_timetable@1.3.1+23"
 return a},
 $S:232}
 A.aSA.prototype={
@@ -101113,22 +101114,22 @@ B.UJ=new A.bT("\u5f00\u53d1\u8005\u9009\u9879",null,null,null,null,null,null,nul
 B.UK=new A.bT("\u5584\u7528\u641c\u7d22",null,null,null,null,null,null,null,null)
 B.UL=new A.bT("\u63a8\u8350\uff0c\u8f93\u5165\u5b66\u53f7\u5bc6\u7801\u5373\u53ef",null,null,null,null,null,null,null,null)
 B.UM=new A.bT("\u8c03\u6574\u6392\u5e8f",null,null,null,null,null,null,null,null)
-B.UN=new A.bT("1.3.0",null,null,null,null,null,null,null,null)
-B.UO=new A.bT("\u957f\u6309\u6253\u5f00\u7f51\u9875\u7248",null,null,null,null,null,null,null,null)
-B.UP=new A.bT("\u53cd\u9988",null,null,null,null,null,null,null,null)
-B.UQ=new A.bT("NO DATA",null,null,null,null,null,null,null,null)
-B.UR=new A.bT("\u5185\u5bb9\u5f88\u5c11",null,null,null,null,null,null,null,null)
-B.US=new A.bT("\u8bb8\u53ef\u534f\u8bae",null,null,null,null,null,null,null,null)
-B.UT=new A.bT("trivia",null,null,null,null,null,null,null,null)
+B.UN=new A.bT("\u957f\u6309\u6253\u5f00\u7f51\u9875\u7248",null,null,null,null,null,null,null,null)
+B.UO=new A.bT("\u53cd\u9988",null,null,null,null,null,null,null,null)
+B.UP=new A.bT("NO DATA",null,null,null,null,null,null,null,null)
+B.UQ=new A.bT("\u5185\u5bb9\u5f88\u5c11",null,null,null,null,null,null,null,null)
+B.UR=new A.bT("\u8bb8\u53ef\u534f\u8bae",null,null,null,null,null,null,null,null)
+B.US=new A.bT("trivia",null,null,null,null,null,null,null,null)
 B.yo=new A.bT("\u5de5\u5177\u7bb1",null,null,null,null,null,null,null,null)
-B.UU=new A.bT("log",null,null,null,null,null,null,null,null)
+B.UT=new A.bT("log",null,null,null,null,null,null,null,null)
 B.T5=new A.C(!0,null,null,"NotoSerifSC",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.UV=new A.bT("\u6c42\u5b9e\u521b\u9020 \u4e3a\u4eba\u5e08\u8868",null,B.T5,null,null,null,null,null,null)
-B.UW=new A.bT("loading",null,null,null,null,null,null,null,null)
-B.UX=new A.bT("\u9700\u5148\u767b\u5f55\u516c\u5171\u6570\u636e\u5e93",null,null,null,null,null,null,null,null)
-B.UY=new A.bT("cheater",null,null,null,null,null,null,null,null)
+B.UU=new A.bT("\u6c42\u5b9e\u521b\u9020 \u4e3a\u4eba\u5e08\u8868",null,B.T5,null,null,null,null,null,null)
+B.UV=new A.bT("loading",null,null,null,null,null,null,null,null)
+B.UW=new A.bT("\u9700\u5148\u767b\u5f55\u516c\u5171\u6570\u636e\u5e93",null,null,null,null,null,null,null,null)
+B.UX=new A.bT("cheater",null,null,null,null,null,null,null,null)
 B.yp=new A.bT("\u8bfe\u7a0b\u8868",null,null,null,null,null,null,null,null)
-B.UZ=new A.bT("\u5468\u6570",null,null,null,null,null,null,null,null)
+B.UY=new A.bT("\u5468\u6570",null,null,null,null,null,null,null,null)
+B.UZ=new A.bT("1.3.1",null,null,null,null,null,null,null,null)
 B.V_=new A.bT("\u516c\u5171\u6570\u636e\u5e93",null,null,null,null,null,null,null,null)
 B.V0=new A.bT("\u5f53\u524d\u7248\u672c",null,null,null,null,null,null,null,null)
 B.V1=new A.bT("\u5bf9\u6821\u5916\u7f51\u7ad9\u6709\u51cf\u901f\u4f5c\u7528",null,null,null,null,null,null,null,null)
