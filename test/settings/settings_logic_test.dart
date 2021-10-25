@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/settings/settings_logic.dart';
 import 'package:ecnu_timetable/utils/database.dart';
 import 'package:ecnu_timetable/utils/string.dart';
+import 'package:ecnu_timetable/utils/web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart' hide Response;
@@ -61,7 +62,9 @@ void main() {
   test('settings', () {
     // 这么简单的东西没必要测
     // 但是测了能让覆盖率好看一点 :)
-    final logic = Get.put(SettingsLogic(dio: FakeDio()));
+    dio = FakeDio();
+
+    final logic = Get.put(SettingsLogic());
 
     expect(theme.mode, '跟随系统');
     logic.modeOnChanged('开');
@@ -90,7 +93,9 @@ void main() {
   });
 
   test('fake version', () async {
-    final logic = Get.put(SettingsLogic(dio: FakeDio()));
+    dio = FakeDio();
+
+    final logic = Get.put(SettingsLogic());
 
     expect(logic.latestVer.value, isNull);
     expect(logic.updateAvailable, isFalse);
@@ -105,7 +110,9 @@ void main() {
   });
 
   test('error version', () async {
-    final logic = Get.put(SettingsLogic(dio: FakeErrorDio()));
+    dio = FakeErrorDio();
+
+    final logic = Get.put(SettingsLogic());
 
     expect(logic.latestVer.value, isNull);
     expect(logic.updateAvailable, isFalse);

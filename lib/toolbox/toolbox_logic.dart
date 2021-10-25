@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -10,10 +9,6 @@ import 'cheater.dart';
 import 'juan/juan_view.dart';
 
 class ToolboxLogic extends GetxController with L {
-  final Dio dio;
-
-  ToolboxLogic({Dio? dio}) : dio = dio ?? defaultDio;
-
   @override
   void onInit() {
     super.onInit();

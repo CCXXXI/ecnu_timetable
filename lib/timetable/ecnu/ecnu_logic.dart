@@ -14,10 +14,6 @@ import 'des.dart';
 enum S { login, check }
 
 class EcnuLogic extends GetxController with L {
-  final Dio dio;
-
-  EcnuLogic({Dio? dio}) : dio = dio ?? defaultDio;
-
   final step = S.login.obs;
 
   final loginFormKey = GlobalKey<FormState>();
