@@ -97,12 +97,14 @@ class TimetableMenuPage extends StatelessWidget {
                           user.id == null ? const Text('需先登录公共数据库') : null,
                       enabled: user.id != null,
                       trailing: const FaIcon(FontAwesomeIcons.fileExport),
-                      onTap: Url.ics(
-                        user.id!,
-                        user.password!,
-                        EcnuLogic.guessYear(DateTime.now()),
-                        EcnuLogic.guessSemester(DateTime.now()),
-                      ).launch,
+                      onTap: user.id == null
+                          ? null
+                          : Url.ics(
+                              user.id!,
+                              user.password!,
+                              EcnuLogic.guessYear(DateTime.now()),
+                              EcnuLogic.guessSemester(DateTime.now()),
+                            ).launch,
                     ),
                     ListTile(
                       title: const Text('壁纸'),
