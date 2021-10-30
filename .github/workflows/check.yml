@@ -7,7 +7,6 @@ on:
     - cron: '10 16 * * FRI'
 
 jobs:
-
   analyze:
     runs-on: ubuntu-latest
     steps:
