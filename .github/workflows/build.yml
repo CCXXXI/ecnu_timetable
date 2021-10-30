@@ -16,7 +16,7 @@ jobs:
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: build/web
 
   build-windows:
     runs-on: windows-latest
@@ -31,14 +31,14 @@ jobs:
           dest: windows-release.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable-windows
+          name: windows
           path: windows-release.zip
 
       - run: flutter pub run msix:create
 
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable-msix
+          name: msix
           path: build/windows/runner/Release/ecnu_timetable.msix
 
   build-linux:
@@ -55,7 +55,7 @@ jobs:
           dest: linux-release.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable-linux
+          name: linux
           path: linux-release.zip
 
   build-macos:
@@ -71,7 +71,7 @@ jobs:
           dest: macos-release.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable-macos
+          name: macos
           path: macos-release.zip
 
   build-android:
@@ -85,7 +85,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable-android
+          name: android
           path: build/app/outputs/apk/release/*.apk
 
   build-ios:
@@ -101,7 +101,7 @@ jobs:
           dest: ios-release.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: ecnu_timetable-ios
+          name: ios
           path: ios-release.zip
 
   release:
