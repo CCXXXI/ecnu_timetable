@@ -1,5 +1,5 @@
 name: ecnu_timetable
-description: 更美观更智能的ECNU课程表。
+description: 更美观更智能的 ECNU 课程表
 
 # Prevent the package from being accidentally published to pub.dev.
 publish_to: "none"
