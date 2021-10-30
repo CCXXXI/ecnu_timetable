@@ -2,13 +2,17 @@ import 'package:ecnu_timetable/utils/web.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test(
-    'dio',
-    () => expect(
-      defaultDio.interceptors,
+  test('dio', () {
+    if (dio != defaultDio) dio = defaultDio;
+
+    expect(
+      dio.interceptors,
       isNotEmpty,
-    ),
-  );
+    );
+  });
+
+  // This cannot be tested. Just make codecov happy.
+  test('launch', () => expect('test'.launch, throwsA(anything)));
 
   test(
     'sucker',

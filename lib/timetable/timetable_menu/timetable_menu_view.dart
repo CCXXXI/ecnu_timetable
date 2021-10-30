@@ -93,8 +93,11 @@ class TimetableMenuPage extends StatelessWidget {
                   tiles: [
                     ListTile(
                       title: Text('ICS文件'.s),
-                      subtitle:
-                          user.id == null ? const Text('需先登录公共数据库') : null,
+                      subtitle: Text(
+                        user.id == null
+                            ? '需先登录公共数据库'
+                            : 'Powered by jjaychen.me',
+                      ),
                       enabled: user.id != null,
                       trailing: const FaIcon(FontAwesomeIcons.fileExport),
                       onTap: user.id == null

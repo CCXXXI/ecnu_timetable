@@ -24,6 +24,9 @@ final defaultDio = Dio()
     CookieManager(cookieJar),
   ]);
 
+/// Should be reassigned in and only in test code.
+var dio = defaultDio;
+
 extension Launch on String {
   void launch() => launcher.launch(this);
 }

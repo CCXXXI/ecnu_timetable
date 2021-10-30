@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:universal_html/parsing.dart';
 
@@ -6,10 +5,6 @@ import '../../utils/log.dart';
 import '../../utils/web.dart';
 
 class CalendarLogic extends GetxController with L {
-  final Dio dio;
-
-  CalendarLogic({Dio? dio}) : dio = dio ?? defaultDio;
-
   @override
   void onInit() {
     getCalendar();

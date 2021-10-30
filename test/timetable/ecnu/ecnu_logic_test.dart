@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/timetable/ecnu/ecnu_logic.dart';
 import 'package:ecnu_timetable/utils/database.dart';
+import 'package:ecnu_timetable/utils/web.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:hive_flutter/adapters.dart';
@@ -99,7 +100,9 @@ void main() {
   });
 
   test('years', () {
-    final logic = Get.put(EcnuLogic(dio: FakeDio()));
+    dio = FakeDio();
+
+    final logic = Get.put(EcnuLogic());
 
     logic.year.value = 2021;
     expect(logic.years, {

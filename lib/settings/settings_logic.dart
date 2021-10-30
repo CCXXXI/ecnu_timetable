@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiver/iterables.dart';
@@ -10,10 +9,6 @@ import '../utils/web.dart';
 import 'theme.dart';
 
 class SettingsLogic extends GetxController with L {
-  final Dio dio;
-
-  SettingsLogic({Dio? dio}) : dio = dio ?? defaultDio;
-
   void modeOnChanged(String v) {
     theme
       ..mode = v

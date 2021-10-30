@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecnu_timetable/toolbox/calendar/calendar_logic.dart';
+import 'package:ecnu_timetable/utils/web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart' hide Response;
@@ -43,7 +44,9 @@ void main() {
   runApp(const GetMaterialApp());
 
   test('fake calendar', () async {
-    final logic = Get.put(CalendarLogic(dio: FakeDio()));
+    dio = FakeDio();
+
+    final logic = Get.put(CalendarLogic());
 
     expect(logic.imgUrl.value, isEmpty);
 
@@ -54,7 +57,9 @@ void main() {
   });
 
   test('error calendar', () async {
-    final logic = Get.put(CalendarLogic(dio: FakeErrorDio()));
+    dio = FakeErrorDio();
+
+    final logic = Get.put(CalendarLogic());
 
     expect(logic.imgUrl.value, isEmpty);
 
