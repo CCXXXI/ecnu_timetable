@@ -19,7 +19,7 @@ Future<void> initDatabase({
     final dir = await getApplicationSupportDirectory();
     Hive.init(dir.path);
   } else {
-    await Hive.initFlutter(packageName);
+    await Hive.initFlutter();
   }
 
   Hive.registerAdapter(UserAdapter());
