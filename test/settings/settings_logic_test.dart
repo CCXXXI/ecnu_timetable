@@ -46,8 +46,6 @@ class FakeErrorDio extends Fake implements Dio {
 }
 
 void main() {
-  runApp(const GetMaterialApp());
-
   setUpAll(() async {
     await initDatabase(clear: true);
     runApp(const GetMaterialApp());
