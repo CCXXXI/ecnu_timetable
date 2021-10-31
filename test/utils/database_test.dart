@@ -9,7 +9,10 @@ Future<void> main() async {
   setUpAll(() async {
     // This is safe because [getApplicationSupportDirectory]
     // will return a test directory in the test environment.
-    await initDatabase(clear: true);
+    await initDatabase(
+      clear: true,
+      forceDefaultInit: true,
+    );
   });
 
   tearDownAll(() async {
