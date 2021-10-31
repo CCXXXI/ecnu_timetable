@@ -94,59 +94,64 @@ class SettingsPage extends StatelessWidget {
               ],
             ),
             SettingsGroup(
-                title: '关于',
-                children: ListTile.divideTiles(
-                  context: context,
-                  tiles: [
-                    ListTile(
-                      title: const Text('当前版本'),
-                      trailing: const Text(version),
-                      onTap: Url.version(version).launch,
+              title: '关于',
+              children: ListTile.divideTiles(
+                context: context,
+                tiles: [
+                  ListTile(
+                    title: const Text('当前版本'),
+                    trailing: const Text(version),
+                    onTap: Url.version(version).launch,
+                  ),
+                  Obx(
+                    () => ListTile(
+                      title: const Text('最新版本'),
+                      trailing: logic.latestVer.value == null
+                          ? Loading()
+                          : logic.latestVer.value!.isEmpty
+                              ? IconButton(
+                                  onPressed: logic.updateVerInfo,
+                                  icon: const FaIcon(FontAwesomeIcons.redo),
+                                )
+                              : Badge(
+                                  child: Text(logic.latestVer.value!),
+                                  badgeContent: FaIcon(
+                                    logic.updateAvailable
+                                        ? FontAwesomeIcons.exclamation
+                                        : FontAwesomeIcons.check,
+                                    size: 16,
+                                  ),
+                                  badgeColor: logic.updateAvailable
+                                      ? Colors.orange
+                                      : Colors.green,
+                                  position: BadgePosition.topStart(
+                                    top: -4,
+                                    start: -32,
+                                  ),
+                                ),
+                      onTap: Url.latest.launch,
                     ),
-                    Obx(() => ListTile(
-                          title: const Text('最新版本'),
-                          trailing: logic.latestVer.value == null
-                              ? Loading()
-                              : logic.latestVer.value!.isEmpty
-                                  ? IconButton(
-                                      onPressed: logic.updateVerInfo,
-                                      icon: const FaIcon(FontAwesomeIcons.redo),
-                                    )
-                                  : Badge(
-                                      child: Text(logic.latestVer.value!),
-                                      badgeContent: FaIcon(
-                                        logic.updateAvailable
-                                            ? FontAwesomeIcons.exclamation
-                                            : FontAwesomeIcons.check,
-                                        size: 16,
-                                      ),
-                                      badgeColor: logic.updateAvailable
-                                          ? Colors.orange
-                                          : Colors.green,
-                                      position: BadgePosition.topStart(
-                                          top: -4, start: -32),
-                                    ),
-                          onTap: Url.latest.launch,
-                        )),
-                    ListTile(
-                      title: const Text('反馈'),
-                      trailing: const FaIcon(FontAwesomeIcons.github),
-                      onTap: Url.issues.launch,
-                    ),
-                    AboutListTile(
-                      applicationIcon: const Image(
-                        image: ResizeImage(
-                          AssetImage('assets/images/app_icon.png'),
-                          width: 42,
-                        ),
-                        width: 42, // fix bug on web
+                  ),
+                  ListTile(
+                    title: const Text('反馈'),
+                    trailing: const FaIcon(FontAwesomeIcons.github),
+                    onTap: Url.issues.launch,
+                  ),
+                  AboutListTile(
+                    applicationIcon: const Image(
+                      image: ResizeImage(
+                        AssetImage('assets/images/app_icon.png'),
+                        width: 42,
                       ),
-                      applicationLegalese: license,
-                      applicationVersion: release,
-                      child: const Text('许可协议'),
+                      width: 42, // fix bug on web
                     ),
-                  ],
-                ).toList()),
+                    applicationLegalese: license,
+                    applicationVersion: release,
+                    child: const Text('许可协议'),
+                  ),
+                ],
+              ).toList(),
+            ),
             const Divider(),
             ListTile(
               leading: const FaIcon(FontAwesomeIcons.lightbulb),

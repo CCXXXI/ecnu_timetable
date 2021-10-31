@@ -6,6 +6,6 @@
 [![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter)](https://flutter.dev)
 [![CodeFactor](https://www.codefactor.io/repository/github/ccxxxi/ecnu_timetable/badge)](https://www.codefactor.io/repository/github/ccxxxi/ecnu_timetable)
 [![codecov](https://codecov.io/gh/CCXXXI/ecnu_timetable/branch/main/graph/badge.svg?token=OB3RX3I4TD)](https://codecov.io/gh/CCXXXI/ecnu_timetable)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/CCXXXI/ecnu_timetable?sort=semver)](../../releases/latest)
+[![GitHub release](https://img.shields.io/github/v/release/ccxxxi/ecnu_timetable)](../../releases/latest)
 
 更美观更智能的 ECNU 课程表。

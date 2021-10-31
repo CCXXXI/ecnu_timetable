@@ -11,12 +11,15 @@ import 'string.dart';
 
 part 'database.g.dart';
 
-Future<void> initDatabase({bool clear = false}) async {
-  if (!GetPlatform.isWeb && GetPlatform.isDesktop) {
+Future<void> initDatabase({
+  bool clear = false,
+  bool forceDefaultInit = false,
+}) async {
+  if (!GetPlatform.isWeb && GetPlatform.isDesktop && !forceDefaultInit) {
     final dir = await getApplicationSupportDirectory();
     Hive.init(dir.path);
   } else {
-    await Hive.initFlutter();
+    await Hive.initFlutter(packageName);
   }
 
   Hive.registerAdapter(UserAdapter());
