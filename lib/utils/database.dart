@@ -28,7 +28,7 @@ Future<void> initDatabase({
   Hive.registerAdapter(MiscAdapter());
   Hive.registerAdapter(ThemeAdapter());
 
-  conf = await Hive.openBox('conf');
+  conf = await Hive.openBox('$packageName.conf');
 
   if (clear) await conf.clear();
 
@@ -40,7 +40,7 @@ Future<void> initDatabase({
 
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(PeriodAdapter());
-  courses = await Hive.openBox('courses');
+  courses = await Hive.openBox('$packageName.courses');
   if (clear) await courses.clear();
 }
 
