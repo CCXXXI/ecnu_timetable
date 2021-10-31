@@ -103,31 +103,35 @@ class SettingsPage extends StatelessWidget {
                       trailing: const Text(version),
                       onTap: Url.version(version).launch,
                     ),
-                    Obx(() => ListTile(
-                          title: const Text('最新版本'),
-                          trailing: logic.latestVer.value == null
-                              ? Loading()
-                              : logic.latestVer.value!.isEmpty
-                                  ? IconButton(
-                                      onPressed: logic.updateVerInfo,
-                                      icon: const FaIcon(FontAwesomeIcons.redo),
-                                    )
-                                  : Badge(
-                                      child: Text(logic.latestVer.value!),
-                                      badgeContent: FaIcon(
-                                        logic.updateAvailable
-                                            ? FontAwesomeIcons.exclamation
-                                            : FontAwesomeIcons.check,
-                                        size: 16,
-                                      ),
-                                      badgeColor: logic.updateAvailable
-                                          ? Colors.orange
-                                          : Colors.green,
-                                      position: BadgePosition.topStart(
-                                          top: -4, start: -32),
+                    Obx(
+                      () => ListTile(
+                        title: const Text('最新版本'),
+                        trailing: logic.latestVer.value == null
+                            ? Loading()
+                            : logic.latestVer.value!.isEmpty
+                                ? IconButton(
+                                    onPressed: logic.updateVerInfo,
+                                    icon: const FaIcon(FontAwesomeIcons.redo),
+                                  )
+                                : Badge(
+                                    child: Text(logic.latestVer.value!),
+                                    badgeContent: FaIcon(
+                                      logic.updateAvailable
+                                          ? FontAwesomeIcons.exclamation
+                                          : FontAwesomeIcons.check,
+                                      size: 16,
                                     ),
-                          onTap: Url.latest.launch,
-                        )),
+                                    badgeColor: logic.updateAvailable
+                                        ? Colors.orange
+                                        : Colors.green,
+                                    position: BadgePosition.topStart(
+                                      top: -4,
+                                      start: -32,
+                                    ),
+                                  ),
+                        onTap: Url.latest.launch,
+                      ),
+                    ),
                     ListTile(
                       title: const Text('反馈'),
                       trailing: const FaIcon(FontAwesomeIcons.github),
