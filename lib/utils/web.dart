@@ -62,7 +62,7 @@ class Url {
 // region ECNU
   static const _ecnu = 'ecnu.edu.cn';
 
-  static const uOffice = 'http://www.u-office.$_ecnu';
+  static const uOffice = 'http://u-office.$_ecnu';
   static const calendar = '$uOffice/xiaoli';
   static const announcements = 'https://www.$_ecnu/tzgg.htm';
   static const map = 'https://eoffice.$_ecnu/ecnu3d/main.psp';
