@@ -268,6 +268,7 @@ class Course extends HiveObject {
   String toString() => toJson().toString();
 }
 
+// todo: 2.0.0 发布前更新这个，避免再来一次 BREAKING CHANGE 升到 3.0.0
 late final Box<Course> courses;
 
 @JsonSerializable()
