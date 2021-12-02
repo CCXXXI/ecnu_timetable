@@ -105,6 +105,7 @@ jobs:
           path: ios-release.zip
 
   release:
+    if: ${{ always() }}
     needs: [ build-windows, build-linux, build-macos, build-android, build-ios ]
     runs-on: ubuntu-latest
     steps:
