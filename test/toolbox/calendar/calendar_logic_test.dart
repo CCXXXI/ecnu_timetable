@@ -41,7 +41,9 @@ class FakeErrorDio extends Fake implements Dio {
 }
 
 void main() {
-  runApp(const GetMaterialApp());
+  setUpAll(() async {
+    runApp(const GetMaterialApp(home: Placeholder()));
+  });
 
   test('fake calendar', () async {
     dio = FakeDio();
