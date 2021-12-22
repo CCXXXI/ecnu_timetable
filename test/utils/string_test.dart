@@ -34,7 +34,7 @@ void main() {
   });
 
   testWidgets('license', (tester) async {
-    await tester.pumpWidget(const MaterialApp());
+    await tester.pumpWidget(const MaterialApp(home: Placeholder()));
     await initMessages();
     expect(license.startsWith('MIT License'), isTrue);
   });
