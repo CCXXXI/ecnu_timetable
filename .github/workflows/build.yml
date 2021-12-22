@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: CCXXXI/flutter-action@main
 
-      - run: flutter build web
+      - run: flutter build web --source-maps
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
