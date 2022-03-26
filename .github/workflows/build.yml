@@ -29,14 +29,14 @@ jobs:
         with:
           files: build/windows/runner/Release/
           dest: windows-release.zip
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: windows
           path: windows-release.zip
 
       - run: flutter pub run msix:create
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: msix
           path: build/windows/runner/Release/ecnu_timetable.msix
@@ -53,7 +53,7 @@ jobs:
         with:
           files: build/linux/x64/release/bundle/
           dest: linux-release.zip
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: linux
           path: linux-release.zip
@@ -69,7 +69,7 @@ jobs:
         with:
           files: build/macos/Build/Products/Release/
           dest: macos-release.zip
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: macos
           path: macos-release.zip
@@ -83,7 +83,7 @@ jobs:
 
       - run: flutter build apk --split-per-abi
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: android
           path: build/app/outputs/apk/release/*.apk
@@ -99,7 +99,7 @@ jobs:
         with:
           files: build/ios/Release-iphoneos/Runner.app/
           dest: ios-release.zip
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ios
           path: ios-release.zip
