@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: CCXXXI/flutter-action@main
       - run: flutter test --coverage
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3
 
   dependency_validator:
     runs-on: ubuntu-latest
