@@ -1,3 +1,7 @@
+由于难以稳定地从公共数据库爬取数据，停止开发。
+
+----
+
 # ECNU Timetable
 
 [![GitHub license](https://img.shields.io/github/license/CCXXXI/ecnu_timetable)](LICENSE)
