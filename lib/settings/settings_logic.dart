@@ -101,6 +101,7 @@ class SettingsLogic extends GetxController with L {
     } catch (e) {
       l.error(e);
       Get.snackbar('获取最新版本失败', e.toString());
+      return null;
     }
   }
 }

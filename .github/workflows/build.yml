@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: CCXXXI/flutter-action@main
 
-      - run: flutter build web
+      - run: flutter build web --source-maps
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: CCXXXI/flutter-action@main
-      - run: sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev
+      - run: sudo apt-get -y install clang cmake ninja-build pkg-config libgtk-3-dev
 
       - run: flutter build linux
 
@@ -105,6 +105,7 @@ jobs:
           path: ios-release.zip
 
   release:
+    if: ${{ always() }}
     needs: [ build-windows, build-linux, build-macos, build-android, build-ios ]
     runs-on: ubuntu-latest
     steps:

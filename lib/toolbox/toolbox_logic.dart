@@ -33,6 +33,7 @@ class ToolboxLogic extends GetxController with L {
     } catch (e) {
       l.error(e);
       Get.snackbar('获取舔狗语录失败', e.toString());
+      return null;
     }
   }
 

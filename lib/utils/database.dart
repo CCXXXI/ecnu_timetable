@@ -19,7 +19,7 @@ Future<void> initDatabase({
     final dir = await getApplicationSupportDirectory();
     Hive.init(dir.path);
   } else {
-    await Hive.initFlutter(packageName);
+    await Hive.initFlutter();
   }
 
   Hive.registerAdapter(UserAdapter());
@@ -28,7 +28,7 @@ Future<void> initDatabase({
   Hive.registerAdapter(MiscAdapter());
   Hive.registerAdapter(ThemeAdapter());
 
-  conf = await Hive.openBox('conf');
+  conf = await Hive.openBox('$packageName.conf');
 
   if (clear) await conf.clear();
 
@@ -40,7 +40,7 @@ Future<void> initDatabase({
 
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(PeriodAdapter());
-  courses = await Hive.openBox('courses');
+  courses = await Hive.openBox('$packageName.courses');
   if (clear) await courses.clear();
 }
 
@@ -268,6 +268,7 @@ class Course extends HiveObject {
   String toString() => toJson().toString();
 }
 
+// todo: 2.0.0 发布前更新这个，避免再来一次 BREAKING CHANGE 升到 3.0.0
 late final Box<Course> courses;
 
 @JsonSerializable()

@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                     NavigationRailDestination(
                       label: _labelIcons[i].label,
                       icon: logic.idx.value != 2 && logic.idx.value == i
-                          ? const FaIcon(FontAwesomeIcons.edit)
+                          ? const Icon(FontAwesomeIcons.edit)
                           : _labelIcons[i].icon,
                     ),
                 ],
@@ -138,9 +138,9 @@ class _LabelIcon {
 }
 
 final _labelIcons = [
-  _LabelIcon('工具箱', const FaIcon(FontAwesomeIcons.toolbox)),
-  _LabelIcon('课程表', const FaIcon(FontAwesomeIcons.th)),
-  _LabelIcon('设置', const FaIcon(FontAwesomeIcons.cog)),
+  _LabelIcon('工具箱', const Icon(FontAwesomeIcons.toolbox)),
+  _LabelIcon('课程表', const Icon(FontAwesomeIcons.th)),
+  _LabelIcon('设置', const Icon(FontAwesomeIcons.cog)),
 ];
 
 final _pages = [ToolboxPage(), TimetablePage(), SettingsPage()];
